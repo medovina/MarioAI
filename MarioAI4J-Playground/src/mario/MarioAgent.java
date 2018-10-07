@@ -21,14 +21,14 @@ import ch.idsia.utils.MarioLog;
 
 /**
  * Code your custom agent here!
- * 
- * Change {@link #actionSelection()} implementation to alter the behavior of your Mario.
- * 
- * Change {@link #debugDraw(VisualizationComponent, LevelScene, IEnvironment, Graphics)} to draw custom debug stuff.
- * 
+ * <p>
+ * Modify {@link #actionSelectionAI()} to change Mario's behavior.
+ * <p>
+ * Modify {@link #debugDraw(VisualizationComponent, LevelScene, IEnvironment, Graphics)} to draw custom debug information.
+ * <p>
  * You can change the type of level you want to play in {@link #main(String[])}.
- * 
- * Once you have your agent ready, you may use {@link Evaluate} class to benchmark the quality of your AI. 
+ * <p>
+ * Once your agent is ready, you can use the {@link Evaluate} class to benchmark the quality of your AI. 
  */
 public class MarioAgent extends MarioHijackAIBase implements IAgent {
 
@@ -50,15 +50,22 @@ public class MarioAgent extends MarioHijackAIBase implements IAgent {
 	}
 
 	/**
-	 * Use {@link #e} member to query entities (Goombas, Spikies, Koopas, etc.) around Mario; see {@link EntityType} for complete list of entities.
+	 * Called on each tick to find out what action(s) Mario should take.
+	 * <p>
+	 * Use the {@link #e} field to query entities (Goombas, Spikies, Koopas, etc.) around Mario;
+	 * see {@link EntityType} for a complete list of entities.
 	 * Important methods you will definitely need: {@link Entities#danger(int, int)} and {@link Entities#entityType(int, int)}.
-	 * 
-	 * Use {@link #t} member to query tiles (Bricks, Flower pots, etc.} around Mario; see {@link Tile} for complete list of tiles.
-	 * Important method you will definitely need: {@link Tiles#brick(int, int)}.
-	 * 
-	 * Use {@link #control} to output actions (technically this method must return {@link #action} in order for {@link #control} to work.
-	 * Note that all actions in {@link #control} runs in "parallel" (except {@link MarioControl#runLeft()} and {@link MarioControl#runRight()}, which cancels each other out in consecutive calls).
-	 * Note that you have to call {@link #control} methods every {@link #actionSelectionAI()} tick (otherwise {@link #control} will think you DO NOT want to perform that action}. 
+	 * <p>
+	 * Use the {@link #t} field to query tiles (bricks, flower pots, etc.} around Mario;
+	 * see {@link Tile} for a complete list of tiles.
+	 * An important method you will definitely need: {@link Tiles#brick(int, int)}.
+	 * <p>
+	 * Use {@link #control} to output actions (technically this method must return {@link #action} in order for
+	 * {@link #control} to work).
+	 * Note that all actions specified through {@link #control} run in "parallel"
+	 * (except {@link MarioControl#runLeft()} and {@link MarioControl#runRight()}, which cancel each other out in consecutive calls).
+	 * Also note that you have to call {@link #control} methods on every {@link #actionSelectionAI()} tick
+	 * (otherwise {@link #control} will think you DO NOT want to perform that action}. 
 	 */
 	@Override
 	public MarioInput actionSelectionAI() {
@@ -70,7 +77,7 @@ public class MarioAgent extends MarioHijackAIBase implements IAgent {
 	}
 	
 	public static void main(String[] args) {
-		// YOU MAY RISE LEVEL OF LOGGING, even though there are probably no inforamation you need to know...
+		// YOU MAY RAISE THE LOGGING LEVEL, even though there is probably no inforamation you need to know...
 		//MarioLog.setLogLevel(Level.ALL);
 		
 		// UNCOMMENT THE LINE OF THE LEVEL YOU WISH TO RUN
@@ -85,7 +92,7 @@ public class MarioAgent extends MarioHijackAIBase implements IAgent {
 		MarioSimulator simulator = new MarioSimulator(level.getOptions());
 		
 		// CREATE SIMULATOR AND RANDOMIZE LEVEL GENERATION
-		// -- if you wish to use this, comment out the line above and uncomment line below
+		// -- if you wish to use this, comment out the line above and uncomment the line below
 		//MarioSimulator simulator = new MarioSimulator(level.getOptionsRandomized());
 		
 		// INSTANTIATE YOUR AGENT

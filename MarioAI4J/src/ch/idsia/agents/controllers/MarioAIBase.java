@@ -63,17 +63,19 @@ public abstract class MarioAIBase extends MarioAgentBase {
 	protected MarioEntity mario;
 	
 	/**
-	 * Actions an {@link IAgent} wants to perform.
+	 * Actions that an {@link IAgent} wants to perform.
 	 */
 	protected MarioInput action = new MarioInput();
 	
 	/**
-	 * Layer over {@link #action} that provides programming-friendly abstraction of Mario actions.
+	 * A layer over {@link #action} that provides a programming-friendly abstraction of Mario actions.
 	 */
 	protected MarioControl control = new MarioControl(action);
 	
+	/** Information about entities in Mario's vicinity. */
 	protected Entities e = new Entities();
 	
+	/** Information about tiles in Mario's vicinity. */
 	protected Tiles t = new Tiles();
 	
 	public MarioAIBase() {

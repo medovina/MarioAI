@@ -11,7 +11,6 @@ public class Entity<SPRITE extends Sprite> {
 
 	/**
 	 * Maintains speed of the entity in pixels.
-	 * @author Jimmy
 	 */
 	public static class Speed {
 		
@@ -50,38 +49,26 @@ public class Entity<SPRITE extends Sprite> {
 	public EntityType type;
 	
 	/**
-	 * Delta Tile-X position relative to the Mario Tile-X
+	 * Delta Tile-X position relative to Mario's Tile-X
 	 * <br/><br/>
-	 * MINUS &lt;---X---&gt; PLUS
 	 */
 	public int dTX;
 	
 	/**
-	 * Delta Tile-Y position relative to the Mario Tile-Y
+	 * Delta Tile-Y position relative to Mario's Tile-Y
 	 * <br/><br/>
-	 * MINUS
-	 * ^
-	 * |
-	 * |
-	 * X
-	 * |
-	 * |
-	 * v
-	 * PLUS
 	 */
 	public int dTY;
 	
 	/**
-	 * Delta Pixel-X position relative to the Mario Pixel-X
+	 * Delta Pixel-X position relative to Mario's Pixel-X
 	 * <br/><br/>
-	 * MINUS &lt;---X---&gt; PLUS
 	 */
 	public float dX;
 	
 	/**
-	 * Delta Pixel-Y position relative to the Mario Pixel-Y
+	 * Delta Pixel-Y position relative to Mario's Pixel-Y
 	 * <br/><br/>
-	 * MINUS &lt;---X---&gt; PLUS
 	 */
 	public float dY;
 	
@@ -91,7 +78,7 @@ public class Entity<SPRITE extends Sprite> {
 	public float height;
 	
 	/**
-	 * Current speed of the entity, equals to [sprite.x - sprite.xOld, sprite.y - sprite.yOld].
+	 * Current speed of the entity, equal to [sprite.x - sprite.xOld, sprite.y - sprite.yOld].
 	 */
 	public Speed speed;	
 	
@@ -114,7 +101,5 @@ public class Entity<SPRITE extends Sprite> {
 			this.speed = new Speed(sprite.xa, sprite.ya);
 		}
 	}
-
-
 	
 }
