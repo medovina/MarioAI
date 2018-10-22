@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 
 allprojects {
     group = 'ch.idsia'
-    version = '1.0.0'
+    version = '0.3.1'
 }
 
 subprojects {
