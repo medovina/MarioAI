@@ -14,7 +14,15 @@ Refactored MarioAI code from: http://code.google.com/p/marioai/
 
 **MarioAI4J-Playground** -> Here you can start coding your own Mario AI right away.  Just navigate to the MarioAgent class and fool around.  (Requires MarioAI4J, MarioAI4J-Tournament and its libraries on the classpath).
 
-I did not mavenize these projects as I usually do, so you have to set them up manually within your IDE.  But as they need only 2 libraries and the projects feature a rather standard Java project layout, it is a trivial task (the projects are directly importable into Eclipse).
+These projects need only 2 libraries and feature a rather standard Java project layout, so you can directly import them into Eclipse.
+
+You can also build all projects with gradle:
+
+    gradle clean build
+    java -jar MarioAI4J/build/libs/MarioAI4J-<version>.jar
+    java -jar MarioAI4J-Agents/build/libs/MarioAI4J-Agents-<version>.jar
+    java -jar MarioAI4J-Tournament/build/libs/MarioAI4J-Tournament-<version>.jar
+    java -jar MarioAI4J-Playground/build/libs/MarioAI4J-Playground-<version>.jar
 
 ## Change Log
 

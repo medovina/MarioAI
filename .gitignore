@@ -2,6 +2,11 @@
 /MarioAI4J-Agents/bin
 .metadata
 .settings
+.idea
+.gradle
+.DS_Store
 bin
+out
+build
 /MarioAI4J-Playground/results
 /MarioAI4J-Tournament/results
