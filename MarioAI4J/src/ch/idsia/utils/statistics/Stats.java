@@ -61,11 +61,11 @@ public class Stats
 // found it :
 // This plots sin(x) and cos(x) with linespoints, using the same line type but different point types:
 //  plot sin(x) with linesp lt 1 pt 3, cos(x) with linesp lt 1 pt 4
-public static double[] v2a(Vector v)
+public static double[] v2a(Vector<Number> v)
 {
     double[] d = new double[v.size()];
     int i = 0;
-    for (Enumeration e = v.elements(); e.hasMoreElements();)
+    for (Enumeration<Number> e = v.elements(); e.hasMoreElements();)
         d[i++] = ((Number) e.nextElement()).doubleValue();
     return d;
 }

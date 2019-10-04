@@ -189,7 +189,10 @@ public class EvaluateAgentConsole {
 		
 		if (!config.success()) {
 			String error = "Invalid arguments specified.";
-			Iterator errorIter = config.getErrorMessageIterator();
+
+			@SuppressWarnings("unchecked")
+			Iterator<String> errorIter = (Iterator<String>) config.getErrorMessageIterator();
+
 			if (!errorIter.hasNext()) {
 				error += "\n-- No details given.";
 			} else {
@@ -250,7 +253,7 @@ public class EvaluateAgentConsole {
 			fail("Failed to find agent class: " + agentFQCN);
 		}
 		MarioLog.info("---- agent class found");
-		Constructor agentCtor = null;
+		Constructor<?> agentCtor = null;
 		try {
 			agentCtor = agentClass.getConstructor();
 		} catch (Exception e) {

@@ -275,13 +275,13 @@ public void add(double[] d)
     }
 }
 
-public void add(Vector v)
+public void add(Vector<Number> v)
 {
     for (int i = 0; i < v.size(); i++)
     {
         try
         {
-            add(((Number) v.elementAt(i)).doubleValue());
+            add(v.elementAt(i).doubleValue());
         } catch (Exception e)
         {
         }
@@ -346,7 +346,7 @@ public static void main(String[] args) throws Exception
     for (int i = 0; i < 100; i++)
     {
         ts1.add(i / 10);
-        ts2.add(i / 10 + new Double(args[0]).doubleValue());
+        ts2.add(i / 10 + Double.parseDouble(args[0]));
     }
 
     System.out.println(ts1);

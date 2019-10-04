@@ -128,7 +128,7 @@ public boolean hasMoreChunks()
     return !chunks.isEmpty();
 }
 
-public void setChunks(Queue chunks)
+public void setChunks(Queue<Interval> chunks)
 {
     this.chunks = chunks;
 }

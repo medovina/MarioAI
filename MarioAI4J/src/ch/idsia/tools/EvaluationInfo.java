@@ -187,19 +187,19 @@ public final class EvaluationInfo implements Cloneable {
 		// store mario trace:
 		try {
 			if (marioTraceFileName != null && !marioTraceFileName.equals("")) {
-				final PrintWriter pw = new PrintWriter(new FileWriter(
-						marioTraceFileName));
+				try (PrintWriter pw = new PrintWriter(new FileWriter(
+						marioTraceFileName)) ) {
 
-				for (int j = 0; j < marioTrace[0].length; ++j)
+					for (int j = 0; j < marioTrace[0].length; ++j)
 
-				{
-					for (int i = 0; i < marioTrace.length; ++i) {
-						//MarioLog.trace(spaceFormat(marioTrace[i][j]));
-						pw.print(spaceFormat(marioTrace[i][j]));
+					{
+						for (int i = 0; i < marioTrace.length; ++i) {
+							//MarioLog.trace(spaceFormat(marioTrace[i][j]));
+							pw.print(spaceFormat(marioTrace[i][j]));
+						}
+						pw.println();
 					}
-					pw.println();
 				}
-				pw.flush();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

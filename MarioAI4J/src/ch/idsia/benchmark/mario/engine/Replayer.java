@@ -37,6 +37,7 @@ import java.util.zip.ZipFile;
 import ch.idsia.benchmark.mario.engine.input.MarioInput;
 import ch.idsia.benchmark.mario.engine.input.MarioKey;
 import ch.idsia.tools.ReplayerOptions;
+import ch.idsia.tools.ReplayerOptions.Interval;
 
 /**
  * Created by IntelliJ IDEA. User: Sergey Karakovskiy, firstName_at_idsia_dot_ch
@@ -69,7 +70,10 @@ public class Replayer {
 
 		try {
 			openFile("chunks");
-			options.setChunks((Queue) readObject());
+
+			@SuppressWarnings("unchecked")
+			Queue<Interval> queue = (Queue<Interval>) readObject();
+			options.setChunks(queue);
 		} catch (Exception ignored) {
 		} // if file with replay chunks not found, than use user specified
 			// chunks
