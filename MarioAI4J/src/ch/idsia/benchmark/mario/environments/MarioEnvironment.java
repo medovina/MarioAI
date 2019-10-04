@@ -322,14 +322,14 @@ public final class MarioEnvironment implements IEnvironment {
 			ret.add("Mario Observation (Receptive Field)   Width: "
 					+ mario.receptiveFieldWidth + " Height: " + mario.receptiveFieldHeight);
 			ret.add("X Exit Position: " + levelScene.level.xExit);
-			int MarioXInMap = (int) levelScene.mario.x / levelScene.cellSize; // TODO:
+			int MarioXInMap = (int) levelScene.mario.x / LevelScene.cellSize; // TODO:
 																				// !!H!
 																				// doublcheck
 																				// and
 																				// replace
 																				// with
 																				// levelScene.mario.mapX
-			int MarioYInMap = (int) levelScene.mario.y / levelScene.cellSize; // TODO:
+			int MarioYInMap = (int) levelScene.mario.y / LevelScene.cellSize; // TODO:
 																				// !!H!
 																				// doublcheck
 																				// and
@@ -467,11 +467,11 @@ public final class MarioEnvironment implements IEnvironment {
 		evaluationInfo.timeSpent = levelScene.getTimeSpent();
 		evaluationInfo.timeLeft = levelScene.getTimeLeft();
 		evaluationInfo.coinsGained = Mario.coins;
-		evaluationInfo.totalNumberOfCoins = levelScene.level.counters.coinsCount;
-		evaluationInfo.totalNumberOfHiddenBlocks = levelScene.level.counters.hiddenBlocksCount;
-		evaluationInfo.totalNumberOfFlowers = levelScene.level.counters.flowers;
-		evaluationInfo.totalNumberOfMushrooms = levelScene.level.counters.mushrooms;
-		evaluationInfo.totalNumberOfCreatures = levelScene.level.counters.creatures;
+		evaluationInfo.totalNumberOfCoins = Level.counters.coinsCount;
+		evaluationInfo.totalNumberOfHiddenBlocks = Level.counters.hiddenBlocksCount;
+		evaluationInfo.totalNumberOfFlowers = Level.counters.flowers;
+		evaluationInfo.totalNumberOfMushrooms = Level.counters.mushrooms;
+		evaluationInfo.totalNumberOfCreatures = Level.counters.creatures;
 		evaluationInfo.marioMode = levelScene.getMarioMode();
 		evaluationInfo.mushroomsDevoured = Mario.mushroomsDevoured;
 		evaluationInfo.killsTotal = levelScene.getKillsTotal();

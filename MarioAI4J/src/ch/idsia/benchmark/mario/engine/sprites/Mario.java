@@ -155,7 +155,7 @@ public final class Mario extends Sprite {
 	public Mario(LevelScene levelScene) {
 		kind = KIND_MARIO;
 		// Mario.instance = this;
-		this.levelScene = levelScene;
+		Mario.levelScene = levelScene;
 		x = levelScene.getMarioInitialPos().x;
 		y = levelScene.getMarioInitialPos().y;
 		mapX = (int) (x / 16);

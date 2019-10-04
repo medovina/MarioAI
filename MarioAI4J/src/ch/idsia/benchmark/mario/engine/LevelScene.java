@@ -299,7 +299,7 @@ public final class LevelScene implements SpriteContext {
 							mario.setRacoon(false);
 							// System.out.println("sprite = " + sprite);
 							shell.die();
-							++this.killedCreaturesTotal;
+							++LevelScene.killedCreaturesTotal;
 						}
 					}
 				}
@@ -349,16 +349,16 @@ public final class LevelScene implements SpriteContext {
 				if (randomGen.nextInt(5) == 0 && level.difficulty > 4) {
 					addSprite(new GreenMushroom(this, x * cellSize + 8, y
 							* cellSize + 8));
-					++level.counters.greenMushrooms;
+					++Level.counters.greenMushrooms;
 				} else {
 					if (!Mario.large) {
 						addSprite(new Mushroom(this, x * cellSize + 8, y
 								* cellSize + 8));
-						++level.counters.mushrooms;
+						++Level.counters.mushrooms;
 					} else {
 						addSprite(new FireFlower(this, x * cellSize + 8, y
 								* cellSize + 8));
-						++level.counters.flowers;
+						++Level.counters.flowers;
 					}
 				}
 			} else {
@@ -498,7 +498,7 @@ public final class LevelScene implements SpriteContext {
 				// replayer.openNextReplayFile();
 				replayer.openFile("level.lvl");
 				level = (Level) replayer.readObject();
-				level.counters.resetUncountableCounters();
+				Level.counters.resetUncountableCounters();
 				// replayer.closeFile();
 				// replayer.closeRecorder();
 			} catch (IOException e) {

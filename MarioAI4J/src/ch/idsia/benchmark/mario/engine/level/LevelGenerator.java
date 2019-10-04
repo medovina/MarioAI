@@ -248,7 +248,7 @@ public class LevelGenerator {
 		fixWalls();
 		setPrincess(level.xExit, level.yExit);
 
-		level.counters = counters;
+		Level.counters = counters;
 
 		return level;
 	}
