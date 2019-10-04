@@ -46,6 +46,8 @@ public class ReplayerOptions
 {
 public static class Interval implements Serializable
 {
+    private static final long serialVersionUID = 1L;
+    
     public int from;
     public int to;
 

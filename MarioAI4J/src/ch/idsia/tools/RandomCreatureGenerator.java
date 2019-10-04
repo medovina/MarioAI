@@ -44,6 +44,8 @@ import java.util.regex.Pattern;
  */
 public class RandomCreatureGenerator extends Random
 {
+private static final long serialVersionUID = 1L;
+
 private HashSet<String> allowedCreatures = new HashSet<String>();
 private boolean creaturesEnabled = true;
 private boolean kindByDifficulty = true;

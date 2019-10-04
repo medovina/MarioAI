@@ -40,6 +40,8 @@ import javax.swing.JFrame;
  */
 public class ToolsConfigurator extends JFrame
 {
+private static final long serialVersionUID = 1L;
+
 //private Evaluator evaluator;
 //
 //public static void main(String[] args)

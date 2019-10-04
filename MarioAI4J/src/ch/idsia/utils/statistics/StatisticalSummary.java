@@ -56,6 +56,8 @@ public class StatisticalSummary implements java.io.Serializable
 // this should really be handled with a more general
 // predicate class
 
+private static final long serialVersionUID = 1L;
+
 public static class Watch
 {
     double x;

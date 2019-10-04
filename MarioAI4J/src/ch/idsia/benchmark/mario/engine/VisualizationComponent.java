@@ -71,6 +71,8 @@ import ch.idsia.utils.MarioLog;
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
 public class VisualizationComponent extends JComponent {
+	private static final long serialVersionUID = 1L;
+
 	public int width, height;
 
 	public VolatileImage thisVolatileImage;

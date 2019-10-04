@@ -52,6 +52,8 @@ import java.awt.event.ItemListener;
  */
 
 public class GameViewer extends JFrame {
+	private static final long serialVersionUID = 1L;
+	
 	Dimension defaultSize = new Dimension(900, 800);
 	Point defaultLocation = new Point(350, 10);
 
@@ -76,6 +78,8 @@ public class GameViewer extends JFrame {
 	}
 
 	private class GameViewerView extends JPanel implements Runnable {
+		private static final long serialVersionUID = 1L;
+		
 		Thread animator;
 
 		// private MarioVisualComponent marioVisualComponent;
