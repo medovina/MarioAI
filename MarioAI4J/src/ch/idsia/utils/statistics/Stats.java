@@ -147,7 +147,7 @@ public static double variance(double[] v)
  * correctness
  */
 
-private static double variance2(double[] v)
+public static double variance2(double[] v)
 {
     double mu = mean(v);
     double sumsq = 0.0;

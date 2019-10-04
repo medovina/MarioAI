@@ -313,7 +313,7 @@ public static double findt(double conf, double nu)
  * functions.
  */
 
-private static double binRoot(double x)
+public static double binRoot(double x)
 {
     double eps = 0.0001; // accuracy
     // do a binary search for it
@@ -455,7 +455,7 @@ private static void fillUniform(double[] d, double mean)
         d[i] = Math.random() + mean - 0.5;
 }
 
-private static void test()
+public static void test()
 {
     System.out.println(tTest(1.311, 29));
     System.out.println(tSingle(1.311, 29));
@@ -514,19 +514,13 @@ private static void confTest(double[] s)
 
 }
 
-private static void addConst(double[] v1, double[] v2, double c)
-{
-    for (int i = 0; i < v1.length; i++)
-        v2[i] = v1[i] + c;
-}
-
 /**
  * Runs a t-test on some text book data.
  * <p/>
  * The data is from page 362 of Statistics for Business and Economics
  */
 
-private static void testT()
+public static void testT()
 {
 
     double[] s1 = {137, 135, 83, 125, 47, 46, 114, 157, 57, 144};

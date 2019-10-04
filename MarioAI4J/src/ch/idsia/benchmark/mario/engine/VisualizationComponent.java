@@ -626,40 +626,4 @@ public class VisualizationComponent extends JComponent {
 		this.thisGraphics = getGraphics();
 	}
 
-	private void renderBlackout(Graphics g, int x, int y, int radius) {
-		if (radius > SimulatorOptions.VISUAL_COMPONENT_WIDTH)
-			return;
-
-		int[] xp = new int[20];
-		int[] yp = new int[20];
-		for (int i = 0; i < 16; i++) {
-			xp[i] = x + (int) (Math.cos(i * Math.PI / 15) * radius);
-			yp[i] = y + (int) (Math.sin(i * Math.PI / 15) * radius);
-		}
-		xp[16] = SimulatorOptions.VISUAL_COMPONENT_WIDTH;
-		yp[16] = y;
-		xp[17] = SimulatorOptions.VISUAL_COMPONENT_WIDTH;
-		yp[17] = SimulatorOptions.VISUAL_COMPONENT_HEIGHT;
-		xp[18] = 0;
-		yp[18] = SimulatorOptions.VISUAL_COMPONENT_HEIGHT;
-		xp[19] = 0;
-		yp[19] = y;
-		g.fillPolygon(xp, yp, xp.length);
-
-		for (int i = 0; i < 16; i++) {
-			xp[i] = x - (int) (Math.cos(i * Math.PI / 15) * radius);
-			yp[i] = y - (int) (Math.sin(i * Math.PI / 15) * radius);
-		}
-		xp[16] = SimulatorOptions.VISUAL_COMPONENT_WIDTH;
-		yp[16] = y;
-		xp[17] = SimulatorOptions.VISUAL_COMPONENT_WIDTH;
-		yp[17] = 0;
-		xp[18] = 0;
-		yp[18] = 0;
-		xp[19] = 0;
-		yp[19] = y;
-
-		g.fillPolygon(xp, yp, xp.length);
-	}
-
 }

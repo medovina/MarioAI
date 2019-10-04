@@ -82,17 +82,6 @@ public class GameViewer extends JFrame {
 		
 		Thread animator;
 
-		// private MarioVisualComponent marioVisualComponent;
-
-		public void start() {
-			animator = new Thread(this);
-			animator.start();
-		}
-
-		public void stop() {
-			animator = null;
-		}
-
 		public void paint(Graphics g) {
 			g.fillRect(0, 0, getWidth(), getHeight());
 			g.setColor(Color.YELLOW);
