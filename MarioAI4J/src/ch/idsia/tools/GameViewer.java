@@ -156,7 +156,6 @@ public class GameViewer extends JFrame {
 	Checkbox Z1_Enemies = new Checkbox("Z1_Enemies", ZLevelEnemies, false);
 	Checkbox Z2_Enemies = new Checkbox("Z2_Enemies", ZLevelEnemies, false);
 
-	private ToolsConfigurator toolsConfigurator = null;
 	private int ZLevelMapValue = 0;
 	private int ZLevelEnemiesValue = 0;
 
@@ -298,10 +297,6 @@ public class GameViewer extends JFrame {
 				gameViewerViewPanel.repaint();
 			}
 		}
-	}
-
-	public void setToolsConfigurator(ToolsConfigurator toolsConfigurator) {
-		this.toolsConfigurator = toolsConfigurator;
 	}
 
 	public void setConsoleText(String text) {

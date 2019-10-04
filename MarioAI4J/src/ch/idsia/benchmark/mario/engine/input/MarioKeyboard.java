@@ -2,11 +2,8 @@ package ch.idsia.benchmark.mario.engine.input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Represents configurable keyboard. Keyboard is configured via {@link #register(int, MarioKey)},
@@ -17,13 +14,6 @@ import java.util.TreeSet;
 public class MarioKeyboard implements KeyListener {
 
 	private Map<Integer, MarioKey> mapping = new HashMap<Integer, MarioKey>();
-	
-	private Set<MarioKey> keys = new TreeSet<MarioKey>(new Comparator<MarioKey>() {
-		@Override
-		public int compare(MarioKey o1, MarioKey o2) {
-			return o1.getCode() - o2.getCode();
-		}		
-	});
 	
 	private MarioInput input = new MarioInput();
 	

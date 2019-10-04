@@ -474,11 +474,7 @@ public class MarioOptions {
 	// =====
 	
 	public static Object getOptionsAsStrings() {
-		for (Object optionObj : options.keySet()) {
-			
-		}
 		return null;
 	}
-
 	
 }

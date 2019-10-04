@@ -252,7 +252,6 @@ public static double confDiff(double[] d, double conf)
 {
     // find the alpha which gives this confidence level
 
-    double mean = Stats.mean(d);
     // System.out.println("SDEV = " + Stats.sdev(d));
     double stderr = Stats.stderr(d);
     double nu = d.length - 1.0;

@@ -311,7 +311,6 @@ public final class EvaluationInfo implements Cloneable {
 	}
 
 	private String spaceFormat(int i) {
-		int j = 0;
 		String r = "" + ((i == 0) ? "." : i);
 		while (r.length() < 4)
 			r += " ";

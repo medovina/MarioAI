@@ -387,7 +387,6 @@ public class VisualizationComponent extends JComponent {
 	private void renderReceptiveField(Sprite mario, Graphics og) {			
 		// og.drawString("M", (int) x, (int) y);
 		og.drawString("Matrix View", mario.xPic - 40, mario.yPic - 20);
-		int width = SimulatorOptions.receptiveFieldWidth;// * 16;
 		int height = SimulatorOptions.receptiveFieldHeight;// * 16;
 
 		int rows = SimulatorOptions.receptiveFieldHeight;

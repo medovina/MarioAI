@@ -27,8 +27,6 @@
 
 package ch.idsia.benchmark.mario.options;
 
-import java.awt.Point;
-
 import ch.idsia.benchmark.mario.engine.SimulatorOptions;
 import ch.idsia.benchmark.mario.options.MarioOptions.BoolOption;
 import ch.idsia.benchmark.mario.options.MarioOptions.IntOption;
@@ -53,8 +51,6 @@ import ch.idsia.benchmark.mario.options.MarioOptions.IntOption;
 
 public final class AIOptions extends SimulationOptions {
 
-	final private Point marioInitialPos = new Point();
-	
 	/**
 	 * Auto-adjusts certain AI options.
 	 * <br/><br/>

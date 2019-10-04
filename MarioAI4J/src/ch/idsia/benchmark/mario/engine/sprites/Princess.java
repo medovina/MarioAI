@@ -32,7 +32,6 @@ import ch.idsia.benchmark.mario.engine.LevelScene;
 
 public class Princess extends Sprite
 {
-private LevelScene world;
 private int runTime = 0;
 
 public Princess(LevelScene world, int x, int y, int mapX, int mapY)
@@ -42,7 +41,6 @@ public Princess(LevelScene world, int x, int y, int mapX, int mapY)
 
     this.x = x;
     this.y = y;
-    this.world = world;
     this.mapX = mapX;
     this.mapY = mapY;
     yPic = 0;

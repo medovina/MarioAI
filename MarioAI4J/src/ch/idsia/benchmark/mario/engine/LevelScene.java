@@ -78,15 +78,11 @@ public final class LevelScene implements SpriteContext {
 	private int width;
 	private int height;
 
-	private static boolean onLadder = false;
-
 	private Random randomGen = new Random(0);
 
 	final private List<Float> enemiesFloatsList = new ArrayList<Float>();
 	final private float[] marioFloatPos = new float[2];
 	final private int[] marioState = new int[11];
-	private int numberOfHiddenCoinsGained = 0;
-
 	private int greenMushroomMode = 0;
 
 	public String memo = "";

@@ -53,8 +53,6 @@ private final String[] kinds = {Enemy.GOOMBA.getShorthand(), Enemy.GOOMBA_WINGED
 		                        Enemy.SPIKY.getShorthand(), Enemy.SPIKY_WINGED.getShorthand(), Enemy.WAVE_GOOMBA.getShorthand()};
 private String lastDecreased;
 
-private final int INFINITE = -1;
-
 private int GOOMBA = 0;
 private int GOOMBA_WINGED = 1;
 private int RED_KOOPA = 2;

@@ -34,8 +34,6 @@ import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.Image;
 import java.awt.Transparency;
-import java.util.Random;
-
 import ch.idsia.benchmark.mario.engine.SimulatorOptions.ReceptiveFieldMode;
 import ch.idsia.benchmark.mario.engine.level.Level;
 
@@ -47,8 +45,6 @@ public class LevelRenderer {
 	private static final Color transparent = new Color(0, 0, 0, 0);
 	private Level level;
 
-	private static final int exitXOffset = 2;
-	private Random random = new Random();
 	public boolean renderBehaviors = false;
 
 	int width;

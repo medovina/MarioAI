@@ -128,7 +128,7 @@ public class MarioSimulator {
 		
 		IAgent agent = new CheaterKeyboardAgent();
 		
-		EvaluationInfo result = simulator.run(agent);
+		simulator.run(agent);
 		
 		System.exit(0);
 	}

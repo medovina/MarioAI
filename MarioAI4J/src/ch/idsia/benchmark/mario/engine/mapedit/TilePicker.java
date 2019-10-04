@@ -45,7 +45,6 @@ private int yTile = -1;
 
 public byte pickedTile;
 
-private byte paint = 0;
 private LevelEditor tilePickChangedListener;
 
 public TilePicker()

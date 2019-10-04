@@ -36,12 +36,7 @@ public class Mushroom extends Sprite
 private static float GROUND_INERTIA = 0.89f;
 private static float AIR_INERTIA = 0.89f;
 
-private float runTime;
 private boolean onGround = false;
-private boolean mayJump = false;
-private int jumpTime = 0;
-private float xJumpSpeed;
-private float yJumpSpeed;
 
 private int width = 4;
 int height = 24;
@@ -74,7 +69,6 @@ public void collideCheck()
 {
     float xMarioD = world.mario.x - x;
     float yMarioD = world.mario.y - y;
-    float w = 16;
     if (xMarioD > -16 && xMarioD < 16)
     {
         if (yMarioD > -height && yMarioD < world.mario.height)
@@ -109,12 +103,7 @@ public void move()
 
     xa = facing * sideWaysSpeed;
 
-    mayJump = (onGround);
-
     xFlipPic = facing == -1;
-
-    runTime += (Math.abs(xa)) + 5;
-
 
     if (!move(xa, 0)) facing = -facing;
     onGround = false;
@@ -206,7 +195,6 @@ private boolean move(float xa, float ya)
         if (ya < 0)
         {
             y = (int) ((y - height) / 16) * 16 + height;
-            jumpTime = 0;
             this.ya = 0;
         }
         if (ya > 0)
@@ -230,8 +218,6 @@ private boolean isBlocking(float _x, float _y, float xa, float ya)
     if (x == (int) (this.x / 16) && y == (int) (this.y / 16)) return false;
 
     boolean blocking = world.level.isBlocking(x, y, xa, ya);
-
-    byte block = world.level.getBlock(x, y);
 
     return blocking;
 }

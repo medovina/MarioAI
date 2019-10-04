@@ -356,7 +356,7 @@ public static void main(String[] args) throws Exception
 
     System.out.println("Creating summaries");
 
-    StatisticalSummary trainSummary = new StatisticalSummary();
+    // StatisticalSummary trainSummary = new StatisticalSummary();
     System.out.println("1");
     // StatisticalSummary testSummary = new VisualSummary("EA");
     System.out.println("2");
@@ -370,12 +370,6 @@ public static void main(String[] args) throws Exception
 
     System.out.println("Created summaries");
 
-
-    StatisticalSummary s10 = new StatisticalSummary();
-    StatisticalSummary s20 = new StatisticalSummary();
-    StatisticalSummary s3 = new StatisticalSummary();
-    StatisticalSummary s4 = new StatisticalSummary();
-    StatisticalSummary s5 = new StatisticalSummary();
     StatisticalSummary ss = new StatisticalSummary("Hello");
     for (int i = 0; i < 20; i++)
     {
