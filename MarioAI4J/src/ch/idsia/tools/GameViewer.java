@@ -29,7 +29,6 @@ package ch.idsia.tools;
 
 import ch.idsia.benchmark.mario.engine.SimulatorOptions;
 import ch.idsia.benchmark.mario.engine.VisualizationComponent;
-import ch.idsia.benchmark.mario.options.AIOptions;
 import ch.idsia.benchmark.mario.options.VisualizationOptions;
 import ch.idsia.utils.MarioLog;
 

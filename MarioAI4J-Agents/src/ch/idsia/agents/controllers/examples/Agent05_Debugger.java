@@ -1,8 +1,6 @@
 package ch.idsia.agents.controllers.examples;
 
 import java.awt.Graphics;
-import java.util.Random;
-
 import ch.idsia.agents.AgentOptions;
 import ch.idsia.agents.IAgent;
 import ch.idsia.agents.controllers.MarioHijackAIBase;
@@ -10,10 +8,7 @@ import ch.idsia.benchmark.mario.MarioSimulator;
 import ch.idsia.benchmark.mario.engine.LevelScene;
 import ch.idsia.benchmark.mario.engine.VisualizationComponent;
 import ch.idsia.benchmark.mario.engine.generalization.Enemy;
-import ch.idsia.benchmark.mario.engine.generalization.EntityType;
-import ch.idsia.benchmark.mario.engine.generalization.Tile;
 import ch.idsia.benchmark.mario.engine.input.MarioInput;
-import ch.idsia.benchmark.mario.engine.input.MarioKey;
 import ch.idsia.benchmark.mario.environments.IEnvironment;
 import ch.idsia.benchmark.mario.options.FastOpts;
 
@@ -26,8 +21,6 @@ import ch.idsia.benchmark.mario.options.FastOpts;
  */
 public class Agent05_Debugger extends MarioHijackAIBase implements IAgent {
 
-	private Random rnd = new Random();
-	
 	@Override
 	public void reset(AgentOptions options) {
 		super.reset(options);		

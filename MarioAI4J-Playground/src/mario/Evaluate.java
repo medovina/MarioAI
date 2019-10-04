@@ -2,8 +2,6 @@ package mario;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-
 import ch.idsia.utils.MarioLog;
 import cz.cuni.mff.amis.mario.tournament.EvaluateAgentConsole;
 import cz.cuni.mff.amis.mario.tournament.run.MarioRunResults;

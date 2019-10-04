@@ -1,8 +1,6 @@
 package mario;
 
 import java.awt.Graphics;
-import java.util.logging.Level;
-
 import ch.idsia.agents.AgentOptions;
 import ch.idsia.agents.IAgent;
 import ch.idsia.agents.controllers.MarioHijackAIBase;

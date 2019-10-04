@@ -30,7 +30,6 @@ package ch.idsia.benchmark.mario.engine;
 import ch.idsia.benchmark.mario.engine.level.Level;
 
 import java.awt.*;
-import java.util.Random;
 
 
 public class BgRenderer
@@ -42,7 +41,6 @@ private Graphics2D g;
 private static final Color transparent = new Color(0, 0, 0, 0);
 private Level level;
 
-private Random random = new Random();
 public boolean renderBehaviors = false;
 
 private int width;

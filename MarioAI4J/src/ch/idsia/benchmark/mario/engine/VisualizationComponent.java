@@ -59,7 +59,6 @@ import ch.idsia.benchmark.mario.environments.MarioEnvironment;
 import ch.idsia.benchmark.mario.options.VisualizationOptions;
 import ch.idsia.tools.GameViewer;
 import ch.idsia.utils.MarioLog;
-import cz.cuni.amis.utils.simple_logging.SimpleLogging;
 
 /**
  * Created by IntelliJ IDEA. 

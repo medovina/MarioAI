@@ -27,14 +27,11 @@
 
 package ch.idsia.benchmark.mario.options;
 
+import java.awt.Point;
+
 import ch.idsia.benchmark.mario.engine.SimulatorOptions;
 import ch.idsia.benchmark.mario.options.MarioOptions.BoolOption;
 import ch.idsia.benchmark.mario.options.MarioOptions.IntOption;
-import ch.idsia.benchmark.mario.options.MarioOptions.StringOption;
-
-import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA. 

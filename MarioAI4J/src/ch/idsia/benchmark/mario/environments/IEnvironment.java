@@ -37,7 +37,6 @@ import ch.idsia.benchmark.mario.engine.generalization.Entity;
 import ch.idsia.benchmark.mario.engine.generalization.Tile;
 import ch.idsia.benchmark.mario.engine.input.MarioInput;
 import ch.idsia.benchmark.mario.engine.sprites.Mario;
-import ch.idsia.benchmark.mario.engine.sprites.Mario.MarioMode;
 import ch.idsia.benchmark.mario.options.MarioOptions;
 import ch.idsia.tools.EvaluationInfo;
 

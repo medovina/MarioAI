@@ -27,7 +27,6 @@
 
 package ch.idsia.benchmark.mario.engine.level;
 
-import ch.idsia.benchmark.mario.options.AIOptions;
 import ch.idsia.benchmark.mario.options.LevelOptions;
 import ch.idsia.utils.MarioLog;
 

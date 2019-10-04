@@ -53,7 +53,6 @@ import ch.idsia.benchmark.mario.engine.sprites.Shell;
 import ch.idsia.benchmark.mario.engine.sprites.Sparkle;
 import ch.idsia.benchmark.mario.engine.sprites.Sprite;
 import ch.idsia.benchmark.mario.engine.sprites.SpriteContext;
-import ch.idsia.benchmark.mario.options.AIOptions;
 import ch.idsia.benchmark.mario.options.LevelOptions;
 import ch.idsia.benchmark.mario.options.SimulationOptions;
 import ch.idsia.benchmark.mario.options.SystemOptions;

@@ -3,8 +3,6 @@ package cz.cuni.mff.amis.mario.tournament;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-
 import ch.idsia.agents.IAgent;
 import ch.idsia.tools.EvaluationInfo;
 import ch.idsia.utils.MarioLog;

@@ -4,9 +4,6 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-
-import javax.swing.text.NumberFormatter;
 
 import ch.idsia.benchmark.mario.engine.LevelScene;
 import ch.idsia.benchmark.mario.engine.SimulatorOptions;
