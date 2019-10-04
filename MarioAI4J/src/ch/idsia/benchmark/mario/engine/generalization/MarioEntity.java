@@ -1,9 +1,8 @@
 package ch.idsia.benchmark.mario.engine.generalization;
 
-import ch.idsia.benchmark.mario.engine.sprites.Mario;
 import ch.idsia.benchmark.mario.engine.sprites.Mario.MarioMode;
 
-public class MarioEntity extends Entity<Mario> {
+public class MarioEntity extends Entity {
 	
 	/**
 	 * READ-ONLY

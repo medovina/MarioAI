@@ -7,7 +7,7 @@ import ch.idsia.benchmark.mario.engine.sprites.Sprite;
  * 
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
-public class Entity<SPRITE extends Sprite> {
+public class Entity {
 
 	/**
 	 * Maintains speed of the entity in pixels.
@@ -85,9 +85,9 @@ public class Entity<SPRITE extends Sprite> {
 	/**
 	 * Source sprite - READ ONLY!
 	 */
-	public SPRITE sprite;
+	public Sprite sprite;
 
-	public Entity(SPRITE sprite, EntityType entityType, int dTX, int dTY, float dX, float dY, float height) {
+	public Entity(Sprite sprite, EntityType entityType, int dTX, int dTY, float dX, float dY, float height) {
 		this.sprite = sprite;
 		this.type = entityType;
 		this.dTX = dTX;
