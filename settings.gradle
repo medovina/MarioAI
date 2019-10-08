@@ -1,5 +1,0 @@
-rootProject.name = 'marioai4j'
-include 'MarioAI4J'
-include 'MarioAI4J-Agents'
-include 'MarioAI4J-Tournament'
-include 'MarioAI4J-Playground'

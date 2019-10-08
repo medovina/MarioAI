@@ -1,9 +1,0 @@
-dependencies {
-    compile project(":MarioAI4J")
-}
-
-jar {
-    manifest {
-        attributes 'Main-Class': 'ch.idsia.agents.controllers.examples.Agent00_Random'
-    }
-}
