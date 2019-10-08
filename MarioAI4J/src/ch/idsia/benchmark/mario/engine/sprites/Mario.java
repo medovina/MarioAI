@@ -783,8 +783,6 @@ public final class Mario extends Sprite {
 		deathTime = 25;
 		status = Mario.STATUS_DEAD;
 		levelScene.addMemoMessage("Reason of death: " + reasonOfDeath);
-		levelScene
-				.appendBonusPoints(-MarioEnvironment.IntermediateRewardsSystemOfValues.win / 2);
 	}
 
 	public void devourFlower() {

@@ -87,7 +87,7 @@ public final class LevelScene implements SpriteContext {
 
 	public String memo = "";
 	private Point marioInitialPos;
-	private int bonusPoints = -1;
+	private int bonusPoints = 0;
 
 	// public int getTimeLimit() { return timeLimit; }
 
@@ -535,7 +535,7 @@ public final class LevelScene implements SpriteContext {
 		Sprite.setCreaturesIce(SimulationOptions.getWindMario());
 		Mario.resetStatic();
 
-		bonusPoints = -1;
+		bonusPoints = 0;
 
 		mario = new Mario(this);
 		// System.out.println("mario = " + mario);

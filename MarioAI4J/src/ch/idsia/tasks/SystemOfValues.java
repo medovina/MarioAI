@@ -35,18 +35,18 @@ package ch.idsia.tasks;
  */
 public class SystemOfValues {
 	public int distance = 1;
-	public int win = 1024;
+	public int win = 800;
 	public int mode = 32;
-	public int coins = 16;
-	public int flowerFire = 64;
-	public int kills = 42;
+	public int coins = 20;
+	public int flowerFire = 100;
+	public int kills = 0;
 	public int killedByFire = 4;
 	public int killedByShell = 17;
 	public int killedByStomp = 12;
-	public int mushroom = 58;
+	public int mushroom = 100;
 	public int timeLeft = 8;
 	public int hiddenBlock = 24;
-	public int greenMushroom = 58;
+	public int greenMushroom = 100;
 	// For Intermediate rewards only
 	public int stomp = 10;
 }

@@ -10,7 +10,7 @@ This is a Java implementation of the classic video game Super Mario Bros.  You c
 
 ## History
 
-Nintendo released the original [Super Mario Bros.](https://en.wikipedia.org/wiki/Super_Mario_Bros.) game for the Nintendo Entertainment System in 1985.  It quickly became a classic and influenced many other games.  (If you have a ROM for the original game, you can play it using the [MAME](https://www.mamedev.org/) emulator.)
+Nintendo released the original [Super Mario Bros.](https://en.wikipedia.org/wiki/Super_Mario_Bros.) game for the Nintendo Entertainment System in 1985.  It quickly became a classic and influenced many other games.  (If you have a ROM for the original game, you can play it using the [Nestopia](https://github.com/0ldsk00l/nestopia) emulator.)
 
 Some time around 2006, Markus Persson (creator of Minecraft) wrote a Java program called Infinite Mario Bros., which was like the original Super Mario Bros., but with a random level generator.  The original Infinite Mario Bros. web pages have vanished, but the Java code is freely available and lives on. 
 
@@ -74,17 +74,15 @@ When you press A to jump, you will jump higher if you hold the A key down throug
 
 ## Scoring
 
-Your current score is displayed at the bottom of the display with the label "intermediate reward:".  You gain or lose points as follows:
+Your current score is displayed at the bottom of the screen.  You gain or lose points as follows:
 
 - shoot a Goomba or Koopa: __0__ points
 - step on a Goomba or Koopa: __10__ points
 - kill a Goomba, Koopa or Spiky by hitting it with a shell: __10__ points
-- collect a coin: __16__ points
-- collect a mushroom: __58__ points
-- collect a flower: __64__ points
-- take damage (moving to the next weaker state): __-42__ points
-- finish the level by reaching the Princess: __1024__ points
-- die without finishing the level: __-512__ points
+- collect a coin: __20__ points
+- collect a mushroom: __100__ points
+- collect a flower: __100__ points
+- finish the level by reaching the Princess: __800__ points
 
 ## Project structure
 

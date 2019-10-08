@@ -514,7 +514,7 @@ public class VisualizationComponent extends JComponent {
 		drawStringDropShadow(g, progress_str, 0, 28, 2);
 		drawStringDropShadow(
 				g,
-				"intermediate reward: "
+				"Score: "
 						+ marioEnvironment.getIntermediateReward(), 0, 27, 2);
 	}
 

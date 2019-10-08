@@ -45,12 +45,12 @@ package ch.idsia.tasks;
  */
 public class MarioSystemOfValues extends SystemOfValues {
 	final public int distance = 1;
-	final public int win = 1024;
+	final public int win = 800;
 	final public int mode = 32;
-	final public int coins = 16;
+	final public int coins = 20;
 	final public int hiddenItems = 24;
-	final public int flowerFire = 64; // not used for now
-	final public int kills = 42;
+	final public int flowerFire = 100; // not used for now
+	final public int kills = 0;
 	final public int killedByFire = 4;
 	final public int killedByShell = 17;
 	final public int killedByStomp = 12;
