@@ -22,7 +22,7 @@ Meanwhile, a new version of MarioAI (0.8) has recently (in 2019) appeared at [ma
 
 ## Building the game
 
-This version of MarioAI is compatible with Java 11 and probably older Java versions as well.  It includes Gradle build files, as well as .project files for Eclipse.  You should easily be able to load it into Eclipse, Visual Studio Code, or other modern Java IDEs.
+This version of MarioAI is compatible with Java 11 and probably older Java versions as well.  It includes .project files for Eclipse.  You should easily be able to load it into Eclipse, IntelliJ, or Visual Studio Code, all of which understand the Eclipse .project file format.
 
 ## Playing the game
 
