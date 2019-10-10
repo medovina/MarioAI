@@ -3,10 +3,8 @@
 .metadata
 .settings
 .vscode
-/MarioAI4J-Agents/bin
 /MarioAI4J-Playground/results
 /MarioAI4J-Tournament/results
-/MarioAI4J/bin
 bin
 build
 out
