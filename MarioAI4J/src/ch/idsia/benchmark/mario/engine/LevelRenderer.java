@@ -132,7 +132,7 @@ public class LevelRenderer {
 							- yCam - yo + LevelScene.cellSize);
 				}
 
-				if (((Level.TILE_BEHAVIORS[b & 0xff]) & Level.BIT_ANIMATED) > 0) {
+				if (((Level.TILE_BEHAVIORS[b & 0xff]) & Level.BIT_ANIMATED) == Level.BIT_ANIMATED) {
 					int animTime = (tick / 3) % 4;
 
 					if ((b % 16) / 4 == 0 && b / 16 == 1) {
