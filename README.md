@@ -22,7 +22,7 @@ Meanwhile, a new version of MarioAI (0.8) has recently (in 2019) appeared at [ma
 
 ## Building the game
 
-This version of MarioAI is compatible with Java 11 and probably older Java versions as well.  Currently it will __not run correctly with Java 12 or 13__ (see "Java version compatibility", below).
+This version of MarioAI works with Java 11, 12, or 13, and probably older Java versions as well.
 
 The sources include .project files for Eclipse.  You should easily be able to load them into Eclipse, IntelliJ, or Visual Studio Code, all of which understand the Eclipse .project file format.
 
@@ -133,10 +133,6 @@ Here are some extra keyboard controls that allows you to visualize / perform ext
 - __F__: Mario will start flying; good for quickly moving forward through the map
 - __Z__: Toggle scale x2 of the visualization (scale x2 is broken on some systems, dunno why)
 - __+__ / __-__: adjust simulator frames per second
-
-## Java version compatibility
-
-Unfortunately MarioAI will not run correctly with Java 12 or 13.  It seems to run normally at first, but after about 10 seconds all the tiles disappear from the graphical view.  I spent some time trying to debug this, and found that with these Java versions strange things happen in the rendering code in LevelRender.render(): apparently bitwise AND operations do not always produce the correct result.  This could conceivably be a bug in the just-in-time compiler.  Unfortunately it looks like it could be pretty difficult to track down more specifically.
 
 ## Changelog
 
