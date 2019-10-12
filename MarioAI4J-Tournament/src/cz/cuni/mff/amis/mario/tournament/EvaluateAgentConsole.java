@@ -147,7 +147,7 @@ public class EvaluateAgentConsole {
 	    FlaggedOption opt32 = new FlaggedOption(ARG_RESULT_DIR_LONG)
 	    	.setStringParser(JSAP.STRING_PARSER)
 	    	.setRequired(false)
-	    	.setDefault("./results")
+	    	.setDefault((String) null)
 	    	.setShortFlag(ARG_RESULT_DIR_SHORT)
 	    	.setLongFlag(ARG_RESULT_DIR_LONG);    
 	    opt32.setHelp("Directory where to output results, will be created if not exist.");
@@ -176,7 +176,7 @@ public class EvaluateAgentConsole {
    	}
 
 	private static void readConfig(String[] args) {
-		MarioLog.info("Parsing command arguments.");
+		MarioLog.fine("Parsing command arguments.");
 		
 		try {
 	    	config = jsap.parse(args);
@@ -220,30 +220,33 @@ public class EvaluateAgentConsole {
 	}
 	
 	private static void sanityChecks() {
-		MarioLog.info("Sanity checks...");
+		MarioLog.info("seed: " + seed);
+
+		MarioLog.fine("Sanity checks...");
 		
 		// UT2004
-		MarioLog.info("-- seed: " + seed);
-		MarioLog.info("-- level options: " + levelOptions);
-		MarioLog.info("-- run count: " + runCount);
-		MarioLog.info("-- single level repetitions: " + oneLevelRepetitions);
+		MarioLog.fine("-- level options: " + levelOptions);
+		MarioLog.fine("-- run count: " + runCount);
+		MarioLog.fine("-- single level repetitions: " + oneLevelRepetitions);
 		
-		resultDirFile = new File(resultDir);
-		MarioLog.info("-- result dir: " + resultDir + " --> " + resultDirFile.getAbsolutePath());
-		
-		if (!resultDirFile.exists()) {
-			MarioLog.info("---- result dir does not exist, creating!");
-			resultDirFile.mkdirs();
+		if (resultDir != null) {
+			resultDirFile = new File(resultDir);
+			MarioLog.fine("-- result dir: " + resultDir + " --> " + resultDirFile.getAbsolutePath());
+			
+			if (!resultDirFile.exists()) {
+				MarioLog.info("---- result dir does not exist, creating!");
+				resultDirFile.mkdirs();
+			}
+			if (!resultDirFile.exists()) {
+				fail("Result dir does not exists. Parsed as: " + resultDir + " --> " + resultDirFile.getAbsolutePath());
+			}
+			if (!resultDirFile.isDirectory()) {
+				fail("Result dir is not a directory. Parsed as: " + resultDir + " --> " + resultDirFile.getAbsolutePath());
+			}
+			MarioLog.fine("---- result directory exists, ok");
 		}
-		if (!resultDirFile.exists()) {
-			fail("Result dir does not exists. Parsed as: " + resultDir + " --> " + resultDirFile.getAbsolutePath());
-		}
-		if (!resultDirFile.isDirectory()) {
-			fail("Result dir is not a directory. Parsed as: " + resultDir + " --> " + resultDirFile.getAbsolutePath());
-		}
-		MarioLog.info("---- result directory exists, ok");
-		
-		MarioLog.info("-- resolving agent FQCN: " + agentFQCN);
+			
+		MarioLog.fine("-- resolving agent FQCN: " + agentFQCN);
 		try {
 			agentClass = Class.forName(agentFQCN);
 		} catch (ClassNotFoundException e) {
@@ -252,7 +255,7 @@ public class EvaluateAgentConsole {
 		if (agentClass == null) {
 			fail("Failed to find agent class: " + agentFQCN);
 		}
-		MarioLog.info("---- agent class found");
+		MarioLog.fine("---- agent class found");
 		Constructor<?> agentCtor = null;
 		try {
 			agentCtor = agentClass.getConstructor();
@@ -262,7 +265,7 @@ public class EvaluateAgentConsole {
 		if (agentCtor == null) {
 			fail("Failed to locate parameterless constructor for agent class: " + agentClass.getName());
 		}
-		MarioLog.info("---- agent parameterless constructor found");
+		MarioLog.fine("---- agent parameterless constructor found");
 		try {
 			agent = (IAgent) agentCtor.newInstance();
 		} catch (Exception e) {
@@ -272,9 +275,9 @@ public class EvaluateAgentConsole {
 			fail("Failed to construct the agent instance.");
 		}
 		
-		MarioLog.info("---- agent instantiated");
+		MarioLog.fine("---- agent instantiated");
 		
-	    MarioLog.info("Sanity checks OK!");
+	    MarioLog.fine("Sanity checks OK!");
 	}
 	
 	private static MarioRunResults evaluateAgent() {

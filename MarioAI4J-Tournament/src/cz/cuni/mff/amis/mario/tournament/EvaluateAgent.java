@@ -36,6 +36,10 @@ public class EvaluateAgent {
 		MarioLog.info("[" + agentId + "] " + msg);
 	}
 	
+	private void logFine(String agentId, String msg) {
+		MarioLog.fine("[" + agentId + "] " + msg);
+	}
+
 	public MarioRunResults evaluateAgent(String agentId, IAgent agent) {
 		agentId = Sanitize.idify(agentId);
 		
@@ -46,11 +50,11 @@ public class EvaluateAgent {
 		MarioRunResults results = new MarioRunResults();
 		
 		for (int i = 0; i < runs.length; ++i) {
-			log(agentId, "LEVEL " + (i+1) + " / " + runs.length + " (" + oneLevelRepetitions + " repetitions)");
+			logFine(agentId, "LEVEL " + (i+1) + " / " + runs.length + " (" + oneLevelRepetitions + " repetitions)");
 			
 			MarioRunResult result = runs[i].run(agent);
 			
-			log(agentId, "LEVEL " + (i+1) + " / " + runs.length + " SIMULATIONS FINISHED: " + result.toString());
+			logFine(agentId, "LEVEL " + (i+1) + " / " + runs.length + " SIMULATIONS FINISHED: " + result.toString());
 			
 			results.addRunResults(result);			
 		}
@@ -58,7 +62,8 @@ public class EvaluateAgent {
 		log(agentId, "EVALUATION FINISHED!");
 		log(agentId, results.toString());
 		
-		outputResults(agentId, results);	
+		if (resultDirFile != null)
+			outputResults(agentId, results);	
 		
 		return results;
 	}
