@@ -3,8 +3,9 @@
 .metadata
 .settings
 .vscode
-/MarioAI4J-Playground/results
-/MarioAI4J-Tournament/results
 bin
 build
+/html
+/mario.jar
+results
 out

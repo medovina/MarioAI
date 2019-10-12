@@ -1,0 +1,9 @@
+#!/bin/bash
+
+jar cf mario_tmp.jar -C MarioAI4J/bin . \
+                     -C MarioAI4J-Playground/bin . \
+                     -C MarioAI4J-Tournament/bin .
+
+zip -d mario_tmp.jar MarioAgent.class
+
+mv -f mario_tmp.jar mario.jar

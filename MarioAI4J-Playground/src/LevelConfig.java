@@ -1,5 +1,3 @@
-package mario;
-
 import ch.idsia.benchmark.mario.engine.generalization.Enemy;
 import ch.idsia.benchmark.mario.options.FastOpts;
 

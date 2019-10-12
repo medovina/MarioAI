@@ -1,5 +1,5 @@
 javadoc -d html \
-        -sourcepath 'MarioAI4J/src:MarioAI4J-Playground/src:MarioAI4J-Tournament/src' \
+        -sourcepath 'MarioAI4J/src:MarioAI4J-Tournament/src' \
         -classpath 'MarioAI4J/lib/*:MarioAI4J-Tournament/lib/*' \
-        -subpackages 'ch:cz:mario'
-
+        -subpackages 'ch:cz' \
+        MarioAI4J-Playground/src/*.java

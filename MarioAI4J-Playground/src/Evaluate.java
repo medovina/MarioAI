@@ -1,5 +1,3 @@
-package mario;
-
 import java.util.HashMap;
 import java.util.Map;
 import ch.idsia.utils.MarioLog;
@@ -33,7 +31,7 @@ public class Evaluate {
 				, "-o", levelOptions
 				, "-c", String.valueOf(MAPS_COUNT)  // level-count
 				, "-r", String.valueOf(MAP_REPETITIONS)  // one-run-repetitions
-				, "-a", "mario.MarioAgent"
+				, "-a", "MarioAgent"
 				, "-i", "MarioAI"   // agent-id
 				, "-d", saveResults ? "./results" : null // result-dir"	
 		};

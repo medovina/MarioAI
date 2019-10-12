@@ -1,5 +1,3 @@
-package mario;
-
 import java.awt.Graphics;
 import ch.idsia.agents.AgentOptions;
 import ch.idsia.agents.IAgent;
