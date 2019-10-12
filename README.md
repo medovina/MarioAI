@@ -100,9 +100,9 @@ Your current score is displayed at the bottom of the screen.  You gain or lose p
 
 Here is the [reference documentation](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/index.html) for the API you can use to build agents to play the game.
 
-I recommend starting at the [MarioAgent](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/mario/MarioAgent.html) class.  This is the class you will enhance to build your custom agent.  You will need to implement the [actionSelectionAI](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/mario/MarioAgent.html#actionSelectionAI()) method to determine the action that Mario will take on each game tick.
+I recommend starting at the [MarioAgent](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/MarioAgent.html) class.  This is the class you will enhance to build your custom agent.  You will need to implement the [actionSelectionAI](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/MarioAgent.html#actionSelectionAI()) method to determine the action that Mario will take on each game tick.
 
-As you can see in the documentation, [MarioAgent](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/mario/MarioAgent.html) inherits from [MarioHijackAIBase](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/MarioHijackAIBase.html), which in turn inherits from [MarioAIBase](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/MarioAIBase.html).  This last class contains fields that provide essential information about the game state:
+As you can see in the documentation, [MarioAgent](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/MarioAgent.html) inherits from [MarioHijackAIBase](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/MarioHijackAIBase.html), which in turn inherits from [MarioAIBase](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/MarioAIBase.html).  This last class contains fields that provide essential information about the game state:
 
 - The field __e__ is an [Entities](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/modules/Entities.html) object with information about __entities__ (e.g. enemies, flowers, mushrooms) around Mario.
 
