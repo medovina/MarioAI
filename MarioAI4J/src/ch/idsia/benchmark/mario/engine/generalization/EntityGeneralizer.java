@@ -31,12 +31,6 @@ import ch.idsia.benchmark.mario.engine.sprites.Sprite;
 import ch.idsia.utils.MarioLog;
 
 /**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy, sergey@idsia.ch 
- * Date: Aug 5, 2009 
- * Time: 7:04:19 PM 
- * Package: ch.idsia.benchmark.mario.engine
- * 
  * Provides generalization of entities that can be placed over {@link Tile}.
  * 
  * TODO: investigate, seems like ad-hoc stuff for some competition or experiment, reconsider to cut it out completely...

@@ -37,12 +37,6 @@ import ch.idsia.benchmark.mario.engine.input.MarioInput;
 import ch.idsia.benchmark.mario.engine.input.MarioKeyboard;
 
 /**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy 
- * Date: Mar 29, 2009 
- * Time: 12:19:49 AM 
- * Package: ch.idsia.controllers.agents.controllers;
- * 
  * @author Sergey Karakovskiy
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */

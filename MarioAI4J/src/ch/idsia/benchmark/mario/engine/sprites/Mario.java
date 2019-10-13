@@ -182,7 +182,6 @@ public final class Mario extends Sprite {
 		Mario.large = on ? newLarge : lastLarge;
 		Mario.fire = on ? newFire : lastFire;
 
-		// System.out.println("on = " + on);
 		if (large) {
 			sheet = Art.mario;
 			if (fire)
@@ -203,7 +202,6 @@ public final class Mario extends Sprite {
 	}
 
 	void setMode(boolean large, boolean fire) {
-		// System.out.println("large = " + large);
 		if (fire)
 			large = true;
 		if (!large)
@@ -222,15 +220,7 @@ public final class Mario extends Sprite {
 	}
 
 	public void setRacoon(boolean isRacoon) {
-		// if (true)
-		// return;
 		this.isRacoon = isRacoon;
-		// this.setMode(isRacoon, false);
-		// System.out.println("isRacoon = " + isRacoon);
-		// System.out.println("Art.racoonmario.length = " +
-		// Art.racoonmario.length);
-		// System.out.println("Art.racoonmario[0].length = " +
-		// Art.racoonmario[0].length);
 		if (isRacoon) {
 			savePrevState();
 
@@ -245,7 +235,6 @@ public final class Mario extends Sprite {
 			this.yPicO = this.prevyPicO;
 			wPic = prevWPic;
 			hPic = prevHPic;
-			// blink(false);
 		}
 	}
 
@@ -320,8 +309,6 @@ public final class Mario extends Sprite {
 		wasOnGround = onGround;
 		float sideWaysSpeed = keys.isPressed(MarioKey.SPEED) ? 1.2f : 0.6f;
 
-		// float sideWaysSpeed = onGround ? 2.5f : 1.2f;
-
 		if (onGround) {
 			ducking = keys.isPressed(MarioKey.DOWN) && large;
 		}
@@ -332,10 +319,6 @@ public final class Mario extends Sprite {
 		if (xa < -2) {
 			facing = -1;
 		}
-
-		// float Wind = 0.2f;
-		// float windAngle = 180;
-		// xa += Wind * Math.cos(windAngle * Math.PI / 180);
 
 		if (keys.isPressed(MarioKey.JUMP) || (jumpTime < 0 && !onGround && !sliding)) {
 			if (jumpTime < 0) {
@@ -402,16 +385,6 @@ public final class Mario extends Sprite {
 		// if (cheatKeys[KEY_LIFE_UP])
 		// this.lives++;
 
-		// if (keys[KEY_DUMP_CURRENT_WORLD])
-		// try {
-		// System.out.println("DUMP:");
-		// // levelScene.getObservationStrings(System.out);
-		// //levelScene.level.save(System.out);
-		// System.out.println("DUMPED:");
-		// } catch (IOException e) {
-		// e.printStackTrace(); //To change body of catch statement use File |
-		// Settings | File Templates.
-		// }
 		speedButtonNotPressed = !keys.isPressed(MarioKey.SPEED);
 
 		mayJump = (onGround || sliding) && !keys.isPressed(MarioKey.JUMP);
@@ -450,35 +423,6 @@ public final class Mario extends Sprite {
 			xa = 0;
 		}
 
-		/* if (x > levelScene.level.xExit * LevelScene.cellSize *//*- 8*//*
-																		 * && x
-																		 * <
-																		 * levelScene
-																		 * .
-																		 * level
-																		 * .
-																		 * xExit
-																		 * *
-																		 * LevelScene
-																		 * .
-																		 * cellSize
-																		 * + 2 *
-																		 * LevelScene
-																		 * .
-																		 * cellSize
-																		 * && y
-																		 * <
-																		 * levelScene
-																		 * .
-																		 * level
-																		 * .
-																		 * yExit
-																		 * *
-																		 * LevelScene
-																		 * .
-																		 * cellSize
-																		 * )
-																		 */
 		if (mapX >= levelScene.level.xExit && mapY <= levelScene.level.yExit) {
 			x = (levelScene.level.xExit + 1) * LevelScene.cellSize;
 			win();
@@ -496,10 +440,7 @@ public final class Mario extends Sprite {
 			xa *= (AIR_INERTIA + windScale(windCoeff, facing) + iceScale(iceCoeff));
 		}
 
-		// if /
-
 		if (!onGround) {
-			// ya += 3;
 			ya += yaa;
 		}
 
@@ -511,9 +452,7 @@ public final class Mario extends Sprite {
 				carried.release(this);
 				carried = null;
 				setRacoon(false);
-				// System.out.println("carried = " + carried);
 			}
-			// System.out.println("sideWaysSpeed = " + sideWaysSpeed);
 		}
 	}
 

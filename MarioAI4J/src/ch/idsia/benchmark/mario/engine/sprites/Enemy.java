@@ -45,10 +45,6 @@ public static final int POSITION_WAVE_GOOMBA = 7;
 
 public float runTime;
 public boolean onGround = false;
-//    private boolean mayJump = false;
-//    private int jumpTime = 0;
-//    private float xJumpSpeed;
-//    private float yJumpSpeed;
 
 int width = 4;
 int height = 24;
