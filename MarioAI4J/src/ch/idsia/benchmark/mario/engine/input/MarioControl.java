@@ -21,9 +21,9 @@ public class MarioControl {
 	
 	private boolean sprinting;
 	
-	private int lastFrameShootCalled;
+	private int lastFrameShootCalled = -1;
 	
-	private int lastFrameSprintCalled;
+	private int lastFrameSprintCalled = -1;
 
 	public MarioControl(MarioInput input) {
 		this.input = input;
@@ -69,7 +69,7 @@ public class MarioControl {
 	
 	public void reset() {
  		frame = 0;
-		lastFrameShootCalled = 0;
+		lastFrameShootCalled = -1;
 		shooting = false;
 		sprinting = false;
 		input.reset();
