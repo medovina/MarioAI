@@ -100,19 +100,60 @@ Your current score is displayed at the bottom of the screen.  You gain or lose p
 
 ## Agent API
 
-Here is the [reference documentation](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/index.html) for the API you can use to build agents to play the game.
+Here is the [documentation](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/index.html) for the API you can use to build agents to play the game.
 
-I recommend starting at the [MarioAgent](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/MarioAgent.html) class.  This is the class you will enhance to build your custom agent.  You will need to implement the [actionSelectionAI](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/MarioAgent.html#actionSelectionAI()) method to determine the action that Mario will take on each game tick.
+The Mario world consists of __tiles__, each of which is 16 x 16 pixels.  By default, the world is 256 tiles wide and 15 tiles high.  So it consists of 4096 x 240 pixels.
+
+All terrain is aligned on tile boundaries.  Using the API, you can determine the terrain in each tile around Mario, represented by the
+[Tile](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/benchmark/mario/engine/generalization/Tile.html) enum.  The most common tile types are
+
+- BORDER_CANNOT_PASS_THROUGH (BI) - a solid block
+- BORDER_HILL (BH) - a platform that Mario can stand on
+- BREAKABLE_BRICK (BB) - a breakable brick
+- COIN_ANIM (C) - a coin that Mario can collect
+- FLOWER_POT (FP) - a tube that a piranha plant might emerge from
+- QUESTION_BRICK (BQ) - a brick with a question mark
+
+The two-letter abbreviations above appear if you enable the tile grid (see "Extra keyboard controls", below).
+
+In the API, an __entity__ is anything that moves, such as the enemy monsters.  Mario can see the entities around him, each of which has an [EntityType](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/benchmark/mario/engine/generalization/EntityType.html).  The most common entity types are
+
+- GOOMBA (G) - a [Goomba](https://en.wikipedia.org/wiki/Goomba)
+- GREEN_KOOPA (GK) - a [Koopa](https://en.wikipedia.org/wiki/Koopa_Troopa)
+- MARIO (M) - Mario himself
+- SHELL_MOVING (SM) - a Koopa shell in motion
+- SHELL_STILL (ST) - a Koopa shell that is stopped
+- SPIKY (SP) - a [Spiky](https://www.mariowiki.com/Spiny)
+
+The two-letter abbrevations above appear if you enable the entity grid (as described below).
+
+Mario can see all tiles and entities around him that are contained in the __receptive grid__, which is a 19 x 19 grid of tiles centered at Mario's current position.
+
+The API uses two coordinate systems: __pixel coordinates__ and __tile coordinates__.  In both systems, (0, 0) is the upper left-hand corner of the world.  For any entity that Mario can see, you can retrieve its absolute (X, Y) position in pixels.  More precisely, this is the position at the __horizontal center__ of the __bottom__ of the entity.  An entity with position (X, Y) is considered to belong to the tile with coordinates (X / 16, Y / 16).
+
+In your agent, you could only consider each entity's tile coordinates, or you may want to consider its pixel coordinates for a finer degree of control.
+
+[MarioAgent](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/MarioAgent.html)  is the class you will enhance to build your custom agent.  You will need to implement the [actionSelectionAI](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/MarioAgent.html#actionSelectionAI()) method to determine the action that Mario will take on each game tick.
 
 As you can see in the documentation, [MarioAgent](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/MarioAgent.html) inherits from [MarioHijackAIBase](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/MarioHijackAIBase.html), which in turn inherits from [MarioAIBase](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/MarioAIBase.html).  This last class contains fields that provide essential information about the game state:
 
-- The field __e__ is an [Entities](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/modules/Entities.html) object with information about __entities__ (e.g. enemies, flowers, mushrooms) around Mario.
+- The field __mario__ is a [MarioEntity](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/benchmark/mario/engine/generalization/MarioEntity.html) object with information about Mario himself, such as
 
-- The field __t__ is a [Tiles](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/modules/Tiles.html) object with information about __tiles__ (e.g. bricks, coins, walls) around Mario.
+  - mode - current mode (Small Mario, Super Mario or File Mario)
+  - speed.x, speed.y - current velocity in pixels/tick
+  - sprite.x, sprite.y - absolute position in pixel coordinates
 
-- The field __mario__ is a [MarioEntity](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/benchmark/mario/engine/generalization/MarioEntity.html) object with information about Mario himself (e.g. his precise X/Y position).
+- The field __t__ is a [Tiles](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/modules/Tiles.html) object with information about tiles around Mario.  Each tile is represented by a [Tile](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/benchmark/mario/engine/generalization/Tile.html) indicating its type.
 
-This documentation is still somewhat primitive, but I will try to improve it over time.  In the meantime, if you have questions then just [ask](mailto:dingle@ksvi.mff.cuni.cz).
+- The field __e__ is an [Entities](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/modules/Entities.html) object with information about entities around Mario.  Each of these is represented by an [Entity](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/benchmark/mario/engine/generalization/Entity.html) object, which contains the following useful fields (among others):
+
+  - dX, dY - position relative to Mario, in pixels
+  - dTX, dTY - position relative to Mario, in tiles
+  - speed.x, speed.y - current velocity in pixels/tick
+  - sprite.x, sprite.y - absolute position in pixel coordinates
+  - type - an [EntityType](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/benchmark/mario/engine/generalization/EntityType.html)
+
+For more details, see the [API documentation](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/index.html).  It is still somewhat primitive, but I will try to improve it over time.  In the meantime, if you have questions then just [ask](mailto:dingle@ksvi.mff.cuni.cz).
 
 ## Extra keyboard controls 
 
