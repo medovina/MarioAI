@@ -136,6 +136,61 @@ Here are some extra keyboard controls that allows you to visualize / perform ext
 - __Z__: Toggle scale x2 of the visualization (scale x2 is broken on some systems, dunno why)
 - __+__ / __-__: adjust simulator frames per second
 
+## Physics of the game world
+
+Here is some detailed information about how Mario and creatures move in the game world.
+
+The game proceeds in a series of __ticks__.  By default, it runs at 24 ticks per second.
+
+All enemies move at a constant horizontal velocity of __1.75 pixels/tick__.
+
+Mario accelerates and decelerates as he moves left and right.  If you hold down the left or right arrow key, Mario's horizontal velocity increases until it reaches a maxmimum of __5.5 pixels/tick__.  If you additionally hold down the S (sprint) key, Mario will accelerate more quickly, and will reach a maximum velocity of __10.9 pixels/tick__.
+
+You can accelerate leftward or rightward even in mid-air!  This means that while jumping you have some control over where you will land.  Of course, mid-air horizontal acceleration is not realistic, but this is a video game world.  :)
+
+The height and duration of a jump depends on how long you hold down the A key.  If you tap the A key for the shortest possible jump, your jump will last __10 ticks__ and will reach a maximum height of __26.1 pixels__.  If you hold down the A key for the longest possible jump, your jump will last __17 ticks__ and will reach a maximum height of __66.5 pixels__.  Jumps of intermediate length are also possible.
+
+If you are moving at a constant horizontal speed, the horizontal span of the jump is the jump duration times the velocity.  For example, if you are running at 5.5 pixels/second to the right and make the smallest possible jump, you will travel 10 * 5.5 = 55 pixels horizontally.  If you are sprinting at 10.9 pixels/second and make the largest possible jump, you will travel 17 * 10.9 = 185.3 pixels horizontally, a much greater distance.
+
+For more detail, here is pseudocode explaining how Mario's position and velocity are updated on each tick:
+
+```java
+float x, y;    // absolute position in pixel coordinates
+float xa = 0, ya = 0;  // current velocity in pixels/tick
+int jumpTime = 0;
+
+move() {
+  if (key.isPressed(JUMP)) {
+    if (onGround && mayJump) {
+      jumpTime = 7;    // begin jumping
+      ya = -1.9 * jumpTime;
+    } else if (jumpTime > 0) {
+      ya = -1.9 * jumpTime;
+      jumpTime--;
+    }
+  }
+    
+  // Accelerate left or right
+  float sideWaysSpeed = keys.isPressed(SPRINT) ? 1.2 : 0.6;
+  if (key.isPressed(LEFT))
+    xa -= sidewaysSpeed;
+  if (key.isPressed(RIGHT))
+    xa += sidewaysSpeed;
+  
+  // Update position based on current velocity
+  x += xa;
+  y += ya;
+  
+  // Damp velocity due to friction
+  xa *= 0.89;
+  ya *= 0.85;
+  
+  // Gravitational acceleration
+  if (!onGround)
+    ya += 3.0;
+}
+```
+
 ## Changelog
 
 Things that are different from the original MarioAI v0.2.0 project:
