@@ -43,8 +43,13 @@ public final class Mario extends Sprite {
 	 * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
 	 */
 	public static enum MarioMode {
+    /** Small Mario. */
 		SMALL(0),
+
+		/** Super Mario. */
 		LARGE(1),
+
+		/** Fire Mario. */
 		FIRE_LARGE(2);
 		
 		private int code;

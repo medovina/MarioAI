@@ -42,15 +42,17 @@ You will see three kinds of enemies:
 
 - [Koopas](https://en.wikipedia.org/wiki/Koopa_Troopa) look like green turtles.  If you shoot a Koopa, it will die.  If you step on one, it will retreat inside its shell.  You can then step on the shell again or kick it to set it in motion.  A moving shell will destroy any enemy that it hits, even a Spiky.  However, beware: a moving shell will also harm you if it hits you.
 
+  If you hold down the S key and move onto a stopped shell, you will pick it up.  You can then carry the shell anywhere you like.  When you are carrying the shell, Mario looks like a raccoon.  Let go of the S key to release the shell and set it in motion again.
+
 - [Spikies](https://www.mariowiki.com/Spiny) (also known as "spinies") are covered with spikes.  You cannot shoot a Spiky, and stepping on one will harm you.  The only way to kill a Spiky is to hit it with a moving Koopa shell.
 
 You (Mario) are always in one of three states:
 
-- Tall, with a yellow hat.  This is the strongest state: only in this state can you shoot bullets.  You begin in this state.
+- Fire Mario: Tall, with a yellow hat.  This is the strongest state: only in this state can you shoot bullets.  You begin in this state.
 
-- Tall, with a red hat.
+- Super Mario: Tall, with a red hat.
 
-- Short.  This is the weakest state.
+- Small Mario: Short.  This is the weakest state.
 
 Each time that you take damage by hitting a monster, you move to the next weaker state.  If you are in the short state and hit a monster, you die and the game is over.
 

@@ -39,12 +39,6 @@ import ch.idsia.benchmark.mario.environments.IEnvironment;
 /**
  * Abstract class that serves as a basis for implementing new Mario-AI agents. 
  * 
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy 
- * Date: Apr 25, 2009 
- * Time: 12:30:41 AM 
- * Package: ch.idsia.agents.controllers
- * 
  * @author Sergey Karakovskiy
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */

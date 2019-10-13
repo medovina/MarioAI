@@ -68,20 +68,14 @@ public class Sprite {
 	public float xOld, yOld;
 	
 	/**
-	 * Pixel-perfect position of the sprite within the MAP:
-	 * x / 16 == map tile x-coordinate
-	 * y / 16 == map tile y-coordinate
+	 * Absolute position in pixel coordinates.
 	 */
 	public float x, y;
 	
-	/**
-	 * These are magical and mysterious, do not interpret in your AI.
-	 */
 	public float xa, ya;
 
 	/**
-	 * Position of the tile the sprite is within the map.
-	 * Sprites are 16x16 long, mapX = x / 16, mapY = y / 16...
+	 * Absolute position in tile coordinates (each tile is 16 x 16 pixels).
 	 * See {@link Sprite#tick()}.
 	 */
 	public int mapX, mapY;

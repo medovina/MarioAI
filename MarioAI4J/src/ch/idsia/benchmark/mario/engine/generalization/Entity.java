@@ -10,26 +10,12 @@ import ch.idsia.benchmark.mario.engine.sprites.Sprite;
 public class Entity {
 
 	/**
-	 * Maintains speed of the entity in pixels.
+	 * A speed in pixels per tick.
 	 */
 	public static class Speed {
 		
-		/**
-		 * MINUS &lt;---X---&gt; PLUS
-		 */
 		public float x;
 		
-		/**
-		 * PLUS
-	     * ^
-	     * |
-	     * |
-	     * X
-	     * |
-	     * |
-	     * v
-   	     * MINUS
-		 */
 		public float y;
 		
 		public Speed(float x, float y) {
@@ -73,17 +59,17 @@ public class Entity {
 	public float dY;
 	
 	/**
-	 * Current height of the entity.
+	 * Current absolute Y-position in pixel coordinates.
 	 */
 	public float height;
 	
 	/**
-	 * Current speed of the entity, equal to [sprite.x - sprite.xOld, sprite.y - sprite.yOld].
+	 * Current speed in pixels per tick.
 	 */
 	public Speed speed;	
 	
 	/**
-	 * Source sprite - READ ONLY!
+	 * Source sprite.
 	 */
 	public Sprite sprite;
 
