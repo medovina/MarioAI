@@ -245,37 +245,39 @@ public class EvaluateAgentConsole {
 			}
 			MarioLog.fine("---- result directory exists, ok");
 		}
-			
-		MarioLog.fine("-- resolving agent FQCN: " + agentFQCN);
-		try {
-			agentClass = Class.forName(agentFQCN);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		if (agentClass == null) {
-			fail("Failed to find agent class: " + agentFQCN);
-		}
-		MarioLog.fine("---- agent class found");
-		Constructor<?> agentCtor = null;
-		try {
-			agentCtor = agentClass.getConstructor();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if (agentCtor == null) {
-			fail("Failed to locate parameterless constructor for agent class: " + agentClass.getName());
-		}
-		MarioLog.fine("---- agent parameterless constructor found");
-		try {
-			agent = (IAgent) agentCtor.newInstance();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if (agent == null) {
-			fail("Failed to construct the agent instance.");
-		}
-		
-		MarioLog.fine("---- agent instantiated");
+            
+        if (agent == null) {
+            MarioLog.fine("-- resolving agent FQCN: " + agentFQCN);
+            try {
+                agentClass = Class.forName(agentFQCN);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            if (agentClass == null) {
+                fail("Failed to find agent class: " + agentFQCN);
+            }
+            MarioLog.fine("---- agent class found");
+            Constructor<?> agentCtor = null;
+            try {
+                agentCtor = agentClass.getConstructor();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (agentCtor == null) {
+                fail("Failed to locate parameterless constructor for agent class: " + agentClass.getName());
+            }
+            MarioLog.fine("---- agent parameterless constructor found");
+            try {
+                agent = (IAgent) agentCtor.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (agent == null) {
+                fail("Failed to construct the agent instance.");
+            }
+            
+            MarioLog.fine("---- agent instantiated");
+        }
 		
 	    MarioLog.fine("Sanity checks OK!");
 	}
@@ -303,16 +305,17 @@ public class EvaluateAgentConsole {
 		};
 	}
 	
-	public static MarioRunResults evaluate(String[] args) {
+	public static MarioRunResults evaluate(String[] args, IAgent mario) {
 		// --------------
 		// IMPLEMENTATION
 		// --------------
 		
 		try {
+            agent = mario;
 				
 			try {
 				initJSAP();
-			} catch (Exception e) {
+			} catch (JSAPException e) {
 				throw new RuntimeException("Failed to parse arguments.", e);
 			}
 				    
@@ -352,7 +355,7 @@ public class EvaluateAgentConsole {
 		// -----------
 		//args = getTestArgs();		
 		
-	    evaluate(args);
+	    evaluate(args, null);
 	    
 	    MarioLog.info("---// FINISHED //---");
 	}

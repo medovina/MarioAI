@@ -1,5 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
+
+import ch.idsia.agents.IAgent;
 import ch.idsia.utils.MarioLog;
 import cz.cuni.mff.amis.mario.tournament.EvaluateAgentConsole;
 import cz.cuni.mff.amis.mario.tournament.run.MarioRunResults;
@@ -41,11 +43,13 @@ public class Evaluate {
 		return getEvaluationOptions(seed, level.getOptionsVisualizationOff(), saveResults);		
 	}
 	
-	public static MarioRunResults evaluateLevel(int seed, LevelConfig level, boolean saveResults) {
+    public static MarioRunResults evaluateLevel(int seed, LevelConfig level, boolean saveResults,
+                                                IAgent agent) {
 		MarioLog.info("EVALUATING " + level.name());
 		MarioLog.fine("EVALUATING " + level.getOptions());
 		
-		MarioRunResults results = EvaluateAgentConsole.evaluate(getEvaluationOptions(seed, level, saveResults));
+        MarioRunResults results =
+            EvaluateAgentConsole.evaluate(getEvaluationOptions(seed, level, saveResults), agent);
 		
 		printResults(level, results);
 		
@@ -53,7 +57,7 @@ public class Evaluate {
 	}
 	
 	public static MarioRunResults evaluateLevel(int seed, LevelConfig level) {
-		return evaluateLevel(seed, level, true);
+		return evaluateLevel(seed, level, true, null);
 	}
 		
 	public static void printResults(LevelConfig level, MarioRunResults results) {
