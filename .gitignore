@@ -1,11 +1,11 @@
-.DS_Store
-.idea
+.classpath
 .metadata
+.project
 .settings
-.vscode
 bin
 build
 /html
 /mario.jar
 results
 out
+target

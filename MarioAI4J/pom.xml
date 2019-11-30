@@ -1,0 +1,33 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cz.cuni.mff</groupId>
+    <artifactId>marioai4j</artifactId>
+    <version>0.1</version>
+
+    <properties>
+        <maven.compiler.source>1.11</maven.compiler.source>
+        <maven.compiler.target>1.11</maven.compiler.target>
+    </properties>
+
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>cz.cuni.amis.utils</groupId>
+            <artifactId>simple-logging</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>amis-artifactory</id>
+            <name>AMIS Artifactory</name>
+            <url>http://diana.ms.mff.cuni.cz:8081/artifactory/repo</url>
+        </repository>
+    </repositories>
+
+</project>
