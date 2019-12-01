@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>cz.cuni.mff</groupId>
-            <artifactId>marioai4j</artifactId>
+            <artifactId>marioai4j-core</artifactId>
             <version>0.1</version>
         </dependency>
         <dependency>

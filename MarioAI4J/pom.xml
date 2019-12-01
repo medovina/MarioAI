@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cz.cuni.mff</groupId>
-    <artifactId>marioai4j</artifactId>
+    <artifactId>marioai4j-core</artifactId>
     <version>0.1</version>
 
     <properties>

@@ -1,0 +1,15 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>cz.cuni.mff</groupId>
+	<artifactId>marioai4j</artifactId>
+	<version>0.1</version>
+    <packaging>pom</packaging>
+    
+	<modules>
+	  <module>MarioAI4J</module>
+	  <module>MarioAI4J-Agents</module>
+	  <module>MarioAI4J-Playground</module>
+	  <module>MarioAI4J-Tournament</module>
+	</modules>
+</project>
