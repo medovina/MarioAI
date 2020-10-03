@@ -25,42 +25,36 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package agents.controllers.examples;
+package agents.examples;
 
-import agents.IAgent;
+import java.util.Random;
+
+import agents.AgentOptions;
 import agents.controllers.MarioHijackAIBase;
-import engine.MarioSimulator;
 import engine.input.MarioInput;
-import options.FastOpts;
+import engine.input.MarioKey;
 
-public class Agent01_SprintForward extends MarioHijackAIBase {
+public class RandomAgent extends MarioHijackAIBase {
 	
-	@Override
-	public MarioInput actionSelectionAI() {
-		// ALWAYS RUN RIGHT
-		control.runRight();
-		
-		// ALWAYS SPRINT
-		control.sprint();
+	private Random R = null;
 
+	@Override
+	public void reset(AgentOptions options) {
+		super.reset(options);
+		R = new Random();
+	}
+
+	@Override
+	public MarioInput actionSelectionAI() {		
+		for (int i = 0; i < MarioKey.numberOfKeys; ++i) {
+			boolean toggleParticularAction = R.nextBoolean();			
+			if (toggleParticularAction) action.toggle(MarioKey.getMarioKey(i));
+		}
+		// Prefer movement to the right. 
+		if (R.nextBoolean()) {
+			action.press(MarioKey.RIGHT);
+		}
+		
 		return action;
 	}
-	
-	public static void main(String[] args) {
-		// USE FLAT LEVEL WITHOUT ENEMIES
-		String options = FastOpts.VIS_ON_2X + FastOpts.LEVEL_01_FLAT;
-		
-		// CREATE SIMULATOR
-		MarioSimulator simulator = new MarioSimulator(options);
-		
-		// CREATE AGENT
-		IAgent agent = new Agent01_SprintForward();
-		
-		// RUN SIMULATOR w/ AGENT
-		simulator.run(agent);
-		
-		// TERMINATE
-		System.exit(0);
-	}
-
 }

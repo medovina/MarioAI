@@ -150,7 +150,7 @@ public class MarioOptions {
 		LEVEL_GREEN_MUSHROOM_MODE("gmm", 0, "Green mushroom mode (currently does not do anything)."),		
 		LEVEL_DIFFICULTY("ld", 0, "Level difficulty."),
 		LEVEL_LENGTH("ll", 256, "Level length (tiles)."),
-		LEVEL_RANDOM_SEED("ls", 0, "Level random seed. If >= 0 a concrete value will be used, if < 0, random value is used."),
+		LEVEL_RANDOM_SEED("ls", -1, "Level random seed. If >= 0 a concrete value will be used, if < 0, random value is used."),
 		LEVEL_TYPE("lt", 0, "Level type (0 = TYPE_OVERGROUND, 1 = TYPE_UNDERGROUND, 2 = TYPE_CASTLE."),		
 		LEVEL_MARIO_INITIAL_POSITION_X("mix", 32, "Mario spawn position X (in pixels)."),
 		LEVEL_MARIO_INITIAL_POSITION_Y("miy", 32, "Mario spawn position Y (in pixels)."),		

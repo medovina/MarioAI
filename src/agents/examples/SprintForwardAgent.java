@@ -25,21 +25,12 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package agents.controllers.examples;
+package agents.examples;
 
-import agents.AgentOptions;
-import agents.IAgent;
 import agents.controllers.MarioHijackAIBase;
-import engine.MarioSimulator;
 import engine.input.MarioInput;
-import options.FastOpts;
 
-public class Agent02_Jumpee extends MarioHijackAIBase {
-	
-	@Override
-	public void reset(AgentOptions options) {
-		super.reset(options);
-	}
+public class SprintForwardAgent extends MarioHijackAIBase {
 	
 	@Override
 	public MarioInput actionSelectionAI() {
@@ -48,29 +39,7 @@ public class Agent02_Jumpee extends MarioHijackAIBase {
 		
 		// ALWAYS SPRINT
 		control.sprint();
-		
-		// JUMP IF YOU CAN!
-		// ... this will make Mario to jump as high as possible
-		control.jump();
 
 		return action;
 	}
-	
-	public static void main(String[] args) {
-		// USE WORLD WITH NON-FLAT GROUND WITHOUT ENEMIES
-		String options = FastOpts.VIS_ON_2X + FastOpts.LEVEL_02_JUMPING;
-		
-		// CREATE SIMULATOR
-		MarioSimulator simulator = new MarioSimulator(options);
-		
-		// CREATE AGENT
-		IAgent agent = new Agent02_Jumpee();
-		
-		// RUN SIMULATOR w/ AGENT
-		simulator.run(agent);
-		
-		// TERMINATE
-		System.exit(0);
-	}
-	
 }

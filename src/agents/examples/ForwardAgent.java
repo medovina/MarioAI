@@ -1,23 +1,20 @@
-package agents.controllers.examples;
+package agents.examples;
 
 import java.awt.Graphics;
 
 import agents.AgentOptions;
-import agents.IAgent;
 import agents.controllers.MarioHijackAIBase;
-import engine.MarioSimulator;
 import engine.LevelScene;
 import engine.VisualizationComponent;
 import engine.input.MarioInput;
 import environments.IEnvironment;
-import options.FastOpts;
 
 /**
  * An agent that sprints forward and jumps if it detects an obstacle ahead.
  * 
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
-public class Agent03_Forward extends MarioHijackAIBase {
+public class ForwardAgent extends MarioHijackAIBase {
 
 	@Override
 	public void reset(AgentOptions options) {
@@ -70,17 +67,5 @@ public class Agent03_Forward extends MarioHijackAIBase {
 		}
 		
 		return action;
-	}
-	
-	public static void main(String[] args) {
-		String options = FastOpts.VIS_ON_2X + FastOpts.LEVEL_02_JUMPING /* + FastOpts.L_ENEMY(Enemy.GOOMBA) */;
-		
-		MarioSimulator simulator = new MarioSimulator(options);
-		
-		IAgent agent = new Agent03_Forward();
-		
-		simulator.run(agent);
-		
-		System.exit(0);
 	}
 }

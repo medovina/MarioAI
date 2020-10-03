@@ -1,17 +1,13 @@
-package agents.controllers.examples;
+package agents.examples;
 
 import java.awt.Graphics;
 
 import agents.AgentOptions;
-import agents.IAgent;
 import agents.controllers.MarioHijackAIBase;
-import engine.MarioSimulator;
 import engine.LevelScene;
 import engine.VisualizationComponent;
-import engine.generalization.Enemy;
 import engine.input.MarioInput;
 import environments.IEnvironment;
-import options.FastOpts;
 
 /**
  * Agent that sprints forward, jumps and shoots.
@@ -20,7 +16,7 @@ import options.FastOpts;
  * 
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
-public class Agent04_Shooter extends MarioHijackAIBase {
+public class ShooterAgent extends MarioHijackAIBase {
 
 	@Override
 	public void reset(AgentOptions options) {
@@ -71,17 +67,5 @@ public class Agent04_Shooter extends MarioHijackAIBase {
 		if (brickAhead()) debug += "|BRICK AHEAD|";
 		else debug += "|-----------|";
 		VisualizationComponent.drawStringDropShadow(g, debug, 0, 26, 1);
-	}
-	
-	public static void main(String[] args) {
-		String options = FastOpts.VIS_ON_2X + FastOpts.LEVEL_02_JUMPING + FastOpts.L_ENEMY(Enemy.GOOMBA, Enemy.SPIKY) + FastOpts.L_TUBES_ON + FastOpts.L_RANDOMIZE;
-		
-		MarioSimulator simulator = new MarioSimulator(options);
-		
-		IAgent agent = new Agent04_Shooter();
-		
-		simulator.run(agent);
-		
-		System.exit(0);
 	}
 }

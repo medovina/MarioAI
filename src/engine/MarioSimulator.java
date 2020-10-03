@@ -113,17 +113,11 @@ public class MarioSimulator {
 		return result.clone(); // result is shared instance ... we must clone it to maintain sanity 		
 	}
 	
-	public static void main(int level) {
-        String options = LevelConfig.values()[level].getOptions() + FastOpts.L_RANDOMIZE +
-                         FastOpts.AI_ZL_0_0;
+	public static EvaluationInfo main(IAgent agent, int level) {
+        String options = LevelConfig.values()[level].getOptions();
 		
 		MarioSimulator simulator = new MarioSimulator(options);
-		
-		IAgent agent = new CheaterKeyboardAgent();
-		
-		simulator.run(agent);
-		
-		System.exit(0);
+		return simulator.run(agent);
 	}
 
 }

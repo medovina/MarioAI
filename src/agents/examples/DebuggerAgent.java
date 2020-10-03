@@ -1,16 +1,12 @@
-package agents.controllers.examples;
+package agents.examples;
 
 import java.awt.Graphics;
 import agents.AgentOptions;
-import agents.IAgent;
 import agents.controllers.MarioHijackAIBase;
-import engine.MarioSimulator;
 import engine.LevelScene;
 import engine.VisualizationComponent;
-import engine.generalization.Enemy;
 import engine.input.MarioInput;
 import environments.IEnvironment;
-import options.FastOpts;
 
 /**
  * An agent that sprints forward and jumps if it detects an obstacle ahead.
@@ -19,7 +15,7 @@ import options.FastOpts;
  * 
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
-public class Agent05_Debugger extends MarioHijackAIBase {
+public class DebuggerAgent extends MarioHijackAIBase {
 
 	@Override
 	public void reset(AgentOptions options) {
@@ -70,17 +66,5 @@ public class Agent05_Debugger extends MarioHijackAIBase {
 		if (brickAhead()) debug += "|BRICK AHEAD|";
 		else debug += "|-----------|";
 		VisualizationComponent.drawStringDropShadow(g, debug, 0, 26, 1);
-	}
-
-	public static void main(String[] args) {
-		String options = FastOpts.VIS_ON_2X + FastOpts.L_ENEMY(Enemy.GOOMBA, Enemy.SPIKY, Enemy.GREEN_KOOPA) + FastOpts.L_RANDOMIZE + FastOpts.AI_ZL_0_0;
-		
-		MarioSimulator simulator = new MarioSimulator(options);
-		
-		IAgent agent = new Agent05_Debugger();
-		
-		simulator.run(agent);
-		
-		System.exit(0);
 	}
 }

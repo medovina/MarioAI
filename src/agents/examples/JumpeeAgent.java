@@ -25,57 +25,31 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package agents.controllers.examples;
-
-import java.util.Random;
+package agents.examples;
 
 import agents.AgentOptions;
-import agents.IAgent;
 import agents.controllers.MarioHijackAIBase;
-import engine.MarioSimulator;
 import engine.input.MarioInput;
-import engine.input.MarioKey;
-import options.FastOpts;
 
-public class Agent00_Random extends MarioHijackAIBase {
+public class JumpeeAgent extends MarioHijackAIBase {
 	
-	private Random R = null;
-
 	@Override
 	public void reset(AgentOptions options) {
 		super.reset(options);
-		R = new Random();
 	}
-
+	
 	@Override
-	public MarioInput actionSelectionAI() {		
-		for (int i = 0; i < MarioKey.numberOfKeys; ++i) {
-			boolean toggleParticularAction = R.nextBoolean();			
-			if (toggleParticularAction) action.toggle(MarioKey.getMarioKey(i));
-		}
-		// Prefer movement to the right. 
-		if (R.nextBoolean()) {
-			action.press(MarioKey.RIGHT);
-		}
+	public MarioInput actionSelectionAI() {
+		// ALWAYS RUN RIGHT
+		control.runRight();
 		
+		// ALWAYS SPRINT
+		control.sprint();
+		
+		// JUMP IF YOU CAN!
+		// ... this will make Mario to jump as high as possible
+		control.jump();
+
 		return action;
-	}
-	
-	public static void main(String[] args) {
-		// USE WORLD WITH NON-FLAT GROUND WITHOUT ENEMIES
-		String options = FastOpts.VIS_ON_2X + FastOpts.LEVEL_02_JUMPING;
-		
-		// CREATE SIMULATOR
-		MarioSimulator simulator = new MarioSimulator(options);
-		
-		// CREATE AGENT
-		IAgent agent = new Agent00_Random();
-		
-		// RUN SIMULATOR w/ AGENT
-		simulator.run(agent);
-		
-		// TERMINATE
-		System.exit(0);
-	}
-	
+	}	
 }
