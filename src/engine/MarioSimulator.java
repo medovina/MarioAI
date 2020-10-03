@@ -29,12 +29,10 @@ package engine;
 
 import agents.IAgent;
 import agents.controllers.keyboard.CheaterKeyboardAgent;
-import engine.generalization.Enemy;
 import engine.input.MarioInput;
 import environments.IEnvironment;
 import environments.MarioEnvironment;
-import options.FastOpts;
-import options.MarioOptions;
+import options.*;
 import tools.EvaluationInfo;
 import utils.MarioLog;
 
@@ -115,8 +113,9 @@ public class MarioSimulator {
 		return result.clone(); // result is shared instance ... we must clone it to maintain sanity 		
 	}
 	
-	public static void main(String[] args) {
-		String options = FastOpts.VIS_ON_2X + FastOpts.L_ENEMY(Enemy.GOOMBA, Enemy.SPIKY, Enemy.GREEN_KOOPA) + FastOpts.L_RANDOMIZE + FastOpts.AI_ZL_0_0;
+	public static void main(int level) {
+        String options = LevelConfig.values()[level].getOptions() + FastOpts.L_RANDOMIZE +
+                         FastOpts.AI_ZL_0_0;
 		
 		MarioSimulator simulator = new MarioSimulator(options);
 		

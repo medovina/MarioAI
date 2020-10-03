@@ -2,6 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import agents.IAgent;
+import options.LevelConfig;
 import utils.MarioLog;
 import tournament.EvaluateAgentConsole;
 import tournament.run.MarioRunResults;

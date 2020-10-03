@@ -1,11 +1,12 @@
 import agents.IAgent;
 import engine.MarioSimulator;
+import options.LevelConfig;
 import tools.EvaluationInfo;
 import utils.MarioLog;
 
 class RunMyAgent {
     public static void main(String[] args) {
-		// YOU MAY RAISE THE LOGGING LEVEL, even though there is probably no inforamation you need to know...
+		// YOU MAY RAISE THE LOGGING LEVEL, even though there is probably no information you need to know...
 		//MarioLog.setLogLevel(Level.ALL);
 		
 		// UNCOMMENT THE LINE OF THE LEVEL YOU WISH TO RUN

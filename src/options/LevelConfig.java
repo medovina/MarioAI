@@ -1,5 +1,6 @@
+package options;
+
 import engine.generalization.Enemy;
-import options.FastOpts;
 
 public enum LevelConfig {
 	
@@ -31,7 +32,11 @@ public enum LevelConfig {
 	/**
 	 * A level with green turtles (so-called KOOPAs).
 	 */
-    LEVEL_5_KOOPAS(LEVEL_4_SPIKIES.options + FastOpts.L_ENEMY(Enemy.GREEN_KOOPA));
+    LEVEL_5_KOOPAS(LEVEL_4_SPIKIES.options + FastOpts.L_ENEMY(Enemy.GREEN_KOOPA)),
+
+    /** All of the above, plus other goodies such as coins, mushrooms, and flowers. */
+    LEVEL_6_FULL_GAME(FastOpts.VIS_ON_2X +
+                      FastOpts.L_ENEMY(Enemy.GOOMBA, Enemy.SPIKY, Enemy.GREEN_KOOPA));
 
 	private String options;
 	
