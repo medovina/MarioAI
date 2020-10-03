@@ -1,7 +1,7 @@
-import ch.idsia.agents.IAgent;
-import ch.idsia.benchmark.mario.MarioSimulator;
-import ch.idsia.tools.EvaluationInfo;
-import ch.idsia.utils.MarioLog;
+import agents.IAgent;
+import benchmark.mario.MarioSimulator;
+import tools.EvaluationInfo;
+import utils.MarioLog;
 
 class RunMarioAgent {
     public static void main(String[] args) {

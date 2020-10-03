@@ -1,10 +1,10 @@
 import java.util.HashMap;
 import java.util.Map;
 
-import ch.idsia.agents.IAgent;
-import ch.idsia.utils.MarioLog;
-import cz.cuni.mff.amis.mario.tournament.EvaluateAgentConsole;
-import cz.cuni.mff.amis.mario.tournament.run.MarioRunResults;
+import agents.IAgent;
+import utils.MarioLog;
+import tournament.EvaluateAgentConsole;
+import tournament.run.MarioRunResults;
 
 /**
  * This class is designed to quickly evaluate the quality of a {@link MarioAgent} AI.

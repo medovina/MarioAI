@@ -1,15 +1,15 @@
 import java.awt.Graphics;
-import ch.idsia.agents.AgentOptions;
-import ch.idsia.agents.controllers.MarioHijackAIBase;
-import ch.idsia.agents.controllers.modules.Entities;
-import ch.idsia.agents.controllers.modules.Tiles;
-import ch.idsia.benchmark.mario.engine.LevelScene;
-import ch.idsia.benchmark.mario.engine.VisualizationComponent;
-import ch.idsia.benchmark.mario.engine.generalization.EntityType;
-import ch.idsia.benchmark.mario.engine.generalization.Tile;
-import ch.idsia.benchmark.mario.engine.input.MarioControl;
-import ch.idsia.benchmark.mario.engine.input.MarioInput;
-import ch.idsia.benchmark.mario.environments.IEnvironment;
+import agents.AgentOptions;
+import agents.controllers.MarioHijackAIBase;
+import agents.controllers.modules.Entities;
+import agents.controllers.modules.Tiles;
+import benchmark.mario.engine.LevelScene;
+import benchmark.mario.engine.VisualizationComponent;
+import benchmark.mario.engine.generalization.EntityType;
+import benchmark.mario.engine.generalization.Tile;
+import benchmark.mario.engine.input.MarioControl;
+import benchmark.mario.engine.input.MarioInput;
+import benchmark.mario.environments.IEnvironment;
 
 /**
  * Code your custom agent here!
