@@ -152,8 +152,7 @@ public class LevelGenerator {
 		odds[ODDS_DEAD_ENDS] = 2 + 2 * levelDifficulty;
 
 		if (levelType != LevelGenerator.TYPE_OVERGROUND)
-			odds[ODDS_PLATFORMS] = 0; // no hill straight in TYPE_OVERGROUND
-											// level
+			odds[ODDS_PLATFORMS] = 0; // no hill straight in TYPE_OVERGROUND level
 
 		totalOdds = 0;
 		for (int i = 0; i < odds.length; i++) {
@@ -194,8 +193,7 @@ public class LevelGenerator {
 		}
 
 		if (!isFlatLevel) // NOT flat level
-			floor = height - 1 - globalRandom.nextInt(4); // floor of the exit
-															// line
+			floor = height - 1 - globalRandom.nextInt(4); // floor of the exit line
 
 		// coordinates of the exit
 		level.xExit = LevelOptions.getLevelExit()[0];
@@ -309,13 +307,8 @@ public class LevelGenerator {
 			break;
 		case ODDS_DEAD_ENDS: {
 			if (floor == DEFAULT_FLOOR
-					&& counters.deadEndsCount < counters.totalDeadEnds) // if
-																		// method
-																		// was
-																		// not
-																		// called
-																		// from
-																		// buildDeadEnds
+                    && counters.deadEndsCount < counters.totalDeadEnds)
+                    // if method was not called from buildDeadEnds
 			{
 				counters.deadEndsCount++;
 				length = buildDeadEnds(x, maxLength);
@@ -407,10 +400,7 @@ public class LevelGenerator {
 		int length = 0; // total zone length
 		int preDeadEndLength = 7 + globalRandom.nextInt(10);
 		int rHeight = floor - 1; // rest height
-		int separatorY = 3 + globalRandom.nextInt(rHeight - 7); // Y coordinate
-																// of the top
-																// line of the
-																// separator
+		int separatorY = 3 + globalRandom.nextInt(rHeight - 7); // Y coordinate of the top line of the separator
 
 		length += buildStraight(x0, preDeadEndLength, true, floor,
 				INFINITE_FLOOR_HEIGHT);// buildZone( x0, x0+preDeadEndLength,
@@ -608,14 +598,8 @@ public class LevelGenerator {
 				xCannon += 10;
 			}
 
-			int cannonHeight = floor - globalRandom.nextInt(3) - 1; // cannon
-																	// height is
-																	// a Y
-																	// coordinate
-																	// of top
-																	// part of
-																	// the
-																	// cannon
+            int cannonHeight = floor - globalRandom.nextInt(3) - 1;
+                // cannon height is a Y coordinate of top part of the cannon
 			if (maxHeight != ANY_HEIGHT) {
 				// maxHeight -= 2;
 				if (floor - cannonHeight >= maxHeight) {
@@ -644,16 +628,11 @@ public class LevelGenerator {
 								// floor - 1);
 							}
 							oldXCannon = x;
-							level.setBlock(x, y, (byte) (14 + 0 * 16)); // cannon
-																		// barrel
+							level.setBlock(x, y, (byte) (14 + 0 * 16)); // cannon barrel
 						} else if (y == cannonHeight + 1) {
-							level.setBlock(x, y, (byte) (14 + 1 * 16)); // base
-																		// for
-																		// cannon
-																		// barrel
+							level.setBlock(x, y, (byte) (14 + 1 * 16)); // base for cannon barrel
 						} else {
-							level.setBlock(x, y, (byte) (14 + 2 * 16)); // cannon
-																		// pole
+							level.setBlock(x, y, (byte) (14 + 2 * 16)); // cannon pole
 						}
 					}
 				}
@@ -912,23 +891,15 @@ public class LevelGenerator {
 		while (floor > 0) // minimal distance between the bricks line and floor
 							// is 4
 		{
-			if ((x1 - 1 - e) - (x0 + 1 + s) > 0) // minimal number of bricks in
-													// the line is positive
-													// value
+            if ((x1 - 1 - e) - (x0 + 1 + s) > 0)
+                // minimal number of bricks in the line is a positive value
 			{
 				for (int x = x0 + s; x < x1 - e; x++) {
-					if (hb && counters.totalHiddenBlocks != 0) // if hidden
-																// blocks to be
-																// built
+					if (hb && counters.totalHiddenBlocks != 0) // if hidden blocks to be built
 					{
 						boolean isBlock = globalRandom.nextInt(2) == 1;
 						if (isBlock && canBuildBlocks(x, floor - 4, true)) {
-							level.setBlock(x, floor - 4, (byte) (1)); // a
-																		// hidden
-																		// block
-																		// with
-																		// a
-																		// coin
+							level.setBlock(x, floor - 4, (byte) (1)); // a hidden block with a coin
 							counters.hiddenBlocksCount++;
 							++counters.coinsCount;
 						}
@@ -942,56 +913,22 @@ public class LevelGenerator {
 								int rnd = globalRandom.nextInt(6);
 								if (rnd >= 0 && rnd < 2) {
 									if (level.getBlock(x, floor) == 0)
-										level.setBlock(x, floor,
-												(byte) (4 + 2 + 1 * 16)); // a
-																			// brick
-																			// with
-																			// animated
-																			// question
-																			// symbol
-																			// with
-																			// power
-																			// up.
-																			// when
-																			// broken
-																			// becomes
-																			// a
-																			// rock
+										level.setBlock(x, floor, (byte) (4 + 2 + 1 * 16));
+                                            // a brick with animated question symbol with power up.
+                                            // when broken becomes a rock
 								} else if (rnd >= 2 && rnd < 4) {
 									if (level.getBlock(x, floor) == 0) {
 										level.setBlock(x, floor,
-												(byte) (4 + 1 + 1 * 16)); // a
-																			// brick
-																			// with
-																			// animated
-																			// question
-																			// symbol
-																			// with
-																			// coin.
-																			// when
-																			// broken
-																			// becomes
-																			// a
-																			// rock
+                                                (byte) (4 + 1 + 1 * 16));
+                                                // a brick with animated question symbol with coin.
+												// when broken becomes a rock
 										++counters.coinsCount;
 									}
 								} else if (rnd >= 4 && rnd < 6) {
 									int coinsNumber = globalRandom.nextInt(9) + 1;
-									level.setBlock(x, floor,
-											(byte) (4 + 3 + 1 * 16)); // a brick
-																		// with
-																		// animated
-																		// question
-																		// symbol
-																		// with
-																		// N
-																		// coins
-																		// inside.
-																		// when
-																		// broken
-																		// becomes
-																		// a
-																		// rock
+                                    level.setBlock(x, floor, (byte) (4 + 3 + 1 * 16));
+                                        // a brick with animated question symbol with N coins inside.
+										// when broken becomes a rock
 									level.setBlockData(x, floor,
 											(byte) -coinsNumber);
 									counters.coinsCount += coinsNumber;
@@ -1003,29 +940,12 @@ public class LevelGenerator {
 								counters.blocksCount++;
 								if (globalRandom.nextInt(4) == 0) {
 									if (level.getBlock(x, floor) == 0)
-										level.setBlock(x, floor,
-												(byte) (2 + 1 * 16)); // a brick
-																		// with
-																		// a
-																		// power
-																		// up.
-																		// when
-																		// broken
-																		// becomes
-																		// a
-																		// rock
+                                        level.setBlock(x, floor, (byte) (2 + 1 * 16));
+                                            // a brick with a power up. when broken becomes a rock
 								} else {
 									if (level.getBlock(x, floor) == 0) {
-										level.setBlock(x, floor,
-												(byte) (1 + 1 * 16)); // a brick
-																		// with
-																		// a
-																		// coin.
-																		// when
-																		// broken
-																		// becomes
-																		// a
-																		// rock
+                                        level.setBlock(x, floor, (byte) (1 + 1 * 16));
+                                            // a brick with a coin. when broken becomes a rock
 										++counters.coinsCount;
 									}
 								}
@@ -1037,9 +957,7 @@ public class LevelGenerator {
 								counters.blocksCount++; // TODO:TASK:!H! move it
 														// in to the
 														// Level.setBlock
-								level.setBlock(x, floor, (byte) (0 + 1 * 16)); // a
-																				// break
-																				// brick
+								level.setBlock(x, floor, (byte) (0 + 1 * 16)); // a break brick
 								canDeco = true;
 							}
 						}
@@ -1053,9 +971,7 @@ public class LevelGenerator {
 				if (onlyHB) {
 					hb = true;
 				} else {
-					hb = globalRandom.nextInt(4) == 0;// globalRandom.nextInt(3)
-														// ==
-														// globalRandom.nextInt(3);
+					hb = globalRandom.nextInt(4) == 0;
 				}
 			}
 
@@ -1213,205 +1129,4 @@ public class LevelGenerator {
 			}
 		}
 	}
-
-	// private static int buildHillStraight(int xo, int maxLength, int vfloor,
-	// final boolean isInGap)
-	// {
-	// // System.out.println("xo = " + xo);
-	// int length = globalRandom.nextInt(10) + 10;
-	// if (length > maxLength)
-	// {
-	// length = maxLength;
-	// }
-	// /* if( maxLength < 10 )
-	// {
-	// return 0;
-	// }
-	// */
-	// int floor = vfloor;
-	// if (vfloor == DEFAULT_FLOOR)
-	// {
-	// floor = height - 1 - globalRandom.nextInt(4);
-	// }
-	// // if (isInGap)
-	// // floor = level.height;
-	//
-	// if (!isInGap)
-	// {
-	// for (int x = xo; x < xo + length; x++)
-	// {
-	// for (int y = 0; y < height; y++)
-	// {
-	// if (y >= floor)
-	// {
-	// level.setBlock(x, y, (byte) (1 + 9 * 16));
-	// }
-	// }
-	// }
-	// }
-	//
-	// // addEnemiesLine(xo + 1, xo + length - 1, floor - 1);
-	//
-	// // int h = level.height;
-	// // if (isFlatLevel)
-	// // floor = level.height;
-	// // int h = isInGap ? level.height : floor;
-	// int h = floor;
-	//
-	// boolean keepGoing = true;
-	//
-	// boolean[] occupied = new boolean[length];
-	// while (keepGoing)
-	// {
-	// if (isFlatLevel)
-	// h = vfloor;
-	// else
-	// h = h - 2 - globalRandom.nextInt(3);
-	//
-	// if (h <= 0)
-	// {
-	// keepGoing = false;
-	// } else
-	// {
-	// int l = globalRandom.nextInt(maxLength) + 1;
-	// //int xxo = globalRandom.nextInt(length - l - 2 + 1) + xo + 1;
-	// int xxo = globalRandom.nextInt(l + 1) + xo;
-	//
-	// if (false)//occupied[xxo - xo] || occupied[xxo - xo + l] || occupied[xxo
-	// - xo - 1] || occupied[xxo - xo + l])
-	// {
-	// keepGoing = false;
-	// } else
-	// {
-	// // occupied[xxo - xo] = true;
-	// // occupied[xxo - xo + l] = true;
-	// // addEnemiesLine(xxo, xxo + l, h - 1);
-	// if (globalRandom.nextInt(4) == 0)
-	// {
-	// decorate(xxo - 1, xxo + l + 1, h);
-	// keepGoing = false;
-	// }
-	// for (int x = xxo; x < xxo + l; x++)
-	// {
-	// for (int y = h; y < floor; y++)
-	// {
-	// int xx = 5;
-	// if (x == xxo) xx = 4;
-	// if (x == xxo + l - 1) xx = 6;
-	// int yy = 9;
-	// if (y == h) yy = 8;
-	//
-	// if (level.getBlock(x, y) == 0)
-	// {
-	// level.setBlock(x, y, (byte) (xx + yy * 16));
-	// } else
-	// {
-	// if (level.getBlock(x, y) == (byte) (4 + 8 * 16))
-	// level.setBlock(x, y, (byte) (4 + 11 * 16));
-	// if (level.getBlock(x, y) == (byte) (6 + 8 * 16))
-	// level.setBlock(x, y, (byte) (6 + 11 * 16));
-	// }
-	// }
-	// }
-	// }
-	// }
-	// }
-	//
-	// return length;
-	// }
-
-	// private static boolean canAddEnemyLine(int x0, int x1, int y)
-	// {
-	// if (!creaturesMaskParser.canAdd())
-	// {
-	// return false;
-	// }
-	// boolean res = true;
-	// for (int x = x0; x < x1; x++)
-	// {
-	// for (int yy = y; yy > y + 1; yy++)
-	// {
-	// if (level.getBlock(x, yy) != 0)
-	// {
-	// res = false;
-	// break;
-	// }
-	// }
-	// }
-	//
-	// return res;
-	// }
-	//
-	// private static void addEnemiesLine(int x0, int x1, int y)
-	// {
-	// if (x0 > 0)
-	// return;
-	//
-	// if (!canAddEnemyLine(x0, x1, y))
-	// return;
-	//
-	// for (int x = x0; x < x1; x++)
-	// {
-	// if (creaturesRandom.nextInt(25) < levelDifficulty + 1)
-	// {
-	// if (creaturesMaskParser.isComplete())
-	// { //Difficulty of creatures on the level depends on the levelDifficulty
-	// of the level
-	// int type = creaturesRandom.nextInt(4);
-	// if (levelDifficulty < 1)
-	// {
-	// type = CreaturesMaskParser.GOOMBA;
-	// } else if (levelDifficulty < 3)
-	// {
-	// int type1 = creaturesRandom.nextInt(3);
-	// int type2 = creaturesRandom.nextInt(3) + 3;
-	// type = creaturesRandom.nextInt(2) == 1 ? type1 : type2;
-	// }
-	// type = creaturesMaskParser.getNativeType(type);
-	// level.setSpriteTemplate(x, y, new SpriteTemplate(type));
-	// ++counters.creatures;
-	// } else
-	// {
-	// boolean enabled = false;
-	// int crType;// = creaturesRandom.nextInt(4);
-	// if (levelDifficulty < 3)
-	// {
-	// creaturesRandom.nextInt(3);
-	// }
-	// do
-	// {
-	// crType = creaturesRandom.nextInt(8);
-	// if (creaturesMaskParser.isEnabled(crType))
-	// {
-	// enabled = true;
-	// }
-	// }
-	// while (!enabled);
-	//
-	// int t = creaturesMaskParser.getNativeType(crType);
-	// level.setSpriteTemplate(x, y, new SpriteTemplate(t));
-	// ++counters.creatures;
-	// }
-	// }
-	// }
-	// }
 }
-
-/*
- * first component of sum : position on Y axis second component of sum :
- * position on X axis starting at 016 because size of the picture is 16x16
- * pixels 0+9*16 -- left side of the ground 1+9*16 -- upper side of ground;
- * common block telling "it's smth (ground) here". Is processed further. 2+9*16
- * -- right side of the earth 3+9*16 -- peice of the earth 9+0*16 -- block of a
- * ladder 14+0*16 -- cannon barrel 14+1*16 -- base for cannon barrel 14+2*16 --
- * cannon pole 4+8*16 -- left piece of a hill of ground 4+11*16 -- left piece of
- * a hill of ground as well 6+8*16 -- right upper peice of a hill 6+11*16 --
- * right upper peice of a hill on earth 2+2*16 -- animated coin 4+2+1*16 -- a
- * rock with animated question symbol with power up 4+1+1*16 -- a rock with
- * animated question symbol with coin 2+1*16 -- brick with power up. when broken
- * becomes a rock 1+1*16 -- brick with power coin. when broken becomes a rock
- * 0+1*16 -- break brick 1+10*16 -- earth, bottom piece 1+8*16 -- earth, upper
- * piece 3+10*16 -- piece of earth 3+11*16 -- piece of earth 2+8*16 -- right
- * part of earth 0+8*16 -- left upper part of earth 3+8*16 -- piece of earth
- * 2+10*16 -- right bottomp iece of earth 0+10*16 -- left bottom piece of earth
- */

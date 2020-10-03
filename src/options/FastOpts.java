@@ -387,34 +387,4 @@ public class FastOpts {
 	public static final String LEVEL_02_JUMPING = L_FLAT_OFF + L_BLOCKS_OFF + L_CANNONS_OFF + L_COINS_OFF + L_DEAD_ENDS_OFF + L_GAPS_OFF + L_HIDDEN_BLOCKS_OFF
 												  	          + L_PLATFORMS_OFF + L_LADDERS_OFF + L_TUBES_OFF;
 	
-	/**
-	 * Level with hills + coins.
-	 */
-	public static final String LEVEL_03_COLLECTING = L_FLAT_OFF + L_BLOCKS_OFF + L_CANNONS_OFF + L_COINS_ON + L_DEAD_ENDS_OFF + L_GAPS_OFF + L_HIDDEN_BLOCKS_OFF
-	  	       												     + L_PLATFORMS_OFF + L_LADDERS_OFF + L_TUBES_OFF;
-	
-	/**
-	 * Level with hills + block (can be crushed) + coins.
-	 */
-	public static final String LEVEL_04_BLOCKS = L_FLAT_OFF + L_BLOCKS_ON + L_CANNONS_OFF + L_COINS_ON + L_DEAD_ENDS_OFF + L_GAPS_OFF + L_HIDDEN_BLOCKS_OFF
-													         + L_PLATFORMS_OFF + L_LADDERS_OFF + L_TUBES_OFF;
-	
-	/**
-	 * Level with hills + gaps (holes in the ground).
-	 */
-	public static final String LEVEL_05_GAPS = L_FLAT_OFF + L_BLOCKS_OFF + L_CANNONS_OFF + L_COINS_OFF + L_DEAD_ENDS_OFF + L_GAPS_ON + L_HIDDEN_BLOCKS_OFF
-	         										       + L_PLATFORMS_OFF + L_LADDERS_OFF + L_TUBES_OFF + L_DIFFICULTY(1);	
-	
-	/**
-	 * Level with hills + GOOMBA (walking mushroom).
-	 */
-	public static final String LEVEL_06_GOOMBA = L_FLAT_OFF + L_BLOCKS_OFF + L_CANNONS_OFF + L_COINS_OFF + L_DEAD_ENDS_OFF + L_GAPS_OFF + L_HIDDEN_BLOCKS_OFF
-		       														     + L_PLATFORMS_OFF + L_LADDERS_OFF + L_TUBES_OFF + L_ENEMY(Enemy.GOOMBA);
-	
-	/**
-	 * Level with hills + GOOMBA (walking mushroom) + SPIKY (walking thorned something) + Visualization(x2)
-	 */
-	public static final String LEVEL_07_SPIKY = L_FLAT_OFF + L_BLOCKS_OFF + L_CANNONS_OFF + L_COINS_OFF + L_DEAD_ENDS_OFF + L_GAPS_OFF + L_HIDDEN_BLOCKS_OFF
-			     										    + L_PLATFORMS_OFF + L_LADDERS_OFF + L_TUBES_OFF + L_ENEMY(Enemy.GOOMBA, Enemy.SPIKY);
-	
 }

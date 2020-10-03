@@ -16,22 +16,22 @@ public enum LevelConfig {
 	/**
 	 * And here you must mind malicious GOOMBAs!
 	 */
-	LEVEL_2_GOOMBAS(FastOpts.VIS_ON_2X + FastOpts.LEVEL_02_JUMPING + FastOpts.L_ENEMY(Enemy.GOOMBA)),
+	LEVEL_2_GOOMBAS(LEVEL_1_JUMPING.options + FastOpts.L_ENEMY(Enemy.GOOMBA)),
 	
 	/**
 	 * + Tubes with dangerous flowers. 
 	 */
-	LEVEL_3_TUBES(FastOpts.VIS_ON_2X + FastOpts.LEVEL_02_JUMPING + FastOpts.L_ENEMY(Enemy.GOOMBA) + FastOpts.L_TUBES_ON),
+    LEVEL_3_TUBES(LEVEL_2_GOOMBAS.options + FastOpts.L_TUBES_ON),
 	
 	/**
 	 * Here we're adding SPIKIES! (Cannot be killed by fireballs...)
 	 */
-	LEVEL_4_SPIKIES(FastOpts.VIS_ON_2X + FastOpts.LEVEL_02_JUMPING + FastOpts.L_ENEMY(Enemy.GOOMBA, Enemy.SPIKY) + FastOpts.L_TUBES_ON),
+    LEVEL_4_SPIKIES(LEVEL_3_TUBES.options + FastOpts.L_ENEMY(Enemy.SPIKY)),
 	
 	/**
-	 * Finally, level with green tourtles (so called KOOPAs).
+	 * A level with green turtles (so-called KOOPAs).
 	 */
-	LEVEL_5_SPIKIES(FastOpts.VIS_ON_2X + FastOpts.LEVEL_02_JUMPING + FastOpts.L_ENEMY(Enemy.GOOMBA, Enemy.SPIKY, Enemy.GREEN_KOOPA) + FastOpts.L_TUBES_ON);
+    LEVEL_5_KOOPAS(LEVEL_4_SPIKIES.options + FastOpts.L_ENEMY(Enemy.GREEN_KOOPA));
 
 	private String options;
 	
