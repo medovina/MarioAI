@@ -19,7 +19,7 @@ import ch.idsia.benchmark.mario.options.FastOpts;
  * 
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
-public class Agent05_Debugger extends MarioHijackAIBase implements IAgent {
+public class Agent05_Debugger extends MarioHijackAIBase {
 
 	@Override
 	public void reset(AgentOptions options) {

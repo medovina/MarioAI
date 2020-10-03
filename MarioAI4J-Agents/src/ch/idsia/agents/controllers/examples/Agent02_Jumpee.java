@@ -46,7 +46,7 @@ import ch.idsia.benchmark.mario.options.FastOpts;
  * @author Sergey Karakovskiy
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
-public class Agent02_Jumpee extends MarioHijackAIBase implements IAgent {
+public class Agent02_Jumpee extends MarioHijackAIBase {
 	
 	@Override
 	public void reset(AgentOptions options) {

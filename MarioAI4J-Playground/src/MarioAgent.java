@@ -1,6 +1,5 @@
 import java.awt.Graphics;
 import ch.idsia.agents.AgentOptions;
-import ch.idsia.agents.IAgent;
 import ch.idsia.agents.controllers.MarioHijackAIBase;
 import ch.idsia.agents.controllers.modules.Entities;
 import ch.idsia.agents.controllers.modules.Tiles;
@@ -23,7 +22,7 @@ import ch.idsia.benchmark.mario.environments.IEnvironment;
  * <p>
  * Once your agent is ready, you can use the {@link Evaluate} class to benchmark the quality of your AI. 
  */
-public class MarioAgent extends MarioHijackAIBase implements IAgent {
+public class MarioAgent extends MarioHijackAIBase {
 
 	@Override
 	public void reset(AgentOptions options) {

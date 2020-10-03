@@ -49,7 +49,7 @@ import ch.idsia.benchmark.mario.options.FastOpts;
  * @author Sergey Karakovskiy 
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
-public class Agent00_Random extends MarioHijackAIBase implements IAgent {
+public class Agent00_Random extends MarioHijackAIBase {
 	
 	private Random R = null;
 

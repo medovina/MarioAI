@@ -40,7 +40,7 @@ import ch.idsia.benchmark.mario.engine.input.MarioInput;
  * @author julian
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
-public class TimingAgent extends MarioAgentBase implements IAgent {
+public class TimingAgent extends MarioAgentBase {
 	
 	private IAgent agent;
 	

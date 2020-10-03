@@ -40,7 +40,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 
 
-public class LevelEditor extends JFrame implements ActionListener, Serializable
+public class LevelEditor extends JFrame implements ActionListener
 {
 private static final long serialVersionUID = 7461321112832160393L;
 
