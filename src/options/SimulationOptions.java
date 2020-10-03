@@ -33,12 +33,6 @@ import options.MarioOptions.FloatOption;
 import options.MarioOptions.IntOption;
 
 /**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy 
- * Date: Apr 12, 2009 
- * Time: 9:55:56 PM 
- * Package: .Simulation
- * 
  * Read Simulation values from {@link MarioOptions}.
  * 
  * @author Sergey Karakovskiy

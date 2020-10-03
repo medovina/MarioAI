@@ -42,14 +42,6 @@ import engine.input.MarioInput;
 import engine.input.MarioKey;
 import tools.ReplayerOptions;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Sergey Karakovskiy, sergey@idsia.ch
- * Date: May 5, 2009
- * Time: 9:34:33 PM
- * Package: utils
- */
-
 public class Recorder
 {
 private ZipOutputStream zos;

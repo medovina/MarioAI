@@ -32,17 +32,9 @@ import options.MarioOptions.BoolOption;
 import options.MarioOptions.IntOption;
 
 /**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy 
- * Date: Apr 25, 2009 
- * Time: 9:05:20 AM 
- * Package: tools
- * 
  * @author Sergey Karakovskiy
- * @version 1.0, Apr 25, 2009
  * @see utils.ParameterContainer
  * @see options.SimulationOptions
- * @since MarioAI0.1
  * 
  * Read AI values from {@link MarioOptions}.
  * 

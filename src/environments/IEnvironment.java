@@ -40,16 +40,6 @@ import engine.sprites.Mario;
 import options.MarioOptions;
 import tools.EvaluationInfo;
 
-/**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy 
- * Date: Mar 28, 2009 
- * Time:
- * 8:51:57 PM Package: .Environments
- * 
- * @author Sergey Karakovskiy
- * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
- */
 public interface IEnvironment {
 
 	public static final int MARIO_STATUS_WIN = Mario.STATUS_WIN;

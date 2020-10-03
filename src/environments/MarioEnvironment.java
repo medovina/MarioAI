@@ -58,16 +58,6 @@ import tasks.SystemOfValues;
 import tools.EvaluationInfo;
 import utils.MarioLog;
 
-/**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy, sergey@idsia.ch 
- * Date: Mar 3, 2010 
- * Time: 10:08:13 PM 
- * Package: environments
- * 
- * @author Sergey Karakovskiy, sergey@idsia.ch 
- * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
- */
 public final class MarioEnvironment implements IEnvironment {
 
 	private int prevRFH = -1;

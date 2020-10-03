@@ -28,12 +28,6 @@
 package tasks;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Sergey Karakovskiy, sergey at idsia dot ch
- * Date: Mar 27, 2010 
- * Time: 5:55:38 PM
- * Package: scenarios.champ
- 
  * Tune the parameters of the multiobjective function with MarioSystemOfValues
  * class assigning a high value to a certain parameter should steer your agent
  * to maximize objective function w.r.t this value, e.g. assigning timeLeft = 0

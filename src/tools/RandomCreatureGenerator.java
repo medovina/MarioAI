@@ -35,13 +35,6 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Sergey Karakovskiy, sergey.karakovskiy@gmail.com
- * Date: Sep 17, 2010
- * Time: 1:38:10 AM
- * Package: tools
- */
 public class RandomCreatureGenerator extends Random
 {
 private static final long serialVersionUID = 1L;

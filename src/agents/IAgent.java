@@ -30,16 +30,6 @@ package agents;
 import engine.input.MarioInput;
 import environments.IEnvironment;
 
-/**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy 
- * Date: Mar 28, 2009 
- * Time: 8:46:42 PM 
- * package: controllers.agents
- * 
- * @author Sergey Karakovskiy, sergey@idsia.ch
- * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
- */
 public interface IAgent {
 
 	/**

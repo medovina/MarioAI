@@ -34,18 +34,6 @@ import engine.MarioSimulator;
 import engine.input.MarioInput;
 import options.FastOpts;
 
-/**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy 
- * Date: Apr 25, 2009 
- * Time: 12:27:07 AM 
- * Package: agents.controllers;
- * 
- * Agent that sprints forward and jumps whenever it can.
- * 
- * @author Sergey Karakovskiy
- * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
- */
 public class Agent02_Jumpee extends MarioHijackAIBase {
 	
 	@Override

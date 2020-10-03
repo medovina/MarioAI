@@ -41,16 +41,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-/**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy 
- * Date: Mar 29, 2009 
- * Time: 3:34:13 PM 
- * Package: .Tools
- * 
- * NOT REFACTORED YET
- */
-
 public class GameViewer extends JFrame {
 	private static final long serialVersionUID = 1L;
 	

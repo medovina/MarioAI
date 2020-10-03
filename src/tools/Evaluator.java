@@ -33,14 +33,6 @@ package tools;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Sergey Karakovskiy
- * Date: Apr 6, 2009
- * Time: 8:12:18 PM
- * Package: .Tools
- */
-
 public class Evaluator implements Runnable
 {
 Thread thisThread = null;

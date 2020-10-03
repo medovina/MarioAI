@@ -38,17 +38,6 @@ import tasks.MarioSystemOfValues;
 import tasks.SystemOfValues;
 import utils.MarioLog;
 
-/**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy 
- * Date: Apr 12, 2009 
- * Time: 12:44:51 AM 
- * Package: .Tools
- * 
- * @author Sergey Karakovskiy
- * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
- */
-
 public final class EvaluationInfo implements Cloneable {
 	
 	public static enum EvaluationResult {

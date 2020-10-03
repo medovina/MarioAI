@@ -31,15 +31,6 @@ import agents.AgentOptions;
 import agents.IAgent;
 import engine.input.MarioInput;
 
-/**
- * Created by IntelliJ IDEA. 
- * User: julian 
- * Date: Aug 10, 2009 
- * Time: 6:41:42 PM
- * 
- * @author julian
- * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
- */
 public class TimingAgent extends MarioAgentBase {
 	
 	private IAgent agent;

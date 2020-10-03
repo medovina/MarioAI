@@ -37,18 +37,6 @@ import engine.input.MarioInput;
 import engine.input.MarioKey;
 import options.FastOpts;
 
-/**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy 
- * Date: Mar 28, 2009 
- * Time: 10:37:18 PM 
- * Package: controllers.agents.controllers;
- * 
- * Agent that randomly pushes buttons (slightly prefer right button).
- * 
- * @author Sergey Karakovskiy 
- * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
- */
 public class Agent00_Random extends MarioHijackAIBase {
 	
 	private Random R = null;

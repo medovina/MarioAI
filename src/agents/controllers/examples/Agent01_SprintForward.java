@@ -33,18 +33,6 @@ import engine.MarioSimulator;
 import engine.input.MarioInput;
 import options.FastOpts;
 
-/**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy, firstname_at_idsia_dot_ch
- * Date: May 12, 2009 
- * Time: 7:28:57 PM 
- * Package: controllers.agents
- * 
- * Agent that sprints forward (to the right).
- * 
- * @author Sergey Karakovskiy, firstname_at_idsia_dot_ch
- * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
- */
 public class Agent01_SprintForward extends MarioHijackAIBase {
 	
 	@Override

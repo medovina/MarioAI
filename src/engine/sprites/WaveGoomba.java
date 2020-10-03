@@ -3,13 +3,6 @@ package engine.sprites;
 import engine.SimulatorOptions;
 import engine.LevelScene;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Nikolay Sohryakov, nikolay.sohyrakov@gmail.com
- * Date: Nov 28, 2010
- * Time: 12:21:34 AM
- * Package: engine.sprites
- */
 public class WaveGoomba extends Enemy
 {
 private LevelScene world;

@@ -32,13 +32,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy, firstName_at_idsia_dot_ch
- * Date: May 5, 2009 
- * Time: 9:34:33 PM 
- * Package: utils
- */
 public class ParameterContainer {
 	protected HashMap<String, String> optionsHashMap = new HashMap<String, String>();
 	

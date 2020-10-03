@@ -35,13 +35,6 @@ import java.util.Queue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Sergey Karakovskiy, sergey.karakovskiy@gmail.com
- * Date: Oct 15, 2010
- * Time: 1:13:13 AM
- * Package: tools
- */
 public class ReplayerOptions
 {
 public static class Interval implements Serializable

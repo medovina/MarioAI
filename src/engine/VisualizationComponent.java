@@ -60,16 +60,6 @@ import options.VisualizationOptions;
 import tools.GameViewer;
 import utils.MarioLog;
 
-/**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy, sergey at idsia dot ch
- * Date: Feb 26, 2010 
- * Time: 3:54:52 PM 
- * Package: engine
- * 
- * @author Sergey Karakovskiy, sergey at idsia dot ch
- * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
- */
 public class VisualizationComponent extends JComponent {
 	private static final long serialVersionUID = 1L;
 

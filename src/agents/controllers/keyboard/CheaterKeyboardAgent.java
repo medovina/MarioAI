@@ -33,16 +33,6 @@ import engine.SimulatorOptions;
 import engine.SimulatorOptions.ReceptiveFieldMode;
 import engine.input.MarioCheaterKeyboard;
 
-/**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy 
- * Date: Apr 8, 2009 
- * Time: 3:36:16 AM 
- * Package: controllers.agents.controllers;
- * 
- * @author Sergey Karakovskiy
- * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
- */
 public class CheaterKeyboardAgent extends KeyboardAgent {
 
 	public CheaterKeyboardAgent() {

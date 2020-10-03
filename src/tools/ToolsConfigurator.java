@@ -29,15 +29,6 @@ package tools;
 
 import javax.swing.JFrame;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Sergey Karakovskiy
- * Date: Mar 29, 2009
- * Time: 6:27:25 PM
- * Package: .Tools
- * 
- * NOT REFACTORED YET
- */
 public class ToolsConfigurator extends JFrame
 {
 private static final long serialVersionUID = 1L;

@@ -30,12 +30,6 @@ package engine.generalization;
 import utils.MarioLog;
 
 /**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy, sergey@idsia.ch 
- * Date: Aug 5, 2009 
- * Time: 7:05:46 PM 
- * Package: engine
- * 
  * Generalizer that provides abstracts over "background tile", this includes {@link Tile#COIN_ANIM} as well because there can be an enemy in front of it!
  * 
  * @author Sergey Karakovskiy, sergey@idsia.ch

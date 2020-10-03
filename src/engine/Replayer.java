@@ -39,10 +39,6 @@ import engine.input.MarioKey;
 import tools.ReplayerOptions;
 import tools.ReplayerOptions.Interval;
 
-/**
- * Created by IntelliJ IDEA. User: Sergey Karakovskiy, firstName_at_idsia_dot_ch
- * Date: May 5, 2009 Time: 9:34:33 PM Package: utils
- */
 public class Replayer {
 	private ZipFile zf = null;
 	private ZipEntry ze = null;

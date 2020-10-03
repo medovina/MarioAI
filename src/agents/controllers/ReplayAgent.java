@@ -36,16 +36,6 @@ import engine.input.MarioInput;
 import environments.IEnvironment;
 import utils.MarioLog;
 
-/**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy, sergey.karakovskiy@gmail.com 
- * Date: Oct 9, 2010 
- * Time: 2:08:47 AM 
- * Package: agents.controllers
- * 
- * @author Sergey Karakovskiy, sergey.karakovskiy@gmail.com
- * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
- */
 public class ReplayAgent implements IAgent {
 
 	private Replayer replayer;

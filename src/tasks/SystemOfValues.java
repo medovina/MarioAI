@@ -27,12 +27,6 @@
 
 package tasks;
 
-/**
- * Created by IntelliJ IDEA. 
- * User: Sergey Karakovskiy, sergey@idsia.ch
- * Date: Apr 4, 2010 
- * Time: 11:50:43 AM
- */
 public class SystemOfValues {
 	public int distance = 1;
 	public int win = 800;

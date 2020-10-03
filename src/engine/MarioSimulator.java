@@ -39,12 +39,6 @@ import tools.EvaluationInfo;
 import utils.MarioLog;
 
 /**
- * Created by IntelliJ IDEA.
- * User: Sergey Karakovskiy, sergey at idsia dot ch
- * Date: Mar 1, 2010 
- * Time: 1:50:37 PM 
- * Package: scenarios
- * 
  * Wraps execution of concrete {@link IAgent} within {@link MarioEnvironment} using preset {@link MarioOptions}, which are combined
  * together with passed 'options' during the construction.
  * <br/><br/>
