@@ -3,8 +3,6 @@ package ch.idsia.utils;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import cz.cuni.amis.utils.simple_logging.SimpleLogging;
-
 public class MarioLog {
 	
 	public static final Level INITIAL_LOG_LEVEL = Level.INFO;
@@ -39,29 +37,14 @@ public class MarioLog {
 		LOG.log(level, msg);
 	}
 	
-	public static void setLogLevel(Level newLevel) {
-		if (enabled) {
-			LOG.setLevel(newLevel);
-		} else {
-			lastLevel = newLevel;
-		}
-	}
-	
 	public static void enable() {
 		if (enabled) return;
 		enabled = true;
 		LOG.setLevel(lastLevel);
 	}
 	
-	public static void disable() {
-		if (!enabled) return;
-		enabled = false;
-		lastLevel = LOG.getLevel();		
-		LOG.setLevel(Level.OFF);
-	}
-	
 	static {
-		SimpleLogging.initLogging(true);
+        System.setProperty("java.util.logging.SimpleFormatter.format", "[%4$s] %1$tT.%1$tL %5$s%n");
 		LOG = Logger.getAnonymousLogger();
 		LOG.setLevel(INITIAL_LOG_LEVEL);
 		enable();
