@@ -1,11 +1,13 @@
 .classpath
+.idea
 .metadata
 .project
 .settings
-bin
-build
 /html
 /mario.jar
+bin
+build
 results
 out
 target
+*.iml
