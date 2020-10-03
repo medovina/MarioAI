@@ -5,12 +5,12 @@ import java.awt.Graphics;
 import agents.AgentOptions;
 import agents.IAgent;
 import agents.controllers.MarioHijackAIBase;
-import benchmark.mario.MarioSimulator;
-import benchmark.mario.engine.LevelScene;
-import benchmark.mario.engine.VisualizationComponent;
-import benchmark.mario.engine.input.MarioInput;
-import benchmark.mario.environments.IEnvironment;
-import benchmark.mario.options.FastOpts;
+import engine.MarioSimulator;
+import engine.LevelScene;
+import engine.VisualizationComponent;
+import engine.input.MarioInput;
+import environments.IEnvironment;
+import options.FastOpts;
 
 /**
  * An agent that sprints forward and jumps if it detects an obstacle ahead.

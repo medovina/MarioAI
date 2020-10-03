@@ -31,10 +31,10 @@ import agents.AgentOptions;
 import agents.IAgent;
 import agents.controllers.modules.Entities;
 import agents.controllers.modules.Tiles;
-import benchmark.mario.engine.generalization.MarioEntity;
-import benchmark.mario.engine.input.MarioControl;
-import benchmark.mario.engine.input.MarioInput;
-import benchmark.mario.environments.IEnvironment;
+import engine.generalization.MarioEntity;
+import engine.input.MarioControl;
+import engine.input.MarioInput;
+import environments.IEnvironment;
 
 /**
  * Abstract class that serves as a basis for implementing new Mario-AI agents. 

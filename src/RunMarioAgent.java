@@ -1,5 +1,5 @@
 import agents.IAgent;
-import benchmark.mario.MarioSimulator;
+import engine.MarioSimulator;
 import tools.EvaluationInfo;
 import utils.MarioLog;
 

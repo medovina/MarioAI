@@ -29,9 +29,9 @@ package agents.controllers.keyboard;
 
 import java.awt.event.KeyEvent;
 
-import benchmark.mario.engine.SimulatorOptions;
-import benchmark.mario.engine.SimulatorOptions.ReceptiveFieldMode;
-import benchmark.mario.engine.input.MarioCheaterKeyboard;
+import engine.SimulatorOptions;
+import engine.SimulatorOptions.ReceptiveFieldMode;
+import engine.input.MarioCheaterKeyboard;
 
 /**
  * Created by IntelliJ IDEA. 

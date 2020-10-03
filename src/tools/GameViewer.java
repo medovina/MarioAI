@@ -27,9 +27,9 @@
 
 package tools;
 
-import benchmark.mario.engine.SimulatorOptions;
-import benchmark.mario.engine.VisualizationComponent;
-import benchmark.mario.options.VisualizationOptions;
+import engine.SimulatorOptions;
+import engine.VisualizationComponent;
+import options.VisualizationOptions;
 import utils.MarioLog;
 
 import javax.swing.*;

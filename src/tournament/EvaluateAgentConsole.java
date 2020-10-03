@@ -10,9 +10,9 @@ import com.martiansoftware.jsap.JSAPException;
 import com.martiansoftware.jsap.JSAPResult;
 
 import agents.IAgent;
-import benchmark.mario.engine.generalization.Enemy;
-import benchmark.mario.options.FastOpts;
-import benchmark.mario.options.MarioOptions;
+import engine.generalization.Enemy;
+import options.FastOpts;
+import options.MarioOptions;
 import utils.MarioLog;
 import tournament.run.MarioRunResults;
 

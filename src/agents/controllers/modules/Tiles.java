@@ -1,8 +1,8 @@
 package agents.controllers.modules;
 
 import agents.AgentOptions;
-import benchmark.mario.engine.generalization.MarioEntity;
-import benchmark.mario.engine.generalization.Tile;
+import engine.generalization.MarioEntity;
+import engine.generalization.Tile;
 
 /** A {@link Tiles} object provides information about tiles around Mario.
  * <p>

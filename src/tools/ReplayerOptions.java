@@ -27,7 +27,7 @@
 
 package tools;
 
-import benchmark.mario.engine.SimulatorOptions;
+import engine.SimulatorOptions;
 
 import java.io.Serializable;
 import java.util.LinkedList;

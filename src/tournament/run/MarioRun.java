@@ -1,7 +1,7 @@
 package tournament.run;
 
 import agents.IAgent;
-import benchmark.mario.MarioSimulator;
+import engine.MarioSimulator;
 import tools.EvaluationInfo;
 import tournament.MarioConfig;
 

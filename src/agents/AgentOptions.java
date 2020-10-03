@@ -1,7 +1,7 @@
 package agents;
 
-import benchmark.mario.engine.generalization.MarioEntity;
-import benchmark.mario.environments.IEnvironment;
+import engine.generalization.MarioEntity;
+import environments.IEnvironment;
 
 public class AgentOptions {
 

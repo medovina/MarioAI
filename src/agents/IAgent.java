@@ -27,8 +27,8 @@
 
 package agents;
 
-import benchmark.mario.engine.input.MarioInput;
-import benchmark.mario.environments.IEnvironment;
+import engine.input.MarioInput;
+import environments.IEnvironment;
 
 /**
  * Created by IntelliJ IDEA. 

@@ -2,9 +2,9 @@ package agents.controllers;
 
 import java.awt.Graphics;
 
-import benchmark.mario.engine.LevelScene;
-import benchmark.mario.engine.VisualizationComponent;
-import benchmark.mario.environments.IEnvironment;
+import engine.LevelScene;
+import engine.VisualizationComponent;
+import environments.IEnvironment;
 
 public interface IMarioDebugDraw {
 

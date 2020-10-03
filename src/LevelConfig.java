@@ -1,5 +1,5 @@
-import benchmark.mario.engine.generalization.Enemy;
-import benchmark.mario.options.FastOpts;
+import engine.generalization.Enemy;
+import options.FastOpts;
 
 public enum LevelConfig {
 	

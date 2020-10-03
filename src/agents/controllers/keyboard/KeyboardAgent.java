@@ -32,9 +32,9 @@ import java.awt.event.KeyListener;
 
 import agents.AgentOptions;
 import agents.controllers.MarioAgentBase;
-import benchmark.mario.engine.input.MarioHumanKeyboard;
-import benchmark.mario.engine.input.MarioInput;
-import benchmark.mario.engine.input.MarioKeyboard;
+import engine.input.MarioHumanKeyboard;
+import engine.input.MarioInput;
+import engine.input.MarioKeyboard;
 
 /**
  * @author Sergey Karakovskiy

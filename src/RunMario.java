@@ -1,4 +1,4 @@
-import benchmark.mario.MarioSimulator;
+import engine.MarioSimulator;
 
 public class RunMario {
 

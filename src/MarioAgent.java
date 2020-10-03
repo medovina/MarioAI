@@ -3,13 +3,13 @@ import agents.AgentOptions;
 import agents.controllers.MarioHijackAIBase;
 import agents.controllers.modules.Entities;
 import agents.controllers.modules.Tiles;
-import benchmark.mario.engine.LevelScene;
-import benchmark.mario.engine.VisualizationComponent;
-import benchmark.mario.engine.generalization.EntityType;
-import benchmark.mario.engine.generalization.Tile;
-import benchmark.mario.engine.input.MarioControl;
-import benchmark.mario.engine.input.MarioInput;
-import benchmark.mario.environments.IEnvironment;
+import engine.LevelScene;
+import engine.VisualizationComponent;
+import engine.generalization.EntityType;
+import engine.generalization.Tile;
+import engine.input.MarioControl;
+import engine.input.MarioInput;
+import environments.IEnvironment;
 
 /**
  * Code your custom agent here!

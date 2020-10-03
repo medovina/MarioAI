@@ -31,9 +31,9 @@ import java.io.IOException;
 
 import agents.AgentOptions;
 import agents.IAgent;
-import benchmark.mario.engine.Replayer;
-import benchmark.mario.engine.input.MarioInput;
-import benchmark.mario.environments.IEnvironment;
+import engine.Replayer;
+import engine.input.MarioInput;
+import environments.IEnvironment;
 import utils.MarioLog;
 
 /**

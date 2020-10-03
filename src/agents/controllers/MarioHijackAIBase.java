@@ -5,14 +5,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.text.DecimalFormat;
 
-import benchmark.mario.engine.LevelScene;
-import benchmark.mario.engine.SimulatorOptions;
-import benchmark.mario.engine.SimulatorOptions.ReceptiveFieldMode;
-import benchmark.mario.engine.VisualizationComponent;
-import benchmark.mario.engine.input.MarioCheaterKeyboard;
-import benchmark.mario.engine.input.MarioInput;
-import benchmark.mario.engine.input.MarioKey;
-import benchmark.mario.environments.IEnvironment;
+import engine.LevelScene;
+import engine.SimulatorOptions;
+import engine.SimulatorOptions.ReceptiveFieldMode;
+import engine.VisualizationComponent;
+import engine.input.MarioCheaterKeyboard;
+import engine.input.MarioInput;
+import engine.input.MarioKey;
+import environments.IEnvironment;
 
 /**
  * Splits {@link #actionSelection()} into {@link #actionSelectionAI()} done by AGENT

@@ -27,8 +27,8 @@
 
 package tools;
 
-import benchmark.mario.engine.generalization.Enemy;
-import benchmark.mario.engine.sprites.Sprite;
+import engine.generalization.Enemy;
+import engine.sprites.Sprite;
 
 import java.util.HashSet;
 import java.util.Random;

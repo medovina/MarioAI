@@ -32,8 +32,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
 
-import benchmark.mario.engine.sprites.Mario;
-import benchmark.mario.engine.sprites.Mario.MarioMode;
+import engine.sprites.Mario;
+import engine.sprites.Mario.MarioMode;
 import tasks.MarioSystemOfValues;
 import tasks.SystemOfValues;
 import utils.MarioLog;

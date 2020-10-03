@@ -2,7 +2,7 @@ package tournament.run;
 
 import java.util.Random;
 
-import benchmark.mario.options.FastOpts;
+import options.FastOpts;
 import tournament.MarioConfig;
 
 public class MarioRunsGenerator {

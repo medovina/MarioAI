@@ -32,10 +32,10 @@ import java.util.Random;
 import agents.AgentOptions;
 import agents.IAgent;
 import agents.controllers.MarioHijackAIBase;
-import benchmark.mario.MarioSimulator;
-import benchmark.mario.engine.input.MarioInput;
-import benchmark.mario.engine.input.MarioKey;
-import benchmark.mario.options.FastOpts;
+import engine.MarioSimulator;
+import engine.input.MarioInput;
+import engine.input.MarioKey;
+import options.FastOpts;
 
 /**
  * Created by IntelliJ IDEA. 

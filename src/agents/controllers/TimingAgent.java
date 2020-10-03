@@ -29,7 +29,7 @@ package agents.controllers;
 
 import agents.AgentOptions;
 import agents.IAgent;
-import benchmark.mario.engine.input.MarioInput;
+import engine.input.MarioInput;
 
 /**
  * Created by IntelliJ IDEA. 
