@@ -1,5 +1,1 @@
-javadoc -d html \
-        -sourcepath 'MarioAI4J/src:MarioAI4J-Tournament/src' \
-        -classpath 'MarioAI4J/lib/*:MarioAI4J-Tournament/lib/*' \
-        -subpackages 'ch:cz' \
-        MarioAI4J-Playground/src/*.java
+javadoc -d html -sourcepath src -classpath 'lib/*' -subpackages 'ch:cz' src/*.java

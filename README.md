@@ -2,7 +2,7 @@ Refactored MarioAI code from: http://code.google.com/p/marioai/
 
 # MarioAI Version 0.3.1
 
-![alt tag](https://github.com/medovina/MarioAI/raw/master/MarioAI4J/MatioAI4J.png)
+![alt tag](https://github.com/medovina/MarioAI/raw/master/MarioAI4J.png)
 
 ## Overview
 
@@ -22,13 +22,13 @@ Meanwhile, a new version of MarioAI (0.8) has recently (in 2019) appeared at [ma
 
 ## Building the game
 
-This version of MarioAI works with Java 11, 12, or 13, and probably older Java versions as well.
+This version of MarioAI works with Java 11 or later, and possibly with older Java versions as well.
 
-The sources include .project files for Eclipse.  You should easily be able to load them into Eclipse, IntelliJ, or Visual Studio Code, all of which understand the Eclipse .project file format.
+The project builds using [Maven](https://maven.apache.org/).  You should easily be able to load it into Eclipse, IntelliJ, or Visual Studio Code.
 
 ## Playing the game
 
-To play the game from the keyboard in a default configuration, run the class RunMario in MarioAI4J/src/ch/idsia/RunMario.java.
+To play the game from the keyboard in a default configuration, run the class RunMario in src/ch/idsia/RunMario.java.
 
 The keyboard controls are:
 
@@ -87,16 +87,6 @@ Your current score is displayed at the bottom of the screen.  You gain or lose p
 - collect a mushroom: __100__ points
 - collect a flower: __100__ points
 - finish the level by reaching the Princess: __800__ points
-
-## Project structure
-
-**MarioAI4J**: The main project including the runnable class RunMario featuring a keyboard-controlled Mario.
-
-**MarioAI4J-Agents**: Sample agents.  You can run each agent class directly to see how it behaves.
-
-**MarioAI4J-Playground**: Here you can start coding your own Mario AI right away.  Just navigate to the MarioAgent class and fool around.  
-
-**MarioAI4J-Tournament**: Lets you evaluate agents from the console (check the EvaluateAgentConsole class) producing detailed CSV reports.
 
 ## Agent API
 
