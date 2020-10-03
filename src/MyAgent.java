@@ -22,7 +22,7 @@ import environments.IEnvironment;
  * <p>
  * Once your agent is ready, you can use the {@link Evaluate} class to benchmark the quality of your AI. 
  */
-public class MarioAgent extends MarioHijackAIBase {
+public class MyAgent extends MarioHijackAIBase {
 
 	@Override
 	public void reset(AgentOptions options) {

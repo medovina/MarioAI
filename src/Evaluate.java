@@ -7,7 +7,7 @@ import tournament.EvaluateAgentConsole;
 import tournament.run.MarioRunResults;
 
 /**
- * This class is designed to quickly evaluate the quality of a {@link MarioAgent} AI.
+ * This class is designed to quickly evaluate the quality of a {@link MyAgent} AI.
  * <p>
  * Check the {@link #main(String[])} method where you can easily run an evaluation for 
  * certain levels or for all level configs.
@@ -33,7 +33,7 @@ public class Evaluate {
 				, "-o", levelOptions
 				, "-c", String.valueOf(MAPS_COUNT)  // level-count
 				, "-r", String.valueOf(MAP_REPETITIONS)  // one-run-repetitions
-				, "-a", "MarioAgent"
+				, "-a", "MyAgent"
 				, "-i", "MarioAI"   // agent-id
 				, "-d", saveResults ? "./results" : null // result-dir"	
 		};
@@ -104,7 +104,7 @@ public class Evaluate {
 	}
 	
 	/**
-	 * A simple way to evaluate your {@link MarioAgent}.
+	 * A simple way to evaluate your {@link MyAgent}.
 	 */
 	public static void main(String[] args)  {
 		// Change this seed to evaluate on different levels ~ it alters the procedural generation of level maps.

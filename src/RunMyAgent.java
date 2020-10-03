@@ -3,7 +3,7 @@ import engine.MarioSimulator;
 import tools.EvaluationInfo;
 import utils.MarioLog;
 
-class RunMarioAgent {
+class RunMyAgent {
     public static void main(String[] args) {
 		// YOU MAY RAISE THE LOGGING LEVEL, even though there is probably no inforamation you need to know...
 		//MarioLog.setLogLevel(Level.ALL);
@@ -24,7 +24,7 @@ class RunMarioAgent {
 		//MarioSimulator simulator = new MarioSimulator(level.getOptionsRandomized());
 		
 		// INSTANTIATE YOUR AGENT
-		IAgent agent = new MarioAgent();
+		IAgent agent = new MyAgent();
 		
 		// RUN THE SIMULATION
 		EvaluationInfo info = simulator.run(agent);

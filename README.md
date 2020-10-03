@@ -123,9 +123,9 @@ The API uses two coordinate systems: __pixel coordinates__ and __tile coordinate
 
 In your agent, you could only consider each entity's tile coordinates, or you may want to consider its pixel coordinates for a finer degree of control.
 
-[MarioAgent](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/MarioAgent.html)  is the class you will enhance to build your custom agent.  You will need to implement the [actionSelectionAI](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/MarioAgent.html#actionSelectionAI()) method to determine the action that Mario will take on each game tick.
+[MyAgent](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/MyAgent.html)  is the class you will enhance to build your custom agent.  You will need to implement the [actionSelectionAI](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/MyAgent.html#actionSelectionAI()) method to determine the action that Mario will take on each game tick.
 
-As you can see in the documentation, [MarioAgent](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/MarioAgent.html) inherits from [MarioHijackAIBase](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/MarioHijackAIBase.html), which in turn inherits from [MarioAIBase](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/MarioAIBase.html).  This last class contains fields that provide essential information about the game state:
+As you can see in the documentation, [MyAgent](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/MyAgent.html) inherits from [MarioHijackAIBase](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/MarioHijackAIBase.html), which in turn inherits from [MarioAIBase](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/MarioAIBase.html).  This last class contains fields that provide essential information about the game state:
 
 - The field __mario__ is a [MarioEntity](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/benchmark/mario/engine/generalization/MarioEntity.html) object with information about Mario himself, such as
 

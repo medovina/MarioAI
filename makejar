@@ -2,6 +2,6 @@
 
 jar cf mario_tmp.jar -C target/classes . \
 
-zip -d mario_tmp.jar MarioAgent.class
+zip -d mario_tmp.jar MyAgent.class
 
 mv -f mario_tmp.jar mario.jar
