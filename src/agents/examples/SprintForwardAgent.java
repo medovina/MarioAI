@@ -27,10 +27,10 @@
 
 package agents.examples;
 
-import agents.controllers.MarioHijackAIBase;
+import agents.controllers.MarioAIBase;
 import engine.input.MarioInput;
 
-public class SprintForwardAgent extends MarioHijackAIBase {
+public class SprintForwardAgent extends MarioAIBase {
 	
 	@Override
 	public MarioInput actionSelectionAI() {

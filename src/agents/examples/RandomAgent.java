@@ -30,11 +30,11 @@ package agents.examples;
 import java.util.Random;
 
 import agents.AgentOptions;
-import agents.controllers.MarioHijackAIBase;
+import agents.controllers.MarioAIBase;
 import engine.input.MarioInput;
 import engine.input.MarioKey;
 
-public class RandomAgent extends MarioHijackAIBase {
+public class RandomAgent extends MarioAIBase {
 	
 	private Random R = null;
 

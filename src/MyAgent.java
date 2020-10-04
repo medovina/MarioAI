@@ -1,6 +1,6 @@
 import java.awt.Graphics;
 import agents.AgentOptions;
-import agents.controllers.MarioHijackAIBase;
+import agents.controllers.MarioAIBase;
 import agents.controllers.modules.Entities;
 import agents.controllers.modules.Tiles;
 import engine.LevelScene;
@@ -22,7 +22,7 @@ import environments.IEnvironment;
  * <p>
  * Once your agent is ready, you can use the {@link Evaluate} class to benchmark the quality of your AI. 
  */
-public class MyAgent extends MarioHijackAIBase {
+public class MyAgent extends MarioAIBase {
 
 	@Override
 	public void reset(AgentOptions options) {

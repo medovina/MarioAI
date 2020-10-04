@@ -2,7 +2,7 @@ package agents.examples;
 
 import java.awt.Graphics;
 import agents.AgentOptions;
-import agents.controllers.MarioHijackAIBase;
+import agents.controllers.MarioAIBase;
 import engine.LevelScene;
 import engine.VisualizationComponent;
 import engine.input.MarioInput;
@@ -15,7 +15,7 @@ import environments.IEnvironment;
  * 
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
-public class DebuggerAgent extends MarioHijackAIBase {
+public class DebuggerAgent extends MarioAIBase {
 
 	@Override
 	public void reset(AgentOptions options) {

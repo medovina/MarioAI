@@ -1,49 +1,27 @@
-/*
- * Copyright (c) 2009-2010, Sergey Karakovskiy and Julian Togelius
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *     * Redistributions of source code must retain the above copyright
- *       notice, this list of conditions and the following disclaimer.
- *     * Redistributions in binary form must reproduce the above copyright
- *       notice, this list of conditions and the following disclaimer in the
- *       documentation and/or other materials provided with the distribution.
- *     * Neither the name of the Mario AI nor the
- *       names of its contributors may be used to endorse or promote products
- *       derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
- * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- */
-
 package agents.controllers;
 
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.text.DecimalFormat;
+
 import agents.AgentOptions;
-import agents.IAgent;
-import agents.controllers.modules.Entities;
-import agents.controllers.modules.Tiles;
+import agents.controllers.modules.*;
+import engine.LevelScene;
+import engine.SimulatorOptions;
+import engine.SimulatorOptions.ReceptiveFieldMode;
 import engine.generalization.MarioEntity;
-import engine.input.MarioControl;
-import engine.input.MarioInput;
+import engine.VisualizationComponent;
+import engine.input.*;
 import environments.IEnvironment;
 
 /**
- * Abstract class that serves as a basis for implementing new Mario-AI agents. 
+ * Splits {@link #actionSelection()} into {@link #actionSelectionAI()} done by AGENT
+ * and {@link #actionSelectionKeyboard()} done by {@link #keyboard}.
  * 
- * @author Sergey Karakovskiy
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
-public abstract class MarioAIBase extends MarioAgentBase {
-	
+public class MarioAIBase extends MarioAgentBase implements KeyListener, IMarioDebugDraw {
 	/**
 	 * Information about Mario's body.
 	 */
@@ -64,15 +42,19 @@ public abstract class MarioAIBase extends MarioAgentBase {
 	
 	/** Information about tiles in Mario's vicinity. */
 	protected Tiles t = new Tiles();
+
+	protected MarioCheaterKeyboard keyboard = new MarioCheaterKeyboard();
 	
+	protected boolean hijacked = false;
+	
+	protected DecimalFormat floatFormat = new DecimalFormat("0.0");	 
+	
+	protected boolean renderExtraDebugInfo = false;
+
 	public MarioAIBase() {
 		super("MarioAIBase");
 		name = getClass().getSimpleName();
 	}
-	
-	public MarioAIBase(String agentName) {
-		super(agentName);
-	}	
 	
 	@Override
 	public void reset(AgentOptions options) {
@@ -83,11 +65,6 @@ public abstract class MarioAIBase extends MarioAgentBase {
 		t.reset(options);
 	}
 
-	@Override
-	public MarioInput actionSelection() {
-		return action;
-	}
-	
 	public void observe(IEnvironment environment) {
 		mario         = environment.getMario();
 		control.setMario(mario);
@@ -101,4 +78,167 @@ public abstract class MarioAIBase extends MarioAgentBase {
 	public void receiveReward(float intermediateReward) {
 	}
 
+	@Override
+	public MarioInput actionSelection() {
+		if (hijacked) return actionSelectionKeyboard();
+		return actionSelectionAI();
+	}
+	
+	public MarioInput actionSelectionAI() {
+		return action;
+	}
+	
+	public MarioInput actionSelectionKeyboard() {
+		return keyboard.getInput();
+	}	
+	
+	@Override
+	public void debugDraw(VisualizationComponent vis, LevelScene level,	IEnvironment env, Graphics g) {
+		if (hijacked) {
+			MarioInput ai = actionSelectionAI();
+			if (ai != null) {
+				String msg = "AGENT KEYS:   ";
+				boolean first = true;				
+				for (MarioKey pressedKey : ai.getPressed()) {
+					if (first) first = false;
+					else msg += " ";
+					msg += pressedKey.getDebug();
+				}
+				VisualizationComponent.drawStringDropShadow(g, msg, 0, 9, 6);
+			}
+		}
+		if (mario == null) return;
+		
+		if (!renderExtraDebugInfo) return;
+		
+		int row = 10;
+		
+		String marioState = "";
+		marioState += "|FBs:" + level.fireballsOnScreen + "|";
+		if (mario.mayJump) marioState += "|M.JUMP|";
+		else marioState += "|------|";
+		if (mario.mayShoot) marioState += "|M.SHOOT|";
+		else marioState += "|-------|";
+		if (mario.onGround) marioState += "|ON.GRND|";
+		else marioState += "|-------|";
+		VisualizationComponent.drawStringDropShadow(g, marioState, 0, row++, 7);
+		marioState = "";
+		if (control.wantsShoot()) marioState += "|WANT SHOOT|";
+		else marioState += "|-----|";
+		if (control.wantsSprint()) marioState += "|WANT SPRINT|";
+		else marioState += "|------|";
+		VisualizationComponent.drawStringDropShadow(g, marioState, 0, row++, 7);		
+		VisualizationComponent.drawStringDropShadow(g, "m.s.[x,y] = [" + floatFormat(mario.sprite.x) + "," + floatFormat(mario.sprite.y) + "]", 0, row++, 7);
+		VisualizationComponent.drawStringDropShadow(g, "m.s.[xOld,yOld] = [" + floatFormat(mario.sprite.xOld) + "," + floatFormat(mario.sprite.yOld) + "]", 0, row++, 7);
+		VisualizationComponent.drawStringDropShadow(g, "m.inTile[X,Y] = [" + mario.inTileX + "," + mario.inTileY + "]", 0, row++, 7);
+		VisualizationComponent.drawStringDropShadow(g, "m.speed.[x,y] = [" + floatFormat(mario.speed.x) + "," + floatFormat(mario.speed.y) + "]", 0, row++, 7);
+		
+	}
+	
+	private String floatFormat(float num) {
+		return floatFormat.format(num).replace(",", ".");
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+		keyboard.keyTyped(e);
+	}
+
+	public void keyPressed(KeyEvent e) {
+		toggleKey(e, true);
+	}
+
+	public void keyReleased(KeyEvent e) {
+		toggleKey(e, false);
+	}
+	
+	protected void toggleKey(KeyEvent e, boolean isPressed) {
+		int keyCode = e.getKeyCode();
+		switch (keyCode) {
+		
+		case KeyEvent.VK_H:
+			if (isPressed) hijacked = !hijacked;
+			return;
+			
+		// TOGGLE EXTRA DEBUG STUFF
+		case KeyEvent.VK_E:
+			if (isPressed) renderExtraDebugInfo = !renderExtraDebugInfo;
+			
+			return;
+		// CHEATS!		
+		
+		case KeyEvent.VK_V:
+			if (isPressed) SimulatorOptions.isVisualization = !SimulatorOptions.isVisualization;
+			return;
+			
+		// FREEZES CREATURES, THEY WILL NOT BE MOVING
+		case KeyEvent.VK_O:
+			if (isPressed) {
+				SimulatorOptions.areFrozenCreatures = !SimulatorOptions.areFrozenCreatures;
+			}
+			return;
+			
+		// RENDER MAP PIXEL [X,Y] FOR EVERY ENTITIES WITHIN THE SCENE
+		case KeyEvent.VK_L:
+			if (isPressed) SimulatorOptions.areLabels = !SimulatorOptions.areLabels;
+			return;
+			
+		// CENTER CAMERA ON MARIO
+		case KeyEvent.VK_C:
+			if (isPressed) SimulatorOptions.isCameraCenteredOnMario = !SimulatorOptions.isCameraCenteredOnMario;
+			return;
+			
+		
+		// ADJUST SIMULATOR FPS
+		case KeyEvent.VK_PLUS:
+		case 61:
+			if (isPressed) {
+				++SimulatorOptions.FPS;
+				SimulatorOptions.FPS = (SimulatorOptions.FPS > SimulatorOptions.MaxFPS ? SimulatorOptions.MaxFPS : SimulatorOptions.FPS);
+				SimulatorOptions.AdjustMarioVisualComponentFPS();
+			}
+			return;			
+		case KeyEvent.VK_MINUS:
+			if (isPressed) {
+				--SimulatorOptions.FPS;
+				SimulatorOptions.FPS = (SimulatorOptions.FPS < 1 ? 1 : SimulatorOptions.FPS);
+				SimulatorOptions.AdjustMarioVisualComponentFPS();
+			}
+			return;
+		
+		// RECEPTIVE FIELD MODE VISUALIZATION
+		case KeyEvent.VK_G:
+			if (isPressed) {
+				SimulatorOptions.receptiveFieldMode = ReceptiveFieldMode.getForCode(SimulatorOptions.receptiveFieldMode.getCode()+1);
+			}
+			return;
+			
+		// PAUSES THE SIMULATION
+		case KeyEvent.VK_P:
+		case KeyEvent.VK_SPACE:
+			if (isPressed) {
+				SimulatorOptions.isGameplayStopped = !SimulatorOptions.isGameplayStopped;
+			}
+			return;
+			
+		// WHEN PAUSED, POKES THE SIMULATOR TO COMPUTE NEXT FRAME
+		case KeyEvent.VK_N:
+			if (isPressed) {
+				SimulatorOptions.nextFrameIfPaused = true;
+			}
+			return;
+			
+		// MARIO WILL FLY
+		case KeyEvent.VK_F:
+			if (isPressed) {
+				SimulatorOptions.isFly = !SimulatorOptions.isFly;
+			}
+			return;
+			
+		}
+		// NOT HANDLED YET
+		// => ask keyboard		
+		if (isPressed) keyboard.keyPressed(e);
+		else keyboard.keyReleased(e);
+	}
 }

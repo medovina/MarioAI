@@ -27,10 +27,10 @@
 
 package agents.controllers.keyboard;
 
-import agents.controllers.MarioHijackAIBase;
+import agents.controllers.MarioAIBase;
 import engine.input.*;
 
-public class CheaterKeyboardAgent extends MarioHijackAIBase {
+public class CheaterKeyboardAgent extends MarioAIBase {
 	@Override
 	public MarioInput actionSelection() {
 		return actionSelectionKeyboard();

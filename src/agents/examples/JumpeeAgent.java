@@ -28,10 +28,10 @@
 package agents.examples;
 
 import agents.AgentOptions;
-import agents.controllers.MarioHijackAIBase;
+import agents.controllers.MarioAIBase;
 import engine.input.MarioInput;
 
-public class JumpeeAgent extends MarioHijackAIBase {
+public class JumpeeAgent extends MarioAIBase {
 	
 	@Override
 	public void reset(AgentOptions options) {
