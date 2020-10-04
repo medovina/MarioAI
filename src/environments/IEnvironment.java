@@ -92,8 +92,6 @@ public interface IEnvironment {
 
 	public List<Entity> getEntities();
 
-	
-
 	boolean isLevelFinished();
 
 	EvaluationInfo getEvaluationInfo();
@@ -101,10 +99,6 @@ public interface IEnvironment {
 	IAgent getAgent();
 
 	void setAgent(IAgent agent);
-
-	
-
-	
 
 	public void closeRecorder();
 

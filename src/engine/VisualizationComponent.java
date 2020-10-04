@@ -284,8 +284,6 @@ public class VisualizationComponent extends JComponent {
 		drawStringDropShadow(g, " " + df2.format(time), 33, 1, time < 0 ? 3
 				: time < 50 ? 1 : time < 100 ? 4 : 7);
 
-		drawProgress(g);
-
 		if (SimulatorOptions.areLabels) {
 			g.drawString("xCam: " + xCam + "yCam: " + yCam, 10, 205);
 			g.drawString("x : " + mario.x + "y: " + mario.y, 10, 215);
@@ -406,24 +404,6 @@ public class VisualizationComponent extends JComponent {
 			drawString(og, "G" + SimulatorOptions.receptiveFieldMode.getCode(), x, y - 8, 4);
 			drawString(og, EntityType.MARIO.getDebug(), x, y, 7);
 		}
-	}
-
-	private void drawProgress(Graphics g) {
-		String entirePathStr = "......................................>";
-		double physLength = (marioEnvironment.getLevelLength()) * 16;
-		int progressInChars = (int) (mario.x * (entirePathStr.length() / physLength));
-		String progress_str = "";
-		for (int i = 0; i < progressInChars - 1; ++i)
-			progress_str += ".";
-		progress_str += "M";
-		try {
-			drawStringDropShadow(g,
-					entirePathStr.substring(progress_str.length()),
-					progress_str.length(), 28, 0);
-		} catch (StringIndexOutOfBoundsException e) {
-			// System.err.println("warning: progress line inaccuracy");
-		}
-		drawStringDropShadow(g, progress_str, 0, 28, 2);
 	}
 
 	public static void drawStringDropShadow(Graphics g, String text, int x,	int y, int c) {

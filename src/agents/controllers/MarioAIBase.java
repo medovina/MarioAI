@@ -159,9 +159,28 @@ public class MarioAIBase extends MarioAgentBase implements KeyListener, IMarioDe
             "[" + mario.inTileX + "," + mario.inTileY + "]", 0, row++, 7);
         VisualizationComponent.drawStringDropShadow(g, "m.speed.[x,y] = " +
             "[" + floatFormat(mario.speed.x) + "," + floatFormat(mario.speed.y) + "]", 0, row++, 7);
-		
+        
+        drawProgress(g, env);
 	}
-	
+    
+	private void drawProgress(Graphics g, IEnvironment env) {
+		String entirePathStr = "......................................>";
+		double physLength = (env.getLevelScene().getLevelLength()) * 16;
+		int progressInChars = (int) (mario.sprite.x * (entirePathStr.length() / physLength));
+		String progress_str = "";
+		for (int i = 0; i < progressInChars - 1; ++i)
+			progress_str += ".";
+		progress_str += "M";
+		try {
+			VisualizationComponent.drawStringDropShadow(g,
+					entirePathStr.substring(progress_str.length()),
+					progress_str.length(), 28, 0);
+		} catch (StringIndexOutOfBoundsException e) {
+			// System.err.println("warning: progress line inaccuracy");
+		}
+		VisualizationComponent.drawStringDropShadow(g, progress_str, 0, 28, 2);
+	}
+
 	private String floatFormat(float num) {
 		return floatFormat.format(num).replace(",", ".");
 	}
