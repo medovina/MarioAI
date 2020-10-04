@@ -27,82 +27,12 @@
 
 package agents.controllers.keyboard;
 
-import java.awt.event.KeyEvent;
+import agents.controllers.MarioHijackAIBase;
+import engine.input.*;
 
-import engine.SimulatorOptions;
-import engine.SimulatorOptions.ReceptiveFieldMode;
-import engine.input.MarioCheaterKeyboard;
-
-public class CheaterKeyboardAgent extends KeyboardAgent {
-
-	public CheaterKeyboardAgent() {
-		super("HumanCheatKeyboard", new MarioCheaterKeyboard());
-	}
-	
+public class CheaterKeyboardAgent extends MarioHijackAIBase {
 	@Override
-	protected void toggleKey(KeyEvent e, boolean isPressed) {
-		int keyCode = e.getKeyCode();
-		switch (keyCode) {
-		// CHEATS!
-		case KeyEvent.VK_D:
-			if (isPressed) SimulatorOptions.gameViewerTick();
-			return;
-		case KeyEvent.VK_V:
-			if (isPressed) SimulatorOptions.isVisualization = !SimulatorOptions.isVisualization;
-			return;
-		case KeyEvent.VK_O:
-			if (isPressed) {
-				SimulatorOptions.areFrozenCreatures = !SimulatorOptions.areFrozenCreatures;
-			}
-			return;
-		case KeyEvent.VK_L:
-			if (isPressed) SimulatorOptions.areLabels = !SimulatorOptions.areLabels;
-			return;
-		case KeyEvent.VK_C:
-			if (isPressed) SimulatorOptions.isCameraCenteredOnMario = !SimulatorOptions.isCameraCenteredOnMario;
-			return;
-		case 61:
-			if (isPressed) {
-				++SimulatorOptions.FPS;
-				SimulatorOptions.FPS = (SimulatorOptions.FPS > SimulatorOptions.MaxFPS ? SimulatorOptions.MaxFPS : SimulatorOptions.FPS);
-				SimulatorOptions.AdjustMarioVisualComponentFPS();
-			}
-			return;
-		case 45:
-			if (isPressed) {
-				--SimulatorOptions.FPS;
-				SimulatorOptions.FPS = (SimulatorOptions.FPS < 1 ? 1 : SimulatorOptions.FPS);
-				SimulatorOptions.AdjustMarioVisualComponentFPS();
-			}
-			return;
-		case KeyEvent.VK_G:
-			if (isPressed) {
-				SimulatorOptions.receptiveFieldMode = ReceptiveFieldMode.getForCode(SimulatorOptions.receptiveFieldMode.getCode()+1);
-			}
-			return;
-		case KeyEvent.VK_SPACE:
-			if (isPressed) {
-				SimulatorOptions.isGameplayStopped = !SimulatorOptions.isGameplayStopped;
-			}
-			return;
-		case KeyEvent.VK_F:
-			if (isPressed) {
-				SimulatorOptions.isFly = !SimulatorOptions.isFly;
-			}
-			return;
-		case KeyEvent.VK_R:
-			if (isPressed) {
-				SimulatorOptions.isRecording = !SimulatorOptions.isRecording;
-			}
-			return;
-		case KeyEvent.VK_N:
-			if (isPressed) {
-				SimulatorOptions.nextFrameIfPaused = true;
-			}
-			return;
-		}
-		// NOT HANDLED YET
-		// => ask parent
-		super.toggleKey(e, isPressed);
+	public MarioInput actionSelection() {
+		return actionSelectionKeyboard();
 	}
 }

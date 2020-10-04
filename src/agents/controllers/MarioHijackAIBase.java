@@ -28,10 +28,10 @@ public class MarioHijackAIBase extends MarioAIBase implements KeyListener, IMari
 	
 	protected DecimalFormat floatFormat = new DecimalFormat("0.0");	 
 	
-	protected boolean renderExtraDebugInfo = true;
+	protected boolean renderExtraDebugInfo = false;
 		
 	@Override
-	public final MarioInput actionSelection() {
+	public MarioInput actionSelection() {
 		if (hijacked) return actionSelectionKeyboard();
 		return actionSelectionAI();
 	}
