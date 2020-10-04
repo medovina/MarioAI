@@ -120,11 +120,6 @@ public class MarioHijackAIBase extends MarioAIBase implements KeyListener, IMari
 			return;
 		// CHEATS!		
 		
-		// TODO: investigate, what's this for?
-		//case KeyEvent.VK_D:
-		//	if (isPressed) SimulatorOptions.gameViewerTick();
-		//	return;
-			
 		case KeyEvent.VK_V:
 			if (isPressed) SimulatorOptions.isVisualization = !SimulatorOptions.isVisualization;
 			return;
@@ -193,20 +188,10 @@ public class MarioHijackAIBase extends MarioAIBase implements KeyListener, IMari
 			}
 			return;
 			
-		// TODO: investigate
-//		case KeyEvent.VK_R:
-//			if (isPressed) {
-//				SimulatorOptions.isRecording = !SimulatorOptions.isRecording;
-//			}
-//			return;
-		
 		}
 		// NOT HANDLED YET
 		// => ask keyboard		
 		if (isPressed) keyboard.keyPressed(e);
 		else keyboard.keyReleased(e);
 	}
-
-	
-
 }

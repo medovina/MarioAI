@@ -207,8 +207,6 @@ public class GameViewer extends JFrame {
 		borderPanel.add(BorderLayout.CENTER, new JScrollPane(
 				gameViewerViewPanel));
 		setContentPane(borderPanel);
-
-		SimulatorOptions.registerGameViewer(this);
 	}
 
 	public class GameViewerActions implements ActionListener, ItemListener {

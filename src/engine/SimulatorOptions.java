@@ -32,8 +32,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-import tools.GameViewer;
-
 public abstract class SimulatorOptions {
 	
 	public enum ReceptiveFieldMode {
@@ -79,7 +77,6 @@ public abstract class SimulatorOptions {
 	public static boolean isGameplayStopped = false;
 	public static boolean isFly = false;
 
-	private static GameViewer GameViewer = null;
 	// public static boolean isTimer = true;
 
 	public static int mariosecondMultiplier = 15;
@@ -127,18 +124,9 @@ public abstract class SimulatorOptions {
 		marioVisualComponent = mc;
 	}
 
-	public static void registerGameViewer(GameViewer gv) {
-		GameViewer = gv;
-	}
-
 	public static void AdjustMarioVisualComponentFPS() {
 		if (marioVisualComponent != null)
 			marioVisualComponent.adjustFPS();
-	}
-
-	public static void gameViewerTick() {
-		if (GameViewer != null)
-			GameViewer.tick();
 	}
 
 	public static String getDateTime(Long d) {
