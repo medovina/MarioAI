@@ -89,8 +89,6 @@ public final class LevelScene implements SpriteContext {
 	private Point marioInitialPos;
 	private int bonusPoints = 0;
 
-	// public int getTimeLimit() { return timeLimit; }
-
 	public void setTimeLimit(int timeLimit) {
 		this.timeLimit = timeLimit;
 	}

@@ -83,7 +83,7 @@ Your current score is displayed at the bottom of the screen.  You gain or lose p
 - shoot a Goomba or Koopa: __0__ points
 - step on a Goomba or Koopa: __10__ points
 - kill a Goomba, Koopa or Spiky by hitting it with a shell: __10__ points
-- collect a coin: __20__ points
+- collect a coin: __10__ points
 - collect a mushroom: __100__ points
 - collect a flower: __100__ points
 - finish the level by reaching the Princess: __800__ points

@@ -49,7 +49,6 @@ import engine.generalization.Entity;
 import engine.generalization.EntityType;
 import engine.generalization.Tile;
 import engine.input.MarioCheatKey;
-import engine.input.MarioKey;
 import engine.level.BgLevelGenerator;
 import engine.level.Level;
 import engine.sprites.Mario;
@@ -79,13 +78,10 @@ public class VisualizationComponent extends JComponent {
 	final private static DecimalFormat df = new DecimalFormat("00");
 	final private static DecimalFormat df2 = new DecimalFormat("000");
 
-	private static String[] LEVEL_TYPES = { "Overground(0)", "Underground(1)", "Castle(2)" };
-
 	private long tm = System.currentTimeMillis();
 	private long tm0;
 	int delay;
 	private KeyListener prevHumanKeyBoardAgent;
-	private String agentNameStr;
 	private GameViewer gameViewer = null;
 	private static VisualizationComponent marioVisualComponent = null;
 
@@ -161,24 +157,8 @@ public class VisualizationComponent extends JComponent {
 	}
 	
 	public void tick() {
-		// this.render(thisVolatileImageGraphics,
-		// CheaterKeyboardAgent.isObserveLevel ? level.length : 0);
 		this.render(thisVolatileImageGraphics);
 
-		String msg = "Agent: " + this.agentNameStr;
-		drawStringDropShadow(thisVolatileImageGraphics, msg, 0, 6, 5);
-
-		msg = "PRESSED KEYS: ";
-		drawStringDropShadow(thisVolatileImageGraphics, msg, 0, 7, 6);
-
-		msg = "";
-		if (mario.keys != null) {
-			for (MarioKey pressedKey : mario.keys.getPressed())
-				msg += (msg.equals("") ? pressedKey.getDebug() : " " + pressedKey.getDebug());
-		} else
-			msg = "NULL";
-		drawString(thisVolatileImageGraphics, msg, 109, 61, 1);
-		
 		if (mario.keys.isPressed(MarioCheatKey.CHEAT_KEY_WIN))
 			mario.win();
 
@@ -186,21 +166,7 @@ public class VisualizationComponent extends JComponent {
 			String msgClick = "CLICK TO PLAY";
 			drawString(thisVolatileImageGraphics, msgClick,
 					160 - msgClick.length() * 4, 110, 2);
-			// drawString(thisVolatileImageGraphics, msgClick, 160 -
-			// msgClick.length() * 4, 110, 7);
 		}
-		// thisVolatileImageGraphics.setColor(Color.DARK_GRAY);
-		drawStringDropShadow(thisVolatileImageGraphics, "FPS: ", 33, 2, 7);
-		drawStringDropShadow(thisVolatileImageGraphics,
-				((SimulatorOptions.FPS > 99) ? "\\infty" : "  "
-						+ SimulatorOptions.FPS.toString()), 33, 3, 7);
-
-		// msg = totalNumberOfTrials == -2 ? "" : currentTrial + "(" +
-		// ((totalNumberOfTrials == -1) ? "\\infty" : totalNumberOfTrials) +
-		// ")";
-
-		// drawStringDropShadow(thisVolatileImageGraphics, "Trial:", 33, 4, 7);
-		// drawStringDropShadow(thisVolatileImageGraphics, msg, 33, 5, 7);
 
 		thisGraphics.drawImage(scale2x.scale(thisVolatileImage), 0, 0, null);
 
@@ -279,53 +245,19 @@ public class VisualizationComponent extends JComponent {
 		}
 
 		g.translate(xCam, yCam);
-		g.setColor(Color.BLACK);
-		// layer.renderExit(g, marioEnvironment.getTick());
+        g.setColor(Color.BLACK);
+        
+        drawStringDropShadow(g,	" SCORE", 0, 0, 2);
+        String scoreString =
+            String.format("%6s", Integer.toString(marioEnvironment.getIntermediateReward()));
+        drawStringDropShadow(g, scoreString, 0, 1, 2);
 
-		drawStringDropShadow(
-				g,
-				"DIFFICULTY: "
-						+ df.format(marioEnvironment.getLevelDifficulty()), 0,
-				0, marioEnvironment.getLevelDifficulty() > 6 ? 1
-						: marioEnvironment.getLevelDifficulty() > 2 ? 4 : 7);
-		// drawStringDropShadow(g, "CREATURES:" + (mario.levelScene.paused ?
-		// "OFF" : " ON"), 19, 0, 7);
-		drawStringDropShadow(g, "SEED:" + marioEnvironment.getLevelSeed(), 0,
-				1, 7);
-		drawStringDropShadow(g,
-				"TYPE:" + LEVEL_TYPES[marioEnvironment.getLevelType()], 0, 2, 7);
-		drawStringDropShadow(g,
-				"ALL KILLS: " + marioEnvironment.getMario().killsTotal, 19,
-				0, 1);
-		drawStringDropShadow(g, "LENGTH:" + (int) mario.x / 16 + " of "
-				+ marioEnvironment.getLevelLength(), 0, 3, 7);
-		drawStringDropShadow(g, "HEIGHT:" + (int) mario.y / 16 + " of "
-				+ marioEnvironment.getLevelHeight(), 0, 4, 7);
-		drawStringDropShadow(
-				g,
-				"by Fire  : " + marioEnvironment.getMario().killsByFire,
-				19, 1, 1);
-		// drawStringDropShadow(g, "COINS    : " + df.format(Mario.coins), 0, 4,
-		// 4);
-		drawStringDropShadow(g,
-				"by Shell : " + marioEnvironment.getMario().killsByShell,
-				19, 2, 1);
-		// COINS:
-		g.drawImage(Art.level[0][2], 2, 43, 10, 10, null);
-		drawStringDropShadow(g, "x" + df.format(Mario.coins), 1, 5, 4);
-		g.drawImage(Art.items[0][0], 47, 43, 11, 11, null);
-		drawStringDropShadow(g, "x" + df.format(Mario.mushroomsDevoured), 7, 5,
+		g.drawImage(Art.level[0][2], 122, 10, 10, 10, null);
+		drawStringDropShadow(g, "x" + df.format(Mario.coins), 16, 1, 4);
+
+		g.drawImage(Art.items[1][0], 164, 10, 11, 11, null);
+		drawStringDropShadow(g, "x" + df.format(Mario.flowersDevoured), 22, 1,
 				4);
-		g.drawImage(Art.items[1][0], 89, 43, 11, 11, null);
-		drawStringDropShadow(g, "x" + df.format(Mario.flowersDevoured), 12, 5,
-				4);
-		// drawStringDropShadow(g, "MUSHROOMS: " +
-		// df.format(Mario.mushroomsDevoured), 0, 5, 4);
-		drawStringDropShadow(g,
-				"by Stomp : " + marioEnvironment.getMario().killsByStomp,
-				19, 3, 1);
-		// drawStringDropShadow(g, "FLOWERS  : " +
-		// df.format(Mario.flowersDevoured), 0, 6, 4);
 
 		if (SimulatorOptions.isRecording) {
 			--recordIndicator;
@@ -348,7 +280,6 @@ public class VisualizationComponent extends JComponent {
 
 		drawStringDropShadow(g, "TIME", 33, 0, 7);
 		int time = marioEnvironment.getTimeLeft();
-		// if (time < 0) time = 0;
 
 		drawStringDropShadow(g, " " + df2.format(time), 33, 1, time < 0 ? 3
 				: time < 50 ? 1 : time < 100 ? 4 : 7);
@@ -475,9 +406,6 @@ public class VisualizationComponent extends JComponent {
 			drawString(og, "G" + SimulatorOptions.receptiveFieldMode.getCode(), x, y - 8, 4);
 			drawString(og, EntityType.MARIO.getDebug(), x, y, 7);
 		}
-		
-//		og.setColor(Color.GREEN);
-//		VisualizationComponent.drawString(og, String.valueOf(this.kind), (int) x - 4, (int) y - 8, 2);		
 	}
 
 	private void drawProgress(Graphics g) {
@@ -496,10 +424,6 @@ public class VisualizationComponent extends JComponent {
 			// System.err.println("warning: progress line inaccuracy");
 		}
 		drawStringDropShadow(g, progress_str, 0, 28, 2);
-		drawStringDropShadow(
-				g,
-				"Score: "
-						+ marioEnvironment.getIntermediateReward(), 0, 27, 2);
 	}
 
 	public static void drawStringDropShadow(Graphics g, String text, int x,	int y, int c) {
@@ -577,7 +501,6 @@ public class VisualizationComponent extends JComponent {
 	// amount of info passed between Env and VisComponent
 
 	public void setAgent(IAgent agent) {
-		this.agentNameStr = agent.getName();
 		if (agent instanceof KeyListener) {
 			if (prevHumanKeyBoardAgent != null) {
 				MarioLog.trace("[MarioVisualComponent] ~ Unregistering OLD agent's KeyListener callback...");

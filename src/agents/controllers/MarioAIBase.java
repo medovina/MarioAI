@@ -109,8 +109,31 @@ public class MarioAIBase extends MarioAgentBase implements KeyListener, IMarioDe
 		}
 		if (mario == null) return;
 		
-		if (!renderExtraDebugInfo) return;
+        if (!renderExtraDebugInfo) return;
+
+		VisualizationComponent.drawStringDropShadow(g, "FPS: ", 33, 3, 7);
+		VisualizationComponent.drawStringDropShadow(g,
+				((SimulatorOptions.FPS > 99) ? "\\infty" : "  "
+						+ SimulatorOptions.FPS.toString()), 33, 4, 7);
+
+        String msg = "PRESSED KEYS: ";
+		VisualizationComponent.drawStringDropShadow(g, msg, 0, 7, 6);
+
+        msg = "";
+        MarioInput input = actionSelection();
+        for (MarioKey pressedKey : input.getPressed())
+            msg += (msg.equals("") ? pressedKey.getDebug() : " " + pressedKey.getDebug());
+        VisualizationComponent.drawString(g, msg, 109, 61, 1);
 		
+		VisualizationComponent.drawStringDropShadow(g,
+				"ALL KILLS: " + mario.killsTotal, 19, 3, 1);
+        VisualizationComponent.drawStringDropShadow(g,
+            "by Fire  : " + mario.killsByFire, 19, 4, 1);
+        VisualizationComponent.drawStringDropShadow(g,
+            "by Shell : " + mario.killsByShell, 19, 5, 1);
+        VisualizationComponent.drawStringDropShadow(g,
+            "by Stomp : " + mario.killsByStomp, 19, 6, 1);
+
 		int row = 10;
 		
 		String marioState = "";
@@ -128,10 +151,14 @@ public class MarioAIBase extends MarioAgentBase implements KeyListener, IMarioDe
 		if (control.wantsSprint()) marioState += "|WANT SPRINT|";
 		else marioState += "|------|";
 		VisualizationComponent.drawStringDropShadow(g, marioState, 0, row++, 7);		
-		VisualizationComponent.drawStringDropShadow(g, "m.s.[x,y] = [" + floatFormat(mario.sprite.x) + "," + floatFormat(mario.sprite.y) + "]", 0, row++, 7);
-		VisualizationComponent.drawStringDropShadow(g, "m.s.[xOld,yOld] = [" + floatFormat(mario.sprite.xOld) + "," + floatFormat(mario.sprite.yOld) + "]", 0, row++, 7);
-		VisualizationComponent.drawStringDropShadow(g, "m.inTile[X,Y] = [" + mario.inTileX + "," + mario.inTileY + "]", 0, row++, 7);
-		VisualizationComponent.drawStringDropShadow(g, "m.speed.[x,y] = [" + floatFormat(mario.speed.x) + "," + floatFormat(mario.speed.y) + "]", 0, row++, 7);
+        VisualizationComponent.drawStringDropShadow(g, "m.s.[x,y] = " +
+            "[" + floatFormat(mario.sprite.x) + "," + floatFormat(mario.sprite.y) + "]", 0, row++, 7);
+        VisualizationComponent.drawStringDropShadow(g, "m.s.[xOld,yOld] = " +
+            "[" + floatFormat(mario.sprite.xOld) + "," + floatFormat(mario.sprite.yOld) + "]", 0, row++, 7);
+        VisualizationComponent.drawStringDropShadow(g, "m.inTile[X,Y] = " +
+            "[" + mario.inTileX + "," + mario.inTileY + "]", 0, row++, 7);
+        VisualizationComponent.drawStringDropShadow(g, "m.speed.[x,y] = " +
+            "[" + floatFormat(mario.speed.x) + "," + floatFormat(mario.speed.y) + "]", 0, row++, 7);
 		
 	}
 	

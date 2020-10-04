@@ -31,7 +31,7 @@ public class SystemOfValues {
 	public int distance = 1;
 	public int win = 800;
 	public int mode = 32;
-	public int coins = 20;
+	public int coins = 10;
 	public int flowerFire = 100;
 	public int kills = 0;
 	public int killedByFire = 4;

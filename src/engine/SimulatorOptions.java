@@ -113,7 +113,7 @@ public abstract class SimulatorOptions {
 	}
 
 	public static String getBenchmarkName() {
-		return "[~ Mario AI ~ " + SimulatorOptions.getVersionUID() + "]";
+		return "Mario AI";
 	}
 
 	public static String getVersionUID() {
