@@ -156,19 +156,4 @@ public abstract class SimulatorOptions {
 	public static String getTimeStamp() {
 		return dateFormat.format(new Date());
 	}
-
-	public static void changeScale2x() {
-		if (marioVisualComponent == null)
-			return;
-
-		isScale2x = !isScale2x;
-		marioVisualComponent.width *= isScale2x ? 2 : 0.5;
-		marioVisualComponent.height *= isScale2x ? 2 : 0.5;
-		marioVisualComponent.changeScale2x();
-	}
-
-	public static void setScale2x(boolean scale2x) {
-		if (scale2x == isScale2x) return;
-		changeScale2x();
-	}
 }

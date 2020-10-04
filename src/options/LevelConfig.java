@@ -7,12 +7,12 @@ public enum LevelConfig {
 	/**
 	 * Level with no threats + no jumps.
 	 */
-	LEVEL_0_FLAT(FastOpts.VIS_ON_2X + FastOpts.LEVEL_01_FLAT),
+	LEVEL_0_FLAT(FastOpts.VIS_ON + FastOpts.LEVEL_01_FLAT),
 	
 	/**
 	 * Level where you have to jump.
 	 */
-	LEVEL_1_JUMPING(FastOpts.VIS_ON_2X + FastOpts.LEVEL_02_JUMPING),
+	LEVEL_1_JUMPING(FastOpts.VIS_ON + FastOpts.LEVEL_02_JUMPING),
 	
 	/**
 	 * And here you must mind malicious GOOMBAs!
@@ -35,7 +35,7 @@ public enum LevelConfig {
     LEVEL_5_KOOPAS(LEVEL_4_SPIKIES.options + FastOpts.L_ENEMY(Enemy.GREEN_KOOPA)),
 
     /** All of the above, plus other goodies such as coins, mushrooms, and flowers. */
-    LEVEL_6_FULL_GAME(FastOpts.VIS_ON_2X +
+    LEVEL_6_FULL_GAME(FastOpts.VIS_ON +
                       FastOpts.L_ENEMY(Enemy.GOOMBA, Enemy.SPIKY, Enemy.GREEN_KOOPA));
 
 	private String options;

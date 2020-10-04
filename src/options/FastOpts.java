@@ -352,17 +352,6 @@ public class FastOpts {
 			        + " " + BoolOption.VISUALIZATION.getParam() + " off";
 	
 	/**
-	 * Auto-scale the visualization by 2x. (I.e. the window will be 2x larger in both dimensions.)
-	 */
-	public static final String VIS_SCALE_2X = ""
-					+ " " + BoolOption.VISUALIZATION_2X_SCALE.getParam() + " on";
-	
-	/**
-	 * Enable visualization + Auto-scale the visualization by 2x. (I.e. the window will be 2x larger in both dimensions.)
-	 */
-	public static final String VIS_ON_2X = VIS_ON + VIS_SCALE_2X;
-	
-	/**
 	 * Whether to visualize receptive field around Mario.
 	 * @param mode
 	 * @return

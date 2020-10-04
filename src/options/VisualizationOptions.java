@@ -41,10 +41,6 @@ public class VisualizationOptions {
 		return MarioOptions.getInstance().getBool(BoolOption.VISUALIZATION_VIEW_ALWAYS_ON_TOP);
 	}
 	
-	public static boolean isScale2x() {
-		return MarioOptions.getInstance().getBool(BoolOption.VISUALIZATION_2X_SCALE);
-	}
-	
 	public static boolean isGameViewer() {
 		return MarioOptions.getInstance().getBool(BoolOption.VISUALIZATION_GAME_VIEWER);
 	}

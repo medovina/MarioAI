@@ -193,13 +193,6 @@ public class MarioHijackAIBase extends MarioAIBase implements KeyListener, IMari
 			}
 			return;
 			
-		// TOGGLES SCALE 2x
-		case KeyEvent.VK_Z:
-			if (isPressed) {
-				SimulatorOptions.changeScale2x();
-			}
-			return;
-			
 		// TODO: investigate
 //		case KeyEvent.VK_R:
 //			if (isPressed) {

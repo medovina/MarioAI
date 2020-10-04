@@ -89,7 +89,7 @@ public class VisualizationComponent extends JComponent {
 	private GameViewer gameViewer = null;
 	private static VisualizationComponent marioVisualComponent = null;
 
-	private Scale2x scale2x = new Scale2x(320, 240);
+	private Scale2x scale2x;
 
 	private VisualizationComponent(MarioEnvironment marioEnvironment) {
 		this.marioEnvironment = marioEnvironment;
@@ -100,15 +100,15 @@ public class VisualizationComponent extends JComponent {
 		this.width = VisualizationOptions.getViewportWidth();
 		this.height = VisualizationOptions.getViewportHeight();
 
-		Dimension size = new Dimension(width, height);
+		Dimension size = new Dimension(width * 2, height * 2);
 
 		setPreferredSize(size);
 		setMinimumSize(size);
-		setMaximumSize(new Dimension(width * 2, height * 2));
+		setMaximumSize(size);
 
 		setFocusable(true);
 
-		// System.out.println("this (from constructor) = " + this);
+		scale2x = new Scale2x(width, height);
 
 		SimulatorOptions.registerMarioVisualComponent(this);
 
@@ -201,15 +201,8 @@ public class VisualizationComponent extends JComponent {
 		// drawStringDropShadow(thisVolatileImageGraphics, "Trial:", 33, 4, 7);
 		// drawStringDropShadow(thisVolatileImageGraphics, msg, 33, 5, 7);
 
-		if (SimulatorOptions.isScale2x) {
-			// TODO: handle this (what?)
-			thisGraphics
-					.drawImage(scale2x.scale(thisVolatileImage), 0, 0, null);
-		} else {
-			thisGraphics.drawImage(thisVolatileImage, 0, 0, null);
-		}
+		thisGraphics.drawImage(scale2x.scale(thisVolatileImage), 0, 0, null);
 
-		// thisGraphics.drawImage(thisVolatileImage, 0, 0, null);
 		if (this.gameViewer != null)
 			this.gameViewer.tick();
 		// Delay depending on how far we are behind.
@@ -609,11 +602,4 @@ public class VisualizationComponent extends JComponent {
 	public List<String> getTextObservation(boolean showEnemies,	boolean showLevelScene) {
 		return marioEnvironment.getObservationStrings(showEnemies, showLevelScene);
 	}
-
-	public void changeScale2x() {
-		marioVisualComponent.setPreferredSize(new Dimension(width, height));
-		marioComponentFrame.pack();
-		this.thisGraphics = getGraphics();
-	}
-
 }

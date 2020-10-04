@@ -72,7 +72,6 @@ public class MarioOptions {
 		
 		VISUALIZATION("vis", true, "Whether to visualize the simulation."),
 		VISUALIZATION_VIEW_ALWAYS_ON_TOP("vaot", true, "Whether to maintain visualizer window always on top."),
-		VISUALIZATION_2X_SCALE("z", false, "Scale visualization 2x by default."),
 		VISUALIZATION_GAME_VIEWER("gv", false, "Whether to initialize game viewer (???)."),
 		VISUALIZATION_GAME_VIEWER_CONTINUOUS_UPDATED("gvc", false, "Whether to continuously update the game viewer (???)."),
 		;

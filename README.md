@@ -164,7 +164,6 @@ Here are some extra keyboard controls that allows you to visualize / perform ext
 - __E__: render extra debug information about Mario, see _MarioHijackAIBase.debugDraw(...)_ for details
 - __L__: render sprite positions within the map
 - __F__: Mario will start flying; good for quickly moving forward through the map
-- __Z__: Toggle scale x2 of the visualization (scale x2 is broken on some systems, dunno why)
 - __+__ / __-__: adjust simulator frames per second
 
 ## Physics of the game world

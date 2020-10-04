@@ -90,11 +90,6 @@ public class CheaterKeyboardAgent extends KeyboardAgent {
 				SimulatorOptions.isFly = !SimulatorOptions.isFly;
 			}
 			return;
-		case KeyEvent.VK_Z:
-			if (isPressed) {
-				SimulatorOptions.changeScale2x();
-			}
-			return;
 		case KeyEvent.VK_R:
 			if (isPressed) {
 				SimulatorOptions.isRecording = !SimulatorOptions.isRecording;
