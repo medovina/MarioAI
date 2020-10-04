@@ -186,8 +186,6 @@ public class LevelGenerator {
 		currentLength += buildStraight(0, level.length, true, floor,
 				INFINITE_FLOOR_HEIGHT);
 		while (currentLength < level.length - 10) {
-			// System.out.println("level.currentLength - currentLength = " +
-			// (level.currentLength - currentLength));
 			currentLength += buildZone(currentLength, level.length
 					- currentLength, ANY_HEIGHT, floor, INFINITE_FLOOR_HEIGHT);
 		}
@@ -252,15 +250,12 @@ public class LevelGenerator {
 	}
 
 	private static void setPrincess(int x, int y) {
-		// System.out.println("x = " + x);
-		// System.out.println("y = " + y);
 		level.setSpriteTemplate(x, y, new SpriteTemplate(Sprite.KIND_PRINCESS));
 		level.setBlock(x, y, (byte) (15 + 15 * 16));
 	}
 
 	private static int buildZone(int x, int maxLength, int maxHeight,
 			int floor, int floorHeight) {
-		// System.out.println("buildZone maxLength = " + maxLength);
 		int t = globalRandom.nextInt(totalOdds);
 		int type = 0;
 		// calculate what will be built

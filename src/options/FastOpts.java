@@ -373,7 +373,8 @@ public class FastOpts {
 	/**
 	 * Level with hills.
 	 */
-	public static final String LEVEL_02_JUMPING = L_FLAT_OFF + L_BLOCKS_OFF + L_CANNONS_OFF + L_COINS_OFF + L_DEAD_ENDS_OFF + L_GAPS_OFF + L_HIDDEN_BLOCKS_OFF
-												  	          + L_PLATFORMS_OFF + L_LADDERS_OFF + L_TUBES_OFF;
+    public static final String LEVEL_02_JUMPING =
+        L_FLAT_OFF + L_BLOCKS_OFF + L_CANNONS_OFF + L_COINS_OFF + L_DEAD_ENDS_OFF +
+        L_GAPS_OFF + L_HIDDEN_BLOCKS_OFF + L_PLATFORMS_OFF + L_LADDERS_OFF + L_TUBES_OFF;
 	
 }

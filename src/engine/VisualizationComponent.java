@@ -426,32 +426,22 @@ public class VisualizationComponent extends JComponent {
 
 	public void init() {
 		graphicsConfiguration = getGraphicsConfiguration();
-		// System.out.println("!!HRUYA: graphicsConfiguration = " +
-		// graphicsConfiguration);
 		Art.init(graphicsConfiguration);
 
 	}
 
 	public void postInitGraphics() {
-		// System.out.println("this = " + this);
 		this.thisVolatileImage = this.createVolatileImage(
 				SimulatorOptions.VISUAL_COMPONENT_WIDTH,
 				SimulatorOptions.VISUAL_COMPONENT_HEIGHT);
 		this.thisGraphics = getGraphics();
 		this.thisVolatileImageGraphics = this.thisVolatileImage.getGraphics();
-		// System.out.println("thisGraphics = " + thisGraphics);
-		// System.out.println("thisVolatileImageGraphics = " +
-		// thisVolatileImageGraphics);
 	}
 
 	public void postInitGraphicsAndLevel() {
 		if (graphicsConfiguration != null) {
-			// System.out.println("level = " + level);
-			// System.out.println("levelScene .level = " + levelScene.level);
-			// level = marioEnvironment.getLevel();
 
 			this.mario = marioEnvironment.getMarioSprite();
-			// System.out.println("mario = " + mario);
 			this.level = marioEnvironment.getLevel();
 			layer = new LevelRenderer(level, graphicsConfiguration, this.width,
 					this.height);
