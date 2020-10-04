@@ -76,7 +76,8 @@ public class ParameterContainer {
 			"-pr",   // Power restoration (cheat) (bring Mario to FIRE state if "Shoot/RUN" key activated.
 			"-punj", // Enable bytecode counting
 			"-rfh",  // receptive field height (observation )
-			"-rfw",  // receptive field length (observation )
+            "-rfw",  // receptive field length (observation )
+            "-scale",// visualization scale (1-3x)
 			"-srf",  // show receptive field (observation )
 			"-tc",   // TODO description
 			"-tl",   // time limit <int>
@@ -92,7 +93,6 @@ public class ParameterContainer {
 			"-stop", // Start the gamplay (TODO: description in details for recording) and stop
 			"-s",    // path to the file where level will be saved
 			"-rec",  // Recording <on|off>
-			"-z",    // enable Scale2X on startup
 			"-w",    // wind
 			"-ice",  // ice
 			"-ex",   // exitX
@@ -187,10 +187,9 @@ public class ParameterContainer {
 			defaultOptionsHashMap.put("-miy", "32"); // Mario Initial physical Position
 			defaultOptionsHashMap.put("-pr", "off"); // defaultOptionsHashMap.put("-powerRestoration","off");
 			defaultOptionsHashMap.put("-rfh", "19");
-			defaultOptionsHashMap.put("-rfw", "19");
+            defaultOptionsHashMap.put("-rfw", "19");
+            defaultOptionsHashMap.put("-scale", "3");
 			defaultOptionsHashMap.put("-srf", "off");
-			// defaultOptionsHashMap.put("-t", "on");
-			// defaultOptionsHashMap.put("-timer","on");
 			defaultOptionsHashMap.put("-tl", "200"); // Time Limit
 			defaultOptionsHashMap.put("-tc", "off"); // defaultOptionsHashMap.put("-toolsConfigurator","off");
 			defaultOptionsHashMap.put("-trace", "off"); // Trace Mario path through the level, output to std and default file
@@ -223,7 +222,6 @@ public class ParameterContainer {
 			defaultOptionsHashMap.put("-rec", "off"); // path to the file where
 														// recorded game will be
 														// saved
-			defaultOptionsHashMap.put("-z", "off"); // enable Scale2X on startup
 			defaultOptionsHashMap.put("-w", "0"); // wind for Mario
 			defaultOptionsHashMap.put("-ice", "0"); // wind for Mario
 			defaultOptionsHashMap.put("-mer", "9"); // Mario Ego row

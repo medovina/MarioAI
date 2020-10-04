@@ -62,7 +62,7 @@ import utils.MarioLog;
 public class VisualizationComponent extends JComponent {
 	private static final long serialVersionUID = 1L;
 
-	public int width, height;
+	public int width, height, scale;
 
 	public VolatileImage thisVolatileImage;
 	public Graphics thisVolatileImageGraphics;
@@ -94,9 +94,10 @@ public class VisualizationComponent extends JComponent {
 		this.setFocusable(true);
 		this.setEnabled(true);
 		this.width = VisualizationOptions.getViewportWidth();
-		this.height = VisualizationOptions.getViewportHeight();
+        this.height = VisualizationOptions.getViewportHeight();
+        this.scale = VisualizationOptions.getScale();
 
-		Dimension size = new Dimension(width * 2, height * 2);
+		Dimension size = new Dimension(width * scale, height * scale);
 
 		setPreferredSize(size);
 		setMinimumSize(size);
@@ -104,7 +105,8 @@ public class VisualizationComponent extends JComponent {
 
 		setFocusable(true);
 
-		scale2x = new Scale2x(width, height);
+        if (scale > 1)
+		    scale2x = new Scale2x(width, height, scale);
 
 		SimulatorOptions.registerMarioVisualComponent(this);
 
@@ -168,13 +170,15 @@ public class VisualizationComponent extends JComponent {
 					160 - msgClick.length() * 4, 110, 2);
 		}
 
-		thisGraphics.drawImage(scale2x.scale(thisVolatileImage), 0, 0, null);
+        if (scale > 1)
+            thisGraphics.drawImage(scale2x.scale(thisVolatileImage), 0, 0, null);
+        else
+            thisGraphics.drawImage(thisVolatileImage, 0, 0, null);
 
 		if (this.gameViewer != null)
 			this.gameViewer.tick();
 		// Delay depending on how far we are behind.
 		if (delay > 0) {
-			// System.out.println("delay = " + delay);
 			try {
 				tm += delay;
 				Thread.sleep(Math.max(0, tm - System.currentTimeMillis()));
@@ -206,7 +210,6 @@ public class VisualizationComponent extends JComponent {
 				yCam = level.height * LevelScene.cellSize
 						- SimulatorOptions.VISUAL_COMPONENT_HEIGHT;
 		}
-		// g.drawImage(Art.background, 0, 0, null);
 
 		for (int i = 0; i < bgLayer.length; i++) {
 			bgLayer[i].setCam(xCam, yCam);
@@ -216,7 +219,6 @@ public class VisualizationComponent extends JComponent {
 		g.translate(-xCam, -yCam);
 		
 		for (Sprite sprite : marioEnvironment.getLevelScene().sprites)
-			// levelScene.
 			if (sprite.layer == 0)
 				sprite.render(g);
 

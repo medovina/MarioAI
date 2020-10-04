@@ -68,8 +68,6 @@ public class MarioOptions {
 		SIMULATION_POWER_RESTORATION("pr", false, "Whether the mario should gain FIRE every time it triggers speed."),
 		SIMULATION_GAMEPLAY_STOPPED("stop", false, "Gameplay is stopped by default."),
 		
-//		SYSTEM_TOOLS_CONFIGURATOR("tc", false, "Whether to enable tools configurator (???)."),
-		
 		VISUALIZATION("vis", true, "Whether to visualize the simulation."),
 		VISUALIZATION_VIEW_ALWAYS_ON_TOP("vaot", true, "Whether to maintain visualizer window always on top."),
 		VISUALIZATION_GAME_VIEWER("gv", false, "Whether to initialize game viewer (???)."),
@@ -164,7 +162,8 @@ public class MarioOptions {
 		VISUALIZATION_VIEW_LOCATION_X("vlx", 0, "Visualization window location x (in pixels)."),
 		VISUALIZATION_VIEW_LOCATION_Y("vly", 0, "Visualization window location y (in pixels)."),
 		VISUALIZATION_VIEWPORT_WIDTH("vw", 320, "Viewport width."),
-		VISUALIZATION_VIEWPORT_HEIGHT("vh", 240, "Viewport height."),	
+        VISUALIZATION_VIEWPORT_HEIGHT("vh", 240, "Viewport height."),
+        VISUALIZATION_SCALE("scale", 3, "Visualization scale (1-3x)"),
 		VISUALIZATION_RECEPTIVE_FIELD("srf", 0, "Receptive field visualization type: 0 = none, 1 = GRID, 2 = GRID+TILES, 3 = GRID+ENTITIES"),		
 		;
 			

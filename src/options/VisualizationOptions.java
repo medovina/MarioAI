@@ -54,7 +54,8 @@ public class VisualizationOptions {
 	}
 	
 	public static Point getViewLocation() {
-		return new Point(MarioOptions.getInstance().getInt(IntOption.VISUALIZATION_VIEW_LOCATION_X), MarioOptions.getInstance().getInt(IntOption.VISUALIZATION_VIEW_LOCATION_Y)); 
+        return new Point(MarioOptions.getInstance().getInt(IntOption.VISUALIZATION_VIEW_LOCATION_X),
+                         MarioOptions.getInstance().getInt(IntOption.VISUALIZATION_VIEW_LOCATION_Y)); 
 	}
 	
 	public static int getViewportWidth() {
@@ -64,5 +65,8 @@ public class VisualizationOptions {
 	public static int getViewportHeight() {
 		return MarioOptions.getInstance().getInt(IntOption.VISUALIZATION_VIEWPORT_HEIGHT);
 	}
-	
+    
+    public static int getScale() {
+		return MarioOptions.getInstance().getInt(IntOption.VISUALIZATION_SCALE);
+    }
 }
