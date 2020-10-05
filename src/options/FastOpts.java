@@ -100,24 +100,6 @@ public class FastOpts {
 	}
 	
 	/**
-	 * Level will be generated as 256 tiles long.
-	 */
-	public static final String L_LENGTH_256 = ""
-			+ " " + IntOption.LEVEL_LENGTH.getParam() + " 256";
-	
-	/**
-	 * Level will be generated as 512 tiles long.
-	 */
-	public static final String L_LENGTH_512 = ""
-			+ " " + IntOption.LEVEL_LENGTH.getParam() + " 512";
-	
-	/**
-	 * Level will be generated as 1024 tiles long.
-	 */
-	public static final String L_LENGTH_1024 = ""
-			+ " " + IntOption.LEVEL_LENGTH.getParam() + " 1024";
-	
-	/**
 	 * Enable generation of blocks.
 	 */
 	public static final String L_BLOCKS_ON = ""
@@ -292,48 +274,6 @@ public class FastOpts {
 	 */
 	public static final String S_MARIO_FIRE = ""
 			+ " " + IntOption.SIMULATION_MARIO_START_MODE.getParam() + " 2";
-	
-	/**
-	 * Time limit for the level will be set to 200 marioseconds (suited for 256-length levels).
-	 */
-	public static final String S_TIME_LIMIT_200 = ""
-			+ " " + IntOption.SIMULATION_TIME_LIMIT.getParam() + " 200";
-	
-	/**
-	 * Time limit for the level will be set to 200 marioseconds (suited for 512-length levels).
-	 */
-	public static final String S_TIME_LIMIT_400 = ""
-			+ " " + IntOption.SIMULATION_TIME_LIMIT.getParam() + " 400";
-	
-	/**
-	 * Time limit for the level will be set to 200 marioseconds (suited for 1024-length levels).
-	 */
-	public static final String S_TIME_LIMIT_800 = ""
-			+ " " + IntOption.SIMULATION_TIME_LIMIT.getParam() + " 800";
-	
-	/**
-	 * Creatures will not be moving as usual, they will be frozen at positions they were generated at.
-	 */
-	public static final String S_FREEZE_CREATURES = ""
-			+ " " + BoolOption.SIMULATION_FROZEN_CREATURES.getParam() + " on";
-	
-	/**
-	 * Mario will be invulnerable for the whole time of its run.
-	 */
-	public static final String S_MARIO_INVULNERABLE = ""
-			+ " " + BoolOption.SIMULATION_MARIO_INVULNERABLE.getParam() + " on";
-	
-	/**
-	 * Mario can get its powers back by pressing SPEED.
-	 */
-	public static final String S_POWER_RESTORATION = ""
-			+ " " + BoolOption.SIMULATION_POWER_RESTORATION.getParam() + " on";
-	
-	/**
-	 * Simulation starts frozen from the start ... you have to press SPACE to unfreeze it.
-	 */
-	public static final String S_GAMEPLAY_STOPEED = ""
-			+ " " + BoolOption.SIMULATION_GAMEPLAY_STOPPED.getParam() + " on";
 	
 	// =====================
 	// VISUALIZATION OPTIONS

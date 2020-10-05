@@ -51,7 +51,6 @@ import engine.level.Level;
 import engine.sprites.Mario;
 import engine.sprites.Sprite;
 import options.AIOptions;
-import options.MarioOptions;
 import options.SystemOptions;
 import options.VisualizationOptions;
 import tasks.SystemOfValues;
@@ -188,7 +187,7 @@ public final class MarioEnvironment implements IEnvironment {
 				recorder.closeFile();
 
 				recorder.createFile("options");
-				recorder.writeObject(MarioOptions.getOptionsAsStrings());
+				recorder.writeObject(null);
 				recorder.closeFile();
 
 				recorder.createFile("actions.act");

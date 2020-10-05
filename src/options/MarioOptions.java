@@ -468,13 +468,4 @@ public class MarioOptions {
 		SystemOptions.reset();
 		VisualizationOptions.reset();
 	}
-	
-	// =====
-	// UTILS
-	// =====
-	
-	public static Object getOptionsAsStrings() {
-		return null;
-	}
-	
 }

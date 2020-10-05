@@ -211,12 +211,7 @@ public class MarioAIBase extends MarioAgentBase implements KeyListener, IMarioDe
 			if (isPressed) renderExtraDebugInfo = !renderExtraDebugInfo;
 			
 			return;
-		// CHEATS!		
 		
-		case KeyEvent.VK_V:
-			if (isPressed) SimulatorOptions.isVisualization = !SimulatorOptions.isVisualization;
-			return;
-			
 		// FREEZES CREATURES, THEY WILL NOT BE MOVING
 		case KeyEvent.VK_O:
 			if (isPressed) {
@@ -233,7 +228,6 @@ public class MarioAIBase extends MarioAgentBase implements KeyListener, IMarioDe
 		case KeyEvent.VK_C:
 			if (isPressed) SimulatorOptions.isCameraCenteredOnMario = !SimulatorOptions.isCameraCenteredOnMario;
 			return;
-			
 		
 		// ADJUST SIMULATOR FPS
 		case KeyEvent.VK_PLUS:
@@ -252,7 +246,7 @@ public class MarioAIBase extends MarioAgentBase implements KeyListener, IMarioDe
 			}
 			return;
 		
-		// RECEPTIVE FIELD MODE VISUALIZATION
+		// GRID VISUALIZATION
 		case KeyEvent.VK_G:
 			if (isPressed) {
 				SimulatorOptions.receptiveFieldMode = ReceptiveFieldMode.getForCode(SimulatorOptions.receptiveFieldMode.getCode()+1);
