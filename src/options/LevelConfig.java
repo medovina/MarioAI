@@ -35,8 +35,18 @@ public enum LevelConfig {
     LEVEL_5_KOOPAS(FastOpts.ONLY_TUBES +
         FastOpts.L_ENEMY(Enemy.GOOMBA, Enemy.SPIKY, Enemy.GREEN_KOOPA)),
 
-    /** All of the above, plus other goodies such as coins, mushrooms, and flowers. */
-    LEVEL_6_FULL_GAME(FastOpts.L_ENEMY(Enemy.GOOMBA, Enemy.SPIKY, Enemy.GREEN_KOOPA));
+    /** The full game, including goodies such as coins, mushrooms, and flowers. */
+    LEVEL_6_FULL_GAME(FastOpts.L_ENEMY(Enemy.GOOMBA, Enemy.SPIKY, Enemy.GREEN_KOOPA)),
+
+    /* An extra challenge. */
+    LEVEL_7_FULL_GAME_HARD(FastOpts.L_DIFFICULTY(1) +
+        FastOpts.L_ENEMY(Enemy.GOOMBA, Enemy.SPIKY, Enemy.GREEN_KOOPA, Enemy.RED_KOOPA,
+                         Enemy.GOOMBA_WINGED, Enemy.GREEN_KOOPA_WINGED)),
+
+    /* Even tougher. */
+    LEVEL_8_FULL_GAME_EXTRA_HARD(FastOpts.L_DIFFICULTY(2) +
+        FastOpts.L_ENEMY(Enemy.GOOMBA, Enemy.SPIKY, Enemy.GREEN_KOOPA, Enemy.RED_KOOPA,
+                         Enemy.GOOMBA_WINGED, Enemy.GREEN_KOOPA_WINGED, Enemy.SPIKY_WINGED));
 
 	private String options;
 	

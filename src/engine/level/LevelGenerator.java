@@ -144,7 +144,7 @@ public class LevelGenerator {
 		odds[ODDS_STRAIGHT] = 20;
 		odds[ODDS_PLATFORMS] = 1;
 		odds[ODDS_TUBES] = 2 + 1 * levelDifficulty;
-		odds[ODDS_GAPS] = 3 * levelDifficulty;
+		odds[ODDS_GAPS] = 2 + 2 * levelDifficulty;
 		odds[ODDS_CANNONS] = -10 + 5 * levelDifficulty;
 		odds[ODDS_DEAD_ENDS] = 2 + 2 * levelDifficulty;
 
@@ -462,7 +462,7 @@ public class LevelGenerator {
 	private int buildGap(int xo, int maxLength, int maxHeight,
 			int vfloor, int floorHeight) {
 		int gs = random.nextInt(5) + 2; // GapStairs
-		int gl = random.nextInt(levelDifficulty) + levelDifficulty > 7 ? 10 : 3; //GapLength
+		int gl = random.nextInt(levelDifficulty + 1) + levelDifficulty > 7 ? 10 : 3; //GapLength
 		int length = gs * 2 + gl;
 
 		if (length > maxLength)
@@ -709,7 +709,7 @@ public class LevelGenerator {
 				xTube += 10;
 			}
 
-			if (x == xTube && random.nextInt(11) < levelDifficulty + 1
+			if (x == xTube && random.nextInt(7) < levelDifficulty + 1
 					&& creaturesRandom.isCreatureEnabled("f")) {
 				level.setSpriteTemplate(x, tubeHeight, new SpriteTemplate(
 						Sprite.KIND_ENEMY_FLOWER));
