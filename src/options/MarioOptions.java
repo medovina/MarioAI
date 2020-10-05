@@ -144,7 +144,7 @@ public class MarioOptions {
 		AI_MARIO_EGO_ROW("mer", 9, "Mario ego row within reception field."),
 		AI_MARIO_EGO_COLUMN("mec", 9, "Mario ego column within reception field."),
 		
-		LEVEL_GREEN_MUSHROOM_MODE("gmm", 0, "Green mushroom mode (currently does not do anything)."),		
+		LEVEL_GREEN_MUSHROOM_MODE("gmm", 0, "Green mushroom mode."),		
 		LEVEL_DIFFICULTY("ld", 0, "Level difficulty."),
 		LEVEL_LENGTH("ll", 256, "Level length (tiles)."),
 		LEVEL_RANDOM_SEED("ls", -1, "Level random seed. If >= 0 a concrete value will be used, if < 0, random value is used."),

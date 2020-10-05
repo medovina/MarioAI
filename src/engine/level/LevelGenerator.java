@@ -30,7 +30,6 @@ package engine.level;
 import engine.sprites.Sprite;
 import options.LevelOptions;
 import tools.RandomCreatureGenerator;
-import utils.ErrorCodes;
 import utils.MarioLog;
 
 import java.io.FileInputStream;
@@ -103,17 +102,17 @@ public class LevelGenerator {
 			if (filePath.equals("")) // This must never happen
 			{
 				MarioLog.error("[MarioAI ERROR] : level file path is empty; exiting...");
-				System.exit(ErrorCodes.FILE_NAME_OR_LOAD_PROBLEM);
+				System.exit(1);
 			}
 
 			level = Level.load(new ObjectInputStream(new FileInputStream(
 					filePath)));
 		} catch (IOException e) {
 			MarioLog.error("[MarioAI EXCEPTION] : failed while trying to loadAgent " + filePath);
-			System.exit(ErrorCodes.FILE_NAME_OR_LOAD_PROBLEM);
+			System.exit(1);
 		} catch (ClassNotFoundException e) {
 			MarioLog.error("[MarioAI EXCEPTION] : class not found in " + filePath);
-			System.exit(ErrorCodes.FILE_NAME_OR_LOAD_PROBLEM);
+			System.exit(1);
 		}
 	}
 
