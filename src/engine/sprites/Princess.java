@@ -53,10 +53,7 @@ public void collideCheck()
 public void move()
 {
     runTime += 5;
-
     xPic = (runTime / 20) % 2;
 }
-
-
 
 }

@@ -51,45 +51,11 @@ private int type;
 public SpriteTemplate(int type)
 {
     this.type = type;
-    switch (type)
-    {
-        case Sprite.KIND_GOOMBA:
-            this.winged = false;
-            break;
-        case Sprite.KIND_GREEN_KOOPA:
-            this.winged = false;
-            break;
-        case Sprite.KIND_RED_KOOPA:
-            this.winged = false;
-            break;
-        case Sprite.KIND_SPIKY:
-            this.winged = false;
-            break;
-        case Sprite.KIND_GOOMBA_WINGED:
-            this.winged = true;
-            break;
-        case Sprite.KIND_GREEN_KOOPA_WINGED:
-            this.winged = true;
-            break;
-        case Sprite.KIND_RED_KOOPA_WINGED:
-            this.winged = true;
-            break;
-        case Sprite.KIND_SPIKY_WINGED:
-            this.winged = true;
-            break;
-        case Sprite.KIND_ENEMY_FLOWER:
-            this.winged = false;
-            break;
-        case Sprite.KIND_BULLET_BILL:
-            this.winged = false;
-            break;
-        case Sprite.KIND_PRINCESS:
-            this.winged = false;
-            break;
-        case Sprite.KIND_WAVE_GOOMBA:
-            this.winged = true;
-            break;
-    }
+    this.winged =
+        type == Sprite.KIND_GOOMBA_WINGED ||
+        type == Sprite.KIND_GREEN_KOOPA_WINGED || type == Sprite.KIND_RED_KOOPA_WINGED ||
+        type == Sprite.KIND_SPIKY_WINGED ||
+        type == Sprite.KIND_WAVE_GOOMBA;
 }
 
 public void spawn(LevelScene levelScene, int x, int y, int dir)
@@ -107,7 +73,6 @@ public void spawn(LevelScene levelScene, int x, int y, int dir)
         sprite = new Princess(levelScene, x * 16 - 16, y * 16 - 15, x, y);
     } else
     {
-//            sprite = new Enemy(levelScene, x*16+8, y*16+15, dir, type, winged);
         sprite = new Enemy(levelScene, x * 16 + 8, y * 16 + 15, dir, type, winged, x, y);
     }
     sprite.spriteTemplate = this;

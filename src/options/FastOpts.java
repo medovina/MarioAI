@@ -365,16 +365,9 @@ public class FastOpts {
 	// FAST SHORTCUTS
 	// ==============
 	
-	/**
-	 * Flat level. WARNING: enemy cannot be generated into this level ({@link #L_ENEMY(Enemy...)} will not work with this option).
-	 */
-	public static final String LEVEL_01_FLAT = L_FLAT;
-	
-	/**
-	 * Level with hills.
-	 */
-    public static final String LEVEL_02_JUMPING =
+    public static final String ALL_OFF =
         L_FLAT_OFF + L_BLOCKS_OFF + L_CANNONS_OFF + L_COINS_OFF + L_DEAD_ENDS_OFF +
         L_GAPS_OFF + L_HIDDEN_BLOCKS_OFF + L_PLATFORMS_OFF + L_LADDERS_OFF + L_TUBES_OFF;
-	
+
+    public static final String ONLY_TUBES = ALL_OFF + L_TUBES_ON;
 }

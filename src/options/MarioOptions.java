@@ -194,17 +194,19 @@ public class MarioOptions {
 	}
 
 	public static enum StringOption {
-		
 		/**
 		 * Does not work for {@link BoolOption#LEVEL_FLAT} levels.
 		 */
-		LEVEL_CREATURES("le", "off", "Which creatures to generate, GOOMBA => g, GOOMBA_WINGED => gw, RED_KOOPA => gk, RED_KOOPA_WINGED => gkw, GREEN_KOOPA => rk, GREEN_KOOPA_WINGED => rkw, SPIKY => s, SPIKY_WINGED => sw, WAVE_GOOMBA => gww"),
+        LEVEL_CREATURES("le", "off",
+            "Which creatures to generate, " +
+            "GOOMBA => g, GOOMBA_WINGED => gw, RED_KOOPA => gk, RED_KOOPA_WINGED => gkw, " +
+            "GREEN_KOOPA => rk, GREEN_KOOPA_WINGED => rkw, " +
+            "SPIKY => s, SPIKY_WINGED => sw, WAVE_GOOMBA => gww"),
 		
 		SYSTEM_RECORDING_FILE_NAME("rec", "off", "Where to save the replay."),
 		SYSTEM_SAVE_LEVEL_FILE_NAME("s", "off", "Where to save the level."),
 		SYSTEM_LOAD_LEVEL_FILE_NAME("llf", "off", "Where to load the level from."),
 		SYSTEM_TRACE_FILE_NAME("trace", "off", "Where to save Mario trace, output to std and specified file."),		
-		
 		;
 		
 		private String param;

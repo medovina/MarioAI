@@ -295,11 +295,10 @@ public class EvaluateAgentConsole {
 		return new String[] {
 				  "-s", "20" // "seed"
 				, "-o", // "level & visualization configuration" 
-  				        //FastOpts.VIS_ON_2X + FastOpts.LEVEL_02_JUMPING + FastOpts.L_ENEMY(Enemy.GOOMBA) + FastOpts.L_TUBES_ON + FastOpts.L_RANDOMIZE
-				        FastOpts.VIS_OFF + FastOpts.LEVEL_02_JUMPING + FastOpts.L_ENEMY(Enemy.GOOMBA, Enemy.SPIKY) + FastOpts.L_RANDOMIZE
+				        FastOpts.VIS_OFF + FastOpts.ALL_OFF + FastOpts.L_ENEMY(Enemy.GOOMBA, Enemy.SPIKY) + FastOpts.L_RANDOMIZE
 				, "-c", "100"  // level-count
 				, "-r", "5"  // one-run-repetitions
-				, "-a", "agents.controllers.examples.Agent04_Shooter" // agent-fqcn ... requires MarioAI4J-Agents on classpath!
+				, "-a", "agents.examples.ShooterAgent"
 				, "-i", "Shooter"   // agent-id
 				, "-d", "./results" // result-dir"	
 		};

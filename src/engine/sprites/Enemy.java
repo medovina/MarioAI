@@ -346,11 +346,7 @@ private boolean isBlocking(float _x, float _y, float xa, float ya)
     int y = (int) (_y / 16);
     if (x == (int) (this.x / 16) && y == (int) (this.y / 16)) return false;
 
-    boolean blocking = levelScene.level.isBlocking(x, y, xa, ya);
-
-//        byte block = levelScene.level.getBlock(x, y);
-
-    return blocking;
+    return levelScene.level.isBlocking(x, y, xa, ya);
 }
 
 public boolean shellCollideCheck(Shell shell)
@@ -372,7 +368,6 @@ public boolean shellCollideCheck(Shell shell)
             winged = false;
             hPic = -hPic;
             yPicO = -yPicO + 16;
-//                System.out.println("shellCollideCheck");
             ++LevelScene.killedCreaturesTotal;
             ++LevelScene.killedCreaturesByShell;
             return true;
@@ -402,7 +397,6 @@ public boolean fireballCollideCheck(Fireball fireball)
             winged = false;
             hPic = -hPic;
             yPicO = -yPicO + 16;
-//                System.out.println("fireballCollideCheck");
             ++LevelScene.killedCreaturesTotal;
             ++LevelScene.killedCreaturesByFireBall;
             return true;
@@ -425,7 +419,6 @@ public void bumpCheck(int xTile, int yTile)
         winged = false;
         hPic = -hPic;
         yPicO = -yPicO + 16;
-//            System.out.println("bumpCheck: mostelikely shell killed other creature");
     }
 }
 
