@@ -8,7 +8,6 @@ import tools.RandomCreatureGenerator;
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
 public enum Enemy {
-	
 	GOOMBA("g"), 
 	GOOMBA_WINGED("gw"), 
 	RED_KOOPA("rk"), 

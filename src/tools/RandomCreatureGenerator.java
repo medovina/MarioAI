@@ -43,9 +43,12 @@ private HashSet<String> allowedCreatures = new HashSet<String>();
 private boolean creaturesEnabled = true;
 private boolean kindByDifficulty = true;
 private int difficulty = 0;
-private final String[] kinds = {Enemy.GOOMBA.getShorthand(), Enemy.GOOMBA_WINGED.getShorthand(), Enemy.RED_KOOPA.getShorthand(), 
-		                        Enemy.RED_KOOPA_WINGED.getShorthand(), Enemy.GREEN_KOOPA.getShorthand(), Enemy.GREEN_KOOPA_WINGED.getShorthand(),
-		                        Enemy.SPIKY.getShorthand(), Enemy.SPIKY_WINGED.getShorthand(), Enemy.WAVE_GOOMBA.getShorthand()};
+private final String[] kinds = {
+    Enemy.GOOMBA.getShorthand(), Enemy.GOOMBA_WINGED.getShorthand(),
+    Enemy.RED_KOOPA.getShorthand(), Enemy.RED_KOOPA_WINGED.getShorthand(),
+    Enemy.GREEN_KOOPA.getShorthand(), Enemy.GREEN_KOOPA_WINGED.getShorthand(),
+    Enemy.SPIKY.getShorthand(), Enemy.SPIKY_WINGED.getShorthand(),
+    Enemy.WAVE_GOOMBA.getShorthand() };
 private String lastDecreased;
 
 private int GOOMBA = 0;
@@ -60,14 +63,13 @@ private int WAVE_GOOMBA = 8;
 
 private int[] counters = new int[9];
 
-
 public RandomCreatureGenerator(long seed, String creatures, int difficulty)
 {
     super(seed);
-    this.setSeed(seed, creatures, difficulty);
+    this.init(seed, creatures, difficulty);
 }
 
-public void setSeed(long seed, String creatures, int difficulty)
+public void init(long seed, String creatures, int difficulty)
 {
     this.setSeed(seed);
     this.difficulty = difficulty;
@@ -107,7 +109,6 @@ public void setSeed(long seed, String creatures, int difficulty)
             kindByDifficulty = true;
         }
     }
-//    System.out.println(allowedCreatures.toString());
 }
 
 public boolean canAdd()

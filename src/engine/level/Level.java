@@ -135,21 +135,14 @@ public class Level implements Serializable {
 	public int yExit;
 
 	public Level(int length, int height) {
-		// ints = new Vector();
-		// booleans = new Vector();
 		this.length = length;
 		this.height = height;
 
 		xExit = 50;
 		yExit = 10;
-		// System.out.println("Java: Level: lots of news here...");
-		// System.out.println("length = " + length);
-		// System.out.println("height = " + height);
 		try {
 			map = new byte[length][height];
-			// System.out.println("map = " + map);
 			data = new byte[length][height];
-			// System.out.println("data = " + data);
 			spriteTemplates = new SpriteTemplate[length][height];
 
 			marioTrace = new int[length][height + 1];
@@ -158,9 +151,6 @@ public class Level implements Serializable {
 			e.printStackTrace();
 			System.exit(-3);
 		}
-		// System.out.println("spriteTemplates = " + spriteTemplates);
-		// observation = new byte[length][height];
-		// System.out.println("observation = " + observation);
 	}
 
 	public static void loadBehaviors(DataInputStream dis) throws IOException {

@@ -47,7 +47,7 @@ import java.util.Random;
  * <li>height -- height of the level in cells. One cell is 16 pixels long</li>
  * <li>seed -- use this param to make a globalRandom level. On different
  * machines with the same seed param there will be one level</li>
- * <li>levelDifficulty -- use this param to change difficult of the level. On
+ * <li>levelDifficulty -- use this param to change difficulty of the level. On
  * different machines with the same seed param there will be one level</li>
  * <li>levelType -- levelType of the level. One of Overground, Underground,
  * Castle.</li>
@@ -73,9 +73,7 @@ public class LevelGenerator {
 	private static Level level;
 
 	private static Random globalRandom = new Random(0);
-	private static Random ceilingRandom = new Random(0);
 	private static RandomCreatureGenerator creaturesRandom = new RandomCreatureGenerator(0, "", 0);
-	public static Random dxRnd = new Random(0); // used in addEnemy to compute dx
 
 	private static final int ODDS_STRAIGHT = 0;
 	private static final int ODDS_PLATFORMS = 1;
@@ -120,8 +118,6 @@ public class LevelGenerator {
 	}
 
 	public static Level createLevel() {
-		// -ls option can also loadAgent level from file if filename instead of
-		// a number provided
 		levelType = LevelOptions.getLevelType();
 		if (LevelOptions.isLevelFileName()) {
 			loadLevel(LevelOptions.getLevelFileName());
@@ -152,7 +148,7 @@ public class LevelGenerator {
 		odds[ODDS_DEAD_ENDS] = 2 + 2 * levelDifficulty;
 
 		if (levelType != LevelGenerator.TYPE_OVERGROUND)
-			odds[ODDS_PLATFORMS] = 0; // no hill straight in TYPE_OVERGROUND level
+			odds[ODDS_PLATFORMS] = 0;
 
 		totalOdds = 0;
 		for (int i = 0; i < odds.length; i++) {
@@ -166,31 +162,27 @@ public class LevelGenerator {
 			totalOdds = 1;
 		}
 
-		level = new Level(length, height);
-		// levelSeed = args.getLevelRandSeed();// + levelType; // TODO:TASK:[M]
-		// ensure the difference of underground, castle
+        level = new Level(length, height);
+        
 		globalRandom.setSeed(levelSeed);
-		creaturesRandom.setSeed(levelSeed, LevelOptions.getEnemies(), levelDifficulty);
-		ceilingRandom.setSeed(levelSeed);
-		dxRnd.setSeed(levelSeed);
+		creaturesRandom.init(levelSeed, LevelOptions.getEnemies(), levelDifficulty);
 
 		isLadder = LevelOptions.isLadders();
 
 		int currentLength = 0; // total level currentLength so far
 
-		// by default mario supposed to start on a straight surface
+		// by default mario is supposed to start on a straight surface
 		int floor = DEFAULT_FLOOR;
 		if (isFlatLevel)
 			floor = height - 1 - globalRandom.nextInt(4);
 
-		currentLength += buildStraight(0, level.length, true, floor,
-				INFINITE_FLOOR_HEIGHT);
+		currentLength += buildStraight(0, level.length, true, floor, INFINITE_FLOOR_HEIGHT);
 		while (currentLength < level.length - 10) {
-			currentLength += buildZone(currentLength, level.length
-					- currentLength, ANY_HEIGHT, floor, INFINITE_FLOOR_HEIGHT);
+            currentLength += buildZone(currentLength, level.length - currentLength, ANY_HEIGHT,
+                                       floor, INFINITE_FLOOR_HEIGHT);
 		}
 
-		if (!isFlatLevel) // NOT flat level
+		if (!isFlatLevel)
 			floor = height - 1 - globalRandom.nextInt(4); // floor of the exit line
 
 		// coordinates of the exit
@@ -215,31 +207,24 @@ public class LevelGenerator {
 				}
 			}
 		}
-		// level.setSpriteTemplate(level.xExit, level.yExit, new
-		// SpriteTemplate(Sprite.KIND_PRINCESS));
 
-		// //if underground or castle then build ceiling
-		// if (levelType == LevelGenerator.TYPE_CASTLE || levelType ==
-		// LevelGenerator.TYPE_UNDERGROUND)
-		// {
-		// int ceiling = 0;
-		// int run = 0;
-		// for (int x = 0; x < level.length; x++)
-		// {
-		// if (run-- <= 0 && x > 4)
-		// {
-		// ceiling = globalRandom.nextInt(4);
-		// run = globalRandom.nextInt(4) + 4;
-		// }
-		// for (int y = 0; y < level.height; y++)
-		// {
-		// if ((x > 4 && y <= ceiling) || x < 1)
-		// {
-		// level.setBlock(x, 0, (byte) (1 + 9 * 16));
-		// }
-		// }
-		// }
-		// }
+		//if underground or castle then build ceiling
+        if (levelType == LevelGenerator.TYPE_CASTLE ||
+            levelType == LevelGenerator.TYPE_UNDERGROUND) {
+            int ceiling = 0;
+            int run = 0;
+            for (int x = 0; x < level.length; x++) {
+                if (run-- <= 0 && x > 4) {
+                    ceiling = globalRandom.nextInt(4);
+                    run = globalRandom.nextInt(4) + 4;
+                }
+                for (int y = 0; y < level.height; y++) {
+                    if ((x > 4 && y <= ceiling) || x < 1) {
+                        level.setBlock(x, 0, (byte) (1 + 9 * 16));
+                    }
+                }
+            }
+		}
 
 		fixWalls();
 		setPrincess(level.xExit, level.yExit);
@@ -258,7 +243,6 @@ public class LevelGenerator {
 			int floor, int floorHeight) {
 		int t = globalRandom.nextInt(totalOdds);
 		int type = 0;
-		// calculate what will be built
 		for (int i = 0; i < odds.length; i++) {
 			if (odds[i] <= t) {
 				type = i;
@@ -275,7 +259,6 @@ public class LevelGenerator {
 			if (floor == DEFAULT_FLOOR
 					&& counters.platformCount < counters.totalHillStraight) {
 				counters.platformCount++;
-				// length = buildHillStraight(x, maxLength, floor, false);
 				length = buildPlatform(x, true, maxLength, floor, false);
 			} else
 				length = 0;
@@ -295,14 +278,12 @@ public class LevelGenerator {
 			break;
 		case ODDS_CANNONS:
 			if (counters.cannonsCount < counters.totalCannons)
-				length = buildCannons(x, maxLength, maxHeight, floor,
-						floorHeight);
+				length = buildCannons(x, maxLength, maxHeight, floor, floorHeight);
 			else
 				length = 0;
 			break;
 		case ODDS_DEAD_ENDS: {
-			if (floor == DEFAULT_FLOOR
-                    && counters.deadEndsCount < counters.totalDeadEnds)
+			if (floor == DEFAULT_FLOOR && counters.deadEndsCount < counters.totalDeadEnds)
                     // if method was not called from buildDeadEnds
 			{
 				counters.deadEndsCount++;
@@ -312,11 +293,6 @@ public class LevelGenerator {
 		}
 
 		int crCount = 0;
-		// for (int y = level.height - 3; y > levelDifficulty + 1; --y)
-		// {
-		// addEnemy(x, y);
-		// ++crCount;
-		// }
 		for (int yy = level.height; yy > 0; yy--)
 			if (level.getBlock(x, yy) == 0
 					&& creaturesRandom.nextInt(levelDifficulty + 1) + 1 > (levelDifficulty + 1) / 2
@@ -338,29 +314,14 @@ public class LevelGenerator {
 
 		if (ceilingLength < 2)
 			return;
-		// len:
-		// for (int i = x0; i < x1; i++)
-		// for (int j = 0; j < height; j++)
-		// if (level.getBlock(i, j) != 0)
-		// {
-		// maxCeilingHeight = j;
-		// break len;
-		// }
 		int len = 0;
 
 		while (len < ceilingLength) {
-			int sectionLength = ceilingRandom.nextInt(2) + 2;
+			int sectionLength = globalRandom.nextInt(2) + 2;
 			if (sectionLength > ceilingLength)
 				sectionLength = ceilingLength;
 
-			// if (maxCeilingHeight > 0)
-			// maxCeilingHeight--;
-			// if (maxCeilingHeight == 0)
-			// maxCeilingHeight = 1;
-			// if (maxCeilingHeight > 5)
-			// maxCeilingHeight = 5;
-
-			int height = ceilingRandom.nextInt(maxCeilingHeight) + 1;
+			int height = globalRandom.nextInt(maxCeilingHeight) + 1;
 			for (int i = 0; i < sectionLength; i++) {
 				for (int j = 0; j < height; j++)
 					level.setBlock(x0 + len + i, j, (byte) (1 + 9 * 16));
@@ -374,11 +335,10 @@ public class LevelGenerator {
 		if (!creaturesRandom.canAdd())
 			return;
 
-		int dx = (int) dxRnd.nextGaussian();
+		int dx = (int) globalRandom.nextGaussian();
 		int creatureKind = creaturesRandom.nextCreature();
 		if (creatureKind != Sprite.KIND_UNDEF) {
-			if (level.setSpriteTemplate(x + dx, y, new SpriteTemplate(
-					creatureKind)))
+			if (level.setSpriteTemplate(x + dx, y, new SpriteTemplate(creatureKind)))
 				++counters.creatures;
 			else
 				creaturesRandom.increaseLastCreature();
@@ -390,8 +350,7 @@ public class LevelGenerator {
 
 	private static int buildDeadEnds(int x0, int maxLength) {
 		// first of all build pre dead end zone
-		int floor = height - 2 - globalRandom.nextInt(2); // floor of pre dead
-															// end zone
+		int floor = height - 2 - globalRandom.nextInt(2); // floor of pre dead end zone
 		int length = 0; // total zone length
 		int preDeadEndLength = 7 + globalRandom.nextInt(10);
 		int rHeight = floor - 1; // rest height
@@ -413,8 +372,7 @@ public class LevelGenerator {
 		// correct direction
 		// true - top, false = bottom
 		globalRandom.nextInt();
-		int k = globalRandom.nextInt(5);// (globalRandom.nextInt() %
-										// (this.levelDifficulty+1));
+		int k = globalRandom.nextInt(5);// (globalRandom.nextInt() % (this.levelDifficulty+1));
 		boolean direction = globalRandom.nextInt(k + 1) != 1;
 
 		// Y coordinate of the bottom line of the separator is determined as
@@ -613,8 +571,7 @@ public class LevelGenerator {
 				if (y >= floor && y <= floor + floorHeight) {
 					level.setBlock(x, y, (byte) (1 + 9 * 16));
 				} else if (counters.cannonsCount <= counters.totalCannons) {
-					if (x == xCannon && y >= cannonHeight && y <= floor)// +
-																		// floorHeight)
+					if (x == xCannon && y >= cannonHeight && y <= floor)// + floorHeight)
 					{
 						if (y == cannonHeight) {
 							if (oldXCannon != -1
@@ -779,8 +736,7 @@ public class LevelGenerator {
 							if (x == xTube) {
 								if (oldXTube != -1
 										&& creaturesRandom.nextInt(35) > levelDifficulty + 1) {
-									// addEnemiesLine(oldXTube + 2, xTube - 1,
-									// floor - 1);
+									// addEnemiesLine(oldXTube + 2, xTube - 1, floor - 1);
 								}
 								oldXTube = x;
 								counters.tubesCount++;
@@ -811,8 +767,7 @@ public class LevelGenerator {
 		if (floorHeight != INFINITE_FLOOR_HEIGHT) {
 			length = maxLength;
 		} else {
-			length = globalRandom.nextInt(8) + 2;// globalRandom.nextInt(50)+1)
-													// + 2;
+			length = globalRandom.nextInt(8) + 2;  // globalRandom.nextInt(50)+1) + 2;
 			if (safe)
 				length = 10 + globalRandom.nextInt(5);
 			if (length > maxLength)
@@ -850,23 +805,7 @@ public class LevelGenerator {
 			return false;
 		}
 
-		boolean res = true;
-
-		// if (floor < 1)
-		// {
-		// return false;
-		// }
-
-		// for (int y = 0; y < 1; y++)
-		// {
-		// if (level.getBlock(x0, floor - y) != 0)
-		// {
-		// res = false;
-		// break;
-		// }
-		// }
-
-		return res;
+		return true;
 	}
 
 	private static boolean buildBlocks(int x0, int x1, int floor, boolean pHB,
@@ -883,8 +822,7 @@ public class LevelGenerator {
 			hb = onlyHB;
 
 		--floor;
-		while (floor > 0) // minimal distance between the bricks line and floor
-							// is 4
+		while (floor > 0) // minimal distance between the bricks line and floor is 4
 		{
             if ((x1 - 1 - e) - (x0 + 1 + s) > 0)
                 // minimal number of bricks in the line is a positive value
@@ -949,8 +887,7 @@ public class LevelGenerator {
 						} else if (globalRandom.nextInt(2) == 1
 								&& canBuildBlocks(x, floor - 4, false)) {
 							if (level.getBlock(x, floor) == 0) {
-								counters.blocksCount++; // TODO:TASK:!H! move it
-														// in to the
+								counters.blocksCount++; // TODO:TASK:!H! move it into the
 														// Level.setBlock
 								level.setBlock(x, floor, (byte) (0 + 1 * 16)); // a break brick
 								canDeco = true;
