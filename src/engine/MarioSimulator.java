@@ -34,7 +34,6 @@ import environments.IEnvironment;
 import environments.MarioEnvironment;
 import options.*;
 import tools.EvaluationInfo;
-import utils.MarioLog;
 
 /**
  * Wraps execution of concrete {@link IAgent} within {@link MarioEnvironment} using preset {@link MarioOptions}, which are combined

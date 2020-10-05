@@ -57,7 +57,6 @@ import options.LevelOptions;
 import options.SimulationOptions;
 import options.SystemOptions;
 import options.VisualizationOptions;
-import utils.MarioLog;
 
 public final class LevelScene implements SpriteContext {
 

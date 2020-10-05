@@ -28,7 +28,7 @@
 package engine.level;
 
 import options.LevelOptions;
-import utils.MarioLog;
+import engine.MarioLog;
 
 import java.io.*;
 

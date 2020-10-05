@@ -57,7 +57,6 @@ import engine.tools.Scale2x;
 import environments.MarioEnvironment;
 import options.VisualizationOptions;
 import tools.GameViewer;
-import utils.MarioLog;
 
 public class VisualizationComponent extends JComponent {
 	private static final long serialVersionUID = 1L;

@@ -27,10 +27,8 @@
 
 package tools;
 
-import engine.SimulatorOptions;
-import engine.VisualizationComponent;
+import engine.*;
 import options.VisualizationOptions;
-import utils.MarioLog;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;

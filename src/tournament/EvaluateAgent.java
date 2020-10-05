@@ -3,9 +3,10 @@ package tournament;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+
 import agents.IAgent;
+import engine.MarioLog;
 import tools.EvaluationInfo;
-import utils.MarioLog;
 import tournament.run.MarioRun;
 import tournament.run.MarioRunResult;
 import tournament.run.MarioRunResults;

@@ -5,9 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import engine.MarioSimulator;
+import engine.*;
 import engine.level.LevelGenerator;
-import utils.MarioLog;
 
 /**
  * Serves as a storage for all options that can adjust Mario AI / Level Generation / Simulation / System / Visualization.

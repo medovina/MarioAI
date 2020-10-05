@@ -27,7 +27,7 @@
 
 package engine.generalization;
 
-import utils.MarioLog;
+import engine.MarioLog;
 
 /**
  * Generalizer that provides abstracts over "background tile", this includes {@link Tile#COIN_ANIM} as well because there can be an enemy in front of it!

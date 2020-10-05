@@ -31,10 +31,9 @@ import java.io.IOException;
 
 import agents.AgentOptions;
 import agents.IAgent;
-import engine.Replayer;
+import engine.*;
 import engine.input.MarioInput;
 import environments.IEnvironment;
-import utils.MarioLog;
 
 public class ReplayAgent implements IAgent {
 

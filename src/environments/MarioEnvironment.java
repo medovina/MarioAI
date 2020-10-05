@@ -35,11 +35,7 @@ import java.util.List;
 
 import agents.AgentOptions;
 import agents.IAgent;
-import engine.LevelScene;
-import engine.Recorder;
-import engine.Replayer;
-import engine.SimulatorOptions;
-import engine.VisualizationComponent;
+import engine.*;
 import engine.generalization.*;
 import engine.input.MarioInput;
 import engine.level.Level;
@@ -49,7 +45,6 @@ import options.AIOptions;
 import options.SystemOptions;
 import options.VisualizationOptions;
 import tools.EvaluationInfo;
-import utils.MarioLog;
 
 public final class MarioEnvironment implements IEnvironment {
 

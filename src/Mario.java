@@ -5,6 +5,7 @@ import agents.controllers.keyboard.CheaterKeyboardAgent;
 import engine.MarioSimulator;
 import options.LevelConfig;
 import tools.EvaluationInfo;
+import tournament.Evaluate;
 
 public class Mario {
 	public static void main(String[] args) throws Exception {

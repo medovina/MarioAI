@@ -27,8 +27,8 @@
 
 package engine.generalization;
 
+import engine.MarioLog;
 import engine.sprites.Sprite;
-import utils.MarioLog;
 
 /**
  * Provides generalization of entities that can be placed over {@link Tile}.

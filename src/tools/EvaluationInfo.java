@@ -29,9 +29,9 @@ package tools;
 
 import java.text.DecimalFormat;
 
+import engine.MarioLog;
 import engine.sprites.Mario;
 import engine.sprites.Mario.MarioMode;
-import utils.MarioLog;
 
 public final class EvaluationInfo implements Cloneable {
 	
