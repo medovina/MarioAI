@@ -21,7 +21,7 @@ public class MarioRunsGenerator {
 		return seeds;
 	}
 	
-	public static MarioConfig[] generateConfigs(int randomSeed, String prototypeOptions, int runCount, int oneRunRepetitions) {
+	public static MarioConfig[] generateConfigs(int randomSeed, String prototypeOptions, int runCount) {
 		
 		int[] seeds = generateSeeds(randomSeed, runCount);
 				
@@ -32,14 +32,13 @@ public class MarioRunsGenerator {
 			
 			configs[i] = new MarioConfig();
 			configs[i].setOptions(options);
-			configs[i].setRepetitions(oneRunRepetitions);
 		}
 		
 		return configs;
 	}
 	
-	public static MarioRun[] generateRunList(int randomSeed, String prototypeOptions, int runCount, int oneRunRepetitions) {
-		MarioConfig[] configs = generateConfigs(randomSeed, prototypeOptions, runCount, oneRunRepetitions);
+	public static MarioRun[] generateRunList(int randomSeed, String prototypeOptions, int runCount) {
+		MarioConfig[] configs = generateConfigs(randomSeed, prototypeOptions, runCount);
 		MarioRun[] runs = new MarioRun[runCount];
 		for (int i = 0; i < runCount; ++i) {
 			runs[i] = new MarioRun(configs[i]);
@@ -47,8 +46,8 @@ public class MarioRunsGenerator {
 		return runs;
 	}
 	
-	public static MarioRuns generateRuns(int randomSeed, String prototypeOptions, int runCount, int oneRunRepetitions) {
-		MarioConfig[] configs = generateConfigs(randomSeed, prototypeOptions, runCount, oneRunRepetitions);
+	public static MarioRuns generateRuns(int randomSeed, String prototypeOptions, int runCount) {
+		MarioConfig[] configs = generateConfigs(randomSeed, prototypeOptions, runCount);
 		return new MarioRuns(configs);
 	}
 

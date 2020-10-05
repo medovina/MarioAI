@@ -30,10 +30,6 @@ public class EvaluateAgentConsole {
 	
 	private static final String ARG_RUNS_COUNT_LONG = "runs-count";
 	
-	private static final char ARG_ONE_RUN_REPETITIONS_SHORT = 'r';
-	
-	private static final String ARG_ONE_RUN_REPETITIONS_LONG = "one-run-repetitions";
-	
 	private static final char ARG_AGENT_FQCN_SHORT = 'a';
 	
 	private static final String ARG_AGENT_FQCN_LONG = "agent-fqcn";
@@ -53,8 +49,6 @@ public class EvaluateAgentConsole {
 	private static String levelOptions;
 	
 	private static int runCount;
-	
-	private static int oneLevelRepetitions;
 	
 	private static String agentFQCN;
 	
@@ -109,16 +103,6 @@ public class EvaluateAgentConsole {
 	    opt2.setHelp("Id of the agent that will serve as identificator within results file.");
 	
 	    jsap.registerParameter(opt2);
-	    
-	    FlaggedOption opt3 = new FlaggedOption(ARG_ONE_RUN_REPETITIONS_LONG)
-	    	.setStringParser(JSAP.INTEGER_PARSER)
-	    	.setRequired(false)
-	    	.setDefault("10")
-	    	.setShortFlag(ARG_ONE_RUN_REPETITIONS_SHORT)
-	    	.setLongFlag(ARG_ONE_RUN_REPETITIONS_LONG);    
-	    opt3.setHelp("How many times should be one MarioSimulator configuration (~ one generated level map) be repeated (in order to gain statistically sound data).");
-	    
-	    jsap.registerParameter(opt3);
 	    
 	    FlaggedOption opt31 = new FlaggedOption(ARG_PROTOTYPE_OPTIONS_LONG)
 	    	.setStringParser(JSAP.STRING_PARSER)
@@ -191,7 +175,6 @@ public class EvaluateAgentConsole {
 		seed = config.getInt(ARG_SEED_LONG);
 		levelOptions = config.getString(ARG_PROTOTYPE_OPTIONS_LONG);
 		runCount = config.getInt(ARG_RUNS_COUNT_LONG);
-		oneLevelRepetitions = config.getInt(ARG_ONE_RUN_REPETITIONS_LONG);
 		agentFQCN = config.getString(ARG_AGENT_FQCN_LONG);
 		agentId = config.getString(ARG_AGNET_ID_LONG);
 		resultDir = config.getString(ARG_RESULT_DIR_LONG);
@@ -243,7 +226,7 @@ public class EvaluateAgentConsole {
 	}
 	
 	private static MarioRunResults evaluateAgent() {
-		EvaluateAgent evaluate = new EvaluateAgent(seed, levelOptions, runCount, oneLevelRepetitions, resultDirFile);
+		EvaluateAgent evaluate = new EvaluateAgent(seed, levelOptions, runCount, resultDirFile);
 		return evaluate.evaluateAgent(agentId, agent);		
 	}
 		
@@ -290,7 +273,6 @@ public class EvaluateAgentConsole {
 		seed = 0;
 		levelOptions = null;
 		runCount = 0;
-		oneLevelRepetitions = 0;
 		agentFQCN = null;
 		agentClass = null;
 		agent = null;

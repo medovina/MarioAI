@@ -15,11 +15,9 @@ public class MarioRun {
 	
 	public synchronized MarioRunResult run(IAgent agent) {
 		MarioRunResult result = new MarioRunResult(config);
-		for (int i = 0; i < config.getRepetitions(); ++i) {
-			MarioSimulator simulator = new MarioSimulator(config.getOptions());
-			EvaluationInfo info = simulator.run(agent);
-			result.addResult(info);
-		}
+        MarioSimulator simulator = new MarioSimulator(config.getOptions());
+        EvaluationInfo info = simulator.run(agent);
+        result.addResult(info);
 		return result;		
 	}
 

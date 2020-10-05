@@ -3,9 +3,7 @@ package tournament.run;
 import tournament.EvaluationInfos;
 import tournament.MarioConfig;
 
-
 public class MarioRunResult extends EvaluationInfos {
-	
 	private MarioConfig config;	
 		
 	public MarioRunResult(MarioConfig config) {

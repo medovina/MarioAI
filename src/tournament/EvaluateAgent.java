@@ -21,15 +21,12 @@ public class EvaluateAgent {
 	
 	private int runCount;
 	
-	private int oneLevelRepetitions;
-	
 	private File resultDirFile;
 	
-	public EvaluateAgent(int seed, String levelOptions, int runCount, int oneLevelRepetitions, File resultDirFile) {
+	public EvaluateAgent(int seed, String levelOptions, int runCount, File resultDirFile) {
 		this.seed = seed;
 		this.levelOptions = levelOptions;
 		this.runCount = runCount;
-		this.oneLevelRepetitions = oneLevelRepetitions;
 		this.resultDirFile = resultDirFile;
 	}
 	
@@ -41,15 +38,14 @@ public class EvaluateAgent {
 		agentId = Sanitize.idify(agentId);
 		
         System.out.println(
-            "Evaluating agent in " + runCount + " levels with " + oneLevelRepetitions +
-             " level-repetition, total " + (runCount * oneLevelRepetitions) + " simulations...");
+            "Evaluating agent in " + runCount + " levels...");
 		
-		MarioRun[] runs = MarioRunsGenerator.generateRunList(seed, levelOptions, runCount, oneLevelRepetitions);
+		MarioRun[] runs = MarioRunsGenerator.generateRunList(seed, levelOptions, runCount);
 		
 		MarioRunResults results = new MarioRunResults();
 		
 		for (int i = 0; i < runs.length; ++i) {
-			logFine(agentId, "LEVEL " + (i+1) + " / " + runs.length + " (" + oneLevelRepetitions + " repetitions)");
+			logFine(agentId, "LEVEL " + (i+1) + " / " + runs.length);
 			
 			MarioRunResult result = runs[i].run(agent);
 			
@@ -83,21 +79,15 @@ public class EvaluateAgent {
 		try {
 			writer = new PrintWriter(new FileOutputStream(file));
 			
-			writer.println("agentId;configNumber;repetitions;simulationNumber;levelSeed;" + results.getResults().get(0).getCSVHeader());
+			writer.println("agentId;simulationNumber;levelSeed;" + results.getResults().get(0).getCSVHeader());
 			int simulationNumber = 0;
-			int configNumber = 0;
 			for (MarioConfig config : results.getConfigs()) {
-				++configNumber;
-				for (int i = 0; i < config.getRepetitions(); ++i) {
-					++simulationNumber;
-					writer.print(agentId);
-					writer.print(";" + configNumber);
-					writer.print(";" + config.getRepetitions());
-					writer.print(";" + simulationNumber);
-					writer.print(";" + config.getSeed());
-					EvaluationInfo info = results.getResults().get(simulationNumber-1);
-					writer.println(";" + info.getCSV());
-				}
+                ++simulationNumber;
+                writer.print(agentId);
+                writer.print(";" + simulationNumber);
+                writer.print(";" + config.getSeed());
+                EvaluationInfo info = results.getResults().get(simulationNumber-1);
+                writer.println(";" + info.getCSV());
 			}
 			
 		} catch (Exception e) {
