@@ -12,8 +12,6 @@ import environments.IEnvironment;
 /**
  * Agent that sprints forward, jumps and shoots.
  * 
- * This agent has successful rate ~ 50%.
- * 
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
 public class ShooterAgent extends MarioAIBase {

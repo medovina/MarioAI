@@ -251,7 +251,7 @@ public class VisualizationComponent extends JComponent {
         
         drawStringDropShadow(g,	" SCORE", 0, 0, 2);
         String scoreString =
-            String.format("%6s", Integer.toString(marioEnvironment.getIntermediateReward()));
+            String.format("%6s", Integer.toString(marioEnvironment.getScore()));
         drawStringDropShadow(g, scoreString, 0, 1, 2);
 
 		g.drawImage(Art.level[0][2], 122, 10, 10, 10, null);

@@ -117,7 +117,6 @@ public class Level implements Serializable {
 
 	public static objCounters counters;
 
-	// private final int FILE_HEADER = 0x271c4178;
 	public int length;
 	public int height;
 	public int randomSeed;
@@ -126,8 +125,6 @@ public class Level implements Serializable {
 
 	public byte[][] map;
 	public byte[][] data;
-	// Experimental feature: Mario TRACE
-	public int[][] marioTrace;
 
 	public SpriteTemplate[][] spriteTemplates;
 
@@ -144,8 +141,6 @@ public class Level implements Serializable {
 			map = new byte[length][height];
 			data = new byte[length][height];
 			spriteTemplates = new SpriteTemplate[length][height];
-
-			marioTrace = new int[length][height + 1];
 		} catch (OutOfMemoryError e) {
 			MarioLog.error("Java: MarioAI MEMORY EXCEPTION: OutOfMemory exception. Exiting...");
 			e.printStackTrace();

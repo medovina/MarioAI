@@ -44,22 +44,4 @@ public class SystemOptions {
 	public static String getSaveLevelFileName() {
 		return MarioOptions.getInstance().getString(StringOption.SYSTEM_SAVE_LEVEL_FILE_NAME);
 	}
-	
-	public static boolean isTraceFile() {
-		String value = MarioOptions.getInstance().getString(StringOption.SYSTEM_TRACE_FILE_NAME);
-		if (value.length() == 0) return false;
-		if ("off".equalsIgnoreCase(value)) return false;
-		if ("false".equalsIgnoreCase(value)) return false;
-		return true;
-	}
-	
-	public static String getTraceFileName() {
-		if (!isTraceFile()) return "";
-		String value = MarioOptions.getInstance().getString(StringOption.SYSTEM_TRACE_FILE_NAME);
-		if ("on".equalsIgnoreCase(value) || "true".equalsIgnoreCase(value)) {
-			return "MarioAITrace.txt";
-		}
-		return value;
-	}
-	
 }

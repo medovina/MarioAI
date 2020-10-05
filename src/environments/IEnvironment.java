@@ -76,7 +76,7 @@ public interface IEnvironment {
 	 * Current reward for the play so far.
 	 * @return
 	 */
-	public int getIntermediateReward();
+	public int getScore();
 
 	/**
 	 * Mario's body interface, contains egocentric information about Mario's body and current kill-counts.

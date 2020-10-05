@@ -80,14 +80,11 @@ public final class MarioEnvironment implements IEnvironment {
 	public List<Entity> entities;
 
 	private final LevelScene levelScene;
-	// private int frame = 0;
 	private VisualizationComponent marioVisualComponent;
 	private IAgent agent;
 
 	private static final MarioEnvironment ourInstance = new MarioEnvironment();
 	private static final EvaluationInfo evaluationInfo = new EvaluationInfo();
-
-	private static String marioTraceFile;
 
 	private Recorder recorder;
 
@@ -146,8 +143,6 @@ public final class MarioEnvironment implements IEnvironment {
 		mario.zLevelTiles = AIOptions.getTileGeneralizationZLevel();
 		mario.zLevelEntities = AIOptions.getEntityGeneralizationZLevel();
 		
-		marioTraceFile = SystemOptions.getTraceFileName();
-
 		if (VisualizationOptions.isVisualization()) {
 			if (marioVisualComponent == null)
 				marioVisualComponent = VisualizationComponent.getInstance(this);
@@ -434,16 +429,10 @@ public final class MarioEnvironment implements IEnvironment {
 	private void computeEvaluationInfo() {
 		if (recorder != null)
 			closeRecorder();
-		// evaluationInfo.agentType = agent.getClass().getSimpleName();
-		// evaluationInfo.agentName = agent.getName();
 		evaluationInfo.marioStatus = levelScene.getMarioStatus();
 		evaluationInfo.flowersDevoured = Mario.flowersDevoured;
 		evaluationInfo.distancePassedPhys = (int) levelScene.mario.x;
 		evaluationInfo.distancePassedCells = levelScene.mario.mapX;
-		// evaluationInfo.totalLengthOfLevelCells =
-		// levelScene.level.getWidthCells();
-		// evaluationInfo.totalLengthOfLevelPhys =
-		// levelScene.level.getWidthPhys();
 		evaluationInfo.timeSpent = levelScene.getTimeSpent();
 		evaluationInfo.timeLeft = levelScene.getTimeLeft();
 		evaluationInfo.coinsGained = Mario.coins;
@@ -462,8 +451,6 @@ public final class MarioEnvironment implements IEnvironment {
 		evaluationInfo.collisionsWithCreatures = Mario.collisionsWithCreatures;
 		evaluationInfo.Memo = levelScene.memo;
 		evaluationInfo.levelLength = levelScene.level.length;
-		evaluationInfo.marioTraceFileName = marioTraceFile;
-		evaluationInfo.marioTrace = levelScene.level.marioTrace;
 		evaluationInfo.greenMushroomsDevoured = Mario.greenMushroomsDevoured;
 	}
 
@@ -475,9 +462,8 @@ public final class MarioEnvironment implements IEnvironment {
 		this.agent = agent;
 	}
 
-	public int getIntermediateReward() {
-		// TODO: reward for coins, killed creatures, cleared dead-ends, bypassed gaps, hidden blocks found
-		return levelScene.getBonusPoints();
+	public int getScore() {
+		return levelScene.getScore();
 	}
 
 	public void closeRecorder() {

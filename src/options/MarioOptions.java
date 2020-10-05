@@ -206,7 +206,6 @@ public class MarioOptions {
 		SYSTEM_RECORDING_FILE_NAME("rec", "off", "Where to save the replay."),
 		SYSTEM_SAVE_LEVEL_FILE_NAME("s", "off", "Where to save the level."),
 		SYSTEM_LOAD_LEVEL_FILE_NAME("llf", "off", "Where to load the level from."),
-		SYSTEM_TRACE_FILE_NAME("trace", "off", "Where to save Mario trace, output to std and specified file."),		
 		;
 		
 		private String param;

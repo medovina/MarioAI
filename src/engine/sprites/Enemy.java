@@ -368,7 +368,7 @@ public boolean shellCollideCheck(Shell shell)
             yPicO = -yPicO + 16;
             ++LevelScene.killedCreaturesTotal;
             ++LevelScene.killedCreaturesByShell;
-            levelScene.appendBonusPoints(Points.SHELL_HIT);
+            levelScene.scorePoints(Points.SHELL_HIT);
             return true;
         }
     }
@@ -398,7 +398,7 @@ public boolean fireballCollideCheck(Fireball fireball)
             yPicO = -yPicO + 16;
             ++LevelScene.killedCreaturesTotal;
             ++LevelScene.killedCreaturesByFireBall;
-            levelScene.appendBonusPoints(Points.SHOOT);
+            levelScene.scorePoints(Points.SHOOT);
             return true;
         }
     }

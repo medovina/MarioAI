@@ -98,7 +98,7 @@ public class MarioSimulator {
 			// PROPAGATE ACTIONS TO THE ENVIRONMENT
 			environment.performAction(actions);
 			// NOTIFY AGENT ABOUT CURRENT INTERMEDIATE REWARD
-			agent.receiveReward(environment.getIntermediateReward());
+			agent.receiveReward(environment.getScore());
 		}
 		
 		MarioLog.trace("[MarioSimulator] SIMULATION ENDED!");

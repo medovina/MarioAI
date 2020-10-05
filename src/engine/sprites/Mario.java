@@ -32,7 +32,6 @@ import engine.input.MarioInput;
 import engine.input.MarioKey;
 import engine.level.Level;
 import options.SimulationOptions;
-import options.SystemOptions;
 
 public final class Mario extends Sprite {
 	
@@ -76,8 +75,6 @@ public final class Mario extends Sprite {
 	public static int greenMushroomsDevoured = 0;
 	public static int flowersDevoured = 0;
 
-	private static boolean isTrace;
-
 	private static boolean isMarioInvulnerable;
 
 	private int status = STATUS_RUNNING;
@@ -109,8 +106,6 @@ public final class Mario extends Sprite {
 		isMarioInvulnerable = SimulationOptions.isMarioInvulnerable();
 		marioGravity = SimulationOptions.getGravityMario();
 		jumpPower = SimulationOptions.getMarioJumpPower();
-
-		isTrace = SystemOptions.isTraceFile();
 
 		iceCoeff = SimulationOptions.getWindMario();
 		windCoeff = SimulationOptions.getWindCreatures();
@@ -272,9 +267,6 @@ public final class Mario extends Sprite {
 				onGround = true;
 			}
 		}
-
-		if (mapY > -1 && isTrace)
-			++levelScene.level.marioTrace[this.mapX][this.mapY];
 
 		if (winTime > 0) {
 			winTime++;
@@ -656,7 +648,7 @@ public final class Mario extends Sprite {
 		onGround = false;
 		sliding = false;
 		invulnerableTime = 1;
-		levelScene.appendBonusPoints(Points.STOMP);
+		levelScene.scorePoints(Points.STOMP);
 	}
 
 	public void stomp(final Shell shell) {
@@ -691,8 +683,6 @@ public final class Mario extends Sprite {
 
 		++collisionsWithCreatures;
 		if (large) {
-			// levelScene.paused = true;
-			// powerUpTime = -3 * FractionalPowerUpTime;
 			if (fire) {
 				levelScene.mario.setMode(true, false); // Mario loses shooting
 			} else {
@@ -701,8 +691,7 @@ public final class Mario extends Sprite {
 			invulnerableTime = 32;
 		} else {
 			// Mario dies
-			die("Collision with a creature ["
-					+ Sprite.getNameByKind(spriteKind) + "]");
+			die("Collision with a creature [" + Sprite.getNameByKind(spriteKind) + "]");
 		}
 	}
 
@@ -711,7 +700,7 @@ public final class Mario extends Sprite {
 		yDeathPos = (int) y;
 		winTime = 1;
 		status = Mario.STATUS_WIN;
-		levelScene.appendBonusPoints(Points.WIN);
+		levelScene.scorePoints(Points.WIN);
 	}
 
 	public void die(final String reasonOfDeath) {
@@ -732,7 +721,7 @@ public final class Mario extends Sprite {
 			Mario.gainCoin();
 		}
 		++flowersDevoured;
-		levelScene.appendBonusPoints(Points.FLOWER_FIRE);
+		levelScene.scorePoints(Points.FLOWER_FIRE);
 	}
 
 	public void devourMushroom() {
@@ -745,7 +734,7 @@ public final class Mario extends Sprite {
 			Mario.gainCoin();
 		}
 		++mushroomsDevoured;
-		levelScene.appendBonusPoints(Points.MUSHROOM);
+		levelScene.scorePoints(Points.MUSHROOM);
 	}
 
 	public void devourGreenMushroom(final int mushroomMode) {
@@ -782,12 +771,12 @@ public final class Mario extends Sprite {
 		onGround = false;
 		sliding = false;
 		invulnerableTime = 1;
-		levelScene.appendBonusPoints(Points.STOMP);
+		levelScene.scorePoints(Points.STOMP);
 	}
 
 	public static void gainCoin() {
 		coins++;
-		levelScene.appendBonusPoints(Points.COIN);
+		levelScene.scorePoints(Points.COIN);
 		// if (coins % 100 == 0)
 		// get1Up();
 	}

@@ -27,9 +27,6 @@
 
 package tools;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.DecimalFormat;
 
 import engine.sprites.Mario;
@@ -47,9 +44,6 @@ public final class EvaluationInfo implements Cloneable {
 	
 	private static final int MagicNumberUnDef = -42;
 
-	public static final int numberOfElements = 14;
-
-	// ordered in alphabetical order;
 	public int distancePassedCells = MagicNumberUnDef;
 	public int distancePassedPhys = MagicNumberUnDef;
 	public int flowersDevoured = MagicNumberUnDef;
@@ -66,36 +60,23 @@ public final class EvaluationInfo implements Cloneable {
 	public int timeSpent = MagicNumberUnDef;
 	public int hiddenBlocksFound = MagicNumberUnDef;
 
-	private String taskName = "NoTaskNameSpecified";
-
 	public int totalNumberOfCoins = MagicNumberUnDef;
 	public int totalNumberOfHiddenBlocks = MagicNumberUnDef;
 	public int totalNumberOfMushrooms = MagicNumberUnDef;
 	public int totalNumberOfFlowers = MagicNumberUnDef;
-	public int totalNumberOfCreatures = MagicNumberUnDef; // including spiky
-															// flowers
+	public int totalNumberOfCreatures = MagicNumberUnDef;
 	public int levelLength = MagicNumberUnDef;
 
 	public int collisionsWithCreatures = MagicNumberUnDef;
 
-	private static final int[] retFloatArray = new int[EvaluationInfo.numberOfElements];
-	private static final int[] zeros = new int[EvaluationInfo.numberOfElements];
 	public String Memo = "";
 
 	private static final DecimalFormat df = new DecimalFormat("#.##");
-
-	public int[][] marioTrace;
-	public String marioTraceFileName;
 
 	private long evaluationStarted = 0;
 	private long evaluationFinished = 0;
 	private long evaluationLasted = 0;
 
-	public EvaluationInfo() {
-		System.arraycopy(EvaluationInfo.zeros, 0, retFloatArray, 0,
-				EvaluationInfo.numberOfElements);
-	}
-	
 	public EvaluationResult getResult() {
 		switch (marioStatus) {
 		case Mario.STATUS_RUNNING:
@@ -128,29 +109,8 @@ public final class EvaluationInfo implements Cloneable {
 	public String toString() {
 		evaluationFinished = System.currentTimeMillis();
 		evaluationLasted = evaluationFinished - evaluationStarted;
-		// store mario trace:
-		try {
-			if (marioTraceFileName != null && !marioTraceFileName.equals("")) {
-				try (PrintWriter pw = new PrintWriter(new FileWriter(
-						marioTraceFileName)) ) {
 
-					for (int j = 0; j < marioTrace[0].length; ++j)
-
-					{
-						for (int i = 0; i < marioTrace.length; ++i) {
-							pw.print(spaceFormat(marioTrace[i][j]));
-						}
-						pw.println();
-					}
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {			
-		}
-
-		return      "Evaluation Results for Task : "
-				+ taskName
+		return      "Evaluation Results : "
 				+ "\n          Evaluation lasted : "
 				+ Long.toString(evaluationLasted)
 				+ " ms"
@@ -225,13 +185,6 @@ public final class EvaluationInfo implements Cloneable {
 				+ "\n             kills By Shell : " + killsByShell
 				+ "\n             kills By Stomp : " + killsByStomp
 				+ ((Memo.equals("")) ? "" : "\nMEMO INFO: " + Memo);
-	}
-
-	private String spaceFormat(int i) {
-		String r = "" + ((i == 0) ? "." : i);
-		while (r.length() < 4)
-			r += " ";
-		return r;
 	}
 
 	public EvaluationInfo clone() {
