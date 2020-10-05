@@ -25,22 +25,13 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package tasks;
+package engine;
 
-public class SystemOfValues {
-	public int distance = 1;
-	public int win = 800;
-	public int mode = 32;
-	public int coins = 10;
-	public int flowerFire = 100;
-	public int kills = 0;
-	public int killedByFire = 4;
-	public int killedByShell = 17;
-	public int killedByStomp = 12;
-	public int mushroom = 100;
-	public int timeLeft = 8;
-	public int hiddenBlock = 24;
-	public int greenMushroom = 100;
-	// For Intermediate rewards only
-	public int stomp = 10;
+public class Points {
+	public static int win = 800;
+	public static int coins = 10;
+	public static int flowerFire = 100;
+	public static int kills = 0;
+	public static int mushroom = 100;
+	public static int stomp = 10;
 }

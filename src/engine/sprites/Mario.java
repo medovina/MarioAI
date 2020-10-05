@@ -27,13 +27,10 @@
 
 package engine.sprites;
 
-import engine.Art;
-import engine.SimulatorOptions;
-import engine.LevelScene;
+import engine.*;
 import engine.input.MarioInput;
 import engine.input.MarioKey;
 import engine.level.Level;
-import environments.MarioEnvironment;
 import options.SimulationOptions;
 import options.SystemOptions;
 
@@ -659,8 +656,7 @@ public final class Mario extends Sprite {
 		onGround = false;
 		sliding = false;
 		invulnerableTime = 1;
-		levelScene
-				.appendBonusPoints(MarioEnvironment.IntermediateRewardsSystemOfValues.stomp);
+		levelScene.appendBonusPoints(Points.stomp);
 	}
 
 	public void stomp(final Shell shell) {
@@ -684,8 +680,7 @@ public final class Mario extends Sprite {
 			sliding = false;
 			invulnerableTime = 1;
 		}
-		levelScene
-				.appendBonusPoints(MarioEnvironment.IntermediateRewardsSystemOfValues.stomp);
+		levelScene.appendBonusPoints(Points.stomp);
 	}
 
 	public void getHurt(final int spriteKind) {
@@ -696,7 +691,6 @@ public final class Mario extends Sprite {
 			return;
 
 		++collisionsWithCreatures;
-		levelScene.appendBonusPoints(-MarioEnvironment.IntermediateRewardsSystemOfValues.kills);
 		if (large) {
 			// levelScene.paused = true;
 			// powerUpTime = -3 * FractionalPowerUpTime;
@@ -718,7 +712,7 @@ public final class Mario extends Sprite {
 		yDeathPos = (int) y;
 		winTime = 1;
 		status = Mario.STATUS_WIN;
-		levelScene.appendBonusPoints(MarioEnvironment.IntermediateRewardsSystemOfValues.win);
+		levelScene.appendBonusPoints(Points.win);
 	}
 
 	public void die(final String reasonOfDeath) {
@@ -739,8 +733,7 @@ public final class Mario extends Sprite {
 			Mario.gainCoin();
 		}
 		++flowersDevoured;
-		levelScene
-				.appendBonusPoints(MarioEnvironment.IntermediateRewardsSystemOfValues.flowerFire);
+		levelScene.appendBonusPoints(Points.flowerFire);
 	}
 
 	public void devourMushroom() {
@@ -753,8 +746,7 @@ public final class Mario extends Sprite {
 			Mario.gainCoin();
 		}
 		++mushroomsDevoured;
-		levelScene
-				.appendBonusPoints(MarioEnvironment.IntermediateRewardsSystemOfValues.mushroom);
+		levelScene.appendBonusPoints(Points.mushroom);
 	}
 
 	public void devourGreenMushroom(final int mushroomMode) {
@@ -767,13 +759,10 @@ public final class Mario extends Sprite {
 	}
 
 	public void kick(final Shell shell) {
-		// if (deathTime > 0 || levelScene.paused) return;
-
 		if (keys.isPressed(MarioKey.SPEED)) {
 			carried = shell;
 			shell.carried = true;
 			setRacoon(true);
-			// System.out.println("shell = " + shell);
 		} else {
 			invulnerableTime = 1;
 		}
@@ -794,22 +783,18 @@ public final class Mario extends Sprite {
 		onGround = false;
 		sliding = false;
 		invulnerableTime = 1;
-		levelScene
-				.appendBonusPoints(MarioEnvironment.IntermediateRewardsSystemOfValues.stomp);
+		levelScene.appendBonusPoints(Points.stomp);
 	}
 
 	public static void gainCoin() {
 		coins++;
-		levelScene
-				.appendBonusPoints(MarioEnvironment.IntermediateRewardsSystemOfValues.coins);
+		levelScene.appendBonusPoints(Points.coins);
 		// if (coins % 100 == 0)
 		// get1Up();
 	}
 
 	public static void gainHiddenBlock() {
 		++hiddenBlocksFound;
-		levelScene
-				.appendBonusPoints(MarioEnvironment.IntermediateRewardsSystemOfValues.hiddenBlock);
 	}
 
 	public int getStatus() {

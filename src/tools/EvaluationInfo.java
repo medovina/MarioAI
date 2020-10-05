@@ -34,8 +34,6 @@ import java.text.DecimalFormat;
 
 import engine.sprites.Mario;
 import engine.sprites.Mario.MarioMode;
-import tasks.MarioSystemOfValues;
-import tasks.SystemOfValues;
 import utils.MarioLog;
 
 public final class EvaluationInfo implements Cloneable {
@@ -85,7 +83,6 @@ public final class EvaluationInfo implements Cloneable {
 	public String Memo = "";
 
 	private static final DecimalFormat df = new DecimalFormat("#.##");
-	private static MarioSystemOfValues marioSystemOfValues = new MarioSystemOfValues();
 
 	public int[][] marioTrace;
 	public String marioTraceFileName;
@@ -120,54 +117,12 @@ public final class EvaluationInfo implements Cloneable {
 
 	}
 
-	public int computeBasicFitness() {
-		return distancePassedPhys - timeSpent + coinsGained + marioStatus
-				* marioSystemOfValues.win;
-	}
-
-	public int computeWeightedFitness(SystemOfValues sov) {
-		return distancePassedPhys * sov.distance + flowersDevoured
-				* sov.flowerFire + marioStatus * sov.win + marioMode.getCode() * sov.mode
-				+ mushroomsDevoured * sov.mushroom + greenMushroomsDevoured
-				* sov.greenMushroom + coinsGained * sov.coins
-				+ hiddenBlocksFound * sov.hiddenBlock + killsTotal * sov.kills
-				+ killsByStomp * sov.killedByStomp + killsByFire
-				* sov.killedByFire + killsByShell * sov.killedByShell
-				+ timeLeft * sov.timeLeft;
-	}
-
-	public int computeWeightedFitness() {
-		return this.computeWeightedFitness(marioSystemOfValues);
-	}
-
 	public float computeDistancePassed() {
 		return distancePassedPhys;
 	}
 
 	public int computeKillsTotal() {
 		return this.killsTotal;
-	}
-
-	// TODO: possible fitness adjustments: penalize for collisions with
-	// creatures and especially for suicide. It's a sin.
-
-	public int[] toIntArray() {
-		retFloatArray[0] = this.distancePassedCells;
-		retFloatArray[1] = this.distancePassedPhys;
-		retFloatArray[2] = this.flowersDevoured;
-		retFloatArray[3] = this.killsByFire;
-		retFloatArray[4] = this.killsByShell;
-		retFloatArray[5] = this.killsByStomp;
-		retFloatArray[6] = this.killsTotal;
-		retFloatArray[7] = this.marioMode.getCode();
-		retFloatArray[8] = this.marioStatus;
-		retFloatArray[9] = this.mushroomsDevoured;
-		retFloatArray[10] = this.coinsGained;
-		retFloatArray[11] = this.timeLeft;
-		retFloatArray[12] = this.timeSpent;
-		retFloatArray[13] = this.hiddenBlocksFound;
-
-		return retFloatArray;
 	}
 
 	public String toString() {
@@ -183,7 +138,6 @@ public final class EvaluationInfo implements Cloneable {
 
 					{
 						for (int i = 0; i < marioTrace.length; ++i) {
-							//MarioLog.trace(spaceFormat(marioTrace[i][j]));
 							pw.print(spaceFormat(marioTrace[i][j]));
 						}
 						pw.println();
@@ -200,8 +154,6 @@ public final class EvaluationInfo implements Cloneable {
 				+ "\n          Evaluation lasted : "
 				+ Long.toString(evaluationLasted)
 				+ " ms"
-				+ "\n           Weighted Fitness : "
-				+ df.format(computeWeightedFitness())
 				+ "\n               Mario Status : "
 				+ ((marioStatus == Mario.STATUS_WIN) ? "WIN!" : "Loss...")
 				+ "\n                 Mario Mode : "
@@ -275,30 +227,6 @@ public final class EvaluationInfo implements Cloneable {
 				+ ((Memo.equals("")) ? "" : "\nMEMO INFO: " + Memo);
 	}
 
-	public String toStringSingleLine() {
-		evaluationFinished = System.currentTimeMillis();
-		evaluationLasted = evaluationFinished - evaluationStarted;
-
-		return "\n[MarioAI] ~ Evaluation Results:" + " Evaluation lasted: "
-				+ Long.toString(evaluationLasted) + " ms" + "; Status: "
-				+ ((marioStatus == Mario.STATUS_WIN) ? "WIN!" : "Loss")
-				+ "; Mode: " + marioMode.name()
-				+ " +  Passed (Cells, Phys): "
-				+ df.format((double) distancePassedCells) + ", "
-				+ df.format(distancePassedPhys) + "; Time Spent: " + timeSpent
-				+ "; Time Left: " + timeLeft + "; Coins: " + coinsGained
-				+ "; Hidden blocks: " + hiddenBlocksFound + "; Mushrooms: "
-				+ mushroomsDevoured + "; Flowers: " + flowersDevoured
-				+ "; Collisions: " + collisionsWithCreatures + "; kills: "
-				+ killsTotal + "; By Fire: " + killsByFire + "; By Shell: "
-				+ killsByShell + "; By Stomp: " + killsByStomp + "; "
-				+ ((Memo.equals("")) ? "" : "\nMEMO INFO: " + Memo);
-	}
-
-	public void setTaskName(final String name) {
-		taskName = name;
-	}
-
 	private String spaceFormat(int i) {
 		String r = "" + ((i == 0) ? "." : i);
 		while (r.length() < 4)
@@ -314,42 +242,6 @@ public final class EvaluationInfo implements Cloneable {
 			MarioLog.error(e.toString());
 			return null;
 		}
-
-		// EvaluationInfo ret = new EvaluationInfo();
-		// ret.marioStatus = this.marioStatus;
-		// ret.flowersDevoured = this.flowersDevoured;
-		// ret.distancePassedPhys = this.distancePassedPhys;
-		//
-		// ret.distancePassedCells = this.distancePassedCells;
-		// //// evaluationInfo.totalLengthOfLevelCells =
-		// levelScene.level.getWidthCells();
-		// //// evaluationInfo.totalLengthOfLevelPhys =
-		// levelScene.level.getWidthPhys();
-		// ret.timeSpent = this.timeSpent;
-		// ret.timeLeft = this.timeLeft;
-		// ret.coinsGained = this.coinsGained;
-		// ret.totalNumberOfCoins = this.totalNumberOfCoins;
-		// ret.totalNumberOfHiddenBlocks = this.totalNumberOfHiddenBlocks;
-		// ret.totalNumberOfFlowers = this.totalNumberOfFlowers;
-		// ret.totalNumberOfMushrooms = this.totalNumberOfMushrooms;
-		// ret.totalNumberOfCreatures = this.totalNumberOfCreatures;
-		// ret.marioMode = this.marioMode;
-		// ret.mushroomsDevoured = this.mushroomsDevoured;
-		// ret.killsTotal = this.killsTotal;
-		// ret.killsByStomp = this.killsByStomp;
-		// ret.killsByFire = this.killsByFire;
-		// ret.killsByShell = this.killsByShell;
-		// ret.hiddenBlocksFound = this.hiddenBlocksFound;
-		// ret.collisionsWithCreatures = this.collisionsWithCreatures;
-		// ret.Memo = this.Memo.substring(0);
-		// ret.levelLength = this.levelLength;
-		// ret.marioTraceFileName = this.marioTraceFileName;
-		// ret.marioTrace = this.marioTrace;
-		// return ret;
-	}
-
-	public String getTaskName() {
-		return taskName;
 	}
 
 	public void reset() {

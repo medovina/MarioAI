@@ -40,12 +40,7 @@ import engine.Recorder;
 import engine.Replayer;
 import engine.SimulatorOptions;
 import engine.VisualizationComponent;
-import engine.generalization.Entity;
-import engine.generalization.EntityGeneralizer;
-import engine.generalization.EntityType;
-import engine.generalization.MarioEntity;
-import engine.generalization.Tile;
-import engine.generalization.TileGeneralizer;
+import engine.generalization.*;
 import engine.input.MarioInput;
 import engine.level.Level;
 import engine.sprites.Mario;
@@ -53,7 +48,6 @@ import engine.sprites.Sprite;
 import options.AIOptions;
 import options.SystemOptions;
 import options.VisualizationOptions;
-import tasks.SystemOfValues;
 import tools.EvaluationInfo;
 import utils.MarioLog;
 
@@ -96,8 +90,6 @@ public final class MarioEnvironment implements IEnvironment {
 	private static String marioTraceFile;
 
 	private Recorder recorder;
-
-	public static SystemOfValues IntermediateRewardsSystemOfValues = new SystemOfValues();
 
 	DecimalFormat df = new DecimalFormat("######.#");
 
