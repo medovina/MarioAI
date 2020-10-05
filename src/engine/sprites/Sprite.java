@@ -144,9 +144,6 @@ public class Sprite {
 			return "Power up Flower";
 		case Sprite.KIND_GREEN_MUSHROOM:
 			return "Green mushroom";
-			/*
-			 * case Sprite.KIND_PRINCESS: return "Princess";
-			 */
 		}
 
 		return "Unknown";
@@ -169,15 +166,8 @@ public class Sprite {
 		if (!visible)
 			return;
 
-		// int xPixel = (int)(xOld+(x-xOld)*cameraOffSet)-xPicO;
-		// int yPixel = (int)(yOld+(y-yOld)*cameraOffSet)-yPicO;
-
 		int xPixel = (int) x - xPicO;
 		int yPixel = (int) y - yPicO;
-
-		// System.out.print("xPic = " + xPic);
-		// System.out.print(", yPic = " + yPic);
-		// System.out.println(", kind = " + this.kind);
 
 		try {
 			og.drawImage(sheet[xPic][yPic], xPixel + (xFlipPic ? wPic : 0),
@@ -204,16 +194,6 @@ public class Sprite {
 		xOld = x;
 		yOld = y;
 	}
-
-	// public float getX(float alpha)
-	// {
-	// return (xOld+(x-xOld)*alpha)-xPicO;
-	// }
-	//
-	// public float getY(float alpha)
-	// {
-	// return (yOld+(y-yOld)*alpha)-yPicO;
-	// }
 
 	public void collideCheck() {
 	}
