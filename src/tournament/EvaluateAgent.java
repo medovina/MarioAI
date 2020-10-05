@@ -37,9 +37,6 @@ public class EvaluateAgent {
 	public MarioRunResults evaluateAgent(String agentId, IAgent agent) {
 		agentId = Sanitize.idify(agentId);
 		
-        System.out.println(
-            "Evaluating agent in " + runCount + " levels...");
-		
 		MarioRun[] runs = MarioRunsGenerator.generateRunList(seed, levelOptions, runCount);
 		
 		MarioRunResults results = new MarioRunResults();
@@ -54,7 +51,7 @@ public class EvaluateAgent {
 			results.addRunResults(result);			
 		}
 		
-		System.out.println(results.toString());
+		System.out.println("  " + results.toString());
 		
 		if (resultDirFile != null)
 			outputResults(agentId, results);	

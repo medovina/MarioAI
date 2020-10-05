@@ -76,17 +76,11 @@ public class MarioSimulator {
 			throw new RuntimeException("Agent is NULL! Please specify correct agent to run within the simulator.");
 		}
 		
-		MarioLog.trace("[MarioSimulator] Initializing MarioOptions..");
-		
 		MarioOptions.reset(options);
-		
-		MarioLog.trace("[MarioSimulator] Initializing the environment and the agent...");
 		
 		IEnvironment environment = MarioEnvironment.getInstance();
 		environment.reset(agent);
 				
-		MarioLog.trace("[MarioSimulator] SIMULATION RUNNING!");
-		
 		while (!environment.isLevelFinished()) {
 			// UPDATE THE ENVIRONMENT
 			environment.tick();
@@ -100,20 +94,16 @@ public class MarioSimulator {
 			agent.receiveReward(environment.getScore());
 		}
 		
-		MarioLog.trace("[MarioSimulator] SIMULATION ENDED!");
-		
 		EvaluationInfo result = environment.getEvaluationInfo();
 		
 		MarioLog.fine("[MarioSimulator] RESULT:");
 		MarioLog.fine(result.toString());
 		
-		MarioLog.trace("[MarioSimulator] Simulator terminated.");
-		
 		return result.clone(); // result is shared instance ... we must clone it to maintain sanity 		
 	}
 	
-	public static EvaluationInfo main(IAgent agent, int level) {
-        String options = LevelConfig.values()[level].getOptions();
+	public static EvaluationInfo main(IAgent agent, LevelConfig level) {
+        String options = level.getOptions();
 		
 		MarioSimulator simulator = new MarioSimulator(options);
 		return simulator.run(agent);

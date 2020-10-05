@@ -2,7 +2,6 @@ package tournament;
 
 import agents.IAgent;
 import options.LevelConfig;
-import tournament.run.MarioRunResults;
 
 public class Evaluate {
 	private static String[] getEvaluationOptions(int runs, int seed, String levelOptions, boolean saveResults) {
@@ -15,15 +14,16 @@ public class Evaluate {
 		};
 	}
 	
-    public static MarioRunResults evaluateLevel(
-                int runs, int seed, LevelConfig level, boolean saveResults, IAgent agent) {
+    public static void evaluateLevels(
+                int runs, int seed, int fromLevel, int toLevel, boolean saveResults, IAgent agent) {
+        for (int l = fromLevel ; l <= toLevel ; ++l) {
+            LevelConfig level = LevelConfig.values()[l];
+            System.out.println("Evaluating in " + level.name() + "...");
+            
+            String[] options =
+                getEvaluationOptions(runs, seed, level.getOptionsVisualizationOff(), saveResults);
 
-		System.out.println("Evaluating " + level.name());
-        
-        String[] options =
-            getEvaluationOptions(runs, seed, level.getOptionsVisualizationOff(), saveResults);
-
-        MarioRunResults results = EvaluateAgentConsole.evaluate(options, agent);
-		return results;
+            EvaluateAgentConsole.evaluate(options, agent);
+        }
 	}
 }

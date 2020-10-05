@@ -116,13 +116,9 @@ public final class LevelScene implements SpriteContext {
 		}
 	}
 
-	// TODO: !H!: Move to MarioEnvironment !!
-
 	public float[] getEnemiesFloatPos() {
 		enemiesFloatsList.clear();
 		for (Sprite sprite : sprites) {
-			// TODO:[M]: add unit tests for getEnemiesFloatPos involving all
-			// kinds of creatures
 			if (sprite.isDead())
 				continue;
 			switch (sprite.kind) {

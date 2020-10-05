@@ -88,11 +88,10 @@ public class EvaluationInfos {
 	@Override
 	public String toString() {
         return String.format(
-            "won = %d (%.1f%%), died = %d (%.1f%%), timed out = %d (%.1f%%), avg time = %.1f",
+            "won = %d (%.1f%%), died = %d (%.1f%%), timed out = %d (%.1f%%)",
             totalVictories, 100 * avgVictories,
             totalDeaths, 100 * avgDeaths,
-            totalTimedout, 100 * avgTimedout,
-            avgTimeSpent);
+            totalTimedout, 100 * avgTimedout);
 	}
 	
 }
