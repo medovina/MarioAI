@@ -83,17 +83,13 @@ public final class EvaluationInfo implements Cloneable {
 	public EvaluationResult getResult() {
 		switch (marioStatus) {
 		case Mario.STATUS_RUNNING:
-			if (timeLeft <= 0) {
-				return EvaluationResult.LEVEL_TIMEDOUT;
-			} else {
-				return EvaluationResult.SIMULATION_RUNNING;
-			}
+			return EvaluationResult.SIMULATION_RUNNING;
 			
 		case Mario.STATUS_WIN:
 			return EvaluationResult.VICTORY;
 			
 		case Mario.STATUS_DEAD:
-			return EvaluationResult.MARIO_DIED;
+			return timeLeft <= 0 ? EvaluationResult.LEVEL_TIMEDOUT : EvaluationResult.MARIO_DIED;
 			
 		default:
 			throw new RuntimeException("Invalid evaluation state. Cannot determine result.");
