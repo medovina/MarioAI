@@ -506,7 +506,7 @@ public final class LevelScene implements SpriteContext {
 				e.printStackTrace();
 			}
 		} else {
-			level = LevelGenerator.createLevel();
+			level = new LevelGenerator().createLevel();
 		}
 
 		if (SystemOptions.isSaveLevelFileName()) {
