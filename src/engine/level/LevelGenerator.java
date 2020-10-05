@@ -72,7 +72,7 @@ public class LevelGenerator {
 	private static int height;
 	private static Level level;
 
-	private static Random globalRandom = new Random(0);
+	private static Random random = new Random(0);
 	private static RandomCreatureGenerator creaturesRandom = new RandomCreatureGenerator(0, "", 0);
 
 	private static final int ODDS_STRAIGHT = 0;
@@ -164,7 +164,7 @@ public class LevelGenerator {
 
         level = new Level(length, height);
         
-		globalRandom.setSeed(levelSeed);
+		random.setSeed(levelSeed);
 		creaturesRandom.init(levelSeed, LevelOptions.getEnemies(), levelDifficulty);
 
 		isLadder = LevelOptions.isLadders();
@@ -174,7 +174,7 @@ public class LevelGenerator {
 		// by default mario is supposed to start on a straight surface
 		int floor = DEFAULT_FLOOR;
 		if (isFlatLevel)
-			floor = height - 1 - globalRandom.nextInt(4);
+			floor = height - 1 - random.nextInt(4);
 
 		currentLength += buildStraight(0, level.length, true, floor, INFINITE_FLOOR_HEIGHT);
 		while (currentLength < level.length - 10) {
@@ -183,7 +183,7 @@ public class LevelGenerator {
 		}
 
 		if (!isFlatLevel)
-			floor = height - 1 - globalRandom.nextInt(4); // floor of the exit line
+			floor = height - 1 - random.nextInt(4); // floor of the exit line
 
 		// coordinates of the exit
 		level.xExit = LevelOptions.getLevelExit()[0];
@@ -215,8 +215,8 @@ public class LevelGenerator {
             int run = 0;
             for (int x = 0; x < level.length; x++) {
                 if (run-- <= 0 && x > 4) {
-                    ceiling = globalRandom.nextInt(4);
-                    run = globalRandom.nextInt(4) + 4;
+                    ceiling = random.nextInt(4);
+                    run = random.nextInt(4) + 4;
                 }
                 for (int y = 0; y < level.height; y++) {
                     if ((x > 4 && y <= ceiling) || x < 1) {
@@ -241,7 +241,7 @@ public class LevelGenerator {
 
 	private static int buildZone(int x, int maxLength, int maxHeight,
 			int floor, int floorHeight) {
-		int t = globalRandom.nextInt(totalOdds);
+		int t = random.nextInt(totalOdds);
 		int type = 0;
 		for (int i = 0; i < odds.length; i++) {
 			if (odds[i] <= t) {
@@ -256,8 +256,7 @@ public class LevelGenerator {
 			length = buildStraight(x, maxLength, false, floor, floorHeight);
 			break;
 		case ODDS_PLATFORMS:
-			if (floor == DEFAULT_FLOOR
-					&& counters.platformCount < counters.totalHillStraight) {
+			if (floor == DEFAULT_FLOOR && counters.platformCount < counters.totalHillStraight) {
 				counters.platformCount++;
 				length = buildPlatform(x, true, maxLength, floor, false);
 			} else
@@ -317,11 +316,11 @@ public class LevelGenerator {
 		int len = 0;
 
 		while (len < ceilingLength) {
-			int sectionLength = globalRandom.nextInt(2) + 2;
+			int sectionLength = random.nextInt(2) + 2;
 			if (sectionLength > ceilingLength)
 				sectionLength = ceilingLength;
 
-			int height = globalRandom.nextInt(maxCeilingHeight) + 1;
+			int height = random.nextInt(maxCeilingHeight) + 1;
 			for (int i = 0; i < sectionLength; i++) {
 				for (int j = 0; j < height; j++)
 					level.setBlock(x0 + len + i, j, (byte) (1 + 9 * 16));
@@ -335,7 +334,7 @@ public class LevelGenerator {
 		if (!creaturesRandom.canAdd())
 			return;
 
-		int dx = (int) globalRandom.nextGaussian();
+		int dx = (int) random.nextGaussian();
 		int creatureKind = creaturesRandom.nextCreature();
 		if (creatureKind != Sprite.KIND_UNDEF) {
 			if (level.setSpriteTemplate(x + dx, y, new SpriteTemplate(creatureKind)))
@@ -350,18 +349,18 @@ public class LevelGenerator {
 
 	private static int buildDeadEnds(int x0, int maxLength) {
 		// first of all build pre dead end zone
-		int floor = height - 2 - globalRandom.nextInt(2); // floor of pre dead end zone
+		int floor = height - 2 - random.nextInt(2); // floor of pre dead end zone
 		int length = 0; // total zone length
-		int preDeadEndLength = 7 + globalRandom.nextInt(10);
+		int preDeadEndLength = 7 + random.nextInt(10);
 		int rHeight = floor - 1; // rest height
-		int separatorY = 3 + globalRandom.nextInt(rHeight - 7); // Y coordinate of the top line of the separator
+		int separatorY = 3 + random.nextInt(rHeight - 7); // Y coordinate of the top line of the separator
 
 		length += buildStraight(x0, preDeadEndLength, true, floor,
 				INFINITE_FLOOR_HEIGHT);// buildZone( x0, x0+preDeadEndLength,
 										// floor ); //build pre dead end zone
 
-		if (globalRandom.nextInt(3) == 0 && isLadder) {
-			int ladderX = x0 + globalRandom.nextInt(length - 1) + 1;
+		if (random.nextInt(3) == 0 && isLadder) {
+			int ladderX = x0 + random.nextInt(length - 1) + 1;
 			if (ladderX > x0 + length)
 				ladderX = x0 + length;
 			buildLadder(ladderX, floor, floor - separatorY);
@@ -371,16 +370,16 @@ public class LevelGenerator {
 
 		// correct direction
 		// true - top, false = bottom
-		globalRandom.nextInt();
-		int k = globalRandom.nextInt(5);// (globalRandom.nextInt() % (this.levelDifficulty+1));
-		boolean direction = globalRandom.nextInt(k + 1) != 1;
+		random.nextInt();
+		int k = random.nextInt(5);// (globalRandom.nextInt() % (this.levelDifficulty+1));
+		boolean direction = random.nextInt(k + 1) != 1;
 
 		// Y coordinate of the bottom line of the separator is determined as
 		// separatorY + separatorHeight
-		int separatorHeight = 2 + globalRandom.nextInt(2);
+		int separatorHeight = 2 + random.nextInt(2);
 
 		int nx = x0 + length;
-		int depth = globalRandom.nextInt(levelDifficulty + 1) + 2
+		int depth = random.nextInt(levelDifficulty + 1) + 2
 				* (1 + levelDifficulty);
 		if (depth + length > maxLength) {
 			// depth = maxLength
@@ -398,7 +397,7 @@ public class LevelGenerator {
 			}
 		}
 
-		int wallWidth = 2 + globalRandom.nextInt(3);
+		int wallWidth = 2 + random.nextInt(3);
 
 		while (tLength < depth) // top part
 		{
@@ -442,7 +441,7 @@ public class LevelGenerator {
 	}
 
 	private static void buildLadder(int x0, int floor, int maxHeight) {
-		int ladderHeight = globalRandom.nextInt(height);
+		int ladderHeight = random.nextInt(height);
 		if (ladderHeight > maxHeight && maxHeight != ANY_HEIGHT) {
 			ladderHeight = maxHeight;
 		}
@@ -458,22 +457,22 @@ public class LevelGenerator {
 
 	private static int buildGap(int xo, int maxLength, int maxHeight,
 			int vfloor, int floorHeight) {
-		int gs = globalRandom.nextInt(5) + 2; // GapStairs
-		int gl = globalRandom.nextInt(levelDifficulty) + levelDifficulty > 7 ? 10
+		int gs = random.nextInt(5) + 2; // GapStairs
+		int gl = random.nextInt(levelDifficulty) + levelDifficulty > 7 ? 10
 				: 3;// globalRandom.nextInt(2) + 2; //GapLength
 		int length = gs * 2 + gl;
 
 		if (length > maxLength)
 			length = maxLength;
 
-		boolean hasStairs = globalRandom.nextInt(3) == 0;
+		boolean hasStairs = random.nextInt(3) == 0;
 		if (isFlatLevel || (maxHeight <= 5 && maxHeight != ANY_HEIGHT)) {
 			hasStairs = false;
 		}
 
 		int floor = vfloor;
 		if (vfloor == DEFAULT_FLOOR && !isFlatLevel) {
-			floor = height - 1 - globalRandom.nextInt(4);
+			floor = height - 1 - random.nextInt(4);
 		} else // code in this block is a magic. don't change it
 		{
 			floor++;
@@ -514,7 +513,7 @@ public class LevelGenerator {
 		}
 		if (gl > 8) {
 			buildPlatform(
-					xo + gs + globalRandom.nextInt(Math.abs((gl - 4)) / 2 + 1),
+					xo + gs + random.nextInt(Math.abs((gl - 4)) / 2 + 1),
 					false, 3, floor, true);
 		}
 
@@ -524,15 +523,15 @@ public class LevelGenerator {
 	private static int buildCannons(int xo, int maxLength, int maxHeight,
 			int vfloor, int floorHeight) {
 		int maxCannonHeight = 0;
-		int length = globalRandom.nextInt(10) + 2;
+		int length = random.nextInt(10) + 2;
 		if (length > maxLength)
 			length = maxLength;
 
 		int floor = vfloor;
 		if (vfloor == DEFAULT_FLOOR) {
-			floor = height - 1 - globalRandom.nextInt(4);
+			floor = height - 1 - random.nextInt(4);
 		} else {
-			globalRandom.nextInt();
+			random.nextInt();
 		}
 
 		if (floorHeight == INFINITE_FLOOR_HEIGHT) {
@@ -541,17 +540,17 @@ public class LevelGenerator {
 
 		int oldXCannon = -1;
 
-		int xCannon = xo + 1 + globalRandom.nextInt(4);
+		int xCannon = xo + 1 + random.nextInt(4);
 		for (int x = xo; x < xo + length; x++) {
 			if (x > xCannon) {
-				xCannon += 2 + globalRandom.nextInt(4);
+				xCannon += 2 + random.nextInt(4);
 				counters.cannonsCount++;
 			}
 			if (xCannon == xo + length - 1) {
 				xCannon += 10;
 			}
 
-            int cannonHeight = floor - globalRandom.nextInt(3) - 1;
+            int cannonHeight = floor - random.nextInt(3) - 1;
                 // cannon height is a Y coordinate of top part of the cannon
 			if (maxHeight != ANY_HEIGHT) {
 				// maxHeight -= 2;
@@ -591,7 +590,7 @@ public class LevelGenerator {
 			}
 		}
 
-		if (globalRandom.nextBoolean())
+		if (random.nextBoolean())
 			buildBlocks(xo, xo + length, floor - maxCannonHeight - 2, false, 0,
 					0, false, false);
 
@@ -600,14 +599,14 @@ public class LevelGenerator {
 
 	private static int buildPlatform(int x0, boolean withStraight, int maxLength,
 			int vfloor, boolean isInGap) {
-		int length = globalRandom.nextInt(10) + 10;
+		int length = random.nextInt(10) + 10;
 		if (length > maxLength) {
 			length = maxLength;
 		}
 
 		int floor = vfloor;
 		if (vfloor == DEFAULT_FLOOR) {
-			floor = height - 1 - globalRandom.nextInt(4);
+			floor = height - 1 - random.nextInt(4);
 		}
 
 		if (withStraight) {
@@ -626,14 +625,14 @@ public class LevelGenerator {
 		if (isInGap)
 			floor = level.height;
 		while (canBuild) {
-			top -= isFlatLevel ? 0 : (globalRandom.nextInt(2) + 2);
+			top -= isFlatLevel ? 0 : (random.nextInt(2) + 2);
 			if (top < 0)
 				canBuild = false;
 			else {
-				int l = globalRandom.nextInt(length / 2) + 1;
-				int xx0 = globalRandom.nextInt(l + 1) + x0;
+				int l = random.nextInt(length / 2) + 1;
+				int xx0 = random.nextInt(l + 1) + x0;
 
-				if (globalRandom.nextInt(4) == 0) {
+				if (random.nextInt(4) == 0) {
 					decorate(xx0 - 1, xx0 + l + 1, top);
 					canBuild = false;
 				}
@@ -668,19 +667,19 @@ public class LevelGenerator {
 	private static int buildTubes(int xo, int maxLength, int maxHeight,
 			int vfloor, int floorHeight) {
 		int maxTubeHeight = 0;
-		int length = globalRandom.nextInt(10) + 5;
+		int length = random.nextInt(10) + 5;
 		if (length > maxLength)
 			length = maxLength;
 
 		int floor = vfloor;
 		if (vfloor == DEFAULT_FLOOR) {
-			floor = height - 1 - globalRandom.nextInt(4);
+			floor = height - 1 - random.nextInt(4);
 		} else {
-			globalRandom.nextInt();
+			random.nextInt();
 		}
-		int xTube = xo + 1 + globalRandom.nextInt(4);
+		int xTube = xo + 1 + random.nextInt(4);
 
-		int tubeHeight = floor - globalRandom.nextInt(3) - 1;
+		int tubeHeight = floor - random.nextInt(3) - 1;
 
 		if (maxHeight != ANY_HEIGHT) {
 			// maxHeight -= 2;
@@ -702,8 +701,8 @@ public class LevelGenerator {
 
 		for (int x = xo; x < xo + length; x++) {
 			if (x > xTube + 1) {
-				xTube += 3 + globalRandom.nextInt(4);
-				tubeHeight = floor - globalRandom.nextInt(2) - 2;
+				xTube += 3 + random.nextInt(4);
+				tubeHeight = floor - random.nextInt(2) - 2;
 				if (maxHeight != ANY_HEIGHT) {
 					while (floor - tubeHeight > maxHeight - 1) {
 						tubeHeight++;
@@ -717,7 +716,7 @@ public class LevelGenerator {
 				xTube += 10;
 			}
 
-			if (x == xTube && globalRandom.nextInt(11) < levelDifficulty + 1
+			if (x == xTube && random.nextInt(11) < levelDifficulty + 1
 					&& creaturesRandom.isCreatureEnabled("f")) {
 				level.setSpriteTemplate(x, tubeHeight, new SpriteTemplate(
 						Sprite.KIND_ENEMY_FLOWER));
@@ -749,7 +748,7 @@ public class LevelGenerator {
 			}
 		}
 
-		if (globalRandom.nextBoolean())
+		if (random.nextBoolean())
 			buildBlocks(xo, xo + length, floor - maxTubeHeight - 2, false, 0,
 					0, false, false);
 
@@ -767,18 +766,16 @@ public class LevelGenerator {
 		if (floorHeight != INFINITE_FLOOR_HEIGHT) {
 			length = maxLength;
 		} else {
-			length = globalRandom.nextInt(8) + 2;  // globalRandom.nextInt(50)+1) + 2;
+			length = random.nextInt(8) + 2;  // globalRandom.nextInt(50)+1) + 2;
 			if (safe)
-				length = 10 + globalRandom.nextInt(5);
+				length = 10 + random.nextInt(5);
 			if (length > maxLength)
 				length = maxLength;
 		}
 
 		int floor = vfloor;
 		if (vfloor == DEFAULT_FLOOR) {
-			floor = height - 1 - globalRandom.nextInt(4);
-		} else {
-			globalRandom.nextInt();
+			floor = height - 1 - random.nextInt(4);
 		}
 
 		int y1 = height;
@@ -830,7 +827,7 @@ public class LevelGenerator {
 				for (int x = x0 + s; x < x1 - e; x++) {
 					if (hb && counters.totalHiddenBlocks != 0) // if hidden blocks to be built
 					{
-						boolean isBlock = globalRandom.nextInt(2) == 1;
+						boolean isBlock = random.nextInt(2) == 1;
 						if (isBlock && canBuildBlocks(x, floor - 4, true)) {
 							level.setBlock(x, floor - 4, (byte) (1)); // a hidden block with a coin
 							counters.hiddenBlocksCount++;
@@ -840,10 +837,10 @@ public class LevelGenerator {
 						boolean canDeco = false; // can add enemy line and coins
 						// decorate( x0, x1, floor, true );
 						if (x != x0 + 1 && x != x1 - 2
-								&& globalRandom.nextInt(3) == 0) {
+								&& random.nextInt(3) == 0) {
 							if (canBuildBlocks(x, floor - 4, false)) {
 								counters.blocksCount++;
-								int rnd = globalRandom.nextInt(6);
+								int rnd = random.nextInt(6);
 								if (rnd >= 0 && rnd < 2) {
 									if (level.getBlock(x, floor) == 0)
 										level.setBlock(x, floor, (byte) (4 + 2 + 1 * 16));
@@ -858,7 +855,7 @@ public class LevelGenerator {
 										++counters.coinsCount;
 									}
 								} else if (rnd >= 4 && rnd < 6) {
-									int coinsNumber = globalRandom.nextInt(9) + 1;
+									int coinsNumber = random.nextInt(9) + 1;
                                     level.setBlock(x, floor, (byte) (4 + 3 + 1 * 16));
                                         // a brick with animated question symbol with N coins inside.
 										// when broken becomes a rock
@@ -868,10 +865,10 @@ public class LevelGenerator {
 								}
 								canDeco = true;
 							}
-						} else if (globalRandom.nextInt(4) == 0) {
+						} else if (random.nextInt(4) == 0) {
 							if (canBuildBlocks(x, floor - 4, false)) {
 								counters.blocksCount++;
-								if (globalRandom.nextInt(4) == 0) {
+								if (random.nextInt(4) == 0) {
 									if (level.getBlock(x, floor) == 0)
                                         level.setBlock(x, floor, (byte) (2 + 1 * 16));
                                             // a brick with a power up. when broken becomes a rock
@@ -884,7 +881,7 @@ public class LevelGenerator {
 								}
 								canDeco = true;
 							}
-						} else if (globalRandom.nextInt(2) == 1
+						} else if (random.nextInt(2) == 1
 								&& canBuildBlocks(x, floor - 4, false)) {
 							if (level.getBlock(x, floor) == 0) {
 								counters.blocksCount++; // TODO:TASK:!H! move it into the
@@ -903,21 +900,21 @@ public class LevelGenerator {
 				if (onlyHB) {
 					hb = true;
 				} else {
-					hb = globalRandom.nextInt(4) == 0;
+					hb = random.nextInt(4) == 0;
 				}
 			}
 
 			// if (creaturesRandom.nextInt(35) > levelDifficulty + 1)
 			// addEnemiesLine(x0 + 1, x1 - 1, floor - 1);
 
-			int delta = isDistance ? 4 : globalRandom.nextInt(6) + 3;
+			int delta = isDistance ? 4 : random.nextInt(6) + 3;
 			if (delta > 4)
 				result = true;
 			floor -= delta;
-			s = globalRandom.nextInt(4);
-			e = globalRandom.nextInt(4);
+			s = random.nextInt(4);
+			e = random.nextInt(4);
 		}
-		globalRandom.nextBoolean();
+		random.nextBoolean();
 		return result;
 	}
 
@@ -942,9 +939,9 @@ public class LevelGenerator {
 		if (floor < 1)
 			return;
 
-		int s = globalRandom.nextInt(4);
-		int e = globalRandom.nextInt(4);
-		boolean hb = ((globalRandom.nextInt(levelDifficulty + 1) % (levelDifficulty + 1))) > 0.5;
+		int s = random.nextInt(4);
+		int e = random.nextInt(4);
+		boolean hb = ((random.nextInt(levelDifficulty + 1) % (levelDifficulty + 1))) > 0.5;
 
 		// if (!hb)
 		// {
@@ -957,8 +954,8 @@ public class LevelGenerator {
 
 		boolean buildLadder = buildBlocks(x0, x1, floor, hb, s, e, false, false);
 
-		if (buildLadder && isLadder && globalRandom.nextInt(3) == 0)
-			buildLadder(globalRandom.nextBoolean() ? x0 : x1, floor, ANY_HEIGHT);
+		if (buildLadder && isLadder && random.nextInt(3) == 0)
+			buildLadder(random.nextBoolean() ? x0 : x1, floor, ANY_HEIGHT);
 	}
 
 	private static void fixWalls() {

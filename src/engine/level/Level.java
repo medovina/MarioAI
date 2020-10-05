@@ -208,37 +208,19 @@ public class Level implements Serializable {
 	}
 
 	public void setBlock(int x, int y, byte b) {
-		if (x < 0)
-			return;
-		if (y < 0)
-			return;
-		if (x >= length)
-			return;
-		if (y >= height)
+		if (x < 0 || y < 0 || x >= length || y >= height)
 			return;
 		map[x][y] = b;
 	}
 
 	public void setBlockData(int x, int y, byte b) {
-		if (x < 0)
-			return;
-		if (y < 0)
-			return;
-		if (x >= length)
-			return;
-		if (y >= height)
+		if (x < 0 || y < 0 || x >= length || y >= height)
 			return;
 		data[x][y] = b;
 	}
 
 	public byte getBlockData(int x, int y) {
-		if (x < 0)
-			return 0;
-		if (y < 0)
-			return 0;
-		if (x >= length)
-			return 0;
-		if (y >= height)
+		if (x < 0 || y < 0 || x >= length || y >= height)
 			return 0;
 		return data[x][y];
 	}
@@ -255,25 +237,13 @@ public class Level implements Serializable {
 	}
 
 	public SpriteTemplate getSpriteTemplate(int x, int y) {
-		if (x < 0)
-			return null;
-		if (y < 0)
-			return null;
-		if (x >= length)
-			return null;
-		if (y >= height)
+		if (x < 0 || y < 0 || x >= length || y >= height)
 			return null;
 		return spriteTemplates[x][y];
 	}
 
 	public boolean setSpriteTemplate(int x, int y, SpriteTemplate spriteTemplate) {
-		if (x < 0)
-			return false;
-		if (y < 0)
-			return false;
-		if (x >= length)
-			return false;
-		if (y >= height)
+		if (x < 0 || y < 0 || x >= length || y >= height)
 			return false;
 		spriteTemplates[x][y] = spriteTemplate;
 		return true;
@@ -291,62 +261,3 @@ public class Level implements Serializable {
 		aOutputStream.writeObject(counters);
 	}
 }
-
-// public void ASCIIToOutputStream(OutputStream os) throws IOException {
-// BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-// bw.write("\nlength = " + length);
-// bw.write("\nheight = " + height);
-// bw.write("\nMap:\n");
-// for (int y = 0; y < height; y++)
-//
-// {
-// for (int x = 0; x < length; x++)
-//
-// {
-// bw.write(map[x][y] + "\t");
-// }
-// bw.newLine();
-// }
-// bw.write("\nData: \n");
-//
-// for (int y = 0; y < height; y++)
-//
-// {
-// for (int x = 0; x < length; x++)
-//
-// {
-// bw.write(data[x][y] + "\t");
-// }
-// bw.newLine();
-// }
-//
-// bw.write("\nspriteTemplates: \n");
-// for (int y = 0; y < height; y++)
-//
-// {
-// for (int x = 0; x < length; x++)
-//
-// {
-// if (spriteTemplates[x][y] != null)
-// bw.write(spriteTemplates[x][y].getType() + "\t");
-// else
-// bw.write("_\t");
-//
-// }
-// bw.newLine();
-// }
-//
-// bw.write("\n==================\nAll objects: (Map[x,y], Data[x,y], Sprite[x,y])\n");
-// for (int y = 0; y < height; y++)
-// {
-// for (int x = 0; x < length; x++)
-//
-// {
-// bw.write("(" + map[x][y] + "," + data[x][y] + ", " + ((spriteTemplates[x][y]
-// == null) ? "_" : spriteTemplates[x][y].getType()) + ")\t");
-// }
-// bw.newLine();
-// }
-//
-// // bw.close();
-// }
