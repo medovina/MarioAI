@@ -189,19 +189,12 @@ public class EvaluateAgentConsole {
     	}
 
 		seed = config.getInt(ARG_SEED_LONG);
-
 		levelOptions = config.getString(ARG_PROTOTYPE_OPTIONS_LONG);
-		
 		runCount = config.getInt(ARG_RUNS_COUNT_LONG);
-		
 		oneLevelRepetitions = config.getInt(ARG_ONE_RUN_REPETITIONS_LONG);
-		
 		agentFQCN = config.getString(ARG_AGENT_FQCN_LONG);
-		
 		agentId = config.getString(ARG_AGNET_ID_LONG);
-		
 		resultDir = config.getString(ARG_RESULT_DIR_LONG);
-	    
 	}
 	
 	private static void sanityChecks() {
@@ -271,10 +264,6 @@ public class EvaluateAgentConsole {
 	}
 	
 	public static MarioRunResults evaluate(String[] args, IAgent mario) {
-		// --------------
-		// IMPLEMENTATION
-		// --------------
-		
 		try {
             agent = mario;
 				

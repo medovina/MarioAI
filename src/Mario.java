@@ -8,10 +8,12 @@ import tools.EvaluationInfo;
 import tournament.Evaluate;
 
 public class Mario {
+    static final String Usage = "mario [agent-classname] [-lev <level-number>] [-sim <count>]";
+
 	public static void main(String[] args) throws Exception {
 		IAgent agent = new CheaterKeyboardAgent();
         int level = 6;
-        boolean sim = false;
+        int sim = 0;
 
         for (int i = 0 ; i < args.length ; ++i) {
             String s = args[i];
@@ -20,21 +22,21 @@ public class Mario {
                     level = Integer.parseInt(args[++i]);
                     break;
                 case "-sim":
-                    sim = true;
+                    sim = Integer.parseInt(args[++i]);;
                     break;
                 default:
                     if (s.startsWith("-")) {
-                        out.println("usage: mario [agent-classname] [-lev <level-number>] [-sim]");
+                        out.printf("usage: " + Usage);
                         return;
                     }
                     agent = (IAgent) Class.forName(s).getConstructor().newInstance();
             }
         }
 
-        if (sim) {  // simulate a series of games
+        if (sim > 0) {  // simulate a series of games
             LevelConfig config = LevelConfig.values()[level];
-            Evaluate.evaluateLevel(0, config, false, agent);
-        } else {
+            Evaluate.evaluateLevel(sim, 0, config, false, agent);
+        } else {  // play one game visually
             EvaluationInfo info = MarioSimulator.main(agent, level);
             
             switch (info.getResult()) {
