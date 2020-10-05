@@ -14,26 +14,21 @@ import tournament.run.MarioRunsGenerator;
 import tournament.utils.Sanitize;
 
 public class EvaluateAgent {
-	
 	private int seed = 0;
-
 	private String levelOptions;
-	
 	private int runCount;
+    private File resultDirFile;
+    private boolean verbose;
 	
-	private File resultDirFile;
-	
-	public EvaluateAgent(int seed, String levelOptions, int runCount, File resultDirFile) {
+    public EvaluateAgent(int seed, String levelOptions, int runCount, File resultDirFile,
+                         boolean verbose) {
 		this.seed = seed;
 		this.levelOptions = levelOptions;
 		this.runCount = runCount;
-		this.resultDirFile = resultDirFile;
+        this.resultDirFile = resultDirFile;
+        this.verbose = verbose;
 	}
 	
-	private void logFine(String agentId, String msg) {
-		MarioLog.fine("[" + agentId + "] " + msg);
-	}
-
 	public MarioRunResults evaluateAgent(String agentId, IAgent agent) {
 		agentId = Sanitize.idify(agentId);
 		
@@ -42,12 +37,8 @@ public class EvaluateAgent {
 		MarioRunResults results = new MarioRunResults();
 		
 		for (int i = 0; i < runs.length; ++i) {
-			logFine(agentId, "LEVEL " + (i+1) + " / " + runs.length);
-			
-			MarioRunResult result = runs[i].run(agent);
-			
-			logFine(agentId, "LEVEL " + (i+1) + " / " + runs.length + " SIMULATIONS FINISHED: " + result.toString());
-			
+			MarioRunResult result = runs[i].run(agent, verbose);
+            
 			results.addRunResults(result);			
 		}
 		

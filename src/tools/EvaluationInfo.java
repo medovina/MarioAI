@@ -40,7 +40,9 @@ public final class EvaluationInfo implements Cloneable {
 		MARIO_DIED,
 		VICTORY,
 		SIMULATION_RUNNING
-	}
+    }
+    
+    static final String[] ResultDescription = { "timed out", "died", "victory", "still running" };
 	
 	private static final int MagicNumberUnDef = -42;
 
@@ -105,7 +107,11 @@ public final class EvaluationInfo implements Cloneable {
 
 	public int computeKillsTotal() {
 		return this.killsTotal;
-	}
+    }
+    
+    public String summary() {
+        return ResultDescription[getResult().ordinal()] + ", score = " + score;
+    }
 
 	public String toString() {
 		evaluationFinished = System.currentTimeMillis();

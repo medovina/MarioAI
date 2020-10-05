@@ -11,8 +11,9 @@ public class Mario {
     static void usage() {
         System.out.println("usage: mario [<agent-classname>] [<option>...]");
         System.out.println("options:");
-        System.out.println("  -level <level-number>[-<to-level-number>]");
-        System.out.println("  -sim <count>");
+        System.out.println("  -level <level-number>[-<to-level-number>] : choose level(s) to run or simulate");
+        System.out.println("  -sim <count> : simulate a series of games without visualization");
+        System.out.println("  -v : verbose");
         System.exit(1);
     }
 
@@ -20,6 +21,7 @@ public class Mario {
 		IAgent agent = null;
         int fromLevel = 6, toLevel = 0;
         int sim = 0;
+        boolean verbose = false;
 
         for (int i = 0 ; i < args.length ; ++i) {
             String s = args[i];
@@ -31,6 +33,9 @@ public class Mario {
                     break;
                 case "-sim":
                     sim = Integer.parseInt(args[++i]);;
+                    break;
+                case "-v":
+                    verbose = true;
                     break;
                 default:
                     if (s.startsWith("-"))
@@ -44,7 +49,7 @@ public class Mario {
                 System.out.println("must specify agent with -sim");
                 return;
             }
-            Evaluate.evaluateLevels(sim, 0, fromLevel, toLevel, false, agent);
+            Evaluate.evaluateLevels(sim, 0, fromLevel, toLevel, false, agent, verbose);
         } else {  // play one game visually
             if (toLevel > fromLevel) {
                 System.out.println("level range only works with -sim");

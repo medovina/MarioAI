@@ -13,10 +13,14 @@ public class MarioRun {
 		this.config = config;
 	}
 	
-	public synchronized MarioRunResult run(IAgent agent) {
+	public synchronized MarioRunResult run(IAgent agent, boolean verbose) {
 		MarioRunResult result = new MarioRunResult(config);
         MarioSimulator simulator = new MarioSimulator(config.getOptions());
         EvaluationInfo info = simulator.run(agent);
+
+        if (verbose)
+            System.out.println("  seed " + config.getSeed() + ": " + info.summary());
+
         result.addResult(info);
 		return result;		
 	}
