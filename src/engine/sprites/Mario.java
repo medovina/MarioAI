@@ -656,7 +656,7 @@ public final class Mario extends Sprite {
 		onGround = false;
 		sliding = false;
 		invulnerableTime = 1;
-		levelScene.appendBonusPoints(Points.stomp);
+		levelScene.appendBonusPoints(Points.STOMP);
 	}
 
 	public void stomp(final Shell shell) {
@@ -680,7 +680,6 @@ public final class Mario extends Sprite {
 			sliding = false;
 			invulnerableTime = 1;
 		}
-		levelScene.appendBonusPoints(Points.stomp);
 	}
 
 	public void getHurt(final int spriteKind) {
@@ -712,7 +711,7 @@ public final class Mario extends Sprite {
 		yDeathPos = (int) y;
 		winTime = 1;
 		status = Mario.STATUS_WIN;
-		levelScene.appendBonusPoints(Points.win);
+		levelScene.appendBonusPoints(Points.WIN);
 	}
 
 	public void die(final String reasonOfDeath) {
@@ -733,7 +732,7 @@ public final class Mario extends Sprite {
 			Mario.gainCoin();
 		}
 		++flowersDevoured;
-		levelScene.appendBonusPoints(Points.flowerFire);
+		levelScene.appendBonusPoints(Points.FLOWER_FIRE);
 	}
 
 	public void devourMushroom() {
@@ -746,7 +745,7 @@ public final class Mario extends Sprite {
 			Mario.gainCoin();
 		}
 		++mushroomsDevoured;
-		levelScene.appendBonusPoints(Points.mushroom);
+		levelScene.appendBonusPoints(Points.MUSHROOM);
 	}
 
 	public void devourGreenMushroom(final int mushroomMode) {
@@ -783,12 +782,12 @@ public final class Mario extends Sprite {
 		onGround = false;
 		sliding = false;
 		invulnerableTime = 1;
-		levelScene.appendBonusPoints(Points.stomp);
+		levelScene.appendBonusPoints(Points.STOMP);
 	}
 
 	public static void gainCoin() {
 		coins++;
-		levelScene.appendBonusPoints(Points.coins);
+		levelScene.appendBonusPoints(Points.COIN);
 		// if (coins % 100 == 0)
 		// get1Up();
 	}

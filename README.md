@@ -78,15 +78,15 @@ When you press A to jump, you will jump higher if you hold the A key down throug
 
 ## Scoring
 
-Your current score is displayed at the bottom of the screen.  You gain or lose points as follows:
+Your current score is displayed at the top of the screen.  You gain or lose points as follows:
 
-- shoot a Goomba or Koopa: __0__ points
-- step on a Goomba or Koopa: __10__ points
-- kill a Goomba, Koopa or Spiky by hitting it with a shell: __10__ points
+- shoot a Goomba or Koopa: __10__ points
+- step on a Goomba or Koopa: __20__ points
+- kill a Goomba, Koopa or Spiky by hitting it with a shell: __30__ points
 - collect a coin: __10__ points
 - collect a mushroom: __100__ points
 - collect a flower: __100__ points
-- finish the level by reaching the Princess: __800__ points
+- finish the level by reaching the Princess: __500__ points
 
 ## Agent API
 

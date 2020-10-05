@@ -607,10 +607,4 @@ public final class LevelScene implements SpriteContext {
 	public void appendBonusPoints(final int superPunti) {
 		bonusPoints += superPunti;
 	}
-
 }
-
-// public void update(boolean[] action)
-// {
-// System.arraycopy(action, 0, mario.keys, 0, 6);
-// }

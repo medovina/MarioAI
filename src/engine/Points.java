@@ -28,10 +28,8 @@
 package engine;
 
 public class Points {
-	public static int win = 800;
-	public static int coins = 10;
-	public static int flowerFire = 100;
-	public static int kills = 0;
-	public static int mushroom = 100;
-	public static int stomp = 10;
+    public static final int
+        SHOOT = 10, STOMP = 20, SHELL_HIT = 30,
+        COIN = 10, FLOWER_FIRE = 100, MUSHROOM = 100,
+        WIN = 500;
 }
