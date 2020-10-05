@@ -68,18 +68,13 @@ public class EvaluateAgentConsole {
 	
 	private static File resultDirFile;
 
-	private static boolean headerOutput = false;
-
 	private static JSAPResult config;
-
-		
 	
 	private static void fail(String errorMessage) {
 		fail(errorMessage, null);
 	}
 
 	private static void fail(String errorMessage, Throwable e) {
-		header();
 		MarioLog.info("ERROR: " + errorMessage);
 		MarioLog.info("");
 		if (e != null) {
@@ -94,22 +89,12 @@ public class EvaluateAgentConsole {
         throw new RuntimeException("FAILURE: " + errorMessage);
 	}
 
-	private static void header() {
-		if (headerOutput) return;
-		MarioLog.info("");
-		MarioLog.info("=========================");
-		MarioLog.info("MarioAI4J Agent Evaluator");
-		MarioLog.info("=========================");
-		MarioLog.info("");
-		headerOutput = true;
-	}
-		
 	private static void initJSAP() throws JSAPException {
 		jsap = new JSAP();
 		    	
     	FlaggedOption opt1 = new FlaggedOption(ARG_AGENT_FQCN_LONG)
         	.setStringParser(JSAP.STRING_PARSER)
-        	.setRequired(true) 
+        	.setRequired(false) 
         	.setShortFlag(ARG_AGENT_FQCN_SHORT)
         	.setLongFlag(ARG_AGENT_FQCN_LONG);    
         opt1.setHelp("Agent fully-qualified class name to evaluate. Must be present on classpath.");
@@ -220,18 +205,8 @@ public class EvaluateAgentConsole {
 	}
 	
 	private static void sanityChecks() {
-		MarioLog.info("seed: " + seed);
-
-		MarioLog.fine("Sanity checks...");
-		
-		// UT2004
-		MarioLog.fine("-- level options: " + levelOptions);
-		MarioLog.fine("-- run count: " + runCount);
-		MarioLog.fine("-- single level repetitions: " + oneLevelRepetitions);
-		
 		if (resultDir != null) {
 			resultDirFile = new File(resultDir);
-			MarioLog.fine("-- result dir: " + resultDir + " --> " + resultDirFile.getAbsolutePath());
 			
 			if (!resultDirFile.exists()) {
 				MarioLog.info("---- result dir does not exist, creating!");
@@ -243,11 +218,9 @@ public class EvaluateAgentConsole {
 			if (!resultDirFile.isDirectory()) {
 				fail("Result dir is not a directory. Parsed as: " + resultDir + " --> " + resultDirFile.getAbsolutePath());
 			}
-			MarioLog.fine("---- result directory exists, ok");
 		}
             
         if (agent == null) {
-            MarioLog.fine("-- resolving agent FQCN: " + agentFQCN);
             try {
                 agentClass = Class.forName(agentFQCN);
             } catch (ClassNotFoundException e) {
@@ -256,7 +229,6 @@ public class EvaluateAgentConsole {
             if (agentClass == null) {
                 fail("Failed to find agent class: " + agentFQCN);
             }
-            MarioLog.fine("---- agent class found");
             Constructor<?> agentCtor = null;
             try {
                 agentCtor = agentClass.getConstructor();
@@ -266,7 +238,6 @@ public class EvaluateAgentConsole {
             if (agentCtor == null) {
                 fail("Failed to locate parameterless constructor for agent class: " + agentClass.getName());
             }
-            MarioLog.fine("---- agent parameterless constructor found");
             try {
                 agent = (IAgent) agentCtor.newInstance();
             } catch (Exception e) {
@@ -275,15 +246,10 @@ public class EvaluateAgentConsole {
             if (agent == null) {
                 fail("Failed to construct the agent instance.");
             }
-            
-            MarioLog.fine("---- agent instantiated");
         }
-		
-	    MarioLog.fine("Sanity checks OK!");
 	}
 	
 	private static MarioRunResults evaluateAgent() {
-		MarioLog.info("Evaluating...");
 		EvaluateAgent evaluate = new EvaluateAgent(seed, levelOptions, runCount, oneLevelRepetitions, resultDirFile);
 		return evaluate.evaluateAgent(agentId, agent);		
 	}
@@ -318,8 +284,6 @@ public class EvaluateAgentConsole {
 				throw new RuntimeException("Failed to parse arguments.", e);
 			}
 				    
-			header();
-			    
 			readConfig(args);
 				    
 			sanityChecks();
@@ -344,7 +308,6 @@ public class EvaluateAgentConsole {
 		agentId = null;
 		resultDir = null;
 		resultDirFile = null;
-		headerOutput = false;
 		config = null;
 	}
 

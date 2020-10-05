@@ -34,7 +34,6 @@ public class Evaluate {
 				, "-o", levelOptions
 				, "-c", String.valueOf(MAPS_COUNT)  // level-count
 				, "-r", String.valueOf(MAP_REPETITIONS)  // one-run-repetitions
-				, "-a", "MyAgent"
 				, "-i", "MarioAI"   // agent-id
 				, "-d", saveResults ? "./results" : null // result-dir"	
 		};
@@ -46,13 +45,10 @@ public class Evaluate {
 	
     public static MarioRunResults evaluateLevel(int seed, LevelConfig level, boolean saveResults,
                                                 IAgent agent) {
-		MarioLog.info("EVALUATING " + level.name());
-		MarioLog.fine("EVALUATING " + level.getOptions());
+		System.out.println("Evaluating " + level.name());
 		
         MarioRunResults results =
             EvaluateAgentConsole.evaluate(getEvaluationOptions(seed, level, saveResults), agent);
-		
-		printResults(level, results);
 		
 		return results;
 	}
@@ -62,11 +58,11 @@ public class Evaluate {
 	}
 		
 	public static void printResults(LevelConfig level, MarioRunResults results) {
-		MarioLog.info(level.name());
-		MarioLog.info("  +-- VICTORIES:  " + results.totalVictories + " / " + results.getTotalRuns() + " (" + (100 * (double)results.totalVictories / (double)results.getTotalRuns()) + "%)");
-		MarioLog.info("  +-- AVG   TIME: " + ((double)results.totalTimeSpent / (double)results.getTotalRuns() ) + "s");
-		MarioLog.info("  +-- TOTAL TIME: " + results.totalTimeSpent + "s");
-		MarioLog.info("-------------------");
+		System.out.println(level.name());
+        System.out.println("  +-- Victories:  " +
+            results.totalVictories + " / " + results.getTotalRuns() + " (" +
+            (100 * (double)results.totalVictories / (double)results.getTotalRuns()) + "%)");
+        System.out.println("  +-- Avg   time: " + ((double)results.totalTimeSpent / (double)results.getTotalRuns() ) + "s");
 	}
 	
 	public static void evaluateLevels(int seed, LevelConfig... configs) {

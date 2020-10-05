@@ -44,6 +44,8 @@ public final class EvaluationInfo implements Cloneable {
 	
 	private static final int MagicNumberUnDef = -42;
 
+	public int marioStatus = MagicNumberUnDef;
+    public int score = MagicNumberUnDef;
 	public int distancePassedCells = MagicNumberUnDef;
 	public int distancePassedPhys = MagicNumberUnDef;
 	public int flowersDevoured = MagicNumberUnDef;
@@ -52,7 +54,6 @@ public final class EvaluationInfo implements Cloneable {
 	public int killsByStomp = MagicNumberUnDef;
 	public int killsTotal = MagicNumberUnDef;
 	public MarioMode marioMode = null;
-	public int marioStatus = MagicNumberUnDef;
 	public int mushroomsDevoured = MagicNumberUnDef;
 	public int greenMushroomsDevoured = MagicNumberUnDef;
 	public int coinsGained = MagicNumberUnDef;

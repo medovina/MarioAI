@@ -428,8 +428,10 @@ public final class MarioEnvironment implements IEnvironment {
 
 	private void computeEvaluationInfo() {
 		if (recorder != null)
-			closeRecorder();
-		evaluationInfo.marioStatus = levelScene.getMarioStatus();
+            closeRecorder();
+            
+        evaluationInfo.marioStatus = levelScene.getMarioStatus();
+        evaluationInfo.score = levelScene.getScore();
 		evaluationInfo.flowersDevoured = Mario.flowersDevoured;
 		evaluationInfo.distancePassedPhys = (int) levelScene.mario.x;
 		evaluationInfo.distancePassedCells = levelScene.mario.mapX;
