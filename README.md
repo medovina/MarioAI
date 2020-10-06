@@ -1,6 +1,4 @@
-Refactored MarioAI code from: http://code.google.com/p/marioai/
-
-# MarioAI Version 0.3.1
+# MarioAI 0.3
 
 ![alt tag](https://github.com/medovina/MarioAI/raw/master/MarioAI4J.png)
 
@@ -28,7 +26,19 @@ The project builds using [Maven](https://maven.apache.org/).  You should easily 
 
 ## Playing the game
 
-To play the game from the keyboard in a default configuration, run the class RunMario in src/ch/idsia/RunMario.java.
+To play the game on Linux or macOS, run
+
+```
+$ ./mario
+```
+
+Or, on Windows:
+
+```
+> .\mario
+```
+
+By default, the game is controlled by the keyboard and runs at the standard difficulty level.  Various options are available; type './mario -help' to see them.
 
 The keyboard controls are:
 
@@ -88,7 +98,26 @@ Your current score is displayed at the top of the screen.  You gain or lose poin
 - collect a flower: __100__ points
 - finish the level by reaching the Princess: __500__ points
 
+## Difficulty levels
+You can run the game at various levels of difficulty:
+
+- LEVEL_0_FLAT: flat ground, empty
+- LEVEL_1_JUMPING: hills, no creatures
+- LEVEL_2_GOOMBAS: adds Goombas
+- LEVEL_3_TUBES: adds tubes with dangerous flowers
+- LEVEL_4_SPIKIES: adds Spikies
+- LEVEL_5_KOOPAS: adds Koopas (green turtles)
+- LEVEL_6_FULL_GAME: the normal game with coins, mushrooms, flowers, etc.
+- LEVEL_7_FULL_GAME_HARD: an extra challenge
+- LEVEL_8_FULL_GAME_EXTRA_HARD: even tougher
+
+By default, the game runs at difficulty level 6.  You can specify a different level on the command line using the -level option.
+
+Levels 0 - 5 are __training levels__ that have fewer features than the normal game.  They are probably not so interesting to play from the keyboard.  However, if you are writing an agent that plays the game, you may wish to try it on each of these levels in succession.
+
 ## Agent API
+
+The package agents.examples contains several sample agents, which you may wish to study as a starting point.
 
 Here is the [documentation](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/index.html) for the API you can use to build agents to play the game.
 
@@ -145,9 +174,41 @@ As you can see in the documentation, [MyAgent](https://ksvi.mff.cuni.cz/~dingle/
 
 For more details, see the [API documentation](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/index.html).  It is still somewhat primitive, but I will try to improve it over time.  In the meantime, if you have questions then just [ask](mailto:dingle@ksvi.mff.cuni.cz).
 
+## Evaluating an agent
+
+You can run any agent from the command line.  For example, to run MyAgent in LEVEL_2_GOOMBAS:
+
+```
+$ ./mario MyAgent -level 2
+```
+
+The -sim option will run a series of random games without visualization, and will report statistics about an agent's average performance over these games.  For example, to run 50 games of MyAgent in LEVEL_2_GOOMBAS:
+
+```
+$ ./mario MyAgent -level 2 -sim 50
+```
+
+You can also specify a range of levels, in which case the given number of games will be simulated at each level.  For example, to run 50 games in each level from LEVEL_1_JUMPING through LEVEL_3_TUBES:
+
+```
+$ ./mario MyAgent -level 1-3 -sim 50
+```
+
+If you want to see the outcome of each individual simulated game, add the -v (verbose) option:
+
+```
+$ ./mario MyAgent -level 1-3 -sim 50 -v
+```
+
+In this output you will see the random seed that was used for each game.  If you'd like to repeat any individual game, you can rerun that game with its particular seed.  For example, suppose that you see that your agent did poorly in the game with seed 12 on level 2.  You can rerun that game like this:
+
+```
+$ ./mario MyAgent -level 2 -seed 12
+```
+
 ## Extra keyboard controls 
 
-Here are some extra keyboard controls that allows you to visualize / perform extra debugging information, which is extremely useful when developing a custom agent.  (Most of these also work when playing the game with the keyboard.)
+Here are some extra keyboard controls that allows you to visualize / perform extra debugging information, which is useful when developing a custom agent.
 
 - __space__ or __P__: pause the game
 - __N__: when the game is paused, step forward by a single frame
@@ -161,7 +222,7 @@ Here are some extra keyboard controls that allows you to visualize / perform ext
    * 4 = grid showing the highest threats on each tile (see the [EntityKind](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/benchmark/mario/engine/generalization/EntityKind.html) enum)
  
 - __O__: freeze creatures, i.e. they will stop moving
-- __E__: render extra debug information about Mario, see _MarioHijackAIBase.debugDraw(...)_ for details
+- __E__: render extra debug information about Mario, see _MarioAIBase.debugDraw(...)_ for details
 - __L__: render sprite positions within the map
 - __F__: Mario will start flying; good for quickly moving forward through the map
 - __+__ / __-__: adjust simulator frames per second
@@ -220,37 +281,3 @@ move() {
     ya += 3.0;
 }
 ```
-
-## Changelog
-
-Things that are different from the original MarioAI v0.2.0 project:
-
-1) Only Java agents can be used now.
-
-2) GameViewer + ToolsConfigurator are not working (not refactored/broken).
-
-3) There are new agent base types.  Especially interesting is MarioHijackAIBase, which is an agent you can interrupt anytime during its run, hijacking its controls and manually controlling Mario from the keyboard.  Press 'H' (hijack) to start controlling the agent manually.  This is great for debugging as you can let your AI run "dry" and watch logs / debug draws as you position Mario into a concrete situation.  See the following section for more information about extra debug controls that you can use with MarioHijackAIBase.
-
-4) Agents now may implement the IMarioDebugDraw interface, which is a callback that is regularly called to render custom debugging information inside the visualization component.
-
-5) All options are now grouped within a class MarioOptions that contains different enums for different types of options (boolean, int, float, string).  These options are then read and used by the respective option categories (AIOptions, LevelOptions, SimulationOptions, SystemOptions, VisualizationOptions).
-
-6) You can now easily create an options string using the constants and functions in the FastOpts class.
-
-7) The running simulation is now encapsulated within a class MarioSimulator, which is instantiated using some options and can then be used to run(IAgent).
-
-8) WARNING - 1 JVM can run 1 SIMULATION (visualized or headless) at most.  (I did not change the original architecture that uses statics a lot).
-
-9) The agent/environment interface has been refactored.  Lots of information is now encapsulated inside enums and classes rather than bytes, ints, named constants and C-like function calls.  Querying tiles / entities is now much simpler using the Tiles and Entities sensory modules.
-
-10) Mario's controls have been refactored as well.  Pressing/releasing buttons that control Mario is now encapsulated within the MarioInput class. Or even better, use MarioControl instead of MarioInput as it brushes out shoot/sprint glitches.
-
-11) Sample agents have been reimplemented using the new agent base classes and environment interface.  They are more readable now.
-
-12) Receptive field visualization has been fixed: now it correctly aligns with the respective simulation tiles.  It now includes "relative position", "tiles" and "entity" visualization modes so you can quickly see how to reference concrete tiles, as well as which tiles and entities are present within the receptive field.
-
-13) Generalization of tiles / entities has been improved.  It is now easy to query the current speed of entities and their relative positions with respect to Mario's position in pixels.
-
-14) I've added JavaDoc to crucial fields and methods related to developing Mario agents.
-
-## Cheers!
