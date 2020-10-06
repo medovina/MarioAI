@@ -9,17 +9,20 @@ import tournament.Evaluate;
 
 public class Mario {
     static void usage() {
-        System.out.println("usage: mario [<agent-classname>] [<option>...]");
-        System.out.println("options:");
-        System.out.println("  -level <level-number>[-<to-level-number>] : choose level(s) to run or simulate");
-        System.out.println("  -sim <count> : simulate a series of games without visualization");
-        System.out.println("  -v : verbose");
+        out.println("usage: mario [<agent-classname>] [<option>...]");
+        out.println("options:");
+        out.println("  -level <level-number>[-<to-level-number>] : level(s) to run or simulate");
+        out.println("  -seed <num> : random seed");
+        out.println("  -sim <count> : simulate a series of games without visualization");
+        out.println("  -v : verbose");
         System.exit(1);
     }
 
 	public static void main(String[] args) throws Exception {
 		IAgent agent = null;
         int fromLevel = 6, toLevel = 0;
+        int seed = 0;
+        boolean seedSpecified = false;
         int sim = 0;
         boolean verbose = false;
 
@@ -30,6 +33,10 @@ public class Mario {
                     String[] a = args[++i].split("-");
                     fromLevel = Integer.parseInt(a[0]);
                     toLevel = a.length > 1 ? Integer.parseInt(a[1]) : fromLevel;
+                    break;
+                case "-seed":
+                    seed = Integer.parseInt(args[++i]);
+                    seedSpecified = true;
                     break;
                 case "-sim":
                     sim = Integer.parseInt(args[++i]);;
@@ -49,7 +56,9 @@ public class Mario {
                 System.out.println("must specify agent with -sim");
                 return;
             }
-            Evaluate.evaluateLevels(sim, 0, fromLevel, toLevel, false, agent, verbose);
+            if (!seedSpecified)
+                seed = 0;
+            Evaluate.evaluateLevels(sim, seed, fromLevel, toLevel, false, agent, verbose);
         } else {  // play one game visually
             if (toLevel > fromLevel) {
                 System.out.println("level range only works with -sim");
@@ -62,7 +71,9 @@ public class Mario {
             LevelConfig level = LevelConfig.values()[fromLevel];
             System.out.println("Running " + level.name());
 
-            EvaluationInfo info = MarioSimulator.main(agent, level);
+            if (!seedSpecified)
+                seed = -1;
+            EvaluationInfo info = MarioSimulator.run(agent, level, seed);
             
             switch (info.getResult()) {
                 case LEVEL_TIMEDOUT:

@@ -80,7 +80,7 @@ public class MarioSimulator {
 		
 		IEnvironment environment = MarioEnvironment.getInstance();
 		environment.reset(agent);
-				
+
 		while (!environment.isLevelFinished()) {
 			// UPDATE THE ENVIRONMENT
 			environment.tick();
@@ -102,8 +102,8 @@ public class MarioSimulator {
 		return result.clone(); // result is shared instance ... we must clone it to maintain sanity 		
 	}
 	
-	public static EvaluationInfo main(IAgent agent, LevelConfig level) {
-        String options = level.getOptions();
+	public static EvaluationInfo run(IAgent agent, LevelConfig level, int seed) {
+        String options = level.getOptions() + FastOpts.L_RANDOM_SEED(seed);
 		
 		MarioSimulator simulator = new MarioSimulator(options);
 		return simulator.run(agent);
