@@ -2,12 +2,11 @@ package agents.examples;
 
 import java.awt.Graphics;
 
-import agents.AgentOptions;
 import agents.controllers.MarioAIBase;
 import engine.core.IEnvironment;
 import engine.core.LevelScene;
 import engine.graphics.VisualizationComponent;
-import engine.input.MarioInput;
+import engine.input.*;
 
 /**
  * An agent that sprints forward and jumps if it detects an obstacle ahead.
@@ -16,21 +15,14 @@ import engine.input.MarioInput;
  */
 public class ForwardAgent extends MarioAIBase {
 
-	@Override
-	public void reset(AgentOptions options) {
-		super.reset(options);		
-	}
-
 	private boolean enemyAhead() {
-		return
-				   entities.danger(1, 0) || entities.danger(1, -1) 
+		return     entities.danger(1, 0) || entities.danger(1, -1) 
 				|| entities.danger(2, 0) || entities.danger(2, -1)
 				|| entities.danger(3, 0) || entities.danger(2, -1);
 	}
 	
 	private boolean brickAhead() {
-		return
-				   tiles.brick(1, 0) || tiles.brick(1, -1) 
+		return     tiles.brick(1, 0) || tiles.brick(1, -1) 
 				|| tiles.brick(2, 0) || tiles.brick(2, -1)
 				|| tiles.brick(3, 0) || tiles.brick(3, -1);
 	}
@@ -52,20 +44,23 @@ public class ForwardAgent extends MarioAIBase {
 	}
 
 	public MarioInput actionSelectionAI() {
+        MarioInput input = new MarioInput();
+
 		// ALWAYS RUN RIGHT
-		control.runRight();
+		input.press(MarioKey.RIGHT);
 		
 		// ALWAYS SPEED RUN
-		control.sprint();
+		input.press(MarioKey.SPEED);
 		
 		// IF (ENEMY || BRICK AHEAD) => JUMP
-		if (enemyAhead() || brickAhead()) control.jump();
+        if (mario.mayJump && (enemyAhead() || brickAhead()))
+            input.press(MarioKey.JUMP);
 		
-		// If (In the air) => keep JUMPing
-		if (!mario.onGround) {
-			control.jump();
+		// Keep jumping to go as high as possible.
+		if (mario.isJumping()) {
+			input.press(MarioKey.JUMP);
 		}
 		
-		return action;
+		return input;
 	}
 }

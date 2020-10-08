@@ -29,14 +29,9 @@ abstract public class MarioAIBase extends MarioAgentBase implements KeyListener,
 	protected MarioEntity mario;
 	
 	/**
-	 * Actions that an {@link IAgent} wants to perform.
+	 * The most recent actions that an agent has performed.
 	 */
-	protected MarioInput action = new MarioInput();
-	
-	/**
-	 * A layer over {@link #action} that provides a programming-friendly abstraction of Mario actions.
-	 */
-	protected MarioControl control = new MarioControl(action);
+	protected MarioInput lastInput = new MarioInput();
 	
 	/** Information about entities in Mario's vicinity. */
 	protected Entities entities = new Entities();
@@ -60,25 +55,22 @@ abstract public class MarioAIBase extends MarioAgentBase implements KeyListener,
 	@Override
 	public void reset(AgentOptions options) {
 		super.reset(options);
-		control.reset();
-		action.reset();
+		lastInput.reset();
 		entities.reset(options);
 		tiles.reset(options);
 	}
 
 	public void observe(IEnvironment environment) {
 		mario         = environment.getMario();
-		control.setMario(mario);
 		tiles.tileField   = environment.getTileField();
 		entities.entityField = environment.getEntityField();
 		entities.allEntities    = environment.getEntities();
-		control.tick();
 	}
 
 	@Override
 	public MarioInput actionSelection() {
-		if (hijacked) return actionSelectionKeyboard();
-		return actionSelectionAI();
+        lastInput = hijacked ? actionSelectionKeyboard() : actionSelectionAI();
+        return lastInput;
 	}
 	
 	/**
@@ -92,16 +84,8 @@ abstract public class MarioAIBase extends MarioAgentBase implements KeyListener,
 	 * see {@link Tile} for a complete list of tiles.
 	 * An important method you will definitely need: {@link Tiles#brick(int, int)}.
 	 * <p>
-	 * Use {@link #control} to output actions (technically this method must return {@link #action} in order for
-	 * {@link #control} to work).
-	 * Note that all actions specified through {@link #control} run in "parallel"
-	 * (except {@link MarioControl#runLeft()} and {@link MarioControl#runRight()}, which cancel each other out in consecutive calls).
-	 * Also note that you have to call {@link #control} methods on every {@link #actionSelectionAI()} tick
-	 * (otherwise {@link #control} will think you DO NOT want to perform that action}. 
 	 */
-	public MarioInput actionSelectionAI() {
-		return action;
-	}
+	public abstract MarioInput actionSelectionAI();
 	
 	public MarioInput actionSelectionKeyboard() {
 		return keyboard.getInput();
@@ -135,8 +119,7 @@ abstract public class MarioAIBase extends MarioAgentBase implements KeyListener,
 		VisualizationComponent.drawStringDropShadow(g, msg, 0, 7, 6);
 
         msg = "";
-        MarioInput input = actionSelection();
-        for (MarioKey pressedKey : input.getPressed())
+        for (MarioKey pressedKey : lastInput.getPressed())
             msg += (msg.equals("") ? pressedKey.getDebug() : " " + pressedKey.getDebug());
         VisualizationComponent.drawString(g, msg, 109, 61, 1);
 		
@@ -160,12 +143,6 @@ abstract public class MarioAIBase extends MarioAgentBase implements KeyListener,
 		if (mario.onGround) marioState += "|ON.GRND|";
 		else marioState += "|-------|";
 		VisualizationComponent.drawStringDropShadow(g, marioState, 0, row++, 7);
-		marioState = "";
-		if (control.wantsShoot()) marioState += "|WANT SHOOT|";
-		else marioState += "|-----|";
-		if (control.wantsSprint()) marioState += "|WANT SPRINT|";
-		else marioState += "|------|";
-		VisualizationComponent.drawStringDropShadow(g, marioState, 0, row++, 7);		
         VisualizationComponent.drawStringDropShadow(g, "m.s.[x,y] = " +
             "[" + floatFormat(mario.sprite.x) + "," + floatFormat(mario.sprite.y) + "]", 0, row++, 7);
         VisualizationComponent.drawStringDropShadow(g, "m.s.[xOld,yOld] = " +

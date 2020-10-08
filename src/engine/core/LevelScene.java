@@ -213,9 +213,6 @@ public final class LevelScene implements SpriteContext {
 		tickCount++;
 		level.tick();
 
-		// boolean hasShotCannon = false;
-		// int xCannon = 0;
-
 		for (int x = (int) xCam / cellSize - 1; x <= (int) (xCam + this.width)
 				/ cellSize + 1; x++)
 			for (int y = (int) yCam / cellSize - 1; y <= (int) (yCam + this.height)
@@ -230,11 +227,6 @@ public final class LevelScene implements SpriteContext {
 				SpriteTemplate st = level.getSpriteTemplate(x, y);
 
 				if (st != null) {
-					// if (st.getType() == Sprite.KIND_SPIKY)
-					// {
-					// System.out.println("here");
-					// }
-
 					if (st.lastVisibleTick != tickCount - 1) {
 						if (st.sprite == null || !sprites.contains(st.sprite))
 							st.spawn(this, x, y, dir);
@@ -248,7 +240,6 @@ public final class LevelScene implements SpriteContext {
 					if (((Level.TILE_BEHAVIORS[b & 0xff]) & Level.BIT_ANIMATED) > 0) {
 						if ((b % cellSize) / 4 == 3 && b / cellSize == 0) {
 							if ((tickCount - x * 2) % 100 == 0) {
-								// xCannon = x;
 								for (int i = 0; i < 8; i++) {
 									addSprite(new Sparkle(x * cellSize + 8, y
 											* cellSize
@@ -258,8 +249,6 @@ public final class LevelScene implements SpriteContext {
 								}
 								addSprite(new BulletBill(this, x * cellSize + 8
 										+ dir * 8, y * cellSize + 15, dir));
-
-								// hasShotCannon = true;
 							}
 						}
 					}
@@ -289,8 +278,7 @@ public final class LevelScene implements SpriteContext {
 					if (sprite.shellCollideCheck(shell)) {
 						if (mario.carried == shell && !shell.dead) {
 							mario.carried = null;
-							mario.setRacoon(false);
-							// System.out.println("sprite = " + sprite);
+							mario.setRaccoon(false);
 							shell.die();
 							++LevelScene.killedCreaturesTotal;
 						}

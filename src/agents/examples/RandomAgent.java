@@ -29,32 +29,26 @@ package agents.examples;
 
 import java.util.Random;
 
-import agents.AgentOptions;
 import agents.controllers.MarioAIBase;
 import engine.input.MarioInput;
 import engine.input.MarioKey;
 
 public class RandomAgent extends MarioAIBase {
 	
-	private Random R = null;
+	private Random random = new Random();
 
 	@Override
-	public void reset(AgentOptions options) {
-		super.reset(options);
-		R = new Random();
-	}
+	public MarioInput actionSelectionAI() {
+        MarioInput input = new MarioInput();
 
-	@Override
-	public MarioInput actionSelectionAI() {		
-		for (int i = 0; i < MarioKey.numberOfKeys; ++i) {
-			boolean toggleParticularAction = R.nextBoolean();			
-			if (toggleParticularAction) action.toggle(MarioKey.getMarioKey(i));
-		}
-		// Prefer movement to the right. 
-		if (R.nextBoolean()) {
-			action.press(MarioKey.RIGHT);
-		}
+        input.press(random.nextInt(6) == 0 ? MarioKey.LEFT : MarioKey.RIGHT);
+
+        if (random.nextInt(2) == 0)
+            input.press(MarioKey.JUMP);
+        
+        if (random.nextInt(2) == 0)
+            input.press(MarioKey.SPEED);
 		
-		return action;
+		return input;
 	}
 }

@@ -32,7 +32,7 @@ import engine.input.*;
 
 public class CheaterKeyboardAgent extends MarioAIBase {
 	@Override
-	public MarioInput actionSelection() {
+	public MarioInput actionSelectionAI() {
 		return actionSelectionKeyboard();
-	}
+    }
 }

@@ -3,7 +3,7 @@ import agents.controllers.MarioAIBase;
 import engine.core.IEnvironment;
 import engine.core.LevelScene;
 import engine.graphics.VisualizationComponent;
-import engine.input.MarioInput;
+import engine.input.*;
 
 // Code your custom agent here!
 
@@ -21,10 +21,8 @@ public class MyAgent extends MarioAIBase {
     // Called on each tick to find out what action(s) Mario should take.
 	@Override
 	public MarioInput actionSelectionAI() {
-		// ALWAYS RUN RIGHT
-		control.runRight();
-		
-		// RETURN THE RESULT
-		return action;
+        MarioInput input = new MarioInput();
+        input.press(MarioKey.RIGHT);
+        return input;
 	}
 }

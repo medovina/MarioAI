@@ -356,7 +356,7 @@ public boolean shellCollideCheck(Shell shell)
             if (world.mario.carried == shell || world.mario.carried == this)
             {
                 world.mario.carried = null;
-                world.mario.setRacoon(false);
+                world.mario.setRaccoon(false);
             }
 
             die();

@@ -28,18 +28,20 @@
 package agents.examples;
 
 import agents.controllers.MarioAIBase;
-import engine.input.MarioInput;
+import engine.input.*;
 
 public class SprintForwardAgent extends MarioAIBase {
 	
 	@Override
 	public MarioInput actionSelectionAI() {
-		// ALWAYS RUN RIGHT
-		control.runRight();
+        MarioInput input = new MarioInput();
+
+        // ALWAYS RUN RIGHT
+        input.press(MarioKey.RIGHT);
 		
 		// ALWAYS SPRINT
-		control.sprint();
+		input.press(MarioKey.SPEED);
 
-		return action;
+		return input;
 	}
 }

@@ -27,29 +27,24 @@
 
 package agents.examples;
 
-import agents.AgentOptions;
 import agents.controllers.MarioAIBase;
-import engine.input.MarioInput;
+import engine.input.*;
 
 public class JumpeeAgent extends MarioAIBase {
-	
-	@Override
-	public void reset(AgentOptions options) {
-		super.reset(options);
-	}
-	
 	@Override
 	public MarioInput actionSelectionAI() {
+        MarioInput input = new MarioInput();
+
 		// ALWAYS RUN RIGHT
-		control.runRight();
+		input.press(MarioKey.RIGHT);
 		
 		// ALWAYS SPRINT
-		control.sprint();
+		input.press(MarioKey.SPEED);
 		
-		// JUMP IF YOU CAN!
-		// ... this will make Mario to jump as high as possible
-		control.jump();
+		// Jump when possible, and keep jumping to jump as high as possible.
+        if (mario.mayJump || mario.isJumping())
+            input.press(MarioKey.JUMP);
 
-		return action;
+		return input;
 	}	
 }

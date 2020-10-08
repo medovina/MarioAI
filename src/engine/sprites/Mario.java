@@ -81,13 +81,13 @@ public final class Mario extends Sprite {
 	private static boolean isMarioInvulnerable;
 
 	private int status = STATUS_RUNNING;
-	// for racoon when carrying the shell
+	// for raccoon when carrying the shell
 	private int prevWPic;
 	private int prevxPicO;
 	private int prevyPicO;
 	private int prevHPic;
 
-	private boolean isRacoon;
+	private boolean isRaccoon;
 	private float yaa = 1;
 
 	private static float windCoeff = 0f;
@@ -150,11 +150,8 @@ public final class Mario extends Sprite {
 
 	public Sprite carried = null;
 
-	// private static Mario instance;
-
 	public Mario(LevelScene levelScene) {
 		kind = KIND_MARIO;
-		// Mario.instance = this;
 		Mario.levelScene = levelScene;
 		x = levelScene.getMarioInitialPos().x;
 		y = levelScene.getMarioInitialPos().y;
@@ -214,9 +211,9 @@ public final class Mario extends Sprite {
 		blink(true);
 	}
 
-	public void setRacoon(boolean isRacoon) {
-		this.isRacoon = isRacoon;
-		if (isRacoon) {
+	public void setRaccoon(boolean isRaccoon) {
+		this.isRaccoon = isRaccoon;
+		if (isRaccoon) {
 			savePrevState();
 
 			xPicO = 16;
@@ -374,8 +371,6 @@ public final class Mario extends Sprite {
 		
 		// Cheats:
 		if (SimulatorOptions.isPowerRestoration && keys.isPressed(MarioKey.SPEED) && (!Mario.large || !Mario.fire))	setMode(true, true);
-		// if (cheatKeys[KEY_LIFE_UP])
-		// this.lives++;
 
 		speedButtonNotPressed = !keys.isPressed(MarioKey.SPEED);
 
@@ -406,8 +401,7 @@ public final class Mario extends Sprite {
 		move(xa, 0);
 		move(0, ya);
 
-		if (y > levelScene.level.height * LevelScene.cellSize
-				+ LevelScene.cellSize)
+		if (y > levelScene.level.height * LevelScene.cellSize + LevelScene.cellSize)
 			die("Gap");
 
 		if (x < 0) {
@@ -443,7 +437,7 @@ public final class Mario extends Sprite {
 			if (!keys.isPressed(MarioKey.SPEED)) {
 				carried.release(this);
 				carried = null;
-				setRacoon(false);
+				setRaccoon(false);
 			}
 		}
 	}
@@ -451,7 +445,7 @@ public final class Mario extends Sprite {
 	private void calcPic() {
 		int runFrame;
 
-		if (large || isRacoon) {
+		if (large || isRaccoon) {
 			runFrame = ((int) (runTime / 20)) % 4;
 			if (runFrame == 3)
 				runFrame = 1;
@@ -661,7 +655,7 @@ public final class Mario extends Sprite {
 		if (keys.isPressed(MarioKey.SPEED) && shell.facing == 0) {
 			carried = shell;
 			shell.carried = true;
-			setRacoon(true);
+			setRaccoon(true);
 		} else {
 			float targetY = shell.y - shell.height / 2;
 			move(0, targetY - y);
@@ -753,7 +747,7 @@ public final class Mario extends Sprite {
 		if (keys.isPressed(MarioKey.SPEED)) {
 			carried = shell;
 			shell.carried = true;
-			setRacoon(true);
+			setRaccoon(true);
 		} else {
 			invulnerableTime = 1;
 		}

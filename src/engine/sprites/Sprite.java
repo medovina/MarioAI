@@ -71,7 +71,8 @@ public class Sprite {
 	
 	/** Absolute Y-position of the bottom of the sprite, in pixel coordinates. */
 	public float y;
-	
+    
+    /** Current velocity in pixels/tick. */
 	public float xa, ya;
 
 	/**
