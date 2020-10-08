@@ -90,8 +90,6 @@ public class MarioSimulator {
 			MarioInput actions = agent.actionSelection();
 			// PROPAGATE ACTIONS TO THE ENVIRONMENT
 			environment.performAction(actions);
-			// NOTIFY AGENT ABOUT CURRENT INTERMEDIATE REWARD
-			agent.receiveReward(environment.getScore());
 		}
 		
 		EvaluationInfo result = environment.getEvaluationInfo();

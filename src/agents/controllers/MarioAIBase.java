@@ -21,7 +21,7 @@ import environments.IEnvironment;
  * 
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
-public class MarioAIBase extends MarioAgentBase implements KeyListener, IMarioDebugDraw {
+abstract public class MarioAIBase extends MarioAgentBase implements KeyListener, IMarioDebugDraw {
 	/**
 	 * Information about Mario's body.
 	 */
@@ -71,11 +71,7 @@ public class MarioAIBase extends MarioAgentBase implements KeyListener, IMarioDe
 		t.tileField   = environment.getTileField();
 		e.entityField = environment.getEntityField();
 		e.entities    = environment.getEntities();
-		action.tick();
 		control.tick();
-	}
-
-	public void receiveReward(float intermediateReward) {
 	}
 
 	@Override
@@ -84,6 +80,24 @@ public class MarioAIBase extends MarioAgentBase implements KeyListener, IMarioDe
 		return actionSelectionAI();
 	}
 	
+	/**
+	 * Called on each tick to find out what action(s) Mario should take.
+	 * <p>
+	 * Use the {@link #e} field to query entities (Goombas, Spikies, Koopas, etc.) around Mario;
+	 * see {@link EntityType} for a complete list of entities.
+	 * Important methods you will definitely need: {@link Entities#danger(int, int)} and {@link Entities#entityType(int, int)}.
+	 * <p>
+	 * Use the {@link #t} field to query tiles (bricks, flower pots, etc.} around Mario;
+	 * see {@link Tile} for a complete list of tiles.
+	 * An important method you will definitely need: {@link Tiles#brick(int, int)}.
+	 * <p>
+	 * Use {@link #control} to output actions (technically this method must return {@link #action} in order for
+	 * {@link #control} to work).
+	 * Note that all actions specified through {@link #control} run in "parallel"
+	 * (except {@link MarioControl#runLeft()} and {@link MarioControl#runRight()}, which cancel each other out in consecutive calls).
+	 * Also note that you have to call {@link #control} methods on every {@link #actionSelectionAI()} tick
+	 * (otherwise {@link #control} will think you DO NOT want to perform that action}. 
+	 */
 	public MarioInput actionSelectionAI() {
 		return action;
 	}

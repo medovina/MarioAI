@@ -10,7 +10,6 @@ import engine.sprites.Mario.MarioMode;
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
 public class MarioControl {
-
 	private MarioEntity mario;
 	
 	private MarioInput input;
@@ -18,11 +17,9 @@ public class MarioControl {
 	private int frame;
 	
 	private boolean shooting;
-	
 	private boolean sprinting;
 	
 	private int lastFrameShootCalled = -1;
-	
 	private int lastFrameSprintCalled = -1;
 
 	public MarioControl(MarioInput input) {
@@ -163,7 +160,7 @@ public class MarioControl {
 	}
 
 	/**
-	 * Can Mario shoot and does Mario wants to shoot?
+	 * Can Mario shoot and does Mario want to shoot?
 	 * @return
 	 */
 	public boolean wantsShoot() {
@@ -171,13 +168,10 @@ public class MarioControl {
 	}
 
 	/**
-	 * Does Mario wants to sprint?
+	 * Does Mario want to sprint?
 	 * @return
 	 */
 	public boolean wantsSprint() {
 		return sprinting;
 	}
-	
-	
-	
 }

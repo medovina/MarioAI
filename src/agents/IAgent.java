@@ -60,12 +60,4 @@ public interface IAgent {
 	 * @return Actions to perform
 	 */
 	MarioInput actionSelection();
-
-	/**
-	 * Agent is informed about 'intermediateReward' it accumulated so-far.
-	 * 
-	 * @param intermediateReward
-	 */
-	void receiveReward(float intermediateReward);
-
 }

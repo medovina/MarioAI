@@ -78,9 +78,4 @@ public class ReplayAgent implements IAgent {
 	@Override
 	public void observe(final IEnvironment environment) {
 	}
-
-	@Override
-	public void receiveReward(final float intermediateReward) {
-	}
-	
 }
