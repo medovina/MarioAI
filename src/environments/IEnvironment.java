@@ -32,7 +32,6 @@ import java.util.List;
 import agents.IAgent;
 import engine.LevelScene;
 import engine.VisualizationComponent;
-import engine.Replayer;
 import engine.generalization.Entity;
 import engine.generalization.Tile;
 import engine.input.MarioInput;
@@ -100,15 +99,9 @@ public interface IEnvironment {
 
 	void setAgent(IAgent agent);
 
-	public void closeRecorder();
-
-	public void setReplayer(Replayer recorder);
-
 	public int getTimeSpent();
 
 	public byte[][] getScreenCapture();
-
-	void saveLastRun(String filename);
 
 	/**
 	 * May be NULL in case we're running HEADLESS.

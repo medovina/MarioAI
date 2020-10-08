@@ -104,8 +104,6 @@ public final class LevelScene implements SpriteContext {
 	public static int killedCreaturesByStomp;
 	public static int killedCreaturesByShell;
 
-	private Replayer replayer;
-
 	public LevelScene() {
 		try {
 			Level.loadBehaviors(new DataInputStream(LevelScene.class.getResourceAsStream("resources/tiles.dat")));
@@ -486,23 +484,7 @@ public final class LevelScene implements SpriteContext {
 		marioInitialPos = LevelOptions.getMarioInitialPosition();
 		greenMushroomMode = LevelOptions.getGreenMushroomMode();
 
-		if (replayer != null) {
-			try {
-				// replayer.openNextReplayFile();
-				replayer.openFile("level.lvl");
-				level = (Level) replayer.readObject();
-				Level.counters.resetUncountableCounters();
-				// replayer.closeFile();
-				// replayer.closeRecorder();
-			} catch (IOException e) {
-				MarioLog.error("[Mario AI Exception] ~ level reading failed");
-				e.printStackTrace();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else {
-			level = new LevelGenerator().createLevel();
-		}
+		level = new LevelGenerator().createLevel();
 
 		if (SystemOptions.isSaveLevelFileName()) {
 			try {
@@ -581,10 +563,6 @@ public final class LevelScene implements SpriteContext {
 
 	public Point getMarioInitialPos() {
 		return marioInitialPos;
-	}
-
-	public void setReplayer(Replayer replayer) {
-		this.replayer = replayer;
 	}
 
 	public int getGreenMushroomMode() {

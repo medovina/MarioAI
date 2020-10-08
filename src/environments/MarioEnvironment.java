@@ -27,8 +27,6 @@
 
 package environments;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +40,6 @@ import engine.level.Level;
 import engine.sprites.Mario;
 import engine.sprites.Sprite;
 import options.AIOptions;
-import options.SystemOptions;
 import options.VisualizationOptions;
 import tools.EvaluationInfo;
 
@@ -80,8 +77,6 @@ public final class MarioEnvironment implements IEnvironment {
 
 	private static final MarioEnvironment ourInstance = new MarioEnvironment();
 	private static final EvaluationInfo evaluationInfo = new EvaluationInfo();
-
-	private Recorder recorder;
 
 	DecimalFormat df = new DecimalFormat("######.#");
 
@@ -152,34 +147,6 @@ public final class MarioEnvironment implements IEnvironment {
 
 		entities = new ArrayList<Entity>();
 
-		// create recorder
-		if (SystemOptions.isReplayFileName()) {
-			String recordingFileName = SystemOptions.getReplayFileName();
-			if (recordingFileName.equals("on"))
-				recordingFileName = SimulatorOptions.getTimeStamp() + ".zip";
-
-			try {
-				if (recordingFileName.equals("lazy"))
-					recorder = new Recorder();
-				else
-					recorder = new Recorder(recordingFileName);
-
-				recorder.createFile("level.lvl");
-				recorder.writeObject(levelScene.level);
-				recorder.closeFile();
-
-				recorder.createFile("options");
-				recorder.writeObject(null);
-				recorder.closeFile();
-
-				recorder.createFile("actions.act");
-			} catch (FileNotFoundException e) {
-				MarioLog.error("[Mario AI EXCEPTION] : Some of the recording components were not created. Recording failed");
-			} catch (IOException e) {
-				MarioLog.error("[Mario AI EXCEPTION] : Some of the recording components were not created. Recording failed");
-				e.printStackTrace();
-			}
-		}
 		evaluationInfo.reset();
 		agent.reset(new AgentOptions(this));
 	}
@@ -361,14 +328,6 @@ public final class MarioEnvironment implements IEnvironment {
 	}
 
 	public void performAction(MarioInput action) {
-		try {
-			if (recorder != null && recorder.canRecord() && action != null) {
-				recorder.writeAction(action);
-				recorder.changeRecordingState(SimulatorOptions.isRecording, getTimeSpent());
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		levelScene.performAction(action);
 	}
 
@@ -422,9 +381,6 @@ public final class MarioEnvironment implements IEnvironment {
 	}
 
 	private void computeEvaluationInfo() {
-		if (recorder != null)
-            closeRecorder();
-            
         evaluationInfo.marioStatus = levelScene.getMarioStatus();
         evaluationInfo.score = levelScene.getScore();
 		evaluationInfo.flowersDevoured = Mario.flowersDevoured;
@@ -463,39 +419,12 @@ public final class MarioEnvironment implements IEnvironment {
 		return levelScene.getScore();
 	}
 
-	public void closeRecorder() {
-		if (recorder != null) {
-			try {
-				// recorder.closeFile();
-				recorder.closeRecorder(getTimeSpent());
-				// recorder = null;
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
 	public int getTimeSpent() {
 		return levelScene.getTimeSpent();
 	}
 
 	public byte[][] getScreenCapture() {
 		return null;
-	}
-
-	public void setReplayer(Replayer replayer) {
-		levelScene.setReplayer(replayer);
-	}
-
-	public void saveLastRun(String filename) {
-		if (recorder != null && recorder.canSave()) {
-			try {
-				recorder.saveLastRun(filename);
-			} catch (IOException ex) {
-				MarioLog.error("[Mario AI EXCEPTION] : Recording could not be saved.");
-				ex.printStackTrace();
-			}
-		}
 	}
 
 	@Override
