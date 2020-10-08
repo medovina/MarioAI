@@ -1,6 +1,6 @@
 package engine.core;
 
-import engine.sprites.Mario.MarioMode;
+import engine.sprites.MarioMode;
 
 public class MarioEntity extends Entity {
 	

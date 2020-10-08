@@ -38,31 +38,6 @@ import options.SimulatorOptions;
 
 public final class Mario extends Sprite {
 	
-	/**
-	 * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
-	 */
-	public static enum MarioMode {
-    /** Small Mario. */
-		SMALL(0),
-
-		/** Super Mario. */
-		LARGE(1),
-
-		/** Fire Mario. */
-		FIRE_LARGE(2);
-		
-		private int code;
-		
-		private MarioMode(int code) {
-			this.code = code;
-		}
-
-		public int getCode() {
-			return code;
-		}
-		
-	}
-
 	public static final int STATUS_RUNNING = 2;
 	public static final int STATUS_WIN = 1;
 	public static final int STATUS_DEAD = 0;

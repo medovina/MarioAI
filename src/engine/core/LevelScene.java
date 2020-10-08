@@ -47,7 +47,7 @@ import engine.sprites.FireFlower;
 import engine.sprites.Fireball;
 import engine.sprites.GreenMushroom;
 import engine.sprites.Mario;
-import engine.sprites.Mario.MarioMode;
+import engine.sprites.MarioMode;
 import engine.sprites.Mushroom;
 import engine.sprites.Particle;
 import engine.sprites.Shell;

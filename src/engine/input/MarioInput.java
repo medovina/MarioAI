@@ -22,15 +22,6 @@ public class MarioInput {
 	}
 	
 	/**
-	 * Change state of given 'key'.
-	 * @param key
-	 */
-	public void toggle(MarioKey key) {
-		if (pressed.contains(key)) pressed.remove(key);
-		else pressed.add(key);
-	}
-	
-	/**
 	 * PRESS given 'key' or keep pressed if already pressed.
 	 * @param key
 	 */

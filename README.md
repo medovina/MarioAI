@@ -172,7 +172,7 @@ As you can see in the documentation, [MyAgent](https://ksvi.mff.cuni.cz/~dingle/
   - sprite.x, sprite.y - absolute position in pixel coordinates
   - type - an [EntityType](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/benchmark/mario/engine/generalization/EntityType.html)
 
-For more details, see the [API documentation](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/index.html).  It is still somewhat primitive, but I will try to improve it over time.  In the meantime, if you have questions then just [ask](mailto:dingle@ksvi.mff.cuni.cz).
+For more details, see the [API documentation](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/index.html).
 
 ## Evaluating an agent
 
