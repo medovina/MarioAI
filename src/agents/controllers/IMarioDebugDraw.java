@@ -2,9 +2,9 @@ package agents.controllers;
 
 import java.awt.Graphics;
 
-import engine.LevelScene;
-import engine.VisualizationComponent;
-import environments.IEnvironment;
+import engine.core.IEnvironment;
+import engine.core.LevelScene;
+import engine.graphics.VisualizationComponent;
 
 public interface IMarioDebugDraw {
 

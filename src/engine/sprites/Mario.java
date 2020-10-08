@@ -27,11 +27,14 @@
 
 package engine.sprites;
 
-import engine.*;
+import engine.core.LevelScene;
+import engine.core.Points;
+import engine.graphics.Art;
 import engine.input.MarioInput;
 import engine.input.MarioKey;
 import engine.level.Level;
 import options.SimulationOptions;
+import options.SimulatorOptions;
 
 public final class Mario extends Sprite {
 	

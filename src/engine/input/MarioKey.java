@@ -3,7 +3,7 @@ package engine.input;
 import java.util.HashMap;
 import java.util.Map;
 
-import engine.generalization.MarioEntity;
+import engine.core.MarioEntity;
 
 /**
  * Represents keys that {@link IAgent} may use via {@link MarioInput}.

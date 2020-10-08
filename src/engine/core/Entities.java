@@ -1,13 +1,9 @@
-package agents.controllers.modules;
+package engine.core;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import agents.AgentOptions;
-import engine.generalization.Entity;
-import engine.generalization.EntityKind;
-import engine.generalization.EntityType;
-import engine.generalization.MarioEntity;
 
 /** An {@link Entities} object provides information about entities around Mario.
  * <p>

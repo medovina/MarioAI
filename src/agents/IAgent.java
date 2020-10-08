@@ -27,8 +27,8 @@
 
 package agents;
 
+import engine.core.IEnvironment;
 import engine.input.MarioInput;
-import environments.IEnvironment;
 
 public interface IAgent {
 

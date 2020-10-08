@@ -25,9 +25,9 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package engine.generalization;
+package engine.core;
 
-import engine.MarioLog;
+import engine.helper.MarioLog;
 import engine.sprites.Sprite;
 
 /**

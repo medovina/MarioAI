@@ -25,7 +25,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package engine;
+package engine.graphics;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -34,8 +34,11 @@ import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.Image;
 import java.awt.Transparency;
-import engine.SimulatorOptions.ReceptiveFieldMode;
+
+import engine.core.LevelScene;
 import engine.level.Level;
+import options.SimulatorOptions;
+import options.SimulatorOptions.ReceptiveFieldMode;
 
 public class LevelRenderer {
 	private int xCam;

@@ -25,7 +25,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package engine;
+package engine.core;
 
 import java.awt.Point;
 import java.io.DataInputStream;
@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import engine.helper.MarioLog;
 import engine.input.MarioInput;
 import engine.level.Level;
 import engine.level.LevelGenerator;
@@ -55,6 +56,7 @@ import engine.sprites.Sprite;
 import engine.sprites.SpriteContext;
 import options.LevelOptions;
 import options.SimulationOptions;
+import options.SimulatorOptions;
 import options.SystemOptions;
 import options.VisualizationOptions;
 
@@ -106,7 +108,7 @@ public final class LevelScene implements SpriteContext {
 
 	public LevelScene() {
 		try {
-			Level.loadBehaviors(new DataInputStream(LevelScene.class.getResourceAsStream("resources/tiles.dat")));
+			Level.loadBehaviors(new DataInputStream(LevelScene.class.getResourceAsStream("../resources/tiles.dat")));
 		} catch (IOException e) {
 			MarioLog.error("[MarioAI ERROR] : error loading file resources/tiles.dat ; ensure this file exists in src/engine ");
 			e.printStackTrace();

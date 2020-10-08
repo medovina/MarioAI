@@ -25,11 +25,11 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package tools;
+package tournament;
 
 import java.text.DecimalFormat;
 
-import engine.MarioLog;
+import engine.helper.MarioLog;
 import engine.sprites.Mario;
 import engine.sprites.Mario.MarioMode;
 

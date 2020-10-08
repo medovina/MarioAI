@@ -25,12 +25,14 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package engine;
+package options;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
+
+import engine.graphics.VisualizationComponent;
 
 public abstract class SimulatorOptions {
 	

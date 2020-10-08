@@ -1,6 +1,6 @@
 package engine.input;
 
-import engine.generalization.MarioEntity;
+import engine.core.MarioEntity;
 import engine.sprites.Mario.MarioMode;
 
 /**

@@ -25,7 +25,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package engine;
+package engine.graphics;
 
 
 import java.awt.Color;
@@ -44,19 +44,20 @@ import javax.swing.JFrame;
 
 import agents.IAgent;
 import agents.controllers.IMarioDebugDraw;
-import engine.SimulatorOptions.ReceptiveFieldMode;
-import engine.generalization.Entity;
-import engine.generalization.EntityType;
-import engine.generalization.Tile;
+import engine.core.Entity;
+import engine.core.EntityType;
+import engine.core.LevelScene;
+import engine.core.MarioEnvironment;
+import engine.core.Tile;
+import engine.helper.MarioLog;
 import engine.input.MarioCheatKey;
 import engine.level.BgLevelGenerator;
 import engine.level.Level;
 import engine.sprites.Mario;
 import engine.sprites.Sprite;
-import engine.tools.Scale2x;
-import environments.MarioEnvironment;
+import options.SimulatorOptions;
 import options.VisualizationOptions;
-import tools.GameViewer;
+import options.SimulatorOptions.ReceptiveFieldMode;
 
 public class VisualizationComponent extends JComponent {
 	private static final long serialVersionUID = 1L;
@@ -81,7 +82,6 @@ public class VisualizationComponent extends JComponent {
 	private long tm0;
 	int delay;
 	private KeyListener prevHumanKeyBoardAgent;
-	private GameViewer gameViewer = null;
 	private static VisualizationComponent marioVisualComponent = null;
 
 	private Scale2x scale2x;
@@ -108,15 +108,6 @@ public class VisualizationComponent extends JComponent {
 		    scale2x = new Scale2x(width, height, scale);
 
 		SimulatorOptions.registerMarioVisualComponent(this);
-
-		if (VisualizationOptions.isGameViewer()) {
-			if (this.gameViewer == null) {
-
-				this.setGameViewer(new GameViewer());
-				this.gameViewer.setMarioVisualComponent(this);
-				this.gameViewer.setVisible(true);
-			}
-		}
 	}
 
 	public static VisualizationComponent getInstance(MarioEnvironment marioEnvironment) {
@@ -174,8 +165,6 @@ public class VisualizationComponent extends JComponent {
         else
             thisGraphics.drawImage(thisVolatileImage, 0, 0, null);
 
-		if (this.gameViewer != null)
-			this.gameViewer.tick();
 		// Delay depending on how far we are behind.
 		if (delay > 0) {
 			try {
@@ -464,10 +453,6 @@ public class VisualizationComponent extends JComponent {
 				this.prevHumanKeyBoardAgent = null;
 			}
 		}
-	}
-
-	public void setGameViewer(GameViewer gameViewer) {
-		this.gameViewer = gameViewer;
 	}
 
 	public List<String> getTextObservation(boolean showEnemies,	boolean showLevelScene) {

@@ -25,7 +25,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package engine.tools;
+package engine.graphics;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

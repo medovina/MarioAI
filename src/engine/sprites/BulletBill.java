@@ -27,8 +27,8 @@
 
 package engine.sprites;
 
-import engine.Art;
-import engine.LevelScene;
+import engine.core.LevelScene;
+import engine.graphics.Art;
 
 
 public class BulletBill extends Sprite

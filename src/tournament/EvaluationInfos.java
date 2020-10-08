@@ -3,8 +3,6 @@ package tournament;
 import java.util.ArrayList;
 import java.util.List;
 
-import tools.EvaluationInfo;
-
 public class EvaluationInfos {
 	
 	private List<EvaluationInfo> results = new ArrayList<EvaluationInfo>();

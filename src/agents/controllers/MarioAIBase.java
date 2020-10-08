@@ -6,14 +6,15 @@ import java.awt.event.KeyListener;
 import java.text.DecimalFormat;
 
 import agents.AgentOptions;
-import agents.controllers.modules.*;
-import engine.LevelScene;
-import engine.SimulatorOptions;
-import engine.SimulatorOptions.ReceptiveFieldMode;
-import engine.generalization.MarioEntity;
-import engine.VisualizationComponent;
+import engine.core.Entities;
+import engine.core.IEnvironment;
+import engine.core.LevelScene;
+import engine.core.MarioEntity;
+import engine.core.Tiles;
+import engine.graphics.VisualizationComponent;
 import engine.input.*;
-import environments.IEnvironment;
+import options.SimulatorOptions;
+import options.SimulatorOptions.ReceptiveFieldMode;
 
 /**
  * Splits {@link #actionSelection()} into {@link #actionSelectionAI()} done by AGENT

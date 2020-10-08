@@ -25,7 +25,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package engine;
+package engine.graphics;
 
 import engine.level.Level;
 

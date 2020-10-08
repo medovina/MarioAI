@@ -4,10 +4,10 @@ import java.awt.Graphics;
 
 import agents.AgentOptions;
 import agents.controllers.MarioAIBase;
-import engine.LevelScene;
-import engine.VisualizationComponent;
+import engine.core.IEnvironment;
+import engine.core.LevelScene;
+import engine.graphics.VisualizationComponent;
 import engine.input.MarioInput;
-import environments.IEnvironment;
 
 /**
  * An agent that sprints forward and jumps if it detects an obstacle ahead.

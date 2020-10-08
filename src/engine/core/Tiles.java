@@ -1,8 +1,6 @@
-package agents.controllers.modules;
+package engine.core;
 
 import agents.AgentOptions;
-import engine.generalization.MarioEntity;
-import engine.generalization.Tile;
 
 /** A {@link Tiles} object provides information about tiles around Mario.
  * <p>

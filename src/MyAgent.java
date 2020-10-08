@@ -1,9 +1,9 @@
 import java.awt.Graphics;
 import agents.controllers.MarioAIBase;
-import engine.LevelScene;
-import engine.VisualizationComponent;
+import engine.core.IEnvironment;
+import engine.core.LevelScene;
+import engine.graphics.VisualizationComponent;
 import engine.input.MarioInput;
-import environments.IEnvironment;
 
 // Code your custom agent here!
 

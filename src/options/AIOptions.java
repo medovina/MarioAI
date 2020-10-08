@@ -27,7 +27,6 @@
 
 package options;
 
-import engine.SimulatorOptions;
 import options.MarioOptions.BoolOption;
 import options.MarioOptions.IntOption;
 

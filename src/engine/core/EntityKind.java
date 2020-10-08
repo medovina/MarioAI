@@ -1,4 +1,4 @@
-package engine.generalization;
+package engine.core;
 
 /**
  * Describes what the entity is like. You can determine how to treat an entity according to its {@link EntityKind}.

@@ -2,10 +2,9 @@ package options;
 
 import java.awt.Point;
 
-import engine.SimulatorOptions;
-import engine.SimulatorOptions.ReceptiveFieldMode;
 import options.MarioOptions.BoolOption;
 import options.MarioOptions.IntOption;
+import options.SimulatorOptions.ReceptiveFieldMode;
 
 /**
  * Read Visualization values from {@link MarioOptions}.
@@ -39,14 +38,6 @@ public class VisualizationOptions {
 	
 	public static boolean isViewAlwaysOnTop() {
 		return MarioOptions.getInstance().getBool(BoolOption.VISUALIZATION_VIEW_ALWAYS_ON_TOP);
-	}
-	
-	public static boolean isGameViewer() {
-		return MarioOptions.getInstance().getBool(BoolOption.VISUALIZATION_GAME_VIEWER);
-	}
-	
-	public static boolean isGameViewerContinuousUpdate() {
-		return MarioOptions.getInstance().getBool(BoolOption.VISUALIZATION_GAME_VIEWER_CONTINUOUS_UPDATED);
 	}
 	
 	public static int getFPS() {

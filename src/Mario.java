@@ -2,10 +2,10 @@ import static java.lang.System.out;
 
 import agents.IAgent;
 import agents.controllers.keyboard.CheaterKeyboardAgent;
-import engine.MarioSimulator;
+import engine.core.MarioSimulator;
 import options.LevelConfig;
-import tools.EvaluationInfo;
 import tournament.Evaluate;
+import tournament.EvaluationInfo;
 
 public class Mario {
     static void usage() {

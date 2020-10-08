@@ -1,4 +1,4 @@
-package engine.generalization;
+package engine.core;
 
 import engine.sprites.Sprite;
 

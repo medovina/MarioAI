@@ -1,6 +1,6 @@
 package engine.input;
 
-import engine.MarioSimulator;
+import engine.core.MarioSimulator;
 
 /**
  * Represents cheats that are "hacked in" the {@link MarioSimulator} or {@link VisualizationComponent}.

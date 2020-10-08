@@ -27,8 +27,8 @@
 
 package engine.sprites;
 
-import engine.SimulatorOptions;
 import engine.level.SpriteTemplate;
+import options.SimulatorOptions;
 
 import java.awt.*;
 

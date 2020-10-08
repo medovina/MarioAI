@@ -1,4 +1,4 @@
-package engine.generalization;
+package engine.core;
 
 public enum Tile {
 	/**

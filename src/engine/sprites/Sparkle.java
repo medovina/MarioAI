@@ -27,7 +27,7 @@
 
 package engine.sprites;
 
-import engine.Art;
+import engine.graphics.Art;
 
 public class Sparkle extends Sprite
 {

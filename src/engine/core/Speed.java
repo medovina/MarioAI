@@ -1,4 +1,4 @@
-package engine.generalization;
+package engine.core;
 
 /**
  * A speed in pixels per tick.

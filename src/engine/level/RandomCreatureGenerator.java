@@ -25,9 +25,9 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package tools;
+package engine.level;
 
-import engine.generalization.Enemy;
+import engine.core.Enemy;
 import engine.sprites.Sprite;
 
 import java.util.HashSet;

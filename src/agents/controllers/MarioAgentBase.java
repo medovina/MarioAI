@@ -29,8 +29,8 @@ package agents.controllers;
 
 import agents.AgentOptions;
 import agents.IAgent;
+import engine.core.IEnvironment;
 import engine.input.MarioInput;
-import environments.IEnvironment;
 
 /**
  * Abstract class that serves as a basis for implementing new Mario agents. 

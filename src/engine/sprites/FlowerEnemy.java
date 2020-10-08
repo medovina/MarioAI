@@ -27,8 +27,8 @@
 
 package engine.sprites;
 
-import engine.SimulatorOptions;
-import engine.LevelScene;
+import engine.core.LevelScene;
+import options.SimulatorOptions;
 
 public class FlowerEnemy extends Enemy
 {

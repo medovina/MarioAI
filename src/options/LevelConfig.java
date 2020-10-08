@@ -1,6 +1,6 @@
 package options;
 
-import engine.generalization.Enemy;
+import engine.core.Enemy;
 
 public enum LevelConfig {
 	

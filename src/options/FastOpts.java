@@ -1,13 +1,13 @@
 package options;
 
-import engine.SimulatorOptions.ReceptiveFieldMode;
-import engine.generalization.Enemy;
-import engine.generalization.EntityGeneralizer;
-import engine.generalization.TileGeneralizer;
-import environments.MarioEnvironment;
+import engine.core.Enemy;
+import engine.core.EntityGeneralizer;
+import engine.core.MarioEnvironment;
+import engine.core.TileGeneralizer;
 import options.MarioOptions.BoolOption;
 import options.MarioOptions.IntOption;
 import options.MarioOptions.StringOption;
+import options.SimulatorOptions.ReceptiveFieldMode;
 
 /**
  * For your convinience - build options by connecting respective options or use FAST_xxx prebuilt options.

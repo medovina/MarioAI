@@ -27,7 +27,10 @@
 
 package engine.sprites;
 
-import engine.*;
+import engine.core.LevelScene;
+import engine.core.Points;
+import engine.graphics.Art;
+import options.SimulatorOptions;
 
 import java.awt.*;
 

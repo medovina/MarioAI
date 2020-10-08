@@ -25,15 +25,14 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package engine;
+package engine.core;
 
 import agents.IAgent;
 import agents.controllers.keyboard.CheaterKeyboardAgent;
+import engine.helper.MarioLog;
 import engine.input.MarioInput;
-import environments.IEnvironment;
-import environments.MarioEnvironment;
 import options.*;
-import tools.EvaluationInfo;
+import tournament.EvaluationInfo;
 
 /**
  * Wraps execution of concrete {@link IAgent} within {@link MarioEnvironment} using preset {@link MarioOptions}, which are combined

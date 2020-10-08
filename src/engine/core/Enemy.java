@@ -1,6 +1,6 @@
-package engine.generalization;
+package engine.core;
 
-import tools.RandomCreatureGenerator;
+import engine.level.RandomCreatureGenerator;
 
 /**
  * Matches {@link RandomCreatureGenerator} implementation.

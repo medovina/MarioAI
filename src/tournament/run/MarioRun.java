@@ -1,8 +1,8 @@
 package tournament.run;
 
 import agents.IAgent;
-import engine.MarioSimulator;
-import tools.EvaluationInfo;
+import engine.core.MarioSimulator;
+import tournament.EvaluationInfo;
 import tournament.MarioConfig;
 
 public class MarioRun {

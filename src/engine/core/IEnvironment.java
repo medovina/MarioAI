@@ -25,19 +25,16 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package environments;
+package engine.core;
 
 import java.util.List;
 
 import agents.IAgent;
-import engine.LevelScene;
-import engine.VisualizationComponent;
-import engine.generalization.Entity;
-import engine.generalization.Tile;
+import engine.graphics.VisualizationComponent;
 import engine.input.MarioInput;
 import engine.sprites.Mario;
 import options.MarioOptions;
-import tools.EvaluationInfo;
+import tournament.EvaluationInfo;
 
 public interface IEnvironment {
 
@@ -81,7 +78,7 @@ public interface IEnvironment {
 	 * Mario's body interface, contains egocentric information about Mario's body and current kill-counts.
 	 * @return
 	 */
-	public engine.generalization.MarioEntity getMario();
+	public engine.core.MarioEntity getMario();
 	
 	// OBSERVATION
 

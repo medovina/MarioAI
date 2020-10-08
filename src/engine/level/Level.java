@@ -28,9 +28,10 @@
 package engine.level;
 
 import options.LevelOptions;
-import engine.MarioLog;
 
 import java.io.*;
+
+import engine.helper.MarioLog;
 
 public class Level implements Serializable {
 	private static final long serialVersionUID = -2222762134065697580L;

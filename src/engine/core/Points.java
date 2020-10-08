@@ -25,7 +25,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package engine;
+package engine.core;
 
 public class Points {
     public static final int

@@ -25,7 +25,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package environments;
+package engine.core;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -33,15 +33,16 @@ import java.util.List;
 
 import agents.AgentOptions;
 import agents.IAgent;
-import engine.*;
-import engine.generalization.*;
+import engine.graphics.VisualizationComponent;
+import engine.helper.MarioLog;
 import engine.input.MarioInput;
 import engine.level.Level;
 import engine.sprites.Mario;
 import engine.sprites.Sprite;
 import options.AIOptions;
+import options.SimulatorOptions;
 import options.VisualizationOptions;
-import tools.EvaluationInfo;
+import tournament.EvaluationInfo;
 
 public final class MarioEnvironment implements IEnvironment {
 

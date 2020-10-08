@@ -27,10 +27,9 @@
 
 package engine.level;
 
-import engine.MarioLog;
+import engine.helper.MarioLog;
 import engine.sprites.Sprite;
 import options.LevelOptions;
-import tools.RandomCreatureGenerator;
 
 import java.io.FileInputStream;
 import java.io.IOException;

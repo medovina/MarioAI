@@ -27,7 +27,7 @@
 
 package engine.level;
 
-import engine.LevelScene;
+import engine.core.LevelScene;
 import engine.sprites.*;
 
 import java.io.Serializable;

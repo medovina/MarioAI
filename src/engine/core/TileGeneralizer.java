@@ -25,9 +25,9 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package engine.generalization;
+package engine.core;
 
-import engine.MarioLog;
+import engine.helper.MarioLog;
 
 /**
  * Generalizer that provides abstracts over "background tile", this includes {@link Tile#COIN_ANIM} as well because there can be an enemy in front of it!
