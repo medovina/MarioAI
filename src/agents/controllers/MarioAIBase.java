@@ -38,10 +38,10 @@ abstract public class MarioAIBase extends MarioAgentBase implements KeyListener,
 	protected MarioControl control = new MarioControl(action);
 	
 	/** Information about entities in Mario's vicinity. */
-	protected Entities e = new Entities();
+	protected Entities entities = new Entities();
 	
 	/** Information about tiles in Mario's vicinity. */
-	protected Tiles t = new Tiles();
+	protected Tiles tiles = new Tiles();
 
 	protected MarioCheaterKeyboard keyboard = new MarioCheaterKeyboard();
 	
@@ -61,16 +61,16 @@ abstract public class MarioAIBase extends MarioAgentBase implements KeyListener,
 		super.reset(options);
 		control.reset();
 		action.reset();
-		e.reset(options);
-		t.reset(options);
+		entities.reset(options);
+		tiles.reset(options);
 	}
 
 	public void observe(IEnvironment environment) {
 		mario         = environment.getMario();
 		control.setMario(mario);
-		t.tileField   = environment.getTileField();
-		e.entityField = environment.getEntityField();
-		e.entities    = environment.getEntities();
+		tiles.tileField   = environment.getTileField();
+		entities.entityField = environment.getEntityField();
+		entities.allEntities    = environment.getEntities();
 		control.tick();
 	}
 
@@ -83,11 +83,11 @@ abstract public class MarioAIBase extends MarioAgentBase implements KeyListener,
 	/**
 	 * Called on each tick to find out what action(s) Mario should take.
 	 * <p>
-	 * Use the {@link #e} field to query entities (Goombas, Spikies, Koopas, etc.) around Mario;
+	 * Use the {@link #entities} field to query entities (Goombas, Spikies, Koopas, etc.) around Mario;
 	 * see {@link EntityType} for a complete list of entities.
 	 * Important methods you will definitely need: {@link Entities#danger(int, int)} and {@link Entities#entityType(int, int)}.
 	 * <p>
-	 * Use the {@link #t} field to query tiles (bricks, flower pots, etc.} around Mario;
+	 * Use the {@link #tiles} field to query tiles (bricks, flower pots, etc.} around Mario;
 	 * see {@link Tile} for a complete list of tiles.
 	 * An important method you will definitely need: {@link Tiles#brick(int, int)}.
 	 * <p>
@@ -223,7 +223,6 @@ abstract public class MarioAIBase extends MarioAgentBase implements KeyListener,
 		// TOGGLE EXTRA DEBUG STUFF
 		case KeyEvent.VK_E:
 			if (isPressed) renderExtraDebugInfo = !renderExtraDebugInfo;
-			
 			return;
 		
 		// FREEZES CREATURES, THEY WILL NOT BE MOVING
@@ -238,11 +237,6 @@ abstract public class MarioAIBase extends MarioAgentBase implements KeyListener,
 			if (isPressed) SimulatorOptions.areLabels = !SimulatorOptions.areLabels;
 			return;
 			
-		// CENTER CAMERA ON MARIO
-		case KeyEvent.VK_C:
-			if (isPressed) SimulatorOptions.isCameraCenteredOnMario = !SimulatorOptions.isCameraCenteredOnMario;
-			return;
-		
 		// ADJUST SIMULATOR FPS
 		case KeyEvent.VK_PLUS:
 		case 61:

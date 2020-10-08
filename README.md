@@ -162,9 +162,9 @@ As you can see in the documentation, [MyAgent](https://ksvi.mff.cuni.cz/~dingle/
   - speed.x, speed.y - current velocity in pixels/tick
   - sprite.x, sprite.y - absolute position in pixel coordinates
 
-- The field __t__ is a [Tiles](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/modules/Tiles.html) object with information about tiles around Mario.  Each tile is represented by a [Tile](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/benchmark/mario/engine/generalization/Tile.html) indicating its type.
+- The field __tiles__ is a [Tiles](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/modules/Tiles.html) object with information about tiles around Mario.  Each tile is represented by a [Tile](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/benchmark/mario/engine/generalization/Tile.html) indicating its type.
 
-- The field __e__ is an [Entities](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/modules/Entities.html) object with information about entities around Mario.  Each of these is represented by an [Entity](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/benchmark/mario/engine/generalization/Entity.html) object, which contains the following useful fields (among others):
+- The field __entities__ is an [Entities](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/agents/controllers/modules/Entities.html) object with information about entities around Mario.  Each of these is represented by an [Entity](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/benchmark/mario/engine/generalization/Entity.html) object, which contains the following useful fields (among others):
 
   - dX, dY - position relative to Mario, in pixels
   - dTX, dTY - position relative to Mario, in tiles
@@ -211,20 +211,19 @@ $ ./mario MyAgent -level 2 -seed 12
 Here are some extra keyboard controls that allows you to visualize / perform extra debugging information, which is useful when developing a custom agent.
 
 - __space__ or __P__: pause the game
-- __N__: when the game is paused, step forward by a single frame
-- __H__: hijack Mario, i.e. you may control Mario manually and navigate him into a situation you wish to observe
+- __E__: render extra debug information about Mario, see _MarioAIBase.debugDraw(...)_ for details
+- __F__: Mario will start flying; good for quickly moving forward through the map
 - __G__: cycle between the display of several grids that indicate what is around Mario:
 
    * 0 = off
    * 1 = grid showing tile coordinates relative to Mario
    * 2 = grid showing tile types (see the [Tile](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/benchmark/mario/engine/generalization/Tile.html) enum)
    * 3 = grid showing entities (see the [EntityType](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/benchmark/mario/engine/generalization/EntityType.html) enum)
-   * 4 = grid showing the highest threats on each tile (see the [EntityKind](https://ksvi.mff.cuni.cz/~dingle/2019/ai/mario/html/ch/idsia/benchmark/mario/engine/generalization/EntityKind.html) enum)
  
-- __O__: freeze creatures, i.e. they will stop moving
-- __E__: render extra debug information about Mario, see _MarioAIBase.debugDraw(...)_ for details
+- __H__: hijack Mario, i.e. you may control Mario manually and navigate him into a situation you wish to observe
 - __L__: render sprite positions within the map
-- __F__: Mario will start flying; good for quickly moving forward through the map
+- __N__: when the game is paused, step forward by a single frame
+- __O__: freeze creatures, i.e. they will stop moving
 - __+__ / __-__: adjust simulator frames per second
 
 ## Physics of the game world

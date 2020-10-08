@@ -192,23 +192,18 @@ public class VisualizationComponent extends JComponent {
 		int xCam = (int) (mario.xOld + (mario.x - mario.xOld)) - 160;
 		int yCam = (int) (mario.yOld + (mario.y - mario.yOld)) - 120;
 
-		if (SimulatorOptions.isCameraCenteredOnMario) {
-		} else {
-			// int xCam = (int) (xCamO + (this.xCam - xCamO) * cameraOffSet);
-			// int yCam = (int) (yCamO + (this.yCam - yCamO) * cameraOffSet);
-			if (xCam < 0)
-				xCam = 0;
-			if (yCam < 0)
-				yCam = 0;
-			if (xCam > level.length * LevelScene.cellSize
-					- SimulatorOptions.VISUAL_COMPONENT_WIDTH)
-				xCam = level.length * LevelScene.cellSize
-						- SimulatorOptions.VISUAL_COMPONENT_WIDTH;
-			if (yCam > level.height * LevelScene.cellSize
-					- SimulatorOptions.VISUAL_COMPONENT_HEIGHT)
-				yCam = level.height * LevelScene.cellSize
-						- SimulatorOptions.VISUAL_COMPONENT_HEIGHT;
-		}
+        if (xCam < 0)
+            xCam = 0;
+        if (yCam < 0)
+            yCam = 0;
+        if (xCam > level.length * LevelScene.cellSize
+                - SimulatorOptions.VISUAL_COMPONENT_WIDTH)
+            xCam = level.length * LevelScene.cellSize
+                    - SimulatorOptions.VISUAL_COMPONENT_WIDTH;
+        if (yCam > level.height * LevelScene.cellSize
+                - SimulatorOptions.VISUAL_COMPONENT_HEIGHT)
+            yCam = level.height * LevelScene.cellSize
+                    - SimulatorOptions.VISUAL_COMPONENT_HEIGHT;
 
 		for (int i = 0; i < bgLayer.length; i++) {
 			bgLayer[i].setCam(xCam, yCam);
@@ -347,8 +342,6 @@ public class VisualizationComponent extends JComponent {
 					if (row == marioRow && col == marioCol) continue;
 					int x = (int)(marioX + cellWidth * (col - marioCol) - 8);
 					int y = (int)(marioY + cellHeight * (row - marioRow) - 16);
-					//drawString(og, String.valueOf(col), x, y, 5);
-					//drawString(og, String.valueOf(row), x, y+8, 5);
 					og.drawString(String.valueOf(col - marioCol), x+1, y+8);
 					og.drawString(String.valueOf(row - marioRow), x+1, y+16);
 				}
@@ -378,23 +371,6 @@ public class VisualizationComponent extends JComponent {
 				drawString(og, type.getDebug(), x, y, 7);
 			}
 			break;
-		case GRID_THREAT_LEVEL:			
-			for (int row = 0; row < SimulatorOptions.receptiveFieldHeight; ++row) {
-				for (int col = 0; col < SimulatorOptions.receptiveFieldWidth; ++col) {
-					List<Entity> entities = marioEnvironment.getEntityField()[row][col];
-					if (entities == null || entities.size() == 0) continue;
-					Entity entity = entities.get(0);
-					for (Entity otherEntity : entities) {
-						if (otherEntity.type.getKind().getThreatLevel() < entity.type.getKind().getThreatLevel()) entity = otherEntity;
-					}
-					
-					int x = (int)(marioX + cellWidth * (col - marioCol) - 8);
-					int y = (int)(marioY + cellHeight * (row - marioRow) - 8);
-					
-					drawString(og, entity.type.getKind().getDebug(), x, y, 7);
-				}
-			}			
-			break;			
 		}
 		
 		{

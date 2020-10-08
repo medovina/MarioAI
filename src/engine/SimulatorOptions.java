@@ -40,7 +40,6 @@ public abstract class SimulatorOptions {
 		GRID(1),
 		GRID_TILES(2),
 		GRID_ENTITIES(3),
-		GRID_THREAT_LEVEL(4),
 		;
 		
 		private int code;
@@ -68,7 +67,6 @@ public abstract class SimulatorOptions {
 	public static final int minorSubVerionID = 1;
 
 	public static boolean areLabels = false;
-	public static boolean isCameraCenteredOnMario = false;
 	public static Integer FPS = 24;
 	public static int MaxFPS = 100;
 	public static boolean areFrozenCreatures = false;
@@ -77,14 +75,11 @@ public abstract class SimulatorOptions {
 	public static boolean isGameplayStopped = false;
 	public static boolean isFly = false;
 
-	// public static boolean isTimer = true;
-
 	public static int mariosecondMultiplier = 15;
 
 	public static boolean isPowerRestoration;
 
-	// required for rendering grid in
-	// ch/idsia/benchmark/mario/engine/sprites/Sprite.java
+	// required for rendering grid in engine/sprites/Sprite.java
 	public static int receptiveFieldWidth = 19;
 	public static int receptiveFieldHeight = 19;
 	public static ReceptiveFieldMode receptiveFieldMode = ReceptiveFieldMode.NONE;

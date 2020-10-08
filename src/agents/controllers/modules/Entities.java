@@ -34,7 +34,7 @@ public class Entities {
 	/**
 	 * A list of all entities within Mario's receptive field.
 	 */
-	public List<Entity> entities;
+	public List<Entity> allEntities;
 	
 	public void reset(AgentOptions options) {
 		this.mario = options.mario;
@@ -65,7 +65,7 @@ public class Entities {
 	 * @param mapX absolute receptive field tile x-coordinate
 	 * @param mapY absolute receptive field tile y-coordinate
 	 */
-	protected List<Entity> getEntities(int mapX, int mapY) {
+	protected List<Entity> getAllAt(int mapX, int mapY) {
 		if (entityField == null) return new ArrayList<Entity>();
 		if (mapY < 0 || mapY >= entityField.length || mapX < 0 || mapX >= entityField[0].length) return new ArrayList<Entity>();
 		return entityField[mapY][mapX];
@@ -82,22 +82,22 @@ public class Entities {
 	/**
 	 * Returns all entities at (relMapX, relMapY).
 	 */
-	public List<Entity> entities(int relMapX, int relMapY) {
-		return getEntities(mario.egoCol + relMapX, mario.egoRow + relMapY);
+	public List<Entity> allAt(int relMapX, int relMapY) {
+		return getAllAt(mario.egoCol + relMapX, mario.egoRow + relMapY);
 	}
 	
 	/**
 	 * Is there any entity at (relMapX, relMapY)?
 	 */
 	public boolean anything(int relMapX, int relMapY) {
-		return entities(relMapX, relMapY).size() > 0;
+		return allAt(relMapX, relMapY).size() > 0;
 	}
 	
 	/**
 	 * Is there no entity at (relMapX, relMapY)?
 	 */
 	public boolean nothing(int relMapX, int relMapY) {
-		return entities(relMapX, relMapY).size() == 0;
+		return allAt(relMapX, relMapY).size() == 0;
 	}
 	
 	/**
@@ -105,7 +105,7 @@ public class Entities {
 	 */
 	public boolean danger(int relMapX, int relMapY) {
 		if (nothing(relMapX, relMapY)) return false;
-		for (Entity entity : entities(relMapX, relMapY)) {
+		for (Entity entity : allAt(relMapX, relMapY)) {
 			if (isDanger(entity)) return true;
 		}
 		return false;
@@ -123,7 +123,7 @@ public class Entities {
 	public boolean squishy(int relMapX, int relMapY) {
 		if (nothing(relMapX, relMapY)) return false;
 		boolean result = false;
-		for (Entity entity : entities(relMapX, relMapY)) {
+		for (Entity entity : allAt(relMapX, relMapY)) {
 			if (!isSquishy(entity) && isDanger(entity)) return false;
 			if (isSquishy(entity)) {
 				result = true;
@@ -148,7 +148,7 @@ public class Entities {
 	public boolean shootable(int relMapX, int relMapY) {
 		if (nothing(relMapX, relMapY)) return false;		
 		boolean result = false;
-		for (Entity entity : entities(relMapX, relMapY)) {
+		for (Entity entity : allAt(relMapX, relMapY)) {
 			if (!isShootable(entity)) return false;
 			result = true;
 		}	
@@ -170,7 +170,7 @@ public class Entities {
 	public boolean collectible(int relMapX, int relMapY) {
 		if (nothing(relMapX, relMapY)) return false;
 		if (danger(relMapX, relMapY)) return false;
-		for (Entity entity : entities(relMapX, relMapY)) {
+		for (Entity entity : allAt(relMapX, relMapY)) {
 			if (isCollectible(entity)) return true;
 		}		
 		return false;
