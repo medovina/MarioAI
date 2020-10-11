@@ -38,8 +38,6 @@ import options.MarioOptions.IntOption;
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
 public class SimulationOptions {
-	//final Point viewLocation = new Point(42, 42);
-	
 	/**
 	 * Auto-adjusts certain SIMULATION options.
 	 * <br/><br/>

@@ -226,7 +226,7 @@ public class MarioOptions {
 		
 	}
 	
-	private static MarioOptions _instance = new MarioOptions();
+	private static MarioOptions _instance;
 	
 	static {
 		// force enum initialization ... otherwise, respective enum constructors need not to be invoked and we would not be able to parse arguments
@@ -421,6 +421,7 @@ public class MarioOptions {
 	// ==============
 	
 	public static void reset(String... args) {
+        _instance = new MarioOptions();
 		read(args);
 		reset();
 	}
