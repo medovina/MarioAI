@@ -336,10 +336,9 @@ public class LevelGenerator {
 		if (!creaturesRandom.canAdd())
 			return;
 
-		int dx = (int) random.nextGaussian();
 		int creatureKind = creaturesRandom.nextCreature();
 		if (creatureKind != Sprite.KIND_UNDEF) {
-			if (level.setSpriteTemplate(x + dx, y, new SpriteTemplate(creatureKind))) {
+			if (level.setSpriteTemplate(x, y, new SpriteTemplate(creatureKind))) {
                 ++counters.creatures;
                 // System.out.printf("  added %s at (%d, %d)\n",
                 //     Sprite.getNameByKind(creatureKind), x, y);
@@ -775,8 +774,7 @@ public class LevelGenerator {
 
 		for (int x = xo; x < xo + length; x++)
 			for (int y = floor; y < y1; y++)
-				if (y >= floor)
-					level.setBlock(x, y, (byte) (1 + 9 * 16));
+				level.setBlock(x, y, (byte) (1 + 9 * 16));
 
 		if (!safe) {
 			if (length > 5) {
