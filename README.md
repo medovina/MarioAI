@@ -152,7 +152,7 @@ The API uses two coordinate systems: __pixel coordinates__ and __tile coordinate
 
 In your agent, you could only consider each entity's tile coordinates, or you may want to consider its pixel coordinates for a finer degree of control.
 
-MyAgent is the class you will enhance to build your custom agent.  You will need to implement the [actionSelectionAI](https://ksvi.mff.cuni.cz/~dingle/2020-1/ai_1/mario/api.html#MarioAIBase) method to determine the action that Mario will take on each game tick.
+MyAgent is the class you will enhance to build your custom agent.  You will need to implement the [actionSelectionAI](https://ksvi.mff.cuni.cz/~dingle/2020-1/ai_1/mario/api.html#MarioAIBase) method to determine the action that Mario will take on each game tick.  In this method, create a MarioInput object to represent the set of pressed keys, then call .press() once for each key that you want to press.
 
 As you can see in the documentation, MyAgent inherits from [MarioAIBase](https://ksvi.mff.cuni.cz/~dingle/2020-1/ai_1/mario/api.html#MarioAIBase).  This class contains fields that provide essential information about the game state:
 
@@ -171,6 +171,15 @@ As you can see in the documentation, MyAgent inherits from [MarioAIBase](https:/
   - speed.x, speed.y - current velocity in pixels/tick
   - sprite.x, sprite.y - absolute position in pixel coordinates
   - type - an [EntityType](https://ksvi.mff.cuni.cz/~dingle/2020-1/ai_1/mario/api.html#EntityType)
+
+In your actionSelectionAI() method, you will probably want to press the JUMP button only when
+
+- mario.mayJump is true, in which case you can begin a jump, or possibly
+- when mario.isJumping() is true, meaning that Mario is moving upward, and pressing JUMP will make him go higher.
+
+If you press the button when neither of these conditions is true, then you will not jump, and you will not be able to initiate another jump until you release the button and press it again.
+
+The SPEED button is used both for sprinting and shooting.  If you hold it down (i.e. mark it as pressed on every tick) then Mario will sprint, but will not shoot repeatedly.  Each time you want to shoot, you must release the button and then press it again on a subsequent tick.  You may wish to study the sample ShooterAgent for one idea about how to implement this.
 
 For more details, see the [API documentation](https://ksvi.mff.cuni.cz/~dingle/2020-1/ai_1/mario/api.html).
 
@@ -211,7 +220,7 @@ $ ./mario MyAgent -level 2 -seed 12
 Here are some extra keyboard controls that allows you to visualize / perform extra debugging information, which is useful when developing a custom agent.
 
 - __space__ or __P__: pause the game
-- __E__: render extra debug information about Mario, see _MarioAIBase.debugDraw(...)_ for details
+- __E__: render extra debug information about Mario
 - __F__: Mario will start flying; good for quickly moving forward through the map
 - __G__: cycle between the display of several grids that indicate what is around Mario:
 
