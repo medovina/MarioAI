@@ -128,7 +128,6 @@ public void collideCheck()
 
     float xMarioD = levelScene.mario.x - x;
     float yMarioD = levelScene.mario.y - y;
-//        float w = 16;
     if (xMarioD > -width * 2 - 4 && xMarioD < width * 2 + 4)
     {
         if (yMarioD > -height && yMarioD < levelScene.mario.height)
@@ -194,7 +193,6 @@ public void move()
     }
 
     float sideWaysSpeed = 1.75f;
-    //        float sideWaysSpeed = onGround ? 2.5f : 1.2f;
 
     if (xa > 2)
         facing = 1;
@@ -202,8 +200,6 @@ public void move()
         facing = -1;
 
     xa = facing * sideWaysSpeed;
-//    xa += facing == 1 ? -wind : wind;
-//        mayJump = (onGround);
 
     xFlipPic = facing == -1;
 

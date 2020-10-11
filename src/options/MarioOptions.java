@@ -30,8 +30,6 @@ public class MarioOptions {
 	
 	public static enum BoolOption {
 		
-		AI_PUNCTUAL_JUDGE("punj", false, "Use Punctual Judge."),
-						
 		LEVEL_LADDERS("lla", false, "Allow generation of ladders within the level (arguments: on / off)."),
 		
 		/**
@@ -99,7 +97,6 @@ public class MarioOptions {
 	}
 	
 	public static enum FloatOption {
-		
 		SIMULATION_GRAVITY_CREATURES("cgr", 1.0f, "Gravity constant used for creatures."),
 		SIMULATION_GRAVITY_MARIO("mgr", 1.0f, "Gravity constant used for Mario."),
 		SIMULATION_WIND_CREATURES("w", 0.0f, "Wind applied to creatures movement."),
@@ -157,8 +154,6 @@ public class MarioOptions {
 		SIMULATION_TIME_LIMIT("tl", 200, "How many marioseconds Mario has to finish the level."),
 		
 		VISUALIZATION_FPS("fps", 24, "FPS of visualization."),
-		VISUALIZATION_VIEW_LOCATION_X("vlx", 0, "Visualization window location x (in pixels)."),
-		VISUALIZATION_VIEW_LOCATION_Y("vly", 0, "Visualization window location y (in pixels)."),
 		VISUALIZATION_VIEWPORT_WIDTH("vw", 320, "Viewport width."),
         VISUALIZATION_VIEWPORT_HEIGHT("vh", 240, "Viewport height."),
         VISUALIZATION_SCALE("scale", 3, "Visualization scale (1-3x)"),
@@ -201,7 +196,6 @@ public class MarioOptions {
             "GREEN_KOOPA => rk, GREEN_KOOPA_WINGED => rkw, " +
             "SPIKY => s, SPIKY_WINGED => sw, WAVE_GOOMBA => gww"),
 		
-		SYSTEM_RECORDING_FILE_NAME("rec", "off", "Where to save the replay."),
 		SYSTEM_SAVE_LEVEL_FILE_NAME("s", "off", "Where to save the level."),
 		SYSTEM_LOAD_LEVEL_FILE_NAME("llf", "off", "Where to load the level from."),
 		;
@@ -236,7 +230,7 @@ public class MarioOptions {
 	
 	static {
 		// force enum initialization ... otherwise, respective enum constructors need not to be invoked and we would not be able to parse arguments
-		BoolOption.AI_PUNCTUAL_JUDGE.name();
+		BoolOption.LEVEL_LADDERS.name();
 		IntOption.AI_ENTITY_GENERALIZATION_ZLEVEL.name();
 		FloatOption.SIMULATION_GRAVITY_CREATURES.name();
 		StringOption.LEVEL_CREATURES.name();
@@ -257,11 +251,8 @@ public class MarioOptions {
 	public boolean getBool(BoolOption option) {
 		if (bools.containsKey(option)) {
 			boolean value = bools.get(option);
-			MarioLog.trace("[MarioOptions] " + option.name() + "[-" + option.param + "] specified as: " + value);
 			return value;
 		}
-		
-		MarioLog.trace("[MarioOptions] " + option.name() + "[-" + option.param + "] default value used: " + option.defaultValue);
 		
 		return option.defaultValue;
 	}
@@ -269,22 +260,17 @@ public class MarioOptions {
 	public void setBool(BoolOption option, String strValue) {
 		boolean value = ("on".equalsIgnoreCase(strValue) || "true".equals(strValue) ? true : false); 
 		bools.put(option, value);
-		MarioLog.trace("[MarioOptions] " + option.name() + "[-" + option.param + "] set as: " + value);
 	}
 	
 	public void setBool(BoolOption option, boolean value) {
 		bools.put(option, value);
-		MarioLog.trace("[MarioOptions] " + option.name() + "[-" + option.param + "] set as: " + value);
 	}
 	
 	public int getInt(IntOption option) {
 		if (ints.containsKey(option)) {
 			int value = ints.get(option);
-			MarioLog.trace("[MarioOptions] " + option.name() + "[-" + option.param + "] specified as: " + value);
 			return value;
 		}
-		
-		MarioLog.trace("[MarioOptions] " + option.name() + "[-" + option.param + "] default value used: " + option.defaultValue);
 		
 		return option.defaultValue;
 	}
@@ -298,22 +284,17 @@ public class MarioOptions {
 			return;
 		}
 		ints.put(option, value);
-		MarioLog.trace("[MarioOptions] " + option.name() + "[-" + option.param + "] set as: " + value);
 	}
 	
 	public void setInt(IntOption option, int value) {
 		ints.put(option, value);
-		MarioLog.trace("[MarioOptions] " + option.name() + "[-" + option.param + "] set as: " + value);
 	}
 	
 	public float getFloat(FloatOption option) {
 		if (floats.containsKey(option)) {
 			float value = floats.get(option);
-			MarioLog.trace("[MarioOptions] " + option.name() + "[-" + option.param + "] specified as: " + value);
 			return value;
 		}
-		
-		MarioLog.trace("[MarioOptions] " + option.name() + "[-" + option.param + "] default value used: " + option.defaultValue);
 		
 		return option.defaultValue;
 	}
@@ -327,29 +308,23 @@ public class MarioOptions {
 			return;
 		}
 		floats.put(option, value);
-		MarioLog.trace("[MarioOptions] " + option.name() + "[-" + option.param + "] set as: " + value);
 	}
 	
 	public void setFloat(FloatOption option, float value) {
 		floats.put(option, value);
-		MarioLog.trace("[MarioOptions] " + option.name() + "[-" + option.param + "] set as: " + value);
 	}
 	
 	public String getString(StringOption option) {
 		if (strings.containsKey(option)) {
 			String value = strings.get(option);
-			MarioLog.trace("[MarioOptions] " + option.name() + "[-" + option.param + "] specified as: " + value);
 			return value;
 		}
-		
-		MarioLog.trace("[MarioOptions] " + option.name() + "[-" + option.param + "] default value used: " + option.defaultValue);
 		
 		return option.defaultValue;
 	}
 	
 	public void setString(StringOption option, String value) {
 		strings.put(option, value);
-		MarioLog.trace("[MarioOptions] " + option.name() + "[-" + option.param + "] set as: " + value);
 	}
 	
 	public void setOption(String argument, String value) {
@@ -424,12 +399,6 @@ public class MarioOptions {
 		}
 		args = processedArgs.toArray(new String[0]);		
 		
-		MarioLog.trace("[MarioOptions] Parsing " + args.length + " arguments ~ " + (args.length / 2) + " parameters:");
-		for (String arg : args) {
-			MarioLog.trace(" " + arg);
-		}
-		MarioLog.trace("");
-		
 		if (args.length % 2 != 0) {
 			MarioLog.error("[MarioOptions] INVALID NUMBER OF ARGUMENTS (" + args.length + ")!");
 			throw new RuntimeException("Invalid number of arguments (" + args.length + ").");
@@ -445,8 +414,6 @@ public class MarioOptions {
 		
 			index += 2;			
 		}
-		
-		MarioLog.trace("[MarioOptions] Parameters parsed.");		
 	}
 	
 	// ==============

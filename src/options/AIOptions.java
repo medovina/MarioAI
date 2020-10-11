@@ -27,7 +27,6 @@
 
 package options;
 
-import options.MarioOptions.BoolOption;
 import options.MarioOptions.IntOption;
 
 /**
@@ -85,9 +84,5 @@ public final class AIOptions extends SimulationOptions {
 	
 	public static int getEntityGeneralizationZLevel() {
 		return MarioOptions.getInstance().getInt(IntOption.AI_ENTITY_GENERALIZATION_ZLEVEL);
-	}
-	
-	public static boolean isPunctualJudge() {
-		return MarioOptions.getInstance().getBool(BoolOption.AI_PUNCTUAL_JUDGE);
 	}
 }

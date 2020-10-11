@@ -17,22 +17,6 @@ public class SystemOptions {
 	public static void reset() {		
 	}
 	
-//	public static boolean isToolsConfigurator() {
-//		return MarioOptions.getInstance().getBool(BoolOption.SYSTEM_TOOLS_CONFIGURATOR);
-//	}	
-	
-	public static boolean isReplayFileName() {
-		String value = MarioOptions.getInstance().getString(StringOption.SYSTEM_RECORDING_FILE_NAME);
-		if (value.length() == 0) return false;
-		if ("off".equalsIgnoreCase(value)) return false;
-		if ("false".equalsIgnoreCase(value)) return false;
-		return true;
-	}
-	
-	public static String getReplayFileName() {
-		return MarioOptions.getInstance().getString(StringOption.SYSTEM_RECORDING_FILE_NAME);
-	}
-	
 	public static boolean isSaveLevelFileName() {
 		String value = MarioOptions.getInstance().getString(StringOption.SYSTEM_SAVE_LEVEL_FILE_NAME);
 		if (value.length() == 0) return false;

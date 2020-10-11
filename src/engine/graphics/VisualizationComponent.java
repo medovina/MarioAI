@@ -126,7 +126,7 @@ public class VisualizationComponent extends JComponent {
 			marioComponentFrame.setContentPane(m);
 			m.init();
             marioComponentFrame.pack();
-            marioComponentFrame.setLocationRelativeTo(null);  // attempt to center window on screen
+            marioComponentFrame.setLocationRelativeTo(null);  // center window on screen
 			marioComponentFrame.setResizable(false);
 			marioComponentFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}

@@ -97,16 +97,17 @@ public final class EvaluationInfo implements Cloneable {
 
 	}
 
-	public float computeDistancePassed() {
-		return distancePassedPhys;
-	}
-
 	public int computeKillsTotal() {
 		return this.killsTotal;
     }
     
+    public float completionPercentage() {
+        return 100.0f * distancePassedPhys / (levelLength * 16);
+    }
+
     public String summary() {
-        return ResultDescription[getResult().ordinal()] + ", score = " + score;
+        return String.format("%10s, distance = %5.1f%%, score = %d",
+            ResultDescription[getResult().ordinal()], completionPercentage(), score);
     }
 
 	public String toString() {
@@ -132,7 +133,7 @@ public final class EvaluationInfo implements Cloneable {
 				+ " of "
 				+ df.format(levelLength * 16)
 				+ " ("
-				+ distancePassedCells * 100 / levelLength
+				+ df.format(completionPercentage())
 				+ "% passed)"
 				+ "\n   Time Spent(marioseconds) : "
 				+ timeSpent

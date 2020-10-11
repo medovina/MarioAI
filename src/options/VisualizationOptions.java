@@ -1,7 +1,5 @@
 package options;
 
-import java.awt.Point;
-
 import options.MarioOptions.BoolOption;
 import options.MarioOptions.IntOption;
 import options.SimulatorOptions.ReceptiveFieldMode;
@@ -42,11 +40,6 @@ public class VisualizationOptions {
 	
 	public static int getFPS() {
 		return MarioOptions.getInstance().getInt(IntOption.VISUALIZATION_FPS);
-	}
-	
-	public static Point getViewLocation() {
-        return new Point(MarioOptions.getInstance().getInt(IntOption.VISUALIZATION_VIEW_LOCATION_X),
-                         MarioOptions.getInstance().getInt(IntOption.VISUALIZATION_VIEW_LOCATION_Y)); 
 	}
 	
 	public static int getViewportWidth() {
