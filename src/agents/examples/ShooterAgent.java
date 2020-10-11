@@ -14,8 +14,6 @@ import engine.input.*;
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
 public class ShooterAgent extends MarioAIBase {
-    boolean speeding = false;
-
 	private boolean enemyAhead() {
 		return     entities.danger(1, 0) || entities.danger(1, -1) 
 				|| entities.danger(2, 0) || entities.danger(2, -1)
@@ -35,13 +33,12 @@ public class ShooterAgent extends MarioAIBase {
 		input.press(MarioKey.RIGHT);
         
         // SHOOT WHENEVER POSSIBLE
-        if (speeding && mario.mayShoot)
-            speeding = false;   // release trigger, so we will shoot on next tick
-        else {
-            // SPEED RUN
-            input.press(MarioKey.SPEED);
-            speeding = true;
-        }
+        if (mario.mayShoot) {
+            // TOGGLE SPEED BUTTON
+            if (!lastInput.isPressed(MarioKey.SPEED))
+                input.press(MarioKey.SPEED);    
+        } else
+            input.press(MarioKey.SPEED);  // SPRINT
 
 		// IF (ENEMY || BRICK AHEAD) => JUMP
         if (mario.mayJump && (enemyAhead() || brickAhead()))
