@@ -108,7 +108,7 @@ public final class LevelScene implements SpriteContext {
 
 	public LevelScene() {
 		try {
-			Level.loadBehaviors(new DataInputStream(LevelScene.class.getResourceAsStream("../resources/tiles.dat")));
+			Level.loadBehaviors(new DataInputStream(LevelScene.class.getResourceAsStream("/engine/resources/tiles.dat")));
 		} catch (IOException e) {
 			MarioLog.error("[MarioAI ERROR] : error loading file resources/tiles.dat ; ensure this file exists in src/engine ");
 			e.printStackTrace();

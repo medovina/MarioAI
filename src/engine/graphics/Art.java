@@ -73,7 +73,7 @@ private static Image getImage(GraphicsConfiguration gc, String imageName) throws
 {
     BufferedImage source = null;
     try
-    { source = ImageIO.read(Art.class.getResourceAsStream("../resources/" + imageName)); }
+    { source = ImageIO.read(Art.class.getResourceAsStream("/engine/resources/" + imageName)); }
     catch (Exception e) { e.printStackTrace(); }
 
     assert source != null;
