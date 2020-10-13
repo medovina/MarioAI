@@ -10,12 +10,22 @@ import java.util.TreeSet;
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
 public class MarioInput {
-	private Set<MarioKey> pressed = new TreeSet<MarioKey>(new Comparator<MarioKey>() {
+	private TreeSet<MarioKey> pressed = new TreeSet<MarioKey>(new Comparator<MarioKey>() {
 		@Override
 		public int compare(MarioKey o1, MarioKey o2) {
 			return o1.getCode() - o2.getCode();
 		}		
-	});
+    });
+    
+    public MarioInput clone() {
+        MarioInput i = new MarioInput();
+
+        @SuppressWarnings("unchecked")
+        TreeSet<MarioKey> t = (TreeSet<MarioKey>) pressed.clone();
+
+        i.pressed = t;
+        return i;
+    }
 	
 	public Set<MarioKey> getPressed() {
 		return pressed;

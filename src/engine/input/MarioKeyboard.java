@@ -28,21 +28,31 @@ public class MarioKeyboard implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		MarioKey key = mapping.get(e.getKeyCode());
-		if (key != null) input.press(key);
+        if (key != null)
+            synchronized (input) {
+                input.press(key);
+            }
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		MarioKey key = mapping.get(e.getKeyCode());
-		if (key != null) input.release(key);
+        if (key != null)
+            synchronized (input) {
+                input.release(key);
+            }
 	}
 
 	public void reset() {
-		input.reset();		
+        synchronized (input) {
+            input.reset();		
+        }
 	}
 
 	public MarioInput getInput() {
-		return input;
+        synchronized (input) {
+            return input.clone();
+        }
 	}
 	
 }
