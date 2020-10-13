@@ -1,5 +1,6 @@
 package engine.input;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
@@ -10,12 +11,7 @@ import java.util.TreeSet;
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */
 public class MarioInput {
-	private Set<MarioKey> pressed = new TreeSet<MarioKey>(new Comparator<MarioKey>() {
-		@Override
-		public int compare(MarioKey o1, MarioKey o2) {
-			return o1.getCode() - o2.getCode();
-		}		
-	});
+	private Set<MarioKey> pressed = Collections.synchronizedNavigableSet(new TreeSet<>(Comparator.comparingInt(MarioKey::getCode)));
 	
 	public Set<MarioKey> getPressed() {
 		return pressed;

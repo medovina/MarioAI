@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.text.DecimalFormat;
+import java.util.stream.Collectors;
 
 import agents.AgentOptions;
 import engine.core.Entities;
@@ -96,13 +97,9 @@ abstract public class MarioAIBase extends MarioAgentBase implements KeyListener,
 		if (hijacked) {
 			MarioInput ai = actionSelectionAI();
 			if (ai != null) {
-				String msg = "AGENT KEYS:   ";
-				boolean first = true;				
-				for (MarioKey pressedKey : ai.getPressed()) {
-					if (first) first = false;
-					else msg += " ";
-					msg += pressedKey.getDebug();
-				}
+				String msg = ai.getPressed().stream()
+						.map(MarioKey::getDebug)
+						.collect(Collectors.joining(" ", "AGENT KEYS: ", ""));
 				VisualizationComponent.drawStringDropShadow(g, msg, 0, 9, 6);
 			}
 		}
@@ -115,14 +112,11 @@ abstract public class MarioAIBase extends MarioAgentBase implements KeyListener,
 				((SimulatorOptions.FPS > 99) ? "\\infty" : "  "
 						+ SimulatorOptions.FPS.toString()), 33, 4, 7);
 
-        String msg = "PRESSED KEYS: ";
+        String msg = lastInput.getPressed().stream()
+				.map(MarioKey::getDebug)
+				.collect(Collectors.joining(" ", "PRESSED KEYS: ", ""));
 		VisualizationComponent.drawStringDropShadow(g, msg, 0, 7, 6);
 
-        msg = "";
-        for (MarioKey pressedKey : lastInput.getPressed())
-            msg += (msg.equals("") ? pressedKey.getDebug() : " " + pressedKey.getDebug());
-        VisualizationComponent.drawString(g, msg, 109, 61, 1);
-		
 		VisualizationComponent.drawStringDropShadow(g,
 				"ALL KILLS: " + mario.killsTotal, 19, 3, 1);
         VisualizationComponent.drawStringDropShadow(g,
