@@ -62,7 +62,6 @@ public class Entities {
 	 * @param mapY absolute receptive field tile y-coordinate
 	 */
 	protected List<Entity> getAllAt(int mapX, int mapY) {
-		if (entityField == null) return new ArrayList<Entity>();
 		if (mapY < 0 || mapY >= entityField.length || mapX < 0 || mapX >= entityField[0].length) return new ArrayList<Entity>();
 		return entityField[mapY][mapX];
 	}

@@ -78,7 +78,10 @@ public class MarioSimulator {
 		MarioOptions.reset(options);
 		
 		IEnvironment environment = MarioEnvironment.getInstance();
-		environment.reset(agent);
+        environment.reset(agent);
+
+        // initial observation, needed since environment.tick() might call debugDraw()
+        agent.observe(environment);  
 
 		while (!environment.isLevelFinished()) {
 			// UPDATE THE ENVIRONMENT
