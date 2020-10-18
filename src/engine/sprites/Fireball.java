@@ -87,7 +87,6 @@ public void move()
     if (facing != 0) anim++;
 
     float sideWaysSpeed = 8f;
-    //        float sideWaysSpeed = onGround ? 2.5f : 1.2f;
 
     if (xa > 2)
     {

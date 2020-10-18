@@ -123,15 +123,6 @@ abstract public class MarioAIBase extends MarioAgentBase implements KeyListener,
             msg += (msg.equals("") ? pressedKey.getDebug() : " " + pressedKey.getDebug());
         VisualizationComponent.drawString(g, msg, 109, 61, 1);
 		
-		VisualizationComponent.drawStringDropShadow(g,
-				"ALL KILLS: " + mario.killsTotal, 19, 3, 1);
-        VisualizationComponent.drawStringDropShadow(g,
-            "by Fire  : " + mario.killsByFire, 19, 4, 1);
-        VisualizationComponent.drawStringDropShadow(g,
-            "by Shell : " + mario.killsByShell, 19, 5, 1);
-        VisualizationComponent.drawStringDropShadow(g,
-            "by Stomp : " + mario.killsByStomp, 19, 6, 1);
-
 		int row = 10;
 		
 		String marioState = "";

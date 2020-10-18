@@ -317,7 +317,6 @@ public boolean move(float xa, float ya)
         if (ya < 0)
         {
             y = (int) ((y - height) / 16) * 16 + height;
-//                jumpTime = 0;
             this.ya = 0;
         }
         if (ya > 0)

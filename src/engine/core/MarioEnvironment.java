@@ -233,7 +233,9 @@ public final class MarioEnvironment implements IEnvironment {
 					}
 				}
 				
-				Entity entity = new Entity(sprite, entityType, col - mario.egoCol, row - mario.egoRow, levelScene.mario.x - sprite.x, levelScene.mario.y - sprite.y, sprite.y);
+				Entity entity = new Entity(
+                    sprite, entityType, col - mario.egoCol, row - mario.egoRow,
+                    sprite.x - levelScene.mario.x, sprite.y - levelScene.mario.y, sprite.y);
 				entity.speed.x = entity.sprite.x - entity.sprite.xOld;
 				entity.speed.y = entity.sprite.y - entity.sprite.yOld;
 				

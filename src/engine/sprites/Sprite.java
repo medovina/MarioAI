@@ -176,9 +176,10 @@ public class Sprite {
 					yFlipPic ? -hPic : hPic, null);
 		} catch (ArrayIndexOutOfBoundsException ex) {
 			// System.err.println("ok:" + this.kind + ", " + xPic);
-		}
+        }
+        
 		// Labels
-		if (SimulatorOptions.areLabels)
+		if (SimulatorOptions.areLabels && !(this instanceof Sparkle))
 			og.drawString("" + xPixel + "," + yPixel, xPixel, yPixel);
 		
 	}

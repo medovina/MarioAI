@@ -33,8 +33,6 @@ import engine.graphics.Art;
 
 public class Shell extends Sprite
 {
-
-//    private float runTime;
 private boolean onGround = false;
 
 private int width = 4;
@@ -170,7 +168,6 @@ public void move()
     if (facing != 0) anim++;
 
     float sideWaysSpeed = 11f;
-    //        float sideWaysSpeed = onGround ? 2.5f : 1.2f;
 
     if (xa > 2)
     {
@@ -189,8 +186,6 @@ public void move()
     }
 
     xFlipPic = facing == -1;
-
-//        runTime += (Math.abs(xa)) + 5;
 
     xPic = (anim / 2) % 4 + 3;
 
@@ -311,8 +306,6 @@ private boolean isBlocking(float _x, float _y, float xa, float ya)
     if (x == (int) (this.x / 16) && y == (int) (this.y / 16)) return false;
 
     boolean blocking = world.level.isBlocking(x, y, xa, ya);
-
-//        byte block = levelScene.level.getBlock(x, y);
 
     if (blocking && ya == 0 && xa != 0)
     {

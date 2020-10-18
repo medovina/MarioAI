@@ -93,9 +93,6 @@ public final class Mario extends Sprite {
 		return (large && fire ? MarioMode.FIRE_LARGE : large ? MarioMode.LARGE : MarioMode.SMALL);
 	}
 
-	// private static float GROUND_INERTIA = 0.89f;
-	// private static float AIR_INERTIA = 0.89f;
-
 	public MarioInput keys = new MarioInput(); 
 	
 	private float runTime;

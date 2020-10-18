@@ -196,7 +196,7 @@ public class VisualizationComponent extends JComponent {
 
 		for (int i = 0; i < bgLayer.length; i++) {
 			bgLayer[i].setCam(xCam, yCam);
-			bgLayer[i].render(g); // levelScene.
+			bgLayer[i].render(g);
 		}
 
 		g.translate(-xCam, -yCam);
@@ -208,7 +208,7 @@ public class VisualizationComponent extends JComponent {
 		g.translate(xCam, yCam);
 
 		layer.setCam(xCam, yCam);
-		layer.render(g, marioEnvironment.getTick() /* levelScene.paused ? 0 : */);
+		layer.render(g, marioEnvironment.getTick());
 
 		g.translate(-xCam, -yCam);
 
@@ -269,15 +269,9 @@ public class VisualizationComponent extends JComponent {
 		drawStringDropShadow(g, " " + df2.format(time), 33, 1, time < 0 ? 3
 				: time < 50 ? 1 : time < 100 ? 4 : 7);
 
-		if (SimulatorOptions.areLabels) {
-			g.drawString("xCam: " + xCam + "yCam: " + yCam, 10, 205);
-			g.drawString("x : " + mario.x + "y: " + mario.y, 10, 215);
-			g.drawString("xOld : " + mario.xOld + "yOld: " + mario.yOld, 10,
-					225);
-		}
-		
 		if (marioEnvironment.getAgent() instanceof IMarioDebugDraw) {
-			((IMarioDebugDraw)marioEnvironment.getAgent()).debugDraw(this, marioEnvironment.getLevelScene(), marioEnvironment, g);
+			((IMarioDebugDraw)marioEnvironment.getAgent()).debugDraw(
+                this, marioEnvironment.getLevelScene(), marioEnvironment, g);
 		}
 
 	}
@@ -285,9 +279,8 @@ public class VisualizationComponent extends JComponent {
 	private Font numFont = new Font("Arial", Font.PLAIN, 8);
 
 	private void renderReceptiveField(Sprite mario, Graphics og) {			
-		// og.drawString("M", (int) x, (int) y);
 		og.drawString("Matrix View", mario.xPic - 40, mario.yPic - 20);
-		int height = SimulatorOptions.receptiveFieldHeight;// * 16;
+		int height = SimulatorOptions.receptiveFieldHeight;
 
 		int rows = SimulatorOptions.receptiveFieldHeight;
 		int columns = SimulatorOptions.receptiveFieldWidth;
@@ -298,26 +291,26 @@ public class VisualizationComponent extends JComponent {
 		int marioX = (((int)mario.x) / 16) * 16 + 8;
 		int marioY = (((int)mario.y) / 16) * 16 + 16;
 
-		int cellHeight = 16;// height / (columns);
+		int cellHeight = 16;
 		int k;
 		// horizontal lines
 		og.setColor(Color.BLACK);
-		for (k = -marioRow - 1 /*-rows / 2 - 1*/; k < rows
-				- marioRow/* rows / 2 */; k++) {
+		for (k = -marioRow - 1 ; k < rows
+				- marioRow; k++) {
 			og.drawLine(
-					(int) marioX - marioCol * cellHeight - 8/* width / 2 */,
+					(int) marioX - marioCol * cellHeight - 8,
 					(int) (marioY + k * cellHeight), (int) marioX
-							+ (columns - marioCol) * cellHeight - 8 /* (x + width / 2) */,
+							+ (columns - marioCol) * cellHeight - 8,
 					(int) (marioY + k * cellHeight));
 		}
 
 		// vertical lines
-		int cellWidth = 16;// length / (rows);
-		for (k = -marioCol - 1 /*-columns / 2 - 1*/; k < columns - marioCol /* columns / 2 + 1 */; k++) {
+		int cellWidth = 16;
+		for (k = -marioCol - 1 ; k < columns - marioCol ; k++) {
 			og.drawLine((int) (marioX + k * cellWidth + 8), (int) marioY - marioRow
-					* cellHeight - 16/* height / 2 - 8 */, (int) (marioX + k
+					* cellHeight - 16, (int) (marioX + k
 					* cellWidth + 8), (int) marioY + (height - marioRow)
-					* cellHeight - 16 /* (y + height / 2 - 8) */);
+					* cellHeight - 16);
 		}
 		
 		switch (SimulatorOptions.receptiveFieldMode) {
@@ -383,15 +376,11 @@ public class VisualizationComponent extends JComponent {
 			g.drawImage(Art.font[ch[i] - 32][c], x + i * 8, y, null);
 	}
 
-	// Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	// frame.setLocation((screenSize.length-frame.getWidth())/2,
-	// (screenSize.height-frame.getHeight())/2);
 	private static GraphicsConfiguration graphicsConfiguration;
 
 	public void init() {
 		graphicsConfiguration = getGraphicsConfiguration();
 		Art.init(graphicsConfiguration);
-
 	}
 
 	public void postInitGraphics() {
@@ -430,10 +419,9 @@ public class VisualizationComponent extends JComponent {
 		int fps = SimulatorOptions.FPS;
 		delay = (fps > 0) ? (fps >= SimulatorOptions.MaxFPS) ? 0 : (1000 / fps)
 				: 100;
-		// System.out.println("Delay: " + delay);
 	}
 
-	// THis method here solely for the displaying information in order to reduce
+	// This method is here solely for the displaying information in order to reduce
 	// amount of info passed between Env and VisComponent
 
 	public void setAgent(IAgent agent) {
