@@ -27,17 +27,11 @@
 
 package options;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-
 import engine.graphics.VisualizationComponent;
 
 public abstract class SimulatorOptions {
 	
 	public enum ReceptiveFieldMode {
-		
 		NONE(0),
 		GRID(1),
 		GRID_TILES(2),
@@ -61,14 +55,11 @@ public abstract class SimulatorOptions {
 			}
 			return null;
 		}
-		
-	}
+    }
+    
+    public static final int LABEL_NONE = 0, LABEL_RELATIVE = 1, LABEL_ABSOLUTE = 2;
 	
-	public static final int primaryVerionUID = 0;
-	public static final int minorVerionUID = 3;
-	public static final int minorSubVerionID = 1;
-
-	public static boolean areLabels = false;
+	public static int showLabels = LABEL_NONE;
 	public static Integer FPS = 24;
 	public static int MaxFPS = 100;
 	public static boolean areFrozenCreatures = false;
@@ -97,24 +88,8 @@ public abstract class SimulatorOptions {
 	public static boolean isReplaying = false;
 	public static boolean nextFrameIfPaused = false;
 
-	public static int getPrimaryVersionUID() {
-		return primaryVerionUID;
-	}
-
-	public static int getMinorVersionUID() {
-		return minorVerionUID;
-	}
-
-	public static int getMinorSubVersionID() {
-		return minorSubVerionID;
-	}
-
 	public static String getBenchmarkName() {
 		return "Mario AI";
-	}
-
-	public static String getVersionUID() {
-		return getPrimaryVersionUID() + "." + getMinorVersionUID() + "." + getMinorSubVersionID();
 	}
 
 	public static void registerMarioVisualComponent(VisualizationComponent mc) {
@@ -124,21 +99,5 @@ public abstract class SimulatorOptions {
 	public static void AdjustMarioVisualComponentFPS() {
 		if (marioVisualComponent != null)
 			marioVisualComponent.adjustFPS();
-	}
-
-	public static String getDateTime(Long d) {
-		final DateFormat dateFormat = (d == null) ? new SimpleDateFormat(
-				"yyyy/MM/dd HH:mm:ss:ms") : new SimpleDateFormat("HH:mm:ss:ms");
-		if (d != null)
-			dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-		final Date date = (d == null) ? new Date() : new Date(d);
-		return dateFormat.format(date);
-	}
-
-	final static private DateFormat dateFormat = new SimpleDateFormat(
-			"yyyy-MM-dd_HH-mm-ss");
-
-	public static String getTimeStamp() {
-		return dateFormat.format(new Date());
 	}
 }

@@ -201,9 +201,9 @@ abstract public class MarioAIBase extends MarioAgentBase implements KeyListener,
 			}
 			return;
 			
-		// RENDER MAP PIXEL [X,Y] FOR EVERY ENTITIES WITHIN THE SCENE
+		// RENDER MAP PIXEL [X,Y] FOR EVERY ENTITY WITHIN THE SCENE
 		case KeyEvent.VK_L:
-			if (isPressed) SimulatorOptions.areLabels = !SimulatorOptions.areLabels;
+			if (isPressed) SimulatorOptions.showLabels = (SimulatorOptions.showLabels + 1) % 3;
 			return;
 			
 		// ADJUST SIMULATOR FPS
@@ -226,7 +226,8 @@ abstract public class MarioAIBase extends MarioAgentBase implements KeyListener,
 		// GRID VISUALIZATION
 		case KeyEvent.VK_G:
 			if (isPressed) {
-				SimulatorOptions.receptiveFieldMode = ReceptiveFieldMode.getForCode(SimulatorOptions.receptiveFieldMode.getCode()+1);
+                SimulatorOptions.receptiveFieldMode =
+                    ReceptiveFieldMode.getForCode(SimulatorOptions.receptiveFieldMode.getCode()+1);
 			}
 			return;
 			

@@ -28,12 +28,7 @@
 package engine.graphics;
 
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.GraphicsConfiguration;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.image.VolatileImage;
 import java.text.DecimalFormat;
@@ -85,7 +80,8 @@ public class VisualizationComponent extends JComponent {
 	private KeyListener prevHumanKeyBoardAgent;
 	private static VisualizationComponent marioVisualComponent = null;
 
-	private Scale2x scale2x;
+    private Scale2x scale2x;
+    Font smallFont = new Font(Font.SANS_SERIF, Font.PLAIN, 8);
 
 	private VisualizationComponent(MarioEnvironment marioEnvironment) {
 		this.marioEnvironment = marioEnvironment;
@@ -221,13 +217,23 @@ public class VisualizationComponent extends JComponent {
 			}
         }
         
-        if (SimulatorOptions.areLabels) {
-            for (Sprite sprite : marioEnvironment.getLevelScene().sprites)
-                if (!(sprite instanceof Sparkle)) {
-                    int xPixel = (int) sprite.x - sprite.xPicO;
-                    int yPixel = (int) sprite.y - sprite.yPicO;
-                    g.drawString("" + xPixel + "," + yPixel, xPixel, yPixel);
-                }
+        int labels = SimulatorOptions.showLabels;
+        if (labels != SimulatorOptions.LABEL_NONE) {
+            boolean relative = labels == SimulatorOptions.LABEL_RELATIVE;
+            g.setFont(smallFont);
+            FontMetrics fm = g.getFontMetrics();
+
+            for (Sprite sprite : marioEnvironment.getLevelScene().sprites) {
+                if (sprite instanceof Sparkle ||
+                    sprite instanceof Mario && relative)
+                    continue;
+
+                String s = String.format("%.1f, %.1f",
+                    relative ? sprite.x - mario.x : sprite.x,
+                    relative ? sprite.y - mario.y : sprite.y);
+                g.drawString(s, (int) sprite.x - fm.stringWidth(s) / 2,
+                                (int) sprite.y - sprite.yPicO);
+            }
         }
 		
 		// Mario Grid Visualization Enable

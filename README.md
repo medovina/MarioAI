@@ -14,9 +14,9 @@ Some time around 2006, Markus Persson (creator of Minecraft) wrote a Java progra
 
 Around 2009, Julian Togelius and Sergey Karakovskiy modified Infinite Mario Bros. by adding an API for computer agents that play the game automatically.  This modified version was called [MarioAI](https://code.google.com/archive/p/marioai/).  It was the basic for a series of [tournaments](http://www.marioai.org/) for AI players for the game.
 
-The code in this repository is derived from [MarioAI 0.2.0](https://code.google.com/archive/p/marioai/), with additional improvements by Jakub Gemrot and [Adam Dingle](https://ksvi.mff.cuni.cz/~dingle/) from the Faculty of Mathematics and Physics at Charles University in Prague.
+The code in this repository is derived from [MarioAI 0.2.0](https://code.google.com/archive/p/marioai/), with various improvements by Jakub Gemrot and [Adam Dingle](https://ksvi.mff.cuni.cz/~dingle/) from the Faculty of Mathematics and Physics at Charles University in Prague.
 
-Meanwhile, a new version of MarioAI (0.8) has recently (in 2019) appeared at [marioai.org](http://www.marioai.org).  Perhaps we will merge in the changes from that version at some point.
+Meanwhile, a [new version of MarioAI (0.8)](https://github.com/amidos2006/Mario-AI-Framework) has recently appeared (in 2019).  Perhaps we will merge in the changes from that version at some point.
 
 ## Building the game
 
@@ -230,7 +230,8 @@ Here are some extra keyboard controls that allows you to visualize / perform ext
    * 3 = grid showing entities (see the [EntityType](https://ksvi.mff.cuni.cz/~dingle/2020-1/ai_1/mario/api.html#EntityType) enum)
  
 - __H__: hijack Mario, i.e. you may control Mario manually and navigate him into a situation you wish to observe
-- __L__: render sprite positions within the map
+- __L__: display entity positions within the map.  Press once to show positions relative to Mario,
+         or twice to show absolute positions.
 - __N__: when the game is paused, step forward by a single frame
 - __O__: freeze creatures, i.e. they will stop moving
 - __+__ / __-__: adjust simulator frames per second
