@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import agents.AgentOptions;
+import engine.sprites.Sprite;
 
 /** An {@link Entities} object provides information about entities around Mario.
  * <p>
@@ -107,8 +108,21 @@ public class Entities {
 			if (isDanger(entity)) return true;
 		}
 		return false;
-	}
-	
+    }
+    
+    /* Return true if anything dangerous overlaps the given bounding box,
+     * which is in pixel coordinates relative to Mario. */
+    public boolean dangerIn(int x1, int y1, int x2, int y2) {
+        for (Entity e: allEntities)
+            if (Entities.isDanger(e)) {
+                Sprite s = e.sprite;
+                if (e.dX + s.wPic / 2 >= x1 && e.dX - s.wPic / 2 <= x2 &&
+                    e.dY >= y1 && e.dY - s.height <= y2)
+                    return true;
+            }
+        return false;
+    }
+
 	/** Return true if this entity is dangerous. */
 	public static boolean isDanger(Entity entity) {
 		return entity.type.getKind().isDangerous();

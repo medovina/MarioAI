@@ -108,9 +108,6 @@ public final class Mario extends Sprite {
 	private boolean speedButtonNotPressed = false;
 	private boolean ableToShoot = false;
 
-	int width = 4;
-	int height = 24;
-
 	private static LevelScene levelScene;
 	public int facing;
 
@@ -123,7 +120,10 @@ public final class Mario extends Sprite {
 	public Sprite carried = null;
 
 	public Mario(LevelScene levelScene) {
-		kind = KIND_MARIO;
+        width = 4;
+        height = 24;
+    
+        kind = KIND_MARIO;
 		Mario.levelScene = levelScene;
 		x = levelScene.getMarioInitialPos().x;
 		y = levelScene.getMarioInitialPos().y;

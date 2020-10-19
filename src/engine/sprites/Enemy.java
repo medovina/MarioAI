@@ -47,9 +47,6 @@ public static final int POSITION_WAVE_GOOMBA = 7;
 public float runTime;
 public boolean onGround = false;
 
-int width = 4;
-int height = 24;
-
 public float yaa = 1;
 
 private LevelScene levelScene;
@@ -68,6 +65,9 @@ public boolean noFireballDeath;
 
 public Enemy(LevelScene levelScene, int x, int y, int dir, int type, boolean winged, int mapX, int mapY)
 {
+    width = 4;
+    height = 24;
+    
     kind = (byte) type;
     sheet = Art.enemies;
     this.winged = winged;
@@ -428,8 +428,8 @@ public void render(Graphics og)
 {
     if (winged)
     {
-        int xPixel = (int) (xOld + (x - xOld)) - xPicO;
-        int yPixel = (int) (yOld + (y - yOld)) - yPicO;
+        int xPixel = (int) x - xPicO;
+        int yPixel = (int) y - yPicO;
 
         if (kind == KIND_GREEN_KOOPA ||
                 kind == KIND_RED_KOOPA ||
@@ -452,8 +452,8 @@ public void render(Graphics og)
 
     if (winged)
     {
-        int xPixel = (int) (xOld + (x - xOld)) - xPicO;
-        int yPixel = (int) (yOld + (y - yOld)) - yPicO;
+        int xPixel = (int) x - xPicO;
+        int yPixel = (int) y - yPicO;
 
         if (kind == KIND_GREEN_KOOPA ||
                 kind == KIND_RED_KOOPA ||

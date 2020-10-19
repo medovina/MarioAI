@@ -79,7 +79,9 @@ public class Sprite {
 	 * Absolute position in tile coordinates (each tile is 16 x 16 pixels).
 	 * See {@link Sprite#tick()}.
 	 */
-	public int mapX, mapY;
+    public int mapX, mapY;
+    
+    public int width, height;
 
 	public int xPic, yPic;
 	

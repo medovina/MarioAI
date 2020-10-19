@@ -33,8 +33,6 @@ import engine.graphics.Art;
 
 public class BulletBill extends Sprite
 {
-int height = 24;
-
 private LevelScene world;
 public int facing;
 

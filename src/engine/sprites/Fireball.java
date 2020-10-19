@@ -38,9 +38,6 @@ private static float AIR_INERTIA = 0.89f;
 
 private boolean onGround = false;
 
-private int width = 4;
-int height = 24;
-
 private LevelScene world;
 public int facing;
 
@@ -52,6 +49,9 @@ private int deadTime = 0;
 
 public Fireball(LevelScene world, float x, float y, int facing)
 {
+    width = 4;
+    height = 24;
+    
     kind = KIND_FIREBALL;
     sheet = Art.particles;
 

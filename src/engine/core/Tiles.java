@@ -65,5 +65,20 @@ public class Tiles {
 			return false;
 		}
 	}
-	
+
+    /** Return true if any brick overlaps the given bounding box, which is in pixel coordinates
+     *  relative to Mario. */
+    public boolean brickIn(int x1, int y1, int x2, int y2) {
+        int x_start = (int) Math.floor((x1 + mario.inTileX) / 16.0),
+            y_start = (int) Math.floor((y1 + mario.inTileY) / 16.0);
+        int x_end = (int) Math.floor((x2 + mario.inTileX) / 16.0),
+            y_end = (int) Math.floor((y2 + mario.inTileY) / 16.0);
+
+        for (int x = x_start ; x <= x_end ; ++x)
+            for (int y = y_start ; y <= y_end ; ++y)
+                if (brick(x, y))
+                    return true;
+        
+        return false;
+    }
 }

@@ -53,8 +53,7 @@ import engine.helper.MarioLog;
 import engine.input.MarioCheatKey;
 import engine.level.BgLevelGenerator;
 import engine.level.Level;
-import engine.sprites.Mario;
-import engine.sprites.Sprite;
+import engine.sprites.*;
 import options.SimulatorOptions;
 import options.VisualizationOptions;
 import options.SimulatorOptions.ReceptiveFieldMode;
@@ -73,7 +72,9 @@ public class VisualizationComponent extends JComponent {
 	private BgRenderer[] bgLayer = new BgRenderer[2];
 
 	private Mario mario;
-	private Level level;
+    private Level level;
+    
+    int xCam, yCam;
 
 	final private static DecimalFormat df = new DecimalFormat("00");
 	final private static DecimalFormat df2 = new DecimalFormat("000");
@@ -178,21 +179,17 @@ public class VisualizationComponent extends JComponent {
 	private int recordIndicator = 20;
 
 	public void render(Graphics g) {
-		int xCam = (int) (mario.xOld + (mario.x - mario.xOld)) - 160;
-		int yCam = (int) (mario.yOld + (mario.y - mario.yOld)) - 120;
+		xCam = (int) mario.x - 160;
+		yCam = (int) mario.y - 120;
 
         if (xCam < 0)
             xCam = 0;
         if (yCam < 0)
             yCam = 0;
-        if (xCam > level.length * LevelScene.cellSize
-                - SimulatorOptions.VISUAL_COMPONENT_WIDTH)
-            xCam = level.length * LevelScene.cellSize
-                    - SimulatorOptions.VISUAL_COMPONENT_WIDTH;
-        if (yCam > level.height * LevelScene.cellSize
-                - SimulatorOptions.VISUAL_COMPONENT_HEIGHT)
-            yCam = level.height * LevelScene.cellSize
-                    - SimulatorOptions.VISUAL_COMPONENT_HEIGHT;
+        if (xCam > level.length * LevelScene.cellSize - SimulatorOptions.VISUAL_COMPONENT_WIDTH)
+            xCam = level.length * LevelScene.cellSize - SimulatorOptions.VISUAL_COMPONENT_WIDTH;
+        if (yCam > level.height * LevelScene.cellSize - SimulatorOptions.VISUAL_COMPONENT_HEIGHT)
+            yCam = level.height * LevelScene.cellSize - SimulatorOptions.VISUAL_COMPONENT_HEIGHT;
 
 		for (int i = 0; i < bgLayer.length; i++) {
 			bgLayer[i].setCam(xCam, yCam);
@@ -222,7 +219,16 @@ public class VisualizationComponent extends JComponent {
 					mario = sprite;
 				}
 			}
-		}
+        }
+        
+        if (SimulatorOptions.areLabels) {
+            for (Sprite sprite : marioEnvironment.getLevelScene().sprites)
+                if (!(sprite instanceof Sparkle)) {
+                    int xPixel = (int) sprite.x - sprite.xPicO;
+                    int yPixel = (int) sprite.y - sprite.yPicO;
+                    g.drawString("" + xPixel + "," + yPixel, xPixel, yPixel);
+                }
+        }
 		
 		// Mario Grid Visualization Enable
 		if (SimulatorOptions.receptiveFieldMode != ReceptiveFieldMode.NONE) {
@@ -365,16 +371,37 @@ public class VisualizationComponent extends JComponent {
 		}
 	}
 
-	public static void drawStringDropShadow(Graphics g, String text, int x,	int y, int c) {
+	public static void drawStringDropShadow(Graphics g, String text, int x,	int y, int color) {
 		drawString(g, text, x * 8 + 5, y * 8 + 5, 0);
-		drawString(g, text, x * 8 + 4, y * 8 + 4, c);
+		drawString(g, text, x * 8 + 4, y * 8 + 4, color);
 	}
 
-	public static void drawString(Graphics g, String text, int x, int y, int c) {
+	public static void drawString(Graphics g, String text, int x, int y, int color) {
 		char[] ch = text.toCharArray();
 		for (int i = 0; i < ch.length; i++)
-			g.drawImage(Art.font[ch[i] - 32][c], x + i * 8, y, null);
-	}
+			g.drawImage(Art.font[ch[i] - 32][color], x + i * 8, y, null);
+    }
+    
+    /* Draw a line from (x1, y1) to (x2, y2), which are in pixel coordinates relative to Mario. */
+    public void drawLine(Graphics g, int x1, int y1, int x2, int y2, Color color) {
+        g.translate((int) mario.x - xCam, (int) mario.y - yCam);
+
+        g.setColor(color);
+        g.drawLine(x1, y1, x2, y2);
+
+        g.translate(xCam - (int) mario.x, yCam - (int) mario.y);
+    }
+
+    /* Draw a rectangle with corners at (x1, y1) and (x2, y2), which are
+     * in pixel coordinates relative to Mario. */
+    public void drawRect(Graphics g, int x1, int y1, int x2, int y2, Color color) {
+        g.translate((int) mario.x - xCam, (int) mario.y - yCam);
+
+        g.setColor(color);
+        g.drawRect(x1, y1, x2 - x1, y2 - y1);
+
+        g.translate(xCam - (int) mario.x, yCam - (int) mario.y);
+    }
 
 	private static GraphicsConfiguration graphicsConfiguration;
 

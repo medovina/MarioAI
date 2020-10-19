@@ -37,9 +37,6 @@ private static float AIR_INERTIA = 0.89f;
 
 private boolean onGround = false;
 
-private int width = 4;
-int height = 24;
-
 private LevelScene world;
 public int facing;
 
@@ -59,6 +56,7 @@ public GreenMushroom(LevelScene world, int x, int y)
 
     yPic = 0;
     xPic = 2;
+    width = 4;
     height = 12;
     facing = 1;
     wPic = hPic = 16;

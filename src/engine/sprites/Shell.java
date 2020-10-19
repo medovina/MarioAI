@@ -35,9 +35,6 @@ public class Shell extends Sprite
 {
 private boolean onGround = false;
 
-private int width = 4;
-int height = 24;
-
 private LevelScene world;
 public int facing;
 
@@ -63,6 +60,7 @@ public Shell(LevelScene world, float x, float y, int type)
     yPicO = 31;
 
     yPic = type;
+    width = 4;
     height = 12;
     facing = 0;
     wPic = 16;
