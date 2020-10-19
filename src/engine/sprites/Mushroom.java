@@ -90,7 +90,6 @@ public void move()
     }
     float sideWaysSpeed = 1.75f;
     layer = 1;
-    //        float sideWaysSpeed = onGround ? 2.5f : 1.2f;
 
     if (xa > 2)
     {

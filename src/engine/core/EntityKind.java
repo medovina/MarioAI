@@ -15,11 +15,6 @@ public enum EntityKind {
 	 */
 	DANGER_SHOOTABLE("!S", 1, true, true, false, false),
 	/**
-	 * Entity that is DANGEROUS, can be squished, but cannot be shooted out.
-	 * There is NO such entity in Mario...
-	 */
-	//DANGER_SQUISHABLE("!Q", 2, true, false, false, false),
-	/**
 	 * Entity that is DANGEROUS and is both shootable and squishable.
 	 */
 	DANGER_SHOOTABLE_SQUISHABLE("!K", 3, true, true, true, false),	

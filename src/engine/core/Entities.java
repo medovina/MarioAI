@@ -43,7 +43,9 @@ public class Entities {
 	 * @param mapY absolute receptive field tile y-coordinate
 	 */
 	protected EntityType getEntityType(int mapX, int mapY) {
-		if (mapY < 0 || mapY >= entityField.length || mapX < 0 || mapX >= entityField[0].length) return EntityType.NOTHING;
+        if (mapY < 0 || mapY >= entityField.length || mapX < 0 || mapX >= entityField[0].length)
+            return EntityType.NOTHING;
+            
 		if (entityField[mapY][mapX].size() > 0) {
 			// SEARCH FOR THE MOST DANGEROUS ONE
 			Entity result = entityField[mapY][mapX].get(0);
@@ -62,7 +64,8 @@ public class Entities {
 	 * @param mapY absolute receptive field tile y-coordinate
 	 */
 	protected List<Entity> getAllAt(int mapX, int mapY) {
-		if (mapY < 0 || mapY >= entityField.length || mapX < 0 || mapX >= entityField[0].length) return new ArrayList<Entity>();
+        if (mapY < 0 || mapY >= entityField.length || mapX < 0 || mapX >= entityField[0].length)
+            return new ArrayList<Entity>();
 		return entityField[mapY][mapX];
 	}
 	

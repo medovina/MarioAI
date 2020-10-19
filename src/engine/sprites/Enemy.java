@@ -132,7 +132,9 @@ public void collideCheck()
     {
         if (yMarioD > -height && yMarioD < levelScene.mario.height)
         {
-            if ((kind != KIND_SPIKY && kind != KIND_SPIKY_WINGED && kind != KIND_ENEMY_FLOWER) && levelScene.mario.ya > 0 && yMarioD <= 0 && (!levelScene.mario.onGround || !levelScene.mario.wasOnGround))
+            if ((kind != KIND_SPIKY && kind != KIND_SPIKY_WINGED && kind != KIND_ENEMY_FLOWER) &&
+                 levelScene.mario.ya > 0 && yMarioD <= 0 &&
+                 (!levelScene.mario.onGround || !levelScene.mario.wasOnGround))
             {
                 levelScene.mario.stomp(this);
                 if (winged)
@@ -177,7 +179,9 @@ public void move()
             deadTime = 1;
             for (int i = 0; i < 8; i++)
             {
-                levelScene.addSprite(new Sparkle((int) (x + Math.random() * 16 - 8) + 4, (int) (y - Math.random() * 8) + 4, (float) (Math.random() * 2 - 1), (float) Math.random() * -1, 0, 1, 5));
+                levelScene.addSprite(new Sparkle(
+                    (int) (x + Math.random() * 16 - 8) + 4, (int) (y - Math.random() * 8) + 4,
+                    (float) (Math.random() * 2 - 1), (float) Math.random() * -1, 0, 1, 5));
             }
             spriteContext.removeSprite(this);
         }
@@ -246,7 +250,6 @@ public void move()
 
 public boolean move(float xa, float ya)
 {
-
     while (xa > 8)
     {
         if (!move(8, 0)) return false;
@@ -420,6 +423,7 @@ public void bumpCheck(int xTile, int yTile)
     }
 }
 
+@Override
 public void render(Graphics og)
 {
     if (winged)
@@ -435,7 +439,11 @@ public void render(Graphics og)
         } else
         {
             xFlipPic = !xFlipPic;
-            og.drawImage(sheet[wingTime / 4 % 2][4], xPixel + (xFlipPic ? wPic : 0) + (xFlipPic ? 10 : -10), yPixel + (yFlipPic ? hPic : 0) - 8, xFlipPic ? -wPic : wPic, yFlipPic ? -hPic : hPic, null);
+            og.drawImage(
+                sheet[wingTime / 4 % 2][4],
+                xPixel + (xFlipPic ? wPic : 0) + (xFlipPic ? 10 : -10),
+                yPixel + (yFlipPic ? hPic : 0) - 8,
+                xFlipPic ? -wPic : wPic, yFlipPic ? -hPic : hPic, null);
             xFlipPic = !xFlipPic;
         }
     }
@@ -452,10 +460,18 @@ public void render(Graphics og)
                 kind == KIND_GREEN_KOOPA_WINGED ||
                 kind == KIND_RED_KOOPA_WINGED)
         {
-            og.drawImage(sheet[wingTime / 4 % 2][4], xPixel + (xFlipPic ? wPic : 0) + (xFlipPic ? 10 : -10), yPixel + (yFlipPic ? hPic : 0) - 10, xFlipPic ? -wPic : wPic, yFlipPic ? -hPic : hPic, null);
+            og.drawImage(
+                sheet[wingTime / 4 % 2][4],
+                xPixel + (xFlipPic ? wPic : 0) + (xFlipPic ? 10 : -10),
+                yPixel + (yFlipPic ? hPic : 0) - 10,
+                xFlipPic ? -wPic : wPic, yFlipPic ? -hPic : hPic, null);
         } else
         {
-            og.drawImage(sheet[wingTime / 4 % 2][4], xPixel + (xFlipPic ? wPic : 0) + (xFlipPic ? 10 : -10), yPixel + (yFlipPic ? hPic : 0) - 8, xFlipPic ? -wPic : wPic, yFlipPic ? -hPic : hPic, null);
+            og.drawImage(
+                sheet[wingTime / 4 % 2][4],
+                xPixel + (xFlipPic ? wPic : 0) + (xFlipPic ? 10 : -10),
+                yPixel + (yFlipPic ? hPic : 0) - 8,
+                xFlipPic ? -wPic : wPic, yFlipPic ? -hPic : hPic, null);
         }
     }
 }
