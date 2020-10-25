@@ -19,7 +19,7 @@ public class Mario {
     }
 
 	public static void main(String[] args) throws Exception {
-		IAgent agent = null;
+		Class<?> agentClass = null;
         int fromLevel = 6, toLevel = 0;
         int seed = 0;
         boolean seedSpecified = false;
@@ -47,26 +47,29 @@ public class Mario {
                 default:
                     if (s.startsWith("-"))
                         usage();
-                    agent = (IAgent) Class.forName(s).getConstructor().newInstance();
+                    agentClass = Class.forName(s);
             }
         }
 
         if (sim > 0) {  // simulate a series of games
-            if (agent == null) {
+            if (agentClass == null) {
                 System.out.println("must specify agent with -sim");
                 return;
             }
             if (!seedSpecified)
                 seed = 0;
-            Evaluate.evaluateLevels(sim, seed, fromLevel, toLevel, false, agent, verbose);
+            Evaluate.evaluateLevels(sim, seed, fromLevel, toLevel, false, agentClass, verbose);
         } else {  // play one game visually
             if (toLevel > fromLevel) {
                 System.out.println("level range only works with -sim");
                 return;
             }
 
-            if (agent == null)
+            IAgent agent;
+            if (agentClass == null)
                 agent = new CheaterKeyboardAgent();
+            else
+                agent = (IAgent) agentClass.getConstructor().newInstance();
 
             LevelConfig level = LevelConfig.values()[fromLevel];
             System.out.println("Running " + level.name());

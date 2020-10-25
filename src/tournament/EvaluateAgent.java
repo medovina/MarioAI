@@ -28,14 +28,23 @@ public class EvaluateAgent {
         this.verbose = verbose;
 	}
 	
-	public MarioRunResults evaluateAgent(String agentId, IAgent agent) {
-		agentId = Sanitize.idify(agentId);
+	public MarioRunResults evaluateAgent(Class<?> agentClass) {
+		String agentId = null;
 		
 		MarioRun[] runs = MarioRunsGenerator.generateRunList(seed, levelOptions, runCount);
 		
 		MarioRunResults results = new MarioRunResults();
 		
 		for (int i = 0; i < runs.length; ++i) {
+            IAgent agent;
+            
+            try {
+                agent = (IAgent) agentClass.getConstructor().newInstance();
+            } catch (Exception e) { throw new RuntimeException(e); }
+
+            if (i == 0)
+                agentId = Sanitize.idify(agent.getName());
+
 			MarioRunResult result = runs[i].run(agent, verbose);
             
 			results.addRunResults(result);			
