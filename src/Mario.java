@@ -20,7 +20,7 @@ public class Mario {
 
 	public static void main(String[] args) throws Exception {
 		Class<?> agentClass = null;
-        int fromLevel = 6, toLevel = 0;
+        int fromLevel = 6, toLevel = fromLevel;
         int seed = 0;
         boolean seedSpecified = false;
         int sim = 0;
