@@ -29,9 +29,7 @@ public class EvaluateAgent {
         this.verbose = verbose;
 	}
 	
-	public MarioRunResults evaluateAgent(Class<?> agentClass) {
-		String agentId = null;
-        
+	public MarioRunResults evaluateAgent(Class<?> agentClass, String agentId) {
 		MarioRun[] runs = MarioRunsGenerator.generateRunList(
             seed, levelConfig.getOptionsVisualizationOff(), runCount);
 		
@@ -44,7 +42,7 @@ public class EvaluateAgent {
                 agent = (IAgent) agentClass.getConstructor().newInstance();
             } catch (Exception e) { throw new RuntimeException(e); }
 
-            if (i == 0)
+            if (i == 0 && agentId == null)
                 agentId = Sanitize.idify(agent.getName());
 
 			MarioRunResult result = runs[i].run(agent, verbose);
