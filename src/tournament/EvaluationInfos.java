@@ -49,7 +49,7 @@ public class EvaluationInfos {
 		results.add(result);
 		
         totalTimeSpent += result.timeSpent;
-        totalDistance += result.completionPercentage();
+        totalDistance += result.completionFraction();
         totalScore += result.score;
 		
 		avgVictories = (double) totalVictories / results.size();
@@ -59,12 +59,6 @@ public class EvaluationInfos {
         avgTimeSpent = (double) totalTimeSpent / results.size();
         avgDistance = totalDistance / results.size();
         avgScore = (double) totalScore / results.size();
-	}
-	
-	public void addResults(EvaluationInfo... results) {
-		for (EvaluationInfo info : results) {
-			addResult(info);
-		}
 	}
 	
 	public void addResults(List<EvaluationInfo> results) {
@@ -78,16 +72,14 @@ public class EvaluationInfos {
 	}
 	
 	public String getCSVHeader() {
-        return "rounds;totalVictories;avgVictories;totalDeaths;avgDeaths;" +
-               "totalTimedout;avgTimedout;avgTimeSpent;avgDistance;avgScore";
+        return "games;victories;victoryRate;deaths;deathRate;" +
+               "timeouts;timeoutRate;avgDistance;avgScore";
 	}
 	
 	public String getCSV() {
-		return results.size() 
-			   + ";" + totalVictories + ";" + avgVictories
-			   + ";" + totalDeaths + ";" + avgDeaths
-			   + ";" + totalTimedout + ";" + avgTimedout
-			   + ";" + avgTimeSpent + ";" + avgDistance + ";" + avgScore;
+        return String.format("%d;%d;%.4f;%d;%.4f;%d;%.4f;%.4f;%.2f",
+            results.size(), totalVictories, avgVictories, totalDeaths, avgDeaths,
+			totalTimedout, avgTimedout, avgDistance, avgScore);
 	}
 	
 	@Override
@@ -96,7 +88,7 @@ public class EvaluationInfos {
             "won = %d (%.1f%%), died = %d (%.1f%%), timed out = %d (%.1f%%), avg distance = %.1f%%, avg score = %.1f",
             totalVictories, 100 * avgVictories,
             totalDeaths, 100 * avgDeaths,
-            totalTimedout, 100 * avgTimedout, avgDistance, avgScore);
+            totalTimedout, 100 * avgTimedout, 100 * avgDistance, avgScore);
 	}
 	
 }

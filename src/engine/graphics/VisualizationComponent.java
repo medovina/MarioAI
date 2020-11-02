@@ -32,7 +32,6 @@ import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.image.VolatileImage;
 import java.text.DecimalFormat;
-import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -474,9 +473,5 @@ public class VisualizationComponent extends JComponent {
 				this.prevHumanKeyBoardAgent = null;
 			}
 		}
-	}
-
-	public List<String> getTextObservation(boolean showEnemies,	boolean showLevelScene) {
-		return marioEnvironment.getObservationStrings(showEnemies, showLevelScene);
 	}
 }

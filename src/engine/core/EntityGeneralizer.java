@@ -33,8 +33,6 @@ import engine.sprites.Sprite;
 /**
  * Provides generalization of entities that can be placed over {@link Tile}.
  * 
- * TODO: investigate, seems like ad-hoc stuff for some competition or experiment, reconsider to cut it out completely...
- * 
  * @author Sergey Karakovskiy, sergey@idsia.ch
  * @author Jakub 'Jimmy' Gemrot, gemrot@gamedev.cuni.cz
  */

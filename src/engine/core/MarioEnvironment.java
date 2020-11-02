@@ -147,7 +147,6 @@ public final class MarioEnvironment implements IEnvironment {
 
 		entities = new ArrayList<Entity>();
 
-		evaluationInfo.reset();
 		agent.reset(new AgentOptions(this));
 	}
 
@@ -250,80 +249,6 @@ public final class MarioEnvironment implements IEnvironment {
 		return entityField;
 	}
 
-	public List<String> getObservationStrings(boolean Enemies, boolean LevelMap) {
-		List<String> ret = new ArrayList<String>();
-		if (levelScene.level != null && levelScene.mario != null) {
-			ret.add("Total levelScene length = " + levelScene.level.length);
-			ret.add("Total levelScene height = " + levelScene.level.height);
-			ret.add("Physical Mario Position (x,y): ("
-					+ df.format(levelScene.mario.x) + ","
-					+ df.format(levelScene.mario.y) + ")");
-			ret.add("Mario Observation (Receptive Field)   Width: "
-					+ mario.receptiveFieldWidth + " Height: " + mario.receptiveFieldHeight);
-			ret.add("X Exit Position: " + levelScene.level.xExit);
-			int MarioXInMap = (int) levelScene.mario.x / LevelScene.cellSize; // TODO:
-																				// !!H!
-																				// doublcheck
-																				// and
-																				// replace
-																				// with
-																				// levelScene.mario.mapX
-			int MarioYInMap = (int) levelScene.mario.y / LevelScene.cellSize; // TODO:
-																				// !!H!
-																				// doublcheck
-																				// and
-																				// replace
-																				// with
-																				// levelScene.mario.mapY
-			ret.add("Calibrated Mario Position (x,y): (" + MarioXInMap + ","
-					+ MarioYInMap + ")\n");
-
-			Tile[][] levelScene = getTileField();
-			if (LevelMap) {
-				ret.add("~ZLevel: Z" + mario.zLevelTiles + " map:\n");
-				for (int x = 0; x < levelScene.length; ++x) {
-					String tmpData = "";
-					for (int y = 0; y < levelScene[0].length; ++y)
-						tmpData += levelSceneCellToString(levelScene[x][y].getCode());
-					ret.add(tmpData);
-				}
-			}
-
-			List<Entity>[][] enemiesObservation = null;
-			if (Enemies) {
-				enemiesObservation = getEntityField();
-				ret.add("~ZLevel: Z" + mario.zLevelEntities + " Enemies Observation:\n");
-				for (int x = 0; x < enemiesObservation.length; x++) {
-					String tmpData = "";
-					for (int y = 0; y < enemiesObservation[0].length; y++) {
-						// if (x >=0 && x <= level.xExit)
-						if (enemiesObservation[x][y].size() > 0) {
-							tmpData += enemiesObservation[x][y].get(0).type.getCode();
-						} else {
-							tmpData += EntityType.NOTHING.getCode();
-						}
-					}
-					ret.add(tmpData);
-				}
-			}
-
-		} else {
-			ret.add("~[MarioAI ERROR] level : " + levelScene.level + " mario : " + levelScene.mario);
-		}
-		return ret;
-	}
-
-	private String levelSceneCellToString(int el) {
-		String s = "";
-		if (el == 0 || el == 1)
-			s = "##";
-		s += (el == levelScene.mario.kind) ? "#M.#" : el;
-		while (s.length() < 4)
-			s += "#";
-
-		return s + " ";
-	}
-
 	@Override
 	public List<Entity> getEntities() {
 		return entities;
@@ -387,26 +312,13 @@ public final class MarioEnvironment implements IEnvironment {
         evaluationInfo.score = levelScene.getScore();
 		evaluationInfo.flowersDevoured = Mario.flowersDevoured;
 		evaluationInfo.distancePassedPhys = (int) levelScene.mario.x;
-		evaluationInfo.distancePassedCells = levelScene.mario.mapX;
 		evaluationInfo.timeSpent = levelScene.getTimeSpent();
 		evaluationInfo.timeLeft = levelScene.getTimeLeft();
 		evaluationInfo.coinsGained = Mario.coins;
-		evaluationInfo.totalNumberOfCoins = Level.counters.coinsCount;
-		evaluationInfo.totalNumberOfHiddenBlocks = Level.counters.hiddenBlocksCount;
-		evaluationInfo.totalNumberOfFlowers = Level.counters.flowers;
-		evaluationInfo.totalNumberOfMushrooms = Level.counters.mushrooms;
-		evaluationInfo.totalNumberOfCreatures = Level.counters.creatures;
 		evaluationInfo.marioMode = levelScene.getMarioMode();
 		evaluationInfo.mushroomsDevoured = Mario.mushroomsDevoured;
 		evaluationInfo.killsTotal = levelScene.getKillsTotal();
-		evaluationInfo.killsByStomp = levelScene.getKillsByStomp();
-		evaluationInfo.killsByFire = levelScene.getKillsByFire();
-		evaluationInfo.killsByShell = levelScene.getKillsByShell();
-		evaluationInfo.hiddenBlocksFound = Mario.hiddenBlocksFound;
-		evaluationInfo.collisionsWithCreatures = Mario.collisionsWithCreatures;
-		evaluationInfo.Memo = levelScene.memo;
 		evaluationInfo.levelLength = levelScene.level.length;
-		evaluationInfo.greenMushroomsDevoured = Mario.greenMushroomsDevoured;
 	}
 
 	public IAgent getAgent() {

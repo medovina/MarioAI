@@ -96,9 +96,6 @@ public class MarioSimulator {
 		
 		EvaluationInfo result = environment.getEvaluationInfo();
 		
-		MarioLog.fine("[MarioSimulator] RESULT:");
-		MarioLog.fine(result.toString());
-		
 		return result.clone(); // result is shared instance ... we must clone it to maintain sanity 		
 	}
 	

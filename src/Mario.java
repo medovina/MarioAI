@@ -12,6 +12,7 @@ public class Mario {
         out.println("usage: mario [<agent-classname>] [<option>...]");
         out.println("options:");
         out.println("  -level <level-number>[-<to-level-number>] : level(s) to run or simulate");
+        out.println("  -resultdir <path> : directory for results in CSV format");
         out.println("  -seed <num> : random seed");
         out.println("  -sim <count> : simulate a series of games without visualization");
         out.println("  -v : verbose");
@@ -21,6 +22,7 @@ public class Mario {
 	public static void main(String[] args) throws Exception {
 		Class<?> agentClass = null;
         int fromLevel = 6, toLevel = fromLevel;
+        String resultDir = null;
         int seed = 0;
         boolean seedSpecified = false;
         int sim = 0;
@@ -33,6 +35,9 @@ public class Mario {
                     String[] a = args[++i].split("-");
                     fromLevel = Integer.parseInt(a[0]);
                     toLevel = a.length > 1 ? Integer.parseInt(a[1]) : fromLevel;
+                    break;
+                case "-resultdir":
+                    resultDir = args[++i];
                     break;
                 case "-seed":
                     seed = Integer.parseInt(args[++i]);
@@ -58,7 +63,8 @@ public class Mario {
             }
             if (!seedSpecified)
                 seed = 0;
-            Evaluate.evaluateLevels(sim, seed, fromLevel, toLevel, false, agentClass, verbose);
+            Evaluate.evaluateLevels(
+                sim, seed, fromLevel, toLevel, false, agentClass, resultDir, verbose);
         } else {  // play one game visually
             if (toLevel > fromLevel) {
                 System.out.println("level range only works with -sim");
